@@ -31,6 +31,13 @@ export const LoginFormContainer = styled.div`
     justify-content: center;
     width: 50%;
     gap: 30px;
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
     @media screen and (max-width: 850px) {
         width: 100%;
         margin-top: 50px;
@@ -43,6 +50,38 @@ export const LoginFormContainer = styled.div`
             width: 200px;
         }
     }
+    .floating {
+        -webkit-animation: movebounce 5s linear infinite;
+        animation: movebounce 5s linear infinite;
+    }
+    @-webkit-keyframes movebounce {
+        0% {
+            -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+        50% {
+            -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+        }
+        100% {
+            -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+    }
+    @keyframes movebounce {
+        0% {
+            -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+        50% {
+            -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+        }
+        100% {
+            -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+    }
 `
 
 export const LoginTitle = styled.h1`
@@ -52,7 +91,6 @@ export const LoginTitle = styled.h1`
     font-weight: 500;
     color: var(--cor-primaria);
     user-select: none;
-    gap: 10px;
     margin-bottom: 40px;
     font-family: 'Fragment Mono', monospace;
     @media screen and (max-width: 850px) {
@@ -60,7 +98,6 @@ export const LoginTitle = styled.h1`
     }
     i {
         font-size: 4rem;
-        margin-bottom: -20px;
         @media screen and (max-width: 850px) {
             font-size: 3rem;
         }

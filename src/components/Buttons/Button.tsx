@@ -20,9 +20,9 @@ const ButtonPrimaryStyle = styled(Button)({
   }
 })
 
-export const ButtonPrimary = ({ label, id }:IButton):JSX.Element => {
+export const ButtonPrimary = ({ label, id, type }:IButton):JSX.Element => {
   return (
-    <ButtonPrimaryStyle id={id} variant="contained" disableElevation>
+    <ButtonPrimaryStyle type={type} id={id} variant="contained" disableElevation>
       {label}
     </ButtonPrimaryStyle>
   )
