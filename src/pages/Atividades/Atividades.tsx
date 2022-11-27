@@ -54,7 +54,7 @@ export const Atividades = () => {
 
         <div className='flex'>
           <MuralSelect>
-            <FormControl sx={{ minWidth: 200, heigth: 50, backgroundColor: 'white' }} fullWidth>
+            <FormControl sx={{ minWidth: 200, heigth: 50, backgroundColor: 'white' }} fullWidth size="small">
               <InputLabel id="select-atividade-label">Trilha</InputLabel>
               <Select
                 labelId="select-atividade-label"

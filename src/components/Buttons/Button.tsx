@@ -5,8 +5,8 @@ import { IButton } from '../../types/buttons';
 const ButtonPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
   fontWeight: '500',
-  width: 200,
-  height: 50,
+  width: 180,
+  height: 40,
   fontSize: '1.1rem',
   textTransform: 'capitalize',
   transition: '0.5s',

@@ -32,7 +32,7 @@ export const MenuLateral = ({
         <ButtonsCategorias>{children}</ButtonsCategorias>
         <LogOut>
           <p id='menu-lateral-log-out'>LOG OUT</p>
-          <HiLogout id='menu-lateral-log-out-icone' color="white" size={"20px"} />
+          <HiLogout id='menu-lateral-log-out-icone' color="var(--cor-texto)" size={"20px"} />
         </LogOut>
       </MenuLateralContainer>
     </>

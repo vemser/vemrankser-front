@@ -46,34 +46,39 @@ export const FotoDePerfil = styled.div`
 `;
 
 export const NomeDoUsuario = styled.div`
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 1.1rem;
   color: var(--branco);
   margin-top: 6%;
-  text-transform: uppercase;
+  text-transform: capitalize;
   user-select: none;
 `;
 
 export const CargoDoUsuario = styled.div`
   font-weight: inherit;
-  color: var(--branco);
-  margin-top: 5%;
+  color: var(--cor-texto);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-top: 3%;
+  font-weight: 700;
   user-select: none;
 `;
 
 export const ButtonsCategorias = styled.div`
   margin-top: 15%;
+  margin-bottom: 5%;
 `;
 
 export const LogOut = styled.div`
   display: flex;
   justify-content: center;
-  width: 200px;
-  gap: 2%;
+  width: 150px;
+  gap: 1%;
   cursor: pointer;
   transition: 0.5s;
   p {
-    font-weight: 700;
-    color: var(--branco);
+    font-weight: 800;
+    color: var(--cor-texto);
   }
   &:hover {
     transform: scale(1.05);

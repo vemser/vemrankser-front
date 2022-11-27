@@ -10,7 +10,7 @@ const ButtonMenuLateralPrimaryStyle = styled(Button)({
   fontFamily: 'Inter',
   width: 200,
   height: 40,
-  marginBottom: '10%',
+  marginBottom: '8%',
   textAlign: 'left',
   fontSize: '1rem',
   textTransform: 'capitalize',
