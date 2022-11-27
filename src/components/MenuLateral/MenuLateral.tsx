@@ -24,7 +24,7 @@ export const MenuLateral = ({
           VemRankSer
           <img  id='menu-lateral-icone'src={iconeLogo} />
         </MenuLateralTitle>
-        <FotoDePerfil  id='menu-lateral-imagem-perfil'>teste</FotoDePerfil>
+        <FotoDePerfil  id='menu-lateral-imagem-perfil'>{fotoDePerfil}</FotoDePerfil>
         <NomeDoUsuario  id='menu-lateral-nome-usuario'>{nomeDoUsuario}</NomeDoUsuario>
         <CargoDoUsuario  id='menu-lateral-cargo-usuario'>{cargoDoUsuario}</CargoDoUsuario>
         <ButtonsCategorias>{children}</ButtonsCategorias>
