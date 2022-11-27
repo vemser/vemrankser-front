@@ -19,8 +19,6 @@ Instale as dependências necessárias com os comandos
 npm install
 
 npm install @hookform/resolvers
-
-npm install --save-dev @types/jest
 ```
 
 Após a instalação, inicie o projeto com
