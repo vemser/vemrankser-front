@@ -7,7 +7,7 @@ const ButtonPrimaryStyle = styled(Button)({
   fontWeight: '500',
   width: 200,
   height: 50,
-  fontSize: '1.2rem',
+  fontSize: '1.1rem',
   textTransform: 'capitalize',
   transition: '0.5s',
   '&:hover': { 

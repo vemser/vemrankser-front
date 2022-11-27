@@ -21,6 +21,9 @@ export const LogoContainer = styled.div`
     img {
         width: 90%;
         -webkit-user-drag: none;
+        @media screen and (max-width: 1400px) {
+            width: 75%;
+        }
     }
 `
 
@@ -31,6 +34,9 @@ export const LoginFormContainer = styled.div`
     justify-content: center;
     width: 50%;
     gap: 30px;
+    @media screen and (max-width: 1400px) {
+        gap: 10px;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -53,33 +59,33 @@ export const LoginFormContainer = styled.div`
     .floating {
         -webkit-animation: movebounce 5s linear infinite;
         animation: movebounce 5s linear infinite;
-    }
-    @-webkit-keyframes movebounce {
-        0% {
-            -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+        @-webkit-keyframes movebounce {
+            0% {
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
+            50% {
+                -webkit-transform: translateY(20px);
+                transform: translateY(20px);
+            }
+            100% {
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
         }
-        50% {
-            -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-        }
-        100% {
-            -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-        }
-    }
-    @keyframes movebounce {
-        0% {
-            -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-        }
-        50% {
-            -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-        }
-        100% {
-            -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+        @keyframes movebounce {
+            0% {
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
+            50% {
+                -webkit-transform: translateY(20px);
+                transform: translateY(20px);
+            }
+            100% {
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
         }
     }
 `
@@ -93,11 +99,19 @@ export const LoginTitle = styled.h1`
     user-select: none;
     margin-bottom: 40px;
     font-family: 'Fragment Mono', monospace;
+    @media screen and (max-width: 1400px) {
+        font-size: 3.2rem;
+    }
     @media screen and (max-width: 850px) {
         font-size: 2.8rem;
     }
     i {
+        height: 80px;
+        width: 66px;
         font-size: 4rem;
+        @media screen and (max-width: 1400px) {
+            font-size: 3.4rem;
+        }
         @media screen and (max-width: 850px) {
             font-size: 3rem;
         }
