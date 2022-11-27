@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Atividades } from './pages/Atividades/Atividades';
 import { Login } from './pages/Login/Login';
+import { Teste } from './pages/Teste'
 
 export const Router = () => {
   return (
