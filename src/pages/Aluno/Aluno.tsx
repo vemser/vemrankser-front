@@ -5,8 +5,6 @@ import {
   TableContainer,
   TituloPagina,
 } from "./Aluno.styled";
-import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
 import {
   HiUser,
   HiChartPie,
@@ -15,15 +13,14 @@ import {
   HiCog,
   HiSearch,
 } from "react-icons/hi";
-// import { BarraPesquisa } from "../../components/BarraPesquisa/BarraPesquisa";
 import { ButtonPrimary } from "../../components/Buttons/Button";
-import TableTeste from "../../components/Tabela/Tabela";
 import TableAluno from "../../components/Tabela/Tabela";
-import SelectVariants from "../../components/Select/Select";
-import BasicSelect from "../../components/Select/Select";
-import { Link } from "react-router-dom";
-import SearchAppBar from "../../components/BarraPesquisa/BarraPesquisa";
+import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
+import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
+import BasicSelect from "../../components/Select/SelectAluno";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
+import { Link } from "react-router-dom";
+import SelectAluno from "../../components/Select/SelectAluno";
 
 export const Aluno = () => {
   return (
@@ -61,24 +58,22 @@ export const Aluno = () => {
       </MenuLateral>
       <AlunoContainerWrapper>
         <BarraDePesquisa>
-          <BarraPesquisa id={'barra-pesquisa-aluno'} label={'Search'}/>
-          <HiSearch size={'25px'} color={'grey'}/>
+          <BarraPesquisa id={"barra-pesquisa-aluno"} label={"Search"} />
+          <HiSearch size={"25px"} color={"grey"} />
         </BarraDePesquisa>
         <TituloPagina>
-            <h1>Alunos</h1>
-           <div className='select'>
-           <BasicSelect />
-           </div>
-            <div>
-                <p>1,2,3,4,5,6</p> 
-            </div>
-            <Link to="/cadastraAluno">
-            <ButtonPrimary label={"diconar"} id={"teste"} type={'button'}/>
-            </Link>
-            
+          <h1>Alunos</h1>
+          <SelectAluno label={"Trilha"} id={"select-trilha-aluno"} />
+          <Link to="/cadastraAluno">
+            <ButtonPrimary
+              label={"Adiconar Aluno"}
+              id={"teste"}
+              type={"button"}
+            />
+          </Link>
         </TituloPagina>
         <TableContainer>
-             <TableAluno />
+          <TableAluno />
         </TableContainer>
       </AlunoContainerWrapper>
     </AlunoContainer>
