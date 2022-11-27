@@ -30,7 +30,7 @@ export const AtividadeContainer = styled.div`
 `
 
 export const MuralTitulo = styled.h1`
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     user-select: none;
     color: var(--cor-texto);

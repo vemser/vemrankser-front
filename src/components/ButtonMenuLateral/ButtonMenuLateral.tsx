@@ -5,25 +5,28 @@ import { IButtonMenuLateral } from '../../types/buttonMenuLateral';
 
 const ButtonMenuLateralPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--branco)',
-  color: 'var(--cor-primaria)',
+  color: 'var(--cor-texto)',
   fontWeight: '500',
-  width: 220,
+  fontFamily: 'Inter',
+  width: 200,
   height: 40,
   marginBottom: '10%',
   textAlign: 'left',
-  fontSize: '1.2rem',
+  fontSize: '1rem',
   textTransform: 'capitalize',
-  '&:hover': { 
-    backgroundColor: 'var(--branco)'
+  justifyContent: 'flex-start',
+  '&:hover': {
+    backgroundColor: 'var(--branco)',
+    color: 'var(--cor-primaria)'
   },
 })
 
-export const ButtonMenuLateral = ({ text, icone, link }:IButtonMenuLateral):JSX.Element => {
+export const ButtonMenuLateral = ({ text, icone, link }: IButtonMenuLateral): JSX.Element => {
   return (
     <Link to={link}>
-      <ButtonMenuLateralPrimaryStyle variant="contained"  id='menu-lateral-button' startIcon={icone} disableElevation>
-      {text}
-    </ButtonMenuLateralPrimaryStyle>
+      <ButtonMenuLateralPrimaryStyle variant="contained" id='menu-lateral-button' startIcon={icone} disableElevation>
+        {text}
+      </ButtonMenuLateralPrimaryStyle>
     </Link>
   )
 }

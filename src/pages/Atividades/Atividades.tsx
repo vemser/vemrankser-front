@@ -19,7 +19,7 @@ export const Atividades = () => {
       <MenuLateral
         nomeDoUsuario={"Luiza Valentini"}
         cargoDoUsuario={"ADMIN"}
-        fotoDePerfil={"TESTE"}
+        fotoDePerfil={""}
       >
         <ButtonMenuLateral
           text={"Dashboard"}

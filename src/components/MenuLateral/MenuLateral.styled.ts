@@ -31,11 +31,18 @@ export const MenuLateralTitle = styled.div`
 `;
 
 export const FotoDePerfil = styled.div`
-  height: 145.64px;
-  width: 152.62px;
+  height: 120px;
+  width: 130px;
   background-color: var(--branco);
-  border-radius: 100%;
+  border-radius: 50%;
   margin-top: 0.2%;
+  object-fit: cover;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 `;
 
 export const NomeDoUsuario = styled.div`
@@ -63,8 +70,13 @@ export const LogOut = styled.div`
   width: 200px;
   gap: 2%;
   cursor: pointer;
+  transition: 0.5s;
   p {
     font-weight: 700;
     color: var(--branco);
+  }
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
   }
 `;
