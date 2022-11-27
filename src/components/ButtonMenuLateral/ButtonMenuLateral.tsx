@@ -7,7 +7,7 @@ const ButtonMenuLateralPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--branco)',
   color: 'var(--cor-primaria)',
   fontWeight: '500',
-  width: 240,
+  width: 220,
   height: 40,
   marginBottom: '10%',
   textAlign: 'center',
