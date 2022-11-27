@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MenuLateralContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 20%;
   padding-top: 1.5%;
   padding-left: 0.5%;
@@ -24,9 +24,9 @@ export const MenuLateralTitle = styled.div`
   font-family: "Fragment Mono", monospace;
   display: flex;
   gap: 2%;
-
   img {
-    width: 20%;
+    width: 35px;
+    padding-top: 5px;
   }
 `;
 
@@ -43,12 +43,14 @@ export const NomeDoUsuario = styled.div`
   color: var(--branco);
   margin-top: 6%;
   text-transform: uppercase;
+  user-select: none;
 `;
 
 export const CargoDoUsuario = styled.div`
   font-weight: inherit;
   color: var(--branco);
   margin-top: 5%;
+  user-select: none;
 `;
 
 export const ButtonsCategorias = styled.div`
@@ -57,7 +59,9 @@ export const ButtonsCategorias = styled.div`
 
 export const LogOut = styled.div`
   display: flex;
-  gap: -1%;
+  justify-content: center;
+  width: 200px;
+  gap: 2%;
   cursor: pointer;
   p {
     font-weight: 700;

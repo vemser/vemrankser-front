@@ -22,15 +22,16 @@ export const MenuLateral = ({
       <MenuLateralContainer>
         <MenuLateralTitle id='menu-lateral-logo'>
           VemRankSer
-          <img  id='menu-lateral-icone'src={iconeLogo} />
+          <img id='menu-lateral-icone' src={iconeLogo} />
         </MenuLateralTitle>
-        <FotoDePerfil  id='menu-lateral-imagem-perfil'>{fotoDePerfil}</FotoDePerfil>
-        <NomeDoUsuario  id='menu-lateral-nome-usuario'>{nomeDoUsuario}</NomeDoUsuario>
-        <CargoDoUsuario  id='menu-lateral-cargo-usuario'>{cargoDoUsuario}</CargoDoUsuario>
+        <FotoDePerfil id='menu-lateral-imagem-perfil'>
+        <img src={fotoDePerfil} alt="Foto do usuário" /></FotoDePerfil>
+        <NomeDoUsuario id='menu-lateral-nome-usuario'>{nomeDoUsuario}</NomeDoUsuario>
+        <CargoDoUsuario id='menu-lateral-cargo-usuario'>{cargoDoUsuario}</CargoDoUsuario>
         <ButtonsCategorias>{children}</ButtonsCategorias>
         <LogOut>
-          <p  id='menu-lateral-log-out'>LOG OUT</p>
-          <HiLogout  id='menu-lateral-log-out-icone' color="white" size={"20px"} />
+          <p id='menu-lateral-log-out'>LOG OUT</p>
+          <HiLogout id='menu-lateral-log-out-icone' color="white" size={"20px"} />
         </LogOut>
       </MenuLateralContainer>
     </>

@@ -3,4 +3,4 @@ export interface IMenuLateral {
     cargoDoUsuario: string,
     nomeDoUsuario: string,
     fotoDePerfil: string,
-  }
+}
