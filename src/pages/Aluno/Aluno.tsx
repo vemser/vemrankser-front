@@ -13,6 +13,7 @@ import {
   HiAcademicCap,
   HiBookOpen,
   HiCog,
+  HiSearch,
 } from "react-icons/hi";
 // import { BarraPesquisa } from "../../components/BarraPesquisa/BarraPesquisa";
 import { ButtonPrimary } from "../../components/Buttons/Button";
@@ -22,6 +23,7 @@ import SelectVariants from "../../components/Select/Select";
 import BasicSelect from "../../components/Select/Select";
 import { Link } from "react-router-dom";
 import SearchAppBar from "../../components/BarraPesquisa/BarraPesquisa";
+import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 
 export const Aluno = () => {
   return (
@@ -59,7 +61,8 @@ export const Aluno = () => {
       </MenuLateral>
       <AlunoContainerWrapper>
         <BarraDePesquisa>
-          <SearchAppBar />
+          <BarraPesquisa id={'barra-pesquisa-aluno'} label={'Search'}/>
+          <HiSearch size={'25px'} color={'grey'}/>
         </BarraDePesquisa>
         <TituloPagina>
             <h1>Alunos</h1>
