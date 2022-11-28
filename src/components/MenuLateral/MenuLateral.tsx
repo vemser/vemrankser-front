@@ -2,8 +2,8 @@ import { useState } from "react";
 import { ButtonHandler, ButtonsCategorias, CargoDoUsuario, FotoDePerfil, LogOut, MenuLateralContainer, MenuLateralTitle, NomeDoUsuario } from "./MenuLateral.styled";
 import { HiLogout, HiMenu } from "react-icons/hi";
 import { IMenuLateral } from "../../types/menuLateral";
-import iconeLogo from "../../assets/icone-logo.svg";
 import photoDummy from '../../assets/teste.jpg';
+import { IoRocketOutline } from "react-icons/io5";
 
 export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePerfil }: IMenuLateral) => {
   let [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -16,7 +16,7 @@ export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePer
       <MenuLateralContainer mobileOpen = {menuOpen}>
         <MenuLateralTitle id='menu-lateral-logo'>
           VemRankSer
-          <img id='menu-lateral-icone' src={iconeLogo} />
+          <i><IoRocketOutline id='login-icone' className='floating' /></i>
         </MenuLateralTitle>
         <FotoDePerfil id='menu-lateral-imagem-perfil'>{fotoDePerfil}
           <img src={photoDummy} alt="Foto do usuário" /></FotoDePerfil>

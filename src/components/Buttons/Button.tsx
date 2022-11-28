@@ -6,8 +6,9 @@ const ButtonPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
   fontWeight: '500',
   height: 40,
-  fontSize: '1.1rem',
+  fontSize: '1rem',
   textTransform: 'capitalize',
+  fontFamily: 'Inter',
   transition: '0.5s',
   '&:hover': { 
     transition: '0.5s',
