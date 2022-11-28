@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Aluno } from './pages/Aluno/Aluno';
-import { CadastraAluno } from './pages/CadastraAluno/CadastraAluno';
-import { EditaAluno } from './pages/EditaAluno/EditaAluno';
+import { CadastraAluno } from './pages/AlunoCadastra/CadastraAluno';
+import { EditaAluno } from './pages/AlunoEditar/EditaAluno';
 import { Login } from './pages/Login/Login';
 import { Teste } from './pages/Teste'
 
@@ -14,8 +14,8 @@ export const Router = () => {
         <Route path={'/'} element={<Login />} />
         <Route path={'/teste'} element={<Teste />} />
         <Route path={'/aluno'} element={<Aluno />} />
-        <Route path={'/cadastraAluno'} element={<CadastraAluno />} />
-        <Route path={'/editaAluno'} element={<EditaAluno />} />
+        <Route path={'/vincula-aluno'} element={<CadastraAluno />} />
+        <Route path={'/edita-aluno'} element={<EditaAluno />} />
       </Routes>
     </BrowserRouter>
   )

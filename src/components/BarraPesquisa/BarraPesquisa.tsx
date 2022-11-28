@@ -1,15 +1,13 @@
 import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
+import { HiUser } from "react-icons/hi";
 import { IBarraPesquisa } from "../../types/barraDePesquisa";
-
-const TextFieldStyle = styled(TextField)({
-  heigth: 50,
-});
 
 export default function BarraPesquisa({ label, id }: IBarraPesquisa) {
   return (
     <>
-      <TextFieldStyle id={id} label={label} variant="standard" />
+      <TextField id={id} label={label} variant="outlined"  sx={{ width: 200, heigth: 50, backgroundColor: "white" }}
+                fullWidth
+                size="small" />
     </>
   );
 }

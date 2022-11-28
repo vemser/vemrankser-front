@@ -12,10 +12,10 @@ import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenu
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap,HiBookOpen,HiChartPie,HiCog,HiUser} from "react-icons/hi";
-import {EditaAlunoContainer,EditaContainerWrapper} from "./EditaAluno.styled";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser} from "react-icons/hi";
+import { CadastraAlunoContainer, CadastraContainerWrapper} from "./CadastraAluno.styled";
 
-export const EditaAluno = () => {
+export const CadastraAluno = () => {
   const {
     register,
     handleSubmit,
@@ -37,7 +37,7 @@ export const EditaAluno = () => {
 
   return (
     <>
-      <EditaAlunoContainer>
+      <CadastraAlunoContainer>
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
@@ -69,11 +69,11 @@ export const EditaAluno = () => {
             link={"/configurações"}
           />
         </MenuLateral>
-        <EditaContainerWrapper>
-          <h1>Editar Usuário</h1>
+        <CadastraContainerWrapper>
+          <h1>Vincular Aluno</h1>
           <form>
             <TextField
-              id="nome-edita-aluno"
+              id="nome-cadastra-aluno"
               label="Nome"
               variant="outlined"
               sx={{ width: "100%", marginBottom: "5%", marginTop: "10%" }}
@@ -89,7 +89,7 @@ export const EditaAluno = () => {
               }}
               fullWidth
             >
-              <InputLabel id="select-edita-trilha" {...register("trilha")}>
+              <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
                 Trilha
               </InputLabel>
               {errors.trilha && <span>{errors.trilha.message}</span>}
@@ -114,7 +114,7 @@ export const EditaAluno = () => {
               }}
               fullWidth
             >
-              <InputLabel id="select-edita-modulo" {...register("modulo")}>
+              <InputLabel id="select-cadastra-modulo" {...register("modulo")}>
                 Módulo
               </InputLabel>
               {errors.modulo && <span>{errors.modulo.message}</span>}
@@ -133,14 +133,14 @@ export const EditaAluno = () => {
             </FormControl>
             <Link to="/aluno">
               <ButtonPrimary
-                label="Editar Aluno"
+                label="Enviar"
                 id="button-edita-aluno"
                 type="submit"
               />
             </Link>
           </form>
-        </EditaContainerWrapper>
-      </EditaAlunoContainer>
+        </CadastraContainerWrapper>
+      </CadastraAlunoContainer>
     </>
   );
 };

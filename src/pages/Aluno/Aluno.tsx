@@ -4,10 +4,35 @@ import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
 import { ButtonEditaDeleta } from "../../components/ButtonEditaDeleta/ButtonEditaDeleta";
-import { CardContent,FormControl, InputLabel,MenuItem,Select,SelectChangeEvent} from "@mui/material";
-import { AlunosCard, AlunosContainer, Buttons, CardContainer,HeaderSelect,Titulo} from "./Aluno.styled";
-import {HiUser,HiChartPie,HiAcademicCap,HiBookOpen,HiCog,HiTrash,HiClipboardList} from"react-icons/hi";
+import {
+  CardContent,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+} from "@mui/material";
+import {
+  AlunosCard,
+  AlunosContainer,
+  Buttons,
+  CardContainer,
+  HeaderSelect,
+  Titulo,
+} from "./Aluno.styled";
+import {
+  HiUser,
+  HiChartPie,
+  HiAcademicCap,
+  HiBookOpen,
+  HiCog,
+  HiTrash,
+  HiClipboardList,
+  HiSearch,
+} from "react-icons/hi";
 import userDummy from "../../assets/user.png";
+import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -57,8 +82,9 @@ export const Aluno = () => {
           <div className="flex">
             <HeaderSelect>
               <FormControl
-                sx={{ minWidth: 200, heigth: 50, backgroundColor: "white" }}
+                sx={{ width: 250, heigth: 50, backgroundColor: "white" }}
                 fullWidth
+                size="small"
               >
                 <InputLabel id="select-aluno-label">Trilha</InputLabel>
                 <Select
@@ -76,7 +102,17 @@ export const Aluno = () => {
               </FormControl>
             </HeaderSelect>
 
-            <Link to={"/cadastraAluno"}>
+            <div className="barra-pesquisa-e-icone">
+              <BarraPesquisa
+                label={"Pesquisar"}
+                id={"barra-de-pesquisa-aluno"}
+              />
+              <i>
+                <HiSearch size={"30px"} />
+              </i>
+            </div>
+
+            <Link to={"/vincula-aluno"}>
               <ButtonPrimary
                 type={"button"}
                 id={"botao-nova-atividade"}
@@ -88,7 +124,9 @@ export const Aluno = () => {
             <AlunosCard>
               <img src={userDummy} alt="Foto" />
               <CardContent>
-              <p><span>Nome:</span> Luiza Valentini</p>
+                <p>
+                  <span>Nome:</span> Luiza Valentini
+                </p>
 
                 <p>
                   <span>E-mail:</span> Luizadarav@
@@ -105,7 +143,7 @@ export const Aluno = () => {
                 </p>
               </CardContent>
               <Buttons>
-                <Link to={"/editaAluno"}>
+                <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
                     label={"Editar"}
                     icone={<HiClipboardList />}
@@ -117,7 +155,9 @@ export const Aluno = () => {
             <AlunosCard>
               <img src={userDummy} alt="Foto" />
               <CardContent>
-              <p><span className="teste">Nome:</span> Luiza Valentini</p>
+                <p>
+                  <span className="teste">Nome:</span> Luiza Valentini
+                </p>
 
                 <p>
                   <span>E-mail:</span> Luizadarav@
@@ -134,7 +174,7 @@ export const Aluno = () => {
                 </p>
               </CardContent>
               <Buttons>
-                <Link to={"/editaAluno"}>
+                <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
                     label={"Editar"}
                     icone={<HiClipboardList />}
@@ -146,7 +186,9 @@ export const Aluno = () => {
             <AlunosCard>
               <img src={userDummy} alt="Foto" />
               <CardContent>
-              <p><span className="teste">Nome:</span> Luiza Valentini</p>
+                <p>
+                  <span className="teste">Nome:</span> Luiza Valentini
+                </p>
 
                 <p>
                   <span>E-mail:</span> Luizadarav@
@@ -163,7 +205,7 @@ export const Aluno = () => {
                 </p>
               </CardContent>
               <Buttons>
-                <Link to={"/editaAluno"}>
+                <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
                     label={"Editar"}
                     icone={<HiClipboardList />}
@@ -175,7 +217,9 @@ export const Aluno = () => {
             <AlunosCard>
               <img src={userDummy} alt="Foto" />
               <CardContent>
-              <p><span className="teste">Nome:</span> Luiza Valentini</p>
+                <p>
+                  <span className="teste">Nome:</span> Luiza Valentini
+                </p>
 
                 <p>
                   <span>E-mail:</span> Luizadarav@
@@ -192,7 +236,7 @@ export const Aluno = () => {
                 </p>
               </CardContent>
               <Buttons>
-                <Link to={"/editaAluno"}>
+                <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
                     label={"Editar"}
                     icone={<HiClipboardList />}

@@ -22,6 +22,18 @@ export const AlunosContainer = styled.div`
       display: flex;
       gap: 20px;
     }
+
+    .barra-pesquisa-e-icone{
+    display: flex;
+    align-items: center;
+    i{
+      margin-left: -15px;
+      cursor: pointer;
+      background-color: var(--branco);
+      border-radius: 5px;
+      padding: 2px;
+    }
+  }
     @media screen and (max-width: 850px) {
       flex-direction: column;
       gap: 10px;
@@ -40,6 +52,7 @@ export const Titulo = styled.div`
 
 export const HeaderSelect = styled.div`
   width: 200px;
+  
 `;
 
 export const CardContainer = styled.div`
