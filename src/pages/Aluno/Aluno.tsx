@@ -4,35 +4,12 @@ import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
 import { ButtonEditaDeleta } from "../../components/ButtonEditaDeleta/ButtonEditaDeleta";
-import {
-  CardContent,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-} from "@mui/material";
-import {
-  AlunosCard,
-  AlunosContainer,
-  Buttons,
-  CardContainer,
-  HeaderSelect,
-  Titulo,
-} from "./Aluno.styled";
-import {
-  HiUser,
-  HiChartPie,
-  HiAcademicCap,
-  HiBookOpen,
-  HiCog,
-  HiTrash,
-  HiClipboardList,
-  HiSearch,
-} from "react-icons/hi";
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiTrash, HiClipboardList, HiSearch } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
+import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper, Buttons } from "../../components/Styles/ButtonCard";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -42,7 +19,7 @@ export const Aluno = () => {
   };
   return (
     <>
-      <AlunosContainer>
+      <ButtonCardContainer>
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
@@ -76,11 +53,10 @@ export const Aluno = () => {
         </MenuLateral>
         <section>
           <Titulo>
-            <h1>Alunos</h1>
+            Alunos
           </Titulo>
-
           <div className="flex">
-            <HeaderSelect>
+            <div>
               <FormControl
                 sx={{ width: 250, heigth: 50, backgroundColor: "white" }}
                 fullWidth
@@ -100,17 +76,17 @@ export const Aluno = () => {
                   <MenuItem value={"qa"}>QA</MenuItem>
                 </Select>
               </FormControl>
-            </HeaderSelect>
+            </div>
 
-            <div className="barra-pesquisa-e-icone">
+            <BarraDePesquisa>
               <BarraPesquisa
                 label={"Pesquisar"}
                 id={"barra-de-pesquisa-aluno"}
               />
               <i>
-                <HiSearch size={"30px"} />
+                <HiSearch size={"28px"} />
               </i>
-            </div>
+            </BarraDePesquisa>
 
             <Link to={"/vincula-aluno"}>
               <ButtonPrimary
@@ -120,28 +96,22 @@ export const Aluno = () => {
               />
             </Link>
           </div>
-          <CardContainer>
-            <AlunosCard>
-              <img src={userDummy} alt="Foto" />
-              <CardContent>
-                <p>
-                  <span>Nome:</span> Luiza Valentini
-                </p>
-
-                <p>
-                  <span>E-mail:</span> Luizadarav@
-                </p>
-
-                <p>
-                  <span>Login:</span> Luiza.valentini{" "}
-                </p>
-                <p>
-                  <span>Status:</span> ativo
-                </p>
-                <p>
-                  <span>Cidade: </span>Caxias do sul
-                </p>
-              </CardContent>
+          <ButtonCardWrapper>
+            <ButtonCard>
+              <ButtonCardContent>
+                <img src={userDummy} alt="Foto" />
+                <div>
+                  <p><span>Nome:</span> Luiza Valentini </p>
+                  <p><span>E-mail:</span> Luizadarav@ </p>
+                </div>
+                <div>
+                  <p><span>Login:</span> Luiza.valentini </p>
+                  <p><span>Cidade: </span> Caxias do sul </p>
+                </div>
+                <div>
+                  <p><span>Status:</span> ativo </p>
+                </div>
+              </ButtonCardContent>
               <Buttons>
                 <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
@@ -151,28 +121,22 @@ export const Aluno = () => {
                 </Link>
                 <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
               </Buttons>
-            </AlunosCard>
-            <AlunosCard>
-              <img src={userDummy} alt="Foto" />
-              <CardContent>
-                <p>
-                  <span className="teste">Nome:</span> Luiza Valentini
-                </p>
-
-                <p>
-                  <span>E-mail:</span> Luizadarav@
-                </p>
-
-                <p>
-                  <span>Login:</span> Luiza.valentini{" "}
-                </p>
-                <p>
-                  <span>Status:</span> ativo
-                </p>
-                <p>
-                  <span>Cidade: </span>Caxias do sul
-                </p>
-              </CardContent>
+            </ButtonCard>
+            <ButtonCard>
+              <ButtonCardContent>
+                <img src={userDummy} alt="Foto" />
+                <div>
+                  <p><span>Nome:</span> Luiza Valentini </p>
+                  <p><span>E-mail:</span> Luizadarav@ </p>
+                </div>
+                <div>
+                  <p><span>Login:</span> Luiza.valentini </p>
+                  <p><span>Cidade: </span> Caxias do sul </p>
+                </div>
+                <div>
+                  <p><span>Status:</span> ativo </p>
+                </div>
+              </ButtonCardContent>
               <Buttons>
                 <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
@@ -182,28 +146,22 @@ export const Aluno = () => {
                 </Link>
                 <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
               </Buttons>
-            </AlunosCard>
-            <AlunosCard>
-              <img src={userDummy} alt="Foto" />
-              <CardContent>
-                <p>
-                  <span className="teste">Nome:</span> Luiza Valentini
-                </p>
-
-                <p>
-                  <span>E-mail:</span> Luizadarav@
-                </p>
-
-                <p>
-                  <span>Login:</span> Luiza.valentini{" "}
-                </p>
-                <p>
-                  <span>Status:</span> ativo
-                </p>
-                <p>
-                  <span>Cidade: </span>Caxias do sul
-                </p>
-              </CardContent>
+            </ButtonCard>
+            <ButtonCard>
+              <ButtonCardContent>
+                <img src={userDummy} alt="Foto" />
+                <div>
+                  <p><span>Nome:</span> Luiza Valentini </p>
+                  <p><span>E-mail:</span> Luizadarav@ </p>
+                </div>
+                <div>
+                  <p><span>Login:</span> Luiza.valentini </p>
+                  <p><span>Cidade: </span> Caxias do sul </p>
+                </div>
+                <div>
+                  <p><span>Status:</span> ativo </p>
+                </div>
+              </ButtonCardContent>
               <Buttons>
                 <Link to={"/edita-aluno"}>
                   <ButtonEditaDeleta
@@ -213,41 +171,10 @@ export const Aluno = () => {
                 </Link>
                 <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
               </Buttons>
-            </AlunosCard>
-            <AlunosCard>
-              <img src={userDummy} alt="Foto" />
-              <CardContent>
-                <p>
-                  <span className="teste">Nome:</span> Luiza Valentini
-                </p>
-
-                <p>
-                  <span>E-mail:</span> Luizadarav@
-                </p>
-
-                <p>
-                  <span>Login:</span> Luiza.valentini{" "}
-                </p>
-                <p>
-                  <span>Status:</span> ativo
-                </p>
-                <p>
-                  <span>Cidade: </span>Caxias do sul
-                </p>
-              </CardContent>
-              <Buttons>
-                <Link to={"/edita-aluno"}>
-                  <ButtonEditaDeleta
-                    label={"Editar"}
-                    icone={<HiClipboardList />}
-                  />
-                </Link>
-                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
-              </Buttons>
-            </AlunosCard>
-          </CardContainer>
+            </ButtonCard>
+          </ButtonCardWrapper>
         </section>
-      </AlunosContainer>
+      </ButtonCardContainer>
     </>
   );
 };

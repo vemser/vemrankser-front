@@ -9,11 +9,12 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
-import { ButtonPrimary } from "../../components/Buttons/Button";
+import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { HiAcademicCap,HiBookOpen,HiChartPie,HiCog,HiUser} from "react-icons/hi";
-import {EditaAlunoContainer,EditaContainerWrapper} from "./EditaAluno.styled";
+import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
+import { Titulo } from "../../components/Styles/Component.styled";
 
 export const EditaAluno = () => {
   const {
@@ -37,7 +38,7 @@ export const EditaAluno = () => {
 
   return (
     <>
-      <EditaAlunoContainer>
+      <MainContainer>
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
@@ -69,14 +70,17 @@ export const EditaAluno = () => {
             link={"/configurações"}
           />
         </MenuLateral>
-        <EditaContainerWrapper>
-          <h1>Editar Aluno</h1>
+        <ContentWrapper>
+          <Titulo>
+            Editar Aluno
+          </Titulo>
           <form>
             <TextField
               id="nome-edita-aluno"
               label="Nome"
               variant="outlined"
-              sx={{ width: "100%", marginBottom: "5%", marginTop: "10%" }}
+              sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
+              size="small"
               {...register("nome")}
             />
             {errors.nome && <span>{errors.nome.message}</span>}
@@ -84,9 +88,10 @@ export const EditaAluno = () => {
             <FormControl
               sx={{
                 marginBottom: "5%",
-                backgroundColor: "init",
+                backgroundColor: "white",
               }}
               fullWidth
+              size="small"
             >
               <InputLabel id="select-edita-trilha" {...register("trilha")}>
                 Trilha
@@ -109,9 +114,10 @@ export const EditaAluno = () => {
               sx={{
                 width: "100%",
                 marginBottom: "5%",
-                backgroundColor: "init",
+                backgroundColor: "white",
               }}
               fullWidth
+              size="small"
             >
               <InputLabel id="select-edita-modulo" {...register("modulo")}>
                 Módulo
@@ -123,6 +129,7 @@ export const EditaAluno = () => {
                 value={modulo}
                 label="Modulo"
                 onChange={handleChangeSelect2}
+                size="small"
               >
                 <MenuItem value={"modulo1"}>Módulo 1</MenuItem>
                 <MenuItem value={"modulo2"}>Módulo 2</MenuItem>
@@ -130,16 +137,23 @@ export const EditaAluno = () => {
                 <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
               </Select>
             </FormControl>
-            <Link to="/aluno">
+            <ButtonWraper>
               <ButtonPrimary
-                label="Editar"
+                label="Adicionar"
                 id="button-edita-aluno"
                 type="submit"
               />
-            </Link>
+              <Link to="/alunos">
+                <ButtonSecondary
+                  label="Cancelar"
+                  id="button-cancela-aluno"
+                  type="button"
+                />
+              </Link>
+            </ButtonWraper>
           </form>
-        </EditaContainerWrapper>
-      </EditaAlunoContainer>
+        </ContentWrapper>
+      </MainContainer>
     </>
   );
 };

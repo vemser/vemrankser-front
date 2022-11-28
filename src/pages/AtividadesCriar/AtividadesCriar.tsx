@@ -1,11 +1,9 @@
-import { ButtonMenuLateral } from '../../components/ButtonMenuLateral/ButtonMenuLateral'
-import { MenuLateral } from '../../components/MenuLateral/MenuLateral'
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi'
-import { AtividadeContainer } from '../Atividades/Atividades.styled'
+import { ButtonMenuLateral } from '../../components/ButtonMenuLateral/ButtonMenuLateral';
+import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 
 export const AtividadesCriar = () => {
   return (
-    <AtividadeContainer>
       <MenuLateral
         nomeDoUsuario={"Luiza Valentini"}
         cargoDoUsuario={"ADMIN"}
@@ -37,7 +35,5 @@ export const AtividadesCriar = () => {
           link={"/configurações"}
         />
       </MenuLateral>
-
-    </AtividadeContainer>
   )
 }

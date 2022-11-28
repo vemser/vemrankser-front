@@ -1,5 +1,4 @@
 import TextField from "@mui/material/TextField";
-import { HiUser } from "react-icons/hi";
 import { IBarraPesquisa } from "../../types/barraDePesquisa";
 
 export default function BarraPesquisa({ label, id }: IBarraPesquisa) {

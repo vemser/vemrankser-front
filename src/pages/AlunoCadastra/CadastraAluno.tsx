@@ -9,11 +9,12 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
-import { ButtonPrimary } from "../../components/Buttons/Button";
+import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser} from "react-icons/hi";
-import { CadastraAlunoContainer, CadastraContainerWrapper} from "./CadastraAluno.styled";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from "react-icons/hi";
+import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
+import { Titulo } from "../../components/Styles/Component.styled";
 
 export const CadastraAluno = () => {
   const {
@@ -37,7 +38,7 @@ export const CadastraAluno = () => {
 
   return (
     <>
-      <CadastraAlunoContainer>
+      <MainContainer>
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
@@ -69,15 +70,18 @@ export const CadastraAluno = () => {
             link={"/configurações"}
           />
         </MenuLateral>
-        <CadastraContainerWrapper>
-          <h1>Vincular Aluno</h1>
+        <ContentWrapper>
+          <Titulo>
+            Adicionar aluno à trilha
+          </Titulo>
           <form>
             <TextField
               id="nome-cadastra-aluno"
               label="Nome"
               variant="outlined"
-              sx={{ width: "100%", marginBottom: "5%", marginTop: "10%" }}
+              sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
               {...register("nome")}
+              size="small"
             />
             {errors.nome && <span>{errors.nome.message}</span>}
 
@@ -85,9 +89,10 @@ export const CadastraAluno = () => {
               sx={{
                 width: "100%",
                 marginBottom: "5%",
-                backgroundColor: "init",
+                backgroundColor: "white",
               }}
               fullWidth
+              size="small"
             >
               <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
                 Trilha
@@ -110,9 +115,10 @@ export const CadastraAluno = () => {
               sx={{
                 width: "100%",
                 marginBottom: "5%",
-                backgroundColor: "init",
+                backgroundColor: "white",
               }}
               fullWidth
+              size="small"
             >
               <InputLabel id="select-cadastra-modulo" {...register("modulo")}>
                 Módulo
@@ -131,16 +137,23 @@ export const CadastraAluno = () => {
                 <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
               </Select>
             </FormControl>
-            <Link to="/aluno">
+            <ButtonWraper>
               <ButtonPrimary
-                label="Enviar"
+                label="Adicionar"
                 id="button-edita-aluno"
                 type="submit"
               />
-            </Link>
+              <Link to="/alunos">
+                <ButtonSecondary
+                  label="Cancelar"
+                  id="button-cancela-aluno"
+                  type="button"
+                />
+              </Link>
+            </ButtonWraper>
           </form>
-        </CadastraContainerWrapper>
-      </CadastraAlunoContainer>
+        </ContentWrapper>
+      </MainContainer>
     </>
   );
 };
