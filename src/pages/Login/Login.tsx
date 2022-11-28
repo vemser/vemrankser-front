@@ -1,27 +1,28 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../utils/schemas";
-import { IUser } from "../../types/user";
-import {
-  LoginContainer,
-  LoginFormContainer,
-  LoginSubtitle,
-  LoginTitle,
-  LogoContainer,
-} from "./Login.styled";
-import { ButtonPrimary } from "../../components/Buttons/Button";
-import { Input } from "../../components/Inputs/Input";
-import { IoRocketOutline } from "react-icons/io5";
-import LogoLogin from "../../assets/logo.png";
+import { Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginSchema } from '../../utils/schemas';
+import { IUserLogin } from '../../types/user';
+import { LoginContainer, LoginFormContainer, LoginSubtitle, LoginTitle, LogoContainer } from './Login.styled';
+import { ButtonPrimary } from '../../components/Buttons/Button';
+import { Input } from '../../components/Inputs/Input';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { IoRocketOutline } from 'react-icons/io5';
+import LogoLogin from '../../assets/logo.png';
+import { TextField } from '@mui/material';
 
 export const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IUser>({
+  const { handleLogin } = useContext(AuthContext);
+  const token = localStorage.getItem('token');
+
+  const { register, handleSubmit, formState: { errors } } = useForm<IUserLogin>({
     resolver: yupResolver(loginSchema),
   });
+
+  if (token) {
+    return <Navigate to='/alunos' />
+  }
 
   return (
     <LoginContainer>
@@ -38,14 +39,14 @@ export const Login = () => {
         </LoginTitle>
         <LoginSubtitle id="login-subtitulo">Entre na sua conta</LoginSubtitle>
 
-        <form>
-          <Input id="login-input-email" label="Email" {...register("login")} />
-          {errors.login && <span>{errors.login.message}</span>}
+        <form onSubmit={handleSubmit(data => handleLogin(data))}>
+          <TextField id="email" label="Email" variant="outlined" {...register("email")} />
+          {errors.email && <span>{errors.email.message}</span>}
 
-          <Input id="login-input-senha" label="Senha" {...register("senha")} />
+          <TextField id="senha" label="Senha" variant="outlined" type="password" {...register("senha")} />
           {errors.senha && <span>{errors.senha.message}</span>}
 
-          <ButtonPrimary type="submit" id="login-botao-entrar" label="Entrar" />
+          <ButtonPrimary type='submit' id='botao-logar' label='Entrar' />
         </form>
       </LoginFormContainer>
     </LoginContainer>

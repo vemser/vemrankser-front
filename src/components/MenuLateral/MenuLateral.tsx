@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ButtonHandler, ButtonsCategorias, CargoDoUsuario, FotoDePerfil, LogOut, MenuLateralContainer, MenuLateralTitle, NomeDoUsuario } from "./MenuLateral.styled";
 import { HiLogout, HiMenu } from "react-icons/hi";
 import { IMenuLateral } from "../../types/menuLateral";
 import photoDummy from '../../assets/teste.jpg';
 import { IoRocketOutline } from "react-icons/io5";
+import { AuthContext } from "../../context/AuthContext";
 
 export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePerfil }: IMenuLateral) => {
   let [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const { handleLogout } = useContext(AuthContext);
 
   return (
     <>
@@ -23,7 +25,7 @@ export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePer
         <NomeDoUsuario id='menu-lateral-nome-usuario'>{nomeDoUsuario}</NomeDoUsuario>
         <CargoDoUsuario id='menu-lateral-cargo-usuario'>{cargoDoUsuario}</CargoDoUsuario>
         <ButtonsCategorias>{children}</ButtonsCategorias>
-        <LogOut>
+        <LogOut onClick={handleLogout}>
           <p id='menu-lateral-log-out'>Sair da conta</p>
           <HiLogout id='menu-lateral-log-out-icone' color="var(--cor-texto)" size={"20px"} />
         </LogOut>

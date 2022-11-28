@@ -3,7 +3,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import userDummy from '../../assets/user.png';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
-import { ButtonMenuLateral } from '../../components/ButtonMenuLateral/ButtonMenuLateral';
+import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';

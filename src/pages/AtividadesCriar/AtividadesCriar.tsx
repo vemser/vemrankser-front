@@ -1,4 +1,4 @@
-import { ButtonMenuLateral } from '../../components/ButtonMenuLateral/ButtonMenuLateral';
+import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 

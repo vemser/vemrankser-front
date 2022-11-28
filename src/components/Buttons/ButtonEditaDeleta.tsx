@@ -1,8 +1,6 @@
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { HiTrash } from 'react-icons/hi';
 import { IButtonEditaDeleta } from '../../types/buttonEditaDeleta';
-import { IButton } from '../../types/buttons';
 
 const ButtonEditaDeletaStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',

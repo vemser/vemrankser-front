@@ -7,20 +7,26 @@ import { Aluno } from './pages/Aluno/Aluno';
 import { CadastraAluno } from './pages/AlunoCadastra/CadastraAluno';
 import { EditaAluno } from './pages/AlunoEditar/EditaAluno';
 import { Login } from './pages/Login/Login';
+import { AuthProvider } from './context/AuthContext';
+import { PrivateRoute } from './routes/PrivateRoute';
 
 export const Router = () => {
   return (
     <BrowserRouter>
       <ToastContainer />
-      <Routes>
-        <Route path={'/'} element={<Login />} />
-        <Route path={'/atividades'} element={<Atividades />} />
-        <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-        <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-        <Route path={'/alunos'} element={<Aluno />} />
-        <Route path={'/vincula-aluno'} element={<CadastraAluno />} />
-        <Route path={'/edita-aluno'} element={<EditaAluno />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path={'/'} element={<Login />} />
+          <Route element={<PrivateRoute />}>
+            <Route path={'/atividades'} element={<Atividades />} />
+            <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+            <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+            <Route path={'/alunos'} element={<Aluno />} />
+            <Route path={'/vincula-aluno'} element={<CadastraAluno />} />
+            <Route path={'/edita-aluno'} element={<EditaAluno />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   )
 }
