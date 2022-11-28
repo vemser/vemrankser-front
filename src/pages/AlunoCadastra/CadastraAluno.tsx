@@ -41,7 +41,7 @@ export const CadastraAluno = () => {
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
-          fotoDePerfil={"TESTE"}
+          fotoDePerfil={""}
         >
           <ButtonMenuLateral
             text={"Dashboard"}

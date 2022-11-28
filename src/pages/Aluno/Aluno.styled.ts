@@ -92,7 +92,6 @@ export const AlunosCard = styled.div`
   gap: 40px;
   padding: 20px;
   transition: 0.5s;
-  cursor: pointer;
   &:hover {
     transition: 1s;
     transform: scale(1.01);

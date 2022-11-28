@@ -88,7 +88,6 @@ export const AtividadeCard = styled.div`
     gap: 40px;
     padding: 20px;
     transition: 0.5s;
-    cursor: pointer;
     @media (max-width: 850px) {
         width: 100%;
     }
