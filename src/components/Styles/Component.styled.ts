@@ -36,3 +36,11 @@ export const BarraDePesquisa = styled.div`
       }
     }
 `
+
+export const ErrorMessage = styled.span`
+  color: #f50031;
+  margin-top: -15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  user-select: none;
+`

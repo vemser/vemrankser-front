@@ -9,6 +9,8 @@ import { EditaAluno } from './pages/AlunoEditar/EditaAluno';
 import { Login } from './pages/Login/Login';
 import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from './routes/PrivateRoute';
+import 'react-toastify/dist/ReactToastify.css';
+import 'nprogress/nprogress.css';
 
 export const Router = () => {
   return (

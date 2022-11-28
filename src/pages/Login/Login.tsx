@@ -5,12 +5,12 @@ import { loginSchema } from '../../utils/schemas';
 import { IUserLogin } from '../../types/user';
 import { LoginContainer, LoginFormContainer, LoginSubtitle, LoginTitle, LogoContainer } from './Login.styled';
 import { ButtonPrimary } from '../../components/Buttons/Button';
-import { Input } from '../../components/Inputs/Input';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { IoRocketOutline } from 'react-icons/io5';
 import LogoLogin from '../../assets/logo.png';
 import { TextField } from '@mui/material';
+import { ErrorMessage } from '../../components/Styles/Component.styled';
 
 export const Login = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -41,10 +41,10 @@ export const Login = () => {
 
         <form onSubmit={handleSubmit(data => handleLogin(data))}>
           <TextField id="email" label="Email" variant="outlined" {...register("email")} />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
 
           <TextField id="senha" label="Senha" variant="outlined" type="password" {...register("senha")} />
-          {errors.senha && <span>{errors.senha.message}</span>}
+          {errors.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
 
           <ButtonPrimary type='submit' id='botao-logar' label='Entrar' />
         </form>
