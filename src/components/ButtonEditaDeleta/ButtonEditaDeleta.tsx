@@ -1,10 +1,14 @@
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { HiTrash } from 'react-icons/hi';
+import { IButtonEditaDeleta } from '../../types/buttonEditaDeleta';
 import { IButton } from '../../types/buttons';
 
-const ButtonPrimaryStyle = styled(Button)({
+const ButtonEditaDeletaStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
+  color: "var(--branco)",
   fontWeight: '500',
+  width: 105,
   height: 40,
   fontSize: '1.1rem',
   textTransform: 'capitalize',
@@ -19,10 +23,10 @@ const ButtonPrimaryStyle = styled(Button)({
   }
 })
 
-export const ButtonPrimary = ({ label, id, type }:IButton):JSX.Element => {
+export const ButtonEditaDeleta = ({icone, label}:IButtonEditaDeleta):JSX.Element => {
   return (
-    <ButtonPrimaryStyle type={type} id={id} variant="contained" disableElevation>
-      {label}
-    </ButtonPrimaryStyle>
+    <ButtonEditaDeletaStyle variant="outlined" startIcon={icone}>
+   {label}
+  </ButtonEditaDeletaStyle>
   )
 }
