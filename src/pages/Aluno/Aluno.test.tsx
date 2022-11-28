@@ -1,33 +1,27 @@
-import { render, screen } from '@testing-library/react';
-import { Aluno } from './Aluno';
+import { render, screen } from "@testing-library/react";
+import { Aluno } from "./Aluno";
 
-describe('testa se a barra de pesquisa está na tela', () => {
-    test('deve achar a barra de pesquisa na tela pelo seu label', () => {
-        render(<Aluno />);
+describe('Testa se existe um h1 escrito "Alunos"', () => {
+  test("deve achar o h1 na tela pelo texto", () => {
+    render(<Aluno />);
 
-        const barraDePesquisa = screen.getByLabelText('Search');
+    const tituloAluno = screen.getByText("Edita Aluno");
 
-        expect(barraDePesquisa).toBeInTheDocument();
-    })
-})
+    expect(tituloAluno).toBeInTheDocument();
+  });
+  test("deve achar o título na tela pela tag", () => {
+    render(<Aluno />);
 
-describe('testa se o titulo Aluno está na tela', () => {
-    test('deve achar o titulo na tela pelo titulo ', () => {
-        render(<Aluno />);
+    const tituloAluno = screen.getByRole("heading", { level: 1 });
 
-        const tituloAluno = screen.getByText('Alunos');
+    expect(tituloAluno).toBeInTheDocument();
+  });
+});
 
-        expect(tituloAluno).toBeInTheDocument();
-    })
-})
+test("deve achar o botão na tela", () => {
+  render(<Aluno />);
 
-describe('testa se o select de trilha está na tela', () => {
-    test('deve achar o select de trilha na tela pelo id', () => {
-        render(<Aluno />);
+  const botaoAdiconaAluno = screen.getByRole("button");
 
-        const selectTrilha = screen.getByTestId('select-trilha-aluno');
-
-        expect(selectTrilha).toBeInTheDocument();
-    })
-})
-
+  expect(botaoAdiconaAluno).toBeInTheDocument();
+});

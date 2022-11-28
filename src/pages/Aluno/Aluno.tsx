@@ -1,81 +1,209 @@
-import {
-  AlunoContainer,
-  AlunoContainerWrapper,
-  BarraDePesquisa,
-  TableContainer,
-  TituloPagina,
-} from "./Aluno.styled";
-import {
-  HiUser,
-  HiChartPie,
-  HiAcademicCap,
-  HiBookOpen,
-  HiCog,
-  HiSearch,
-} from "react-icons/hi";
+import React from "react";
+import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
-import TableAluno from "../../components/Tabela/Tabela";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/ButtonMenuLateral/ButtonMenuLateral";
-import BasicSelect from "../../components/Select/SelectAluno";
-import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
-import { Link } from "react-router-dom";
-import SelectAluno from "../../components/Select/SelectAluno";
+import { ButtonEditaDeleta } from "../../components/ButtonEditaDeleta/ButtonEditaDeleta";
+import { CardContent,FormControl, InputLabel,MenuItem,Select,SelectChangeEvent} from "@mui/material";
+import { AlunosCard, AlunosContainer, Buttons, CardContainer,HeaderSelect,Titulo} from "./Aluno.styled";
+import {HiUser,HiChartPie,HiAcademicCap,HiBookOpen,HiCog,HiTrash,HiClipboardList} from"react-icons/hi";
+import userDummy from "../../assets/user.png";
 
 export const Aluno = () => {
+  const [trilha, setTrilha] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setTrilha(event.target.value as string);
+  };
   return (
-    <AlunoContainer>
-      <MenuLateral
-        nomeDoUsuario={"Luiza Valentini"}
-        cargoDoUsuario={"ADMIN"}
-        fotoDePerfil={"TESTE"}
-      >
-        <ButtonMenuLateral
-          text={"Dashboard"}
-          icone={<HiChartPie />}
-          link={"/dashboard"}
-        />
-        <ButtonMenuLateral
-          text={"Alunos"}
-          icone={<HiAcademicCap />}
-          link={"/alunos"}
-        />
-        <ButtonMenuLateral
-          text={"Atividades"}
-          icone={<HiBookOpen />}
-          link={"/atividades"}
-        />
-        <ButtonMenuLateral
-          text={"Perfil"}
-          icone={<HiUser />}
-          link={"/perfil"}
-        />
-        <ButtonMenuLateral
-          text={"Configurações"}
-          icone={<HiCog />}
-          link={"/configurações"}
-        />
-      </MenuLateral>
-      <AlunoContainerWrapper>
-        <BarraDePesquisa>
-          <BarraPesquisa id={"barra-pesquisa-aluno"} label={"Search"} />
-          <HiSearch size={"25px"} color={"grey"} />
-        </BarraDePesquisa>
-        <TituloPagina>
-          <h1>Alunos</h1>
-          <SelectAluno label={"Trilha"} id={"select-trilha-aluno"} />
-          <Link to="/cadastraAluno">
-            <ButtonPrimary
-              label={"Adicionar Aluno"}
-              id={"teste"}
-              type={"button"}
-            />
-          </Link>
-        </TituloPagina>
-        <TableContainer>
-          <TableAluno />
-        </TableContainer>
-      </AlunoContainerWrapper>
-    </AlunoContainer>
+    <>
+      <AlunosContainer>
+        <MenuLateral
+          nomeDoUsuario={"Luiza Valentini"}
+          cargoDoUsuario={"ADMIN"}
+          fotoDePerfil={""}
+        >
+          <ButtonMenuLateral
+            text={"Dashboard"}
+            icone={<HiChartPie />}
+            link={"/dashboard"}
+          />
+          <ButtonMenuLateral
+            text={"Alunos"}
+            icone={<HiAcademicCap />}
+            link={"/alunos"}
+          />
+          <ButtonMenuLateral
+            text={"Atividades"}
+            icone={<HiBookOpen />}
+            link={"/atividades"}
+          />
+          <ButtonMenuLateral
+            text={"Perfil"}
+            icone={<HiUser />}
+            link={"/perfil"}
+          />
+          <ButtonMenuLateral
+            text={"Configurações"}
+            icone={<HiCog />}
+            link={"/configurações"}
+          />
+        </MenuLateral>
+        <section>
+          <Titulo>
+            <h1>Alunos</h1>
+          </Titulo>
+
+          <div className="flex">
+            <HeaderSelect>
+              <FormControl
+                sx={{ minWidth: 200, heigth: 50, backgroundColor: "white" }}
+                fullWidth
+              >
+                <InputLabel id="select-aluno-label">Trilha</InputLabel>
+                <Select
+                  labelId="select-aluno-label"
+                  id="select-atividade"
+                  value={trilha}
+                  label="Trilha"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"geral"}>Geral</MenuItem>
+                  <MenuItem value={"backend"}>Backend</MenuItem>
+                  <MenuItem value={"frontend"}>Frontend</MenuItem>
+                  <MenuItem value={"qa"}>QA</MenuItem>
+                </Select>
+              </FormControl>
+            </HeaderSelect>
+
+            <Link to={"/cadastraAluno"}>
+              <ButtonPrimary
+                type={"button"}
+                id={"botao-nova-atividade"}
+                label={"Adicionar Aluno"}
+              />
+            </Link>
+          </div>
+          <CardContainer>
+            <AlunosCard>
+              <img src={userDummy} alt="Foto" />
+              <CardContent>
+              <p><span>Nome:</span> Luiza Valentini</p>
+
+                <p>
+                  <span>E-mail:</span> Luizadarav@
+                </p>
+
+                <p>
+                  <span>Login:</span> Luiza.valentini{" "}
+                </p>
+                <p>
+                  <span>Status:</span> ativo
+                </p>
+                <p>
+                  <span>Cidade: </span>Caxias do sul
+                </p>
+              </CardContent>
+              <Buttons>
+                <Link to={"/editaAluno"}>
+                  <ButtonEditaDeleta
+                    label={"Editar"}
+                    icone={<HiClipboardList />}
+                  />
+                </Link>
+                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
+              </Buttons>
+            </AlunosCard>
+            <AlunosCard>
+              <img src={userDummy} alt="Foto" />
+              <CardContent>
+              <p><span className="teste">Nome:</span> Luiza Valentini</p>
+
+                <p>
+                  <span>E-mail:</span> Luizadarav@
+                </p>
+
+                <p>
+                  <span>Login:</span> Luiza.valentini{" "}
+                </p>
+                <p>
+                  <span>Status:</span> ativo
+                </p>
+                <p>
+                  <span>Cidade: </span>Caxias do sul
+                </p>
+              </CardContent>
+              <Buttons>
+                <Link to={"/editaAluno"}>
+                  <ButtonEditaDeleta
+                    label={"Editar"}
+                    icone={<HiClipboardList />}
+                  />
+                </Link>
+                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
+              </Buttons>
+            </AlunosCard>
+            <AlunosCard>
+              <img src={userDummy} alt="Foto" />
+              <CardContent>
+              <p><span className="teste">Nome:</span> Luiza Valentini</p>
+
+                <p>
+                  <span>E-mail:</span> Luizadarav@
+                </p>
+
+                <p>
+                  <span>Login:</span> Luiza.valentini{" "}
+                </p>
+                <p>
+                  <span>Status:</span> ativo
+                </p>
+                <p>
+                  <span>Cidade: </span>Caxias do sul
+                </p>
+              </CardContent>
+              <Buttons>
+                <Link to={"/editaAluno"}>
+                  <ButtonEditaDeleta
+                    label={"Editar"}
+                    icone={<HiClipboardList />}
+                  />
+                </Link>
+                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
+              </Buttons>
+            </AlunosCard>
+            <AlunosCard>
+              <img src={userDummy} alt="Foto" />
+              <CardContent>
+              <p><span className="teste">Nome:</span> Luiza Valentini</p>
+
+                <p>
+                  <span>E-mail:</span> Luizadarav@
+                </p>
+
+                <p>
+                  <span>Login:</span> Luiza.valentini{" "}
+                </p>
+                <p>
+                  <span>Status:</span> ativo
+                </p>
+                <p>
+                  <span>Cidade: </span>Caxias do sul
+                </p>
+              </CardContent>
+              <Buttons>
+                <Link to={"/editaAluno"}>
+                  <ButtonEditaDeleta
+                    label={"Editar"}
+                    icone={<HiClipboardList />}
+                  />
+                </Link>
+                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
+              </Buttons>
+            </AlunosCard>
+          </CardContainer>
+        </section>
+      </AlunosContainer>
+    </>
   );
 };
