@@ -1,12 +1,13 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ButtonPrimary } from '../../components/Buttons/Button';
-import { AtividadeCard, AtividadeContainer, CardContainer, CardContent, MuralSelect, MuralTitulo } from './Atividades.styled';
 import userDummy from '../../assets/user.png';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
-import { ButtonMenuLateral } from '../../components/ButtonMenuLateral/ButtonMenuLateral';
+import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { Titulo } from '../../components/Styles/Component.styled';
+import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 
 export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -16,7 +17,7 @@ export const Atividades = () => {
   };
 
   return (
-    <AtividadeContainer>
+    <SimpleCardContainer>
       <MenuLateral
         nomeDoUsuario={"Luiza Valentini"}
         cargoDoUsuario={"ADMIN"}
@@ -49,13 +50,13 @@ export const Atividades = () => {
         />
       </MenuLateral>
       <section>
-        <MuralTitulo>
+        <Titulo>
           Mural de Atividades
-        </MuralTitulo>
+        </Titulo>
 
         <div className='flex'>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Filtrar por Trilha</InputLabel>
+            <InputLabel id="select-atividade-label">Trilha</InputLabel>
             <Select
               labelId="select-atividade-label"
               id="select-atividade"
@@ -75,40 +76,37 @@ export const Atividades = () => {
           <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar Notas'} />
         </div>
 
-        <CardContainer>
-          <AtividadeCard>
+        <SimpleCardWrapper>
+          <SimpleCard>
             <img src={userDummy} alt="Foto" />
-            <CardContent>
+            <SimpleCardContent>
               <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
               <p className='date-info'>10 de nov.</p>
-            </CardContent>
-          </AtividadeCard>
-
-          <AtividadeCard>
+            </SimpleCardContent>
+          </SimpleCard>
+          <SimpleCard>
             <img src={userDummy} alt="Foto" />
-            <CardContent>
+            <SimpleCardContent>
               <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
               <p className='date-info'>10 de nov.</p>
-            </CardContent>
-          </AtividadeCard>
-
-          <AtividadeCard>
+            </SimpleCardContent>
+          </SimpleCard>
+          <SimpleCard>
             <img src={userDummy} alt="Foto" />
-            <CardContent>
+            <SimpleCardContent>
               <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
               <p className='date-info'>10 de nov.</p>
-            </CardContent>
-          </AtividadeCard>
-
-          <AtividadeCard>
+            </SimpleCardContent>
+          </SimpleCard>
+          <SimpleCard>
             <img src={userDummy} alt="Foto" />
-            <CardContent>
+            <SimpleCardContent>
               <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
               <p className='date-info'>10 de nov.</p>
-            </CardContent>
-          </AtividadeCard>
-        </CardContainer>
+            </SimpleCardContent>
+          </SimpleCard>
+        </SimpleCardWrapper>
       </section>
-    </AtividadeContainer>
+    </SimpleCardContainer>
   )
 }

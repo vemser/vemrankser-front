@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AtividadeContainer = styled.div`
+export const SimpleCardContainer = styled.div`
     display: flex;
     section {
         width: 80%;
@@ -33,27 +33,12 @@ export const AtividadeContainer = styled.div`
     }
 `
 
-export const MuralTitulo = styled.h1`
-    font-size: 1.8rem;
-    font-weight: 500;
-    user-select: none;
-    color: var(--cor-texto);
-    text-align: center;
-    @media screen and (max-width: 460px) {
-        font-size: 1.6rem;
-    }
-`
-
-export const MuralSelect = styled.div`
-    width: 200px;
-`
-
-export const CardContainer = styled.div`
+export const SimpleCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 70%;
+    width: 80%;
     max-height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -77,7 +62,7 @@ export const CardContainer = styled.div`
     }
 `
 
-export const AtividadeCard = styled.div`
+export const SimpleCard = styled.div`
     display: flex;
     align-items: center;
     width: 95%;
@@ -88,16 +73,15 @@ export const AtividadeCard = styled.div`
     gap: 40px;
     padding: 20px;
     transition: 0.5s;
-    cursor: pointer;
+    &:hover {
+        transition: 1s;
+        transform: scale(1.01);
+    }
     @media (max-width: 850px) {
         width: 100%;
     }
     @media screen and (max-width: 460px) {
         gap: 10px;
-    }
-    &:hover {
-        transition: 1s;
-        transform: scale(1.01);
     }
     img {
         width: 60px;
@@ -110,7 +94,7 @@ export const AtividadeCard = styled.div`
     }
 `
 
-export const CardContent = styled.div`
+export const SimpleCardContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

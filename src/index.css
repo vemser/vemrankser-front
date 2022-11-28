@@ -18,5 +18,8 @@
   border: none;
   text-decoration: none;
   list-style: none;
+}
+
+*, textarea, button, input, select {
   font-family: 'Inter', sans-serif;
 }

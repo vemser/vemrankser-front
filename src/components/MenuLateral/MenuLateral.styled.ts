@@ -37,17 +37,16 @@ export const MenuLateralTitle = styled.div`
   font-family: "Fragment Mono", monospace;
   display: flex;
   gap: 2%;
-  img {
-    width: 35px;
-    padding-top: 5px;
+  i {
+    font-size: 2rem;
+    padding-top: 10px;
     @media (max-width: 1200px) {
-      width: 30px;
+      font-size: 1.8rem;
     }
   }
   @media (max-width: 1200px) {
     font-size: 1.6rem;
   }
-  
 `;
 
 export const FotoDePerfil = styled.div`
@@ -86,8 +85,10 @@ export const CargoDoUsuario = styled.div`
 `;
 
 export const ButtonsCategorias = styled.div`
-  margin-top: 15%;
-  margin-bottom: 5%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const LogOut = styled.div`
