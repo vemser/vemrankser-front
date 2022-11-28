@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ButtonHandler, ButtonsCategorias, CargoDoUsuario, FotoDePerfil, LogOut, MenuLateralContainer, MenuLateralTitle, NomeDoUsuario } from "./MenuLateral.styled";
 import { HiLogout, HiMenu } from "react-icons/hi";
 import { IMenuLateral } from "../../types/menuLateral";
-import logoMenu from '../../assets/logo.png';
 import photoDummy from '../../assets/teste.jpg';
 import { IoRocketOutline } from "react-icons/io5";
 
