@@ -6,6 +6,7 @@ import userDummy from '../../assets/user.png';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { ButtonMenuLateral } from '../../components/ButtonMenuLateral/ButtonMenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -53,26 +54,24 @@ export const Atividades = () => {
         </MuralTitulo>
 
         <div className='flex'>
-          <MuralSelect>
-            <FormControl sx={{ minWidth: 200, heigth: 50, backgroundColor: 'white' }} fullWidth size="small">
-              <InputLabel id="select-atividade-label">Trilha</InputLabel>
-              <Select
-                labelId="select-atividade-label"
-                id="select-atividade"
-                value={trilha}
-                label="Trilha"
-                onChange={handleChange}
-              >
-                <MenuItem value={'geral'}>Geral</MenuItem>
-                <MenuItem value={'backend'}>Backend</MenuItem>
-                <MenuItem value={'frontend'}>Frontend</MenuItem>
-                <MenuItem value={'qa'}>QA</MenuItem>
-              </Select>
-            </FormControl>
-          </MuralSelect>
+          <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
+            <InputLabel id="select-atividade-label">Filtrar por Trilha</InputLabel>
+            <Select
+              labelId="select-atividade-label"
+              id="select-atividade"
+              value={trilha}
+              label="Trilha"
+              onChange={handleChange}
+            >
+              <MenuItem value={'geral'}>Geral</MenuItem>
+              <MenuItem value={'backend'}>Backend</MenuItem>
+              <MenuItem value={'frontend'}>Frontend</MenuItem>
+              <MenuItem value={'qa'}>QA</MenuItem>
+            </Select>
+          </FormControl>
 
-          <ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Nova Atividade'} />
-          
+          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Nova Atividade'} /></Link>
+
           <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar Notas'} />
         </div>
 

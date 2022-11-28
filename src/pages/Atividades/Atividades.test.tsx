@@ -19,23 +19,6 @@ describe('testa se o título está na tela', () => {
     })
 })
 
-describe('testa se a descrição está na tela', () => {
-    test('deve achar a descrição na tela pelo texto', () => {
-        render(<Atividades />);
-
-        const titulo = screen.getByText(/Entre na sua conta/);
-
-        expect(titulo).toBeInTheDocument();
-    })
-    test('deve achar a descrição na tela pela tag', () => {
-        render(<Atividades />);
-
-        const titulo = screen.getByRole('heading', { level: 2 });
-
-        expect(titulo).toBeInTheDocument();
-    })
-})
-
 test('deve achar o botão na tela', () => {
     render(<Atividades />);
 
@@ -43,3 +26,4 @@ test('deve achar o botão na tela', () => {
 
     expect(botao).toBeInTheDocument();
 })
+
