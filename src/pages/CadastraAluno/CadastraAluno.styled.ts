@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
 export const CadastraAlunoContainer = styled.div`
-  display: flex;
+ display: flex;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-de-fundo);
 `;
 export const ContainerCadastro = styled.div`
   width: 35%;

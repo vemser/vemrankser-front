@@ -15,7 +15,7 @@ describe('testa se o titulo Aluno está na tela', () => {
     test('deve achar o titulo na tela pelo titulo ', () => {
         render(<Aluno />);
 
-        const tituloAluno = screen.getByRole('h1');
+        const tituloAluno = screen.getByText('Alunos');
 
         expect(tituloAluno).toBeInTheDocument();
     })

@@ -13,7 +13,6 @@ export const BarraDePesquisa = styled.div`
   padding-left: 2%;
   display: flex;
   align-items: baseline;
-  align-content: flex-end;
   width: 100%;
   height: 8%;
   background-color: var(--branco);
@@ -28,4 +27,5 @@ export const TituloPagina = styled.div`
 
 export const TableContainer = styled.div`
   margin: 2%;
+  max-height: 25px;
 `;

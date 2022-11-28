@@ -1,29 +1,24 @@
 import styled from "styled-components";
 
-export const CadastraAlunoContainer = styled.div`
+export const EditaAlunoContainer = styled.div`
   display: flex;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-de-fundo);
+  width: 100%;
 `;
-export const ContainerCadastro = styled.div`
-  width: 35%;
-  height: 85%;
-  border-radius: 20px;
-  padding-top: 2%;
-  padding-left: 1.6%;
-  padding-right: 2%;
+
+export const EditaContainerWrapper = styled.div`
+  width: 40%;
+  margin-left: 18%;
+  padding-top: 5.5%;
+  padding-right: 5.5%;
+  padding-left: 10%;
   text-align: center;
-  background-color: var(--branco);
 
-  div {
-    margin-top: 3%;
-    margin-bottom: 3%;
-  }
-
-  .button-cadastra-aluno{
-
+  h1{
+    font-size: 1.8rem;
+    font-weight: 500;
+    user-select: none;
+    color: var(--cor-texto);
   }
 `;

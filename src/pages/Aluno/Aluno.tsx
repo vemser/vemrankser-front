@@ -66,7 +66,7 @@ export const Aluno = () => {
           <SelectAluno label={"Trilha"} id={"select-trilha-aluno"} />
           <Link to="/cadastraAluno">
             <ButtonPrimary
-              label={"Adiconar Aluno"}
+              label={"Adicionar Aluno"}
               id={"teste"}
               type={"button"}
             />
