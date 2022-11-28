@@ -5,40 +5,40 @@ describe('Testa se existe um h1 escrito "Edita Usuário"', () => {
   test("deve achar o h1 na tela pelo texto", () => {
     render(<EditaAluno />);
 
-    const titulo = screen.getByText("Edita Aluno");
+    const tituloEditaAluno = screen.getByText("Edita Aluno");
 
-    expect(titulo).toBeInTheDocument();
+    expect(tituloEditaAluno).toBeInTheDocument();
   });
 });
 
 test('Testa se o textField com a label "nome" está na tela', () => {
   render(<EditaAluno />);
 
-  const inputNome = screen.getAllByLabelText("Nome");
+  const inputNomeEditaAluno = screen.getAllByLabelText("Nome");
 
-  expect(inputNome).toBeInTheDocument();
+  expect(inputNomeEditaAluno).toBeInTheDocument();
 });
 
 test('Testa se o select com a label "Trilha" está na tela', () => {
     render(<EditaAluno />);
   
-    const selectTrilha = screen.getAllByLabelText("Trilha");
+    const selectTrilhaEditaAluno = screen.getAllByLabelText("Trilha");
   
-    expect(selectTrilha).toBeInTheDocument();
+    expect(selectTrilhaEditaAluno).toBeInTheDocument();
   });
 
   test('Testa se o select com a label "modulo" está na tela', () => {
     render(<EditaAluno />);
   
-    const selecModulo = screen.getAllByLabelText("Modulo");
+    const selecModuloEditaAluno = screen.getAllByLabelText("Modulo");
   
-    expect(selecModulo).toBeInTheDocument();
+    expect(selecModuloEditaAluno).toBeInTheDocument();
   });
 
 test("deve achar o botão na tela", () => {
   render(<EditaAluno />);
 
-  const botao = screen.getByRole("button");
+  const botaoEditaAluno = screen.getByRole("button");
 
-  expect(botao).toBeInTheDocument();
+  expect(botaoEditaAluno).toBeInTheDocument();
 });

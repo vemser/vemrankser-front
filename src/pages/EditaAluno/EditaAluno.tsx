@@ -131,7 +131,7 @@ export const EditaAluno = () => {
                 <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
               </Select>
             </FormControl>
-            <Link to="/cadastraAluno">
+            <Link to="/aluno">
               <ButtonPrimary
                 label="Editar Aluno"
                 id="button-edita-aluno"
