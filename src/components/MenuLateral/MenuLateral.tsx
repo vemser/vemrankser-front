@@ -12,19 +12,25 @@ export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePer
 
   return (
     <>
-      <ButtonHandler onClick={()=> menuOpen === true ? setMenuOpen(false) : setMenuOpen(true)}>
-       <i><HiMenu size={36} color={'var(--cor-secundaria)'} /></i>
+      <ButtonHandler onClick={() => menuOpen === true ? setMenuOpen(false) : setMenuOpen(true)}>
+        <i><HiMenu size={36} color={'var(--cor-secundaria)'} /></i>
       </ButtonHandler>
-      <MenuLateralContainer mobileOpen = {menuOpen}>
+
+      <MenuLateralContainer mobileOpen={menuOpen}>
         <MenuLateralTitle id='menu-lateral-logo'>
           VemRankSer
           <i><IoRocketOutline id='login-icone' className='floating' /></i>
         </MenuLateralTitle>
+
         <FotoDePerfil id='menu-lateral-imagem-perfil'>{fotoDePerfil}
           <img src={photoDummy} alt="Foto do usuário" /></FotoDePerfil>
+
         <NomeDoUsuario id='menu-lateral-nome-usuario'>{nomeDoUsuario}</NomeDoUsuario>
+
         <CargoDoUsuario id='menu-lateral-cargo-usuario'>{cargoDoUsuario}</CargoDoUsuario>
+
         <ButtonsCategorias>{children}</ButtonsCategorias>
+        
         <LogOut onClick={handleLogout}>
           <p id='menu-lateral-log-out'>Sair da conta</p>
           <HiLogout id='menu-lateral-log-out-icone' color="var(--cor-texto)" size={"20px"} />

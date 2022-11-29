@@ -3,38 +3,25 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adicionaUsuarioSchema } from "../../utils/schemas";
-import { IAdicionaUsuário } from "../../types/adicionaUsuario";
+import { IUser } from "../../types/user";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
-import {
-  ButtonPrimary,
-  ButtonSecondary,
-} from "../../components/Buttons/Button";
+import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import {
-  HiAcademicCap,
-  HiBookOpen,
-  HiChartPie,
-  HiCog,
-  HiUser,
-} from "react-icons/hi";
-import {
-  ButtonWraper,
-  ContentWrapper,
-  MainContainer,
-} from "../../components/Styles/Container.styled";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from "react-icons/hi";
+import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 
-export const AdministradorEdita = () => {
+export const UsuarioCadastra = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IAdicionaUsuário>({
+  } = useForm<IUser>({
     resolver: yupResolver(adicionaUsuarioSchema),
   });
 
@@ -84,10 +71,10 @@ export const AdministradorEdita = () => {
           />
         </MenuLateral>
         <ContentWrapper>
-          <Titulo>Edita Usuário</Titulo>
+          <Titulo>Cadastro Usuário</Titulo>
           <form>
             <TextField
-              id="nome-edita-usuario"
+              id="nome-cadastra-usuario"
               label="Nome"
               variant="outlined"
               sx={{
@@ -101,7 +88,7 @@ export const AdministradorEdita = () => {
             />
             {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
             <TextField
-              id="email-edita-usuario"
+              id="email-cadastra-usuario"
               label="E-mail"
               variant="outlined"
               sx={{
@@ -116,7 +103,7 @@ export const AdministradorEdita = () => {
               {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
             
             <TextField
-              id="senha-edita-usuario"
+              id="senha-cadastra-usuario"
               label="Senha"
               variant="outlined"
               type='password'
@@ -135,10 +122,10 @@ export const AdministradorEdita = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="select-edita-usuario-atuacao-label"  {...register("atuacao")}>Atuação</InputLabel>
+              <InputLabel id="select-usuario-atuacao-label"  {...register("atuacao")}>Atuação</InputLabel>
               {errors.atuacao && <ErrorMessage>{errors.atuacao.message}</ErrorMessage>}
               <Select
-                labelId="select-edita-usuario-atuacao-label"
+                labelId="select-usuario-atuacao-label"
                 id="select-usuario-atuacao"
                 value={atuacao}
                 label="atuacao"
@@ -157,11 +144,11 @@ export const AdministradorEdita = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="select-edita-usuario-aluno-trilha-label" {...register("atuacao")}>Trilha</InputLabel>
+              <InputLabel id="select-usuario-aluno-trilha-label" {...register("atuacao")}>Trilha</InputLabel>
               {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
               <Select
-                labelId="select-edita-usuario-aluno-trilha-label"
-                id="select-edita-usuario-aluno"
+                labelId="select-usuario-aluno-trilha-label"
+                id="select-usuario-aluno"
                 value={trilha}
                 label="trilha-aluno"
                 onChange={handleChangeSelect2}
@@ -172,17 +159,15 @@ export const AdministradorEdita = () => {
               </Select>
             </FormControl>
             <ButtonWraper>
-            <Link to="/administrador">
               <ButtonPrimary
-                label="Editar"
-                id="button-edita-usuario"
+                label="Adicionar"
+                id="button-adiciona-usuario"
                 type="submit"
               />
-              </Link>
-              <Link to="/administrador">
+              <Link to="/usuarios">
                 <ButtonSecondary
                   label="Cancelar"
-                  id="button-cancela-edicao-usuario"
+                  id="button-cancela-usuario"
                   type="button"
                 />
               </Link>

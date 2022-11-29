@@ -11,29 +11,32 @@ import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from './routes/PrivateRoute';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
-import { Administrador } from './pages/Administrador/Administrador';
-import { AdministradorCadastra } from './pages/AdministradorCadastra/AdministradorCadastra';
-import { AdministradorEdita } from './pages/AdministradorEdita/AdministradorEdita';
+import { Usuario } from './pages/Usuario/Usuario';
+import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
+import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
+import { UsersProvider } from './context/UserContext';
 
 export const Router = () => {
   return (
     <BrowserRouter>
       <ToastContainer />
       <AuthProvider>
-        <Routes>
-          <Route path={'/'} element={<Login />} />
-          <Route element={<PrivateRoute />}>
-            <Route path={'/atividades'} element={<Atividades />} />
-            <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-            <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-            <Route path={'/alunos'} element={<Aluno />} />
-            <Route path={'/vincula-aluno'} element={<CadastraAluno />} />
-            <Route path={'/edita-aluno'} element={<EditaAluno />} />
-            <Route path={'/administrador'} element={<Administrador />} />
-            <Route path={'/cadastra-administrador'} element={<AdministradorCadastra />} />
-            <Route path={'/edita-administrador'} element={<AdministradorEdita/>} />
-          </Route>
-        </Routes>
+        <UsersProvider>
+          <Routes>
+            <Route path={'/'} element={<Login />} />
+            <Route element={<PrivateRoute />}>
+              <Route path={'/atividades'} element={<Atividades />} />
+              <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+              <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+              <Route path={'/alunos'} element={<Aluno />} />
+              <Route path={'/alunos/vincular'} element={<CadastraAluno />} />
+              <Route path={'/alunos/editar'} element={<EditaAluno />} />
+              <Route path={'/usuarios'} element={<Usuario />} />
+              <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
+              <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+            </Route>
+          </Routes>
+        </UsersProvider>
       </AuthProvider>
     </BrowserRouter>
   )
