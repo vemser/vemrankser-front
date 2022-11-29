@@ -88,7 +88,7 @@ export const Atividades = () => {
 
           <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Nova Atividade'} /></Link>
 
-          <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar Notas'} />
+          <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar Notas'} /></Link>
         </div>
 
         <SimpleCardWrapper>

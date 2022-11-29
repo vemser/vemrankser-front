@@ -1,6 +1,5 @@
 import { api } from "../utils/api";
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { IAtividade, IAtividadeContext, IChildren } from "../types/atividade";
 import nProgress from "nprogress";
 import { toast } from "react-toastify";
