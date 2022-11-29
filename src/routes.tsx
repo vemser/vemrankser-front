@@ -11,6 +11,9 @@ import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from './routes/PrivateRoute';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { Administrador } from './pages/Administrador/Administrador';
+import { AdministradorCadastra } from './pages/AdministradorCadastra/AdministradorCadastra';
+import { AdministradorEdita } from './pages/AdministradorEdita/AdministradorEdita';
 
 export const Router = () => {
   return (
@@ -26,6 +29,9 @@ export const Router = () => {
             <Route path={'/alunos'} element={<Aluno />} />
             <Route path={'/vincula-aluno'} element={<CadastraAluno />} />
             <Route path={'/edita-aluno'} element={<EditaAluno />} />
+            <Route path={'/administrador'} element={<Administrador />} />
+            <Route path={'/cadastra-administrador'} element={<AdministradorCadastra />} />
+            <Route path={'/edita-administrador'} element={<AdministradorEdita/>} />
           </Route>
         </Routes>
       </AuthProvider>

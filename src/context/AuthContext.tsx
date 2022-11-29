@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IAuthContext } from '../types/auth';
-import { IUserLogin, IChildren } from '../types/user';
+import { IUserLogin, IChildren } from '../types/user'
 import { api } from '../utils/api';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../types/toast';

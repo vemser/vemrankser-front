@@ -11,7 +11,7 @@ import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper, Buttons } from "../../components/Styles/ButtonCard";
 
-export const Aluno = () => {
+export const Administrador = () => {
   const [trilha, setTrilha] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -53,7 +53,7 @@ export const Aluno = () => {
         </MenuLateral>
         <section>
           <Titulo>
-            Alunos
+            Usuários
           </Titulo>
           <div className="flex">
             <div>
@@ -62,10 +62,10 @@ export const Aluno = () => {
                 fullWidth
                 size="small"
               >
-                <InputLabel id="select-aluno-label">Trilha</InputLabel>
+                <InputLabel id="select-usuario-label">Trilha</InputLabel>
                 <Select
-                  labelId="select-aluno-label"
-                  id="select-atividade"
+                  labelId="select-usuario-label"
+                  id="select-trilha"
                   value={trilha}
                   label="Trilha"
                   onChange={handleChange}
@@ -81,18 +81,18 @@ export const Aluno = () => {
             <BarraDePesquisa>
               <BarraPesquisa
                 label={"Pesquisar"}
-                id={"barra-de-pesquisa-aluno"}
+                id={"barra-de-pesquisa-usuario"}
               />
               <i>
                 <HiSearch size={"28px"} />
               </i>
             </BarraDePesquisa>
 
-            <Link to={"/vincula-aluno"}>
+            <Link to={"/cadastra-administrador"}>
               <ButtonPrimary
                 type={"button"}
-                id={"botao-vincula-aluno"}
-                label={"Adicionar Aluno"}
+                id={"botao-adiciona-usuario"}
+                label={"Adicionar Usuário"}
               />
             </Link>
           </div>
@@ -106,14 +106,13 @@ export const Aluno = () => {
                 </div>
                 <div>
                   <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
                 </div>
                 <div>
                   <p><span>Status:</span> ativo </p>
                 </div>
               </ButtonCardContent>
               <Buttons>
-                <Link to={"/edita-aluno"}>
+                <Link to={"/edita-administrador"}>
                   <ButtonEditaDeleta
                     label={"Editar"}
                     icone={<HiClipboardList />}
@@ -122,56 +121,7 @@ export const Aluno = () => {
                 <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
               </Buttons>
             </ButtonCard>
-            <ButtonCard>
-              <ButtonCardContent>
-                <img src={userDummy} alt="Foto" />
-                <div>
-                  <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> Luizadarav@ </p>
-                </div>
-                <div>
-                  <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
-                </div>
-                <div>
-                  <p><span>Status:</span> ativo </p>
-                </div>
-              </ButtonCardContent>
-              <Buttons>
-                <Link to={"/edita-aluno"}>
-                  <ButtonEditaDeleta
-                    label={"Editar"}
-                    icone={<HiClipboardList />}
-                  />
-                </Link>
-                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
-              </Buttons>
-            </ButtonCard>
-            <ButtonCard>
-              <ButtonCardContent>
-                <img src={userDummy} alt="Foto" />
-                <div>
-                  <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> Luizadarav@ </p>
-                </div>
-                <div>
-                  <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
-                </div>
-                <div>
-                  <p><span>Status:</span> ativo </p>
-                </div>
-              </ButtonCardContent>
-              <Buttons>
-                <Link to={"/edita-aluno"}>
-                  <ButtonEditaDeleta
-                    label={"Editar"}
-                    icone={<HiClipboardList />}
-                  />
-                </Link>
-                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
-              </Buttons>
-            </ButtonCard>
+               
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>

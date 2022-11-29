@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editaAlunoSchema } from "../../utils/schemas";
+import { vinuculaAlunoSchema } from "../../utils/schemas";
 import { IEditaAluno } from "../../types/editaAluno";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -22,7 +22,7 @@ export const EditaAluno = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IEditaAluno>({
-    resolver: yupResolver(editaAlunoSchema),
+    resolver: yupResolver(vinuculaAlunoSchema),
   });
 
   const [trilha, setTrilha] = React.useState("");

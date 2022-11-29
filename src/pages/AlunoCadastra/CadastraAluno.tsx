@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editaAlunoSchema } from "../../utils/schemas";
+import { vinuculaAlunoSchema } from "../../utils/schemas";
 import { IEditaAluno } from "../../types/editaAluno";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -14,7 +14,7 @@ import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
-import { Titulo } from "../../components/Styles/Component.styled";
+import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 
 export const CadastraAluno = () => {
   const {
@@ -22,7 +22,7 @@ export const CadastraAluno = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IEditaAluno>({
-    resolver: yupResolver(editaAlunoSchema),
+    resolver: yupResolver(vinuculaAlunoSchema),
   });
 
   const [trilha, setTrilha] = React.useState("");
@@ -83,7 +83,7 @@ export const CadastraAluno = () => {
               {...register("nome")}
               size="small"
             />
-            {errors.nome && <span>{errors.nome.message}</span>}
+            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
 
             <FormControl
               sx={{
@@ -97,7 +97,7 @@ export const CadastraAluno = () => {
               <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
                 Trilha
               </InputLabel>
-              {errors.trilha && <span>{errors.trilha.message}</span>}
+              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
               <Select
                 labelId="select-edita-trilha"
                 id="edita-trilha"
@@ -123,7 +123,7 @@ export const CadastraAluno = () => {
               <InputLabel id="select-cadastra-modulo" {...register("modulo")}>
                 Módulo
               </InputLabel>
-              {errors.modulo && <span>{errors.modulo.message}</span>}
+              {errors.modulo && <ErrorMessage>{errors.modulo.message}</ErrorMessage>}
               <Select
                 labelId="select-edita-modulo"
                 id="edita-modulo"
