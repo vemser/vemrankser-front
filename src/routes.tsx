@@ -16,6 +16,7 @@ import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
 import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
+import { AtividadeProvider } from './context/AtividadesContext';
 
 export const Router = () => {
   return (
@@ -25,6 +26,7 @@ export const Router = () => {
         <UsersProvider>
           <AlunoProvider>
             <VinculaTrilhaProvider>
+            <AtividadeProvider>
             <Routes>
             <Route path={'/'} element={<Login />} />
             <Route element={<PrivateRoute />}>
@@ -38,6 +40,7 @@ export const Router = () => {
               <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
             </Route>
           </Routes>
+          </AtividadeProvider>
             </VinculaTrilhaProvider>
           </AlunoProvider>
         </UsersProvider>

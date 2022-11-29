@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import userDummy from '../../assets/user.png';
@@ -8,6 +8,8 @@ import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'r
 import { Link } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { AtividadeContext } from '../../context/AtividadesContext';
+import { IAtividade } from '../../types/atividade';
 
 export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -15,6 +17,14 @@ export const Atividades = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+
+  const { getAtividade, atividades } = useContext(AtividadeContext);
+
+  useEffect(() => {
+    getAtividade('1')
+  }, [])
+
+
 
   return (
     <SimpleCardContainer>
@@ -82,34 +92,18 @@ export const Atividades = () => {
         </div>
 
         <SimpleCardWrapper>
-          <SimpleCard>
+
+        {atividades?.map((atividade: IAtividade) => {
+          return(
+           <SimpleCard>
             <img src={userDummy} alt="Foto" />
             <SimpleCardContent>
-              <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
-              <p className='date-info'>10 de nov.</p>
+              <p><span>{atividade.nome}</span> postou uma nova atividade.</p>
+              <p className='date-info'>{atividade.dataEntrega}</p>
             </SimpleCardContent>
           </SimpleCard>
-          <SimpleCard>
-            <img src={userDummy} alt="Foto" />
-            <SimpleCardContent>
-              <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
-              <p className='date-info'>10 de nov.</p>
-            </SimpleCardContent>
-          </SimpleCard>
-          <SimpleCard>
-            <img src={userDummy} alt="Foto" />
-            <SimpleCardContent>
-              <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
-              <p className='date-info'>10 de nov.</p>
-            </SimpleCardContent>
-          </SimpleCard>
-          <SimpleCard>
-            <img src={userDummy} alt="Foto" />
-            <SimpleCardContent>
-              <p><span>Mayral Amaral</span> postou uma nova atividade.</p>
-              <p className='date-info'>10 de nov.</p>
-            </SimpleCardContent>
-          </SimpleCard>
+          )})}
+         
         </SimpleCardWrapper>
       </section>
     </SimpleCardContainer>
