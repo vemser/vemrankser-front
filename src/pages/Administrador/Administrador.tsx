@@ -106,8 +106,6 @@ export const Administrador = () => {
                 </div>
                 <div>
                   <p><span>Login:</span> Luiza.valentini </p>
-                </div>
-                <div>
                   <p><span>Status:</span> ativo </p>
                 </div>
               </ButtonCardContent>
