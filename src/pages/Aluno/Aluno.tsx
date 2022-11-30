@@ -109,57 +109,8 @@ export const Aluno = () => {
                   <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
                 </div>
                 <div>
-                  <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
-                </div>
-                <div>
-                  <p><span>Status:</span> ativo </p>
-                </div>
-              </ButtonCardContent>
-            </ButtonCard>
-            <ButtonCard>
-              <ButtonCardContent>
-                <img src={userDummy} alt="Foto" />
-                <div>
-                  <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-                </div>
-                <div>
-                  <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
-                </div>
-                <div>
-                  <p><span>Status:</span> ativo </p>
-                </div>
-              </ButtonCardContent>
-            </ButtonCard><ButtonCard>
-              <ButtonCardContent>
-                <img src={userDummy} alt="Foto" />
-                <div>
-                  <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-                </div>
-                <div>
-                  <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
-                </div>
-                <div>
-                  <p><span>Status:</span> ativo </p>
-                </div>
-              </ButtonCardContent>
-            </ButtonCard><ButtonCard>
-              <ButtonCardContent>
-                <img src={userDummy} alt="Foto" />
-                <div>
-                  <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-                </div>
-                <div>
-                  <p><span>Login:</span> Luiza.valentini </p>
-                  <p><span>Cidade: </span> Caxias do sul </p>
-                </div>
-                <div>
-                  <p><span>Status:</span> ativo </p>
+                <p><span>Status:</span> ativo </p>
+                  <p><span>Trilha: </span> Backend </p>
                 </div>
               </ButtonCardContent>
             </ButtonCard>
