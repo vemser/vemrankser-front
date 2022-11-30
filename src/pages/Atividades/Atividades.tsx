@@ -4,7 +4,7 @@ import { ButtonPrimary } from '../../components/Buttons/Button';
 import userDummy from '../../assets/user.png';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
@@ -28,6 +28,11 @@ export const Atividades = () => {
           icone={<HiChartPie />}
           link={"/dashboard"}
         />
+        <ButtonMenuLateral
+            text={"Usuários"}
+            icone={<HiUsers />}
+            link={"/usuarios"}
+          />
         <ButtonMenuLateral
           text={"Alunos"}
           icone={<HiAcademicCap />}
@@ -55,7 +60,7 @@ export const Atividades = () => {
         </Titulo>
 
         <div className='flex'>
-          <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
+          <FormControl sx={{ width: 200, backgroundColor: 'white' }} fullWidth size="small">
             <InputLabel id="select-atividade-label">Trilha</InputLabel>
             <Select
               labelId="select-atividade-label"

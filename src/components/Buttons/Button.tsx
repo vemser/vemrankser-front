@@ -1,14 +1,12 @@
+import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { IButton } from '../../types/buttons';
 
 const ButtonPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
-  fontWeight: '500',
+  width: 200,
   height: 40,
-  fontSize: '1rem',
-  textTransform: 'capitalize',
-  fontFamily: 'Inter',
   transition: '0.5s',
   '&:hover': { 
     transition: '0.5s',
@@ -23,11 +21,8 @@ const ButtonPrimaryStyle = styled(Button)({
 const ButtonSecondaryStyle = styled(Button)({
   backgroundColor: 'var(--cor-de-fundo)',
   border: '2px solid var(--cor-primaria)',
-  fontWeight: '600',
+  width: 200,
   height: 40,
-  fontSize: '1rem',
-  textTransform: 'capitalize',
-  fontFamily: 'Inter',
   transition: '0.5s',
   color: 'var(--cor-primaria)',
   '&:hover': { 
@@ -43,7 +38,9 @@ const ButtonSecondaryStyle = styled(Button)({
 export const ButtonPrimary = ({ label, id, type }:IButton):JSX.Element => {
   return (
     <ButtonPrimaryStyle type={type} id={id} variant="contained" disableElevation>
-      {label}
+      <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
+        {label}
+      </Typography>
     </ButtonPrimaryStyle>
   )
 }
@@ -51,7 +48,9 @@ export const ButtonPrimary = ({ label, id, type }:IButton):JSX.Element => {
 export const ButtonSecondary = ({ label, id, type }:IButton):JSX.Element => {
   return (
     <ButtonSecondaryStyle type={type} id={id} variant="contained" disableElevation>
-      {label}
+      <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter' fontWeight={600}>
+        {label}
+      </Typography>
     </ButtonSecondaryStyle>
   )
 }

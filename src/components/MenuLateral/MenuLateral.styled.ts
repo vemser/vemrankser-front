@@ -54,7 +54,7 @@ export const FotoDePerfil = styled.div`
   width: 130px;
   background-color: var(--branco);
   border-radius: 50%;
-  margin-top: 0.2%;
+  margin-top: 5px;
   object-fit: cover;
   border: 2px solid white;
   img {

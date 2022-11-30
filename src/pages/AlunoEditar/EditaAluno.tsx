@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editaAlunoSchema } from "../../utils/schemas";
+import { vinculaAlunoSchema } from "../../utils/schemas";
 import { IEditaAluno } from "../../types/editaAluno";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -12,7 +12,7 @@ import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap,HiBookOpen,HiChartPie,HiCog,HiUser} from "react-icons/hi";
+import { HiAcademicCap,HiBookOpen,HiChartPie,HiCog,HiUser, HiUsers} from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { Titulo } from "../../components/Styles/Component.styled";
 
@@ -22,7 +22,7 @@ export const EditaAluno = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IEditaAluno>({
-    resolver: yupResolver(editaAlunoSchema),
+    resolver: yupResolver(vinculaAlunoSchema),
   });
 
   const [trilha, setTrilha] = React.useState("");
@@ -48,6 +48,11 @@ export const EditaAluno = () => {
             text={"Dashboard"}
             icone={<HiChartPie />}
             link={"/dashboard"}
+          />
+          <ButtonMenuLateral
+            text={"Usuários"}
+            icone={<HiUsers />}
+            link={"/usuarios"}
           />
           <ButtonMenuLateral
             text={"Alunos"}

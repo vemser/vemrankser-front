@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { IButtonEditaDeleta } from '../../types/buttonEditaDeleta';
@@ -5,13 +6,10 @@ import { IButtonEditaDeleta } from '../../types/buttonEditaDeleta';
 const ButtonEditaDeletaStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
   color: "var(--branco)",
-  fontWeight: '500',
-  width: 105,
+  width: 120,
   height: 40,
-  fontSize: '1.1rem',
-  textTransform: 'capitalize',
   transition: '0.5s',
-  '&:hover': { 
+  '&:hover': {
     transition: '0.5s',
     transform: 'scale(1.02)',
     backgroundColor: 'var(--botao-hover)'
@@ -21,10 +19,12 @@ const ButtonEditaDeletaStyle = styled(Button)({
   }
 })
 
-export const ButtonEditaDeleta = ({icone, label}:IButtonEditaDeleta):JSX.Element => {
+export const ButtonEditaDeleta = ({ icone, label }: IButtonEditaDeleta): JSX.Element => {
   return (
     <ButtonEditaDeletaStyle variant="outlined" startIcon={icone}>
-   {label}
-  </ButtonEditaDeletaStyle>
+      <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
+        {label}
+      </Typography>
+    </ButtonEditaDeletaStyle>
   )
 }

@@ -31,11 +31,12 @@ export const LoginFormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-top: 100px;
     width: 50%;
-    gap: 30px;
+    gap: 50px;
     @media screen and (max-width: 1400px) {
         gap: 10px;
+        margin-top: 50px;
     }
     form {
         display: flex;
@@ -97,7 +98,7 @@ export const LoginTitle = styled.h1`
     font-weight: 500;
     color: var(--cor-primaria);
     user-select: none;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     font-family: 'Fragment Mono', monospace;
     @media screen and (max-width: 1400px) {
         font-size: 3.2rem;
