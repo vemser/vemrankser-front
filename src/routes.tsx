@@ -18,6 +18,7 @@ import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AtividadeProvider } from './context/AtividadesContext';
 import { AtividadesDetalhesNotas } from './pages/AtividadesMaisDetalhesNotas/AtividadeMaisDetalhesNotas';
+import { NotasProvider } from './context/Notascontext';
 
 export const Router = () => {
   return (

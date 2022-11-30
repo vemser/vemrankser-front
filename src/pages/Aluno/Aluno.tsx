@@ -1,17 +1,10 @@
-import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
-import { AlunoContext } from "../../context/AlunoContext";
-import { IAluno } from "../../types/aluno";
-import { ITrilha } from "../../types/vinculaTrilha";
-import { Link, useSearchParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
-import userDummy from "../../assets/user.png";
-import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -51,6 +44,9 @@ export const Aluno = () => {
     setNome(keyWord)
   }
 
+  const handleChange = (event: SelectChangeEvent) => {
+    setTrilha(event.target.value as string);
+  };
   return (
     <>
       <ButtonCardContainer>

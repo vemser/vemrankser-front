@@ -2,15 +2,17 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import userDummy from '../../assets/user.png';
+import { INotas } from '../../types/notas';
+import { NotasContext } from '../../context/Notascontext';
 
 export const AtividadesNotas = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -22,6 +24,11 @@ export const AtividadesNotas = () => {
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
+  const { getNotas, notas } = useContext(NotasContext);
+
+  useEffect(() => {
+    getNotas('1')
+  }, [])
 
   return (
     <SimpleCardContainer>
@@ -114,14 +121,18 @@ export const AtividadesNotas = () => {
             />
         </div>
         <SimpleCardWrapper>
-           <SimpleCardNotes>
-            <img src={userDummy} alt="Foto" />
-            <SimpleCardContent>
-              <p><span>Aluno 1</span></p>
-              <p className='date-info'><span>____/100</span></p>
-            </SimpleCardContent>
-            <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Mais detalhes'} /></Link>
-          </SimpleCardNotes>
+        {notas.map((nota: INotas) => {
+                return(
+                <SimpleCardNotes>
+                  <img src={userDummy} alt="Foto" />
+                  <SimpleCardContent>
+                    <p><span>{nota.nome}</span></p>
+                    <p className='date-info'><span>{nota.nota}/100</span></p>
+                  </SimpleCardContent>
+                  <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Mais detalhes'} /></Link>
+                </SimpleCardNotes>)
+              })}
+         
           </SimpleCardWrapper>
           </section>
         </SimpleCardContainer>
