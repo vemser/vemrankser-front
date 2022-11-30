@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { ChangeEvent, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
@@ -15,16 +15,27 @@ import { IAluno, ITrilha, UserStatus } from "../../types/aluno";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
+  const [ pesquisaAluno, setPesquisa] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
 
-  const { getAlunos, alunos } = useContext(AlunoContext);
+  const { getAlunos, alunos, getAlunosWithFilters } = useContext(AlunoContext);
 
   useEffect(() => {
     getAlunos('1')
   }, [])
+ 
+  const handlePesquisaChange = ( e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setPesquisa(e.target.value)
+  }
+
+  const handlePesquisa = () => {
+    getAlunosWithFilters('1', pesquisaAluno)
+  }
+
+
 
   return (
     <>
@@ -96,8 +107,10 @@ export const Aluno = () => {
               <BarraPesquisa
                 label={"Pesquisar"}
                 id={"barra-de-pesquisa-aluno"}
+                value={pesquisaAluno}
+                setValue={handlePesquisaChange}
               />
-              <i>
+              <i onClick={handlePesquisa}>
                 <HiSearch size={"28px"} />
               </i>
             </BarraDePesquisa>
@@ -111,7 +124,7 @@ export const Aluno = () => {
           </div>
           <ButtonCardWrapper>
             <ButtonCard>
-            {alunos?.map((aluno: IAluno) => {
+            {alunos.length>0?alunos?.map((aluno: IAluno) => {
           return(
               <ButtonCardContent>
                 <img src={userDummy} alt="Foto" />
@@ -126,7 +139,7 @@ export const Aluno = () => {
             )}
                 </div>
               </ButtonCardContent>
-                        )})}
+                        )}):<p>Nenhum aluno enontrado!</p>}
             </ButtonCard>
           </ButtonCardWrapper>
         </section>
@@ -134,3 +147,7 @@ export const Aluno = () => {
     </>
   );
 };
+function getAlunosWithFilters(arg0: string, pesquisaAluno: string) {
+  throw new Error("Function not implemented.");
+}
+
