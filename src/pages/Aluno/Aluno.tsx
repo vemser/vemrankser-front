@@ -5,7 +5,7 @@ import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiTrash, HiClipboardList, HiSearch } from "react-icons/hi";
+import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiTrash, HiClipboardList, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
@@ -29,6 +29,11 @@ export const Aluno = () => {
             text={"Dashboard"}
             icone={<HiChartPie />}
             link={"/dashboard"}
+          />
+          <ButtonMenuLateral
+            text={"Usuários"}
+            icone={<HiUsers />}
+            link={"/usuarios"}
           />
           <ButtonMenuLateral
             text={"Alunos"}
@@ -58,7 +63,7 @@ export const Aluno = () => {
           <div className="flex">
             <div>
               <FormControl
-                sx={{ width: 250, heigth: 50, backgroundColor: "white" }}
+                sx={{ width: 200, backgroundColor: "white" }}
                 fullWidth
                 size="small"
               >
@@ -87,12 +92,11 @@ export const Aluno = () => {
                 <HiSearch size={"28px"} />
               </i>
             </BarraDePesquisa>
-
-            <Link to={"/vincula-aluno"}>
+            <Link to={"/alunos/vincular"}>
               <ButtonPrimary
                 type={"button"}
                 id={"botao-vincula-aluno"}
-                label={"Adicionar Aluno"}
+                label={"Vincular Aluno"}
               />
             </Link>
           </div>
@@ -102,7 +106,7 @@ export const Aluno = () => {
                 <img src={userDummy} alt="Foto" />
                 <div>
                   <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> Luizadarav@ </p>
+                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
                 </div>
                 <div>
                   <p><span>Login:</span> Luiza.valentini </p>
@@ -112,22 +116,13 @@ export const Aluno = () => {
                   <p><span>Status:</span> ativo </p>
                 </div>
               </ButtonCardContent>
-              <Buttons>
-                <Link to={"/edita-aluno"}>
-                  <ButtonEditaDeleta
-                    label={"Editar"}
-                    icone={<HiClipboardList />}
-                  />
-                </Link>
-                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
-              </Buttons>
             </ButtonCard>
             <ButtonCard>
               <ButtonCardContent>
                 <img src={userDummy} alt="Foto" />
                 <div>
                   <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> Luizadarav@ </p>
+                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
                 </div>
                 <div>
                   <p><span>Login:</span> Luiza.valentini </p>
@@ -137,22 +132,12 @@ export const Aluno = () => {
                   <p><span>Status:</span> ativo </p>
                 </div>
               </ButtonCardContent>
-              <Buttons>
-                <Link to={"/edita-aluno"}>
-                  <ButtonEditaDeleta
-                    label={"Editar"}
-                    icone={<HiClipboardList />}
-                  />
-                </Link>
-                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
-              </Buttons>
-            </ButtonCard>
-            <ButtonCard>
+            </ButtonCard><ButtonCard>
               <ButtonCardContent>
                 <img src={userDummy} alt="Foto" />
                 <div>
                   <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> Luizadarav@ </p>
+                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
                 </div>
                 <div>
                   <p><span>Login:</span> Luiza.valentini </p>
@@ -162,15 +147,21 @@ export const Aluno = () => {
                   <p><span>Status:</span> ativo </p>
                 </div>
               </ButtonCardContent>
-              <Buttons>
-                <Link to={"/edita-aluno"}>
-                  <ButtonEditaDeleta
-                    label={"Editar"}
-                    icone={<HiClipboardList />}
-                  />
-                </Link>
-                <ButtonEditaDeleta label={"Deletar"} icone={<HiTrash />} />
-              </Buttons>
+            </ButtonCard><ButtonCard>
+              <ButtonCardContent>
+                <img src={userDummy} alt="Foto" />
+                <div>
+                  <p><span>Nome:</span> Luiza Valentini </p>
+                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
+                </div>
+                <div>
+                  <p><span>Login:</span> Luiza.valentini </p>
+                  <p><span>Cidade: </span> Caxias do sul </p>
+                </div>
+                <div>
+                  <p><span>Status:</span> ativo </p>
+                </div>
+              </ButtonCardContent>
             </ButtonCard>
           </ButtonCardWrapper>
         </section>

@@ -66,7 +66,7 @@ export const ButtonCard = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 95%;
-  height: 150px;
+  height: 100px;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
@@ -102,14 +102,16 @@ export const ButtonCardContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 80px;
   font-size: 1rem;
   @media screen and (max-width: 460px) {
       font-size: 0.9rem;
   }
   @media (max-width: 850px) {
       flex-direction: column;
+      text-align: center;
       height: auto;
+      gap: 40px;
   }
   div {
     display: flex;

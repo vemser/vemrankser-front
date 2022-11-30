@@ -12,7 +12,7 @@ import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from "react-icons/hi";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 
@@ -38,7 +38,7 @@ export const UsuarioEdita = () => {
 
   return (
     <>
-      <MainContainer>
+      {/* <MainContainer>
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
@@ -48,6 +48,11 @@ export const UsuarioEdita = () => {
             text={"Dashboard"}
             icone={<HiChartPie />}
             link={"/dashboard"}
+          />
+          <ButtonMenuLateral
+            text={"Usuários"}
+            icone={<HiUsers />}
+            link={"/usuarios"}
           />
           <ButtonMenuLateral
             text={"Alunos"}
@@ -176,7 +181,7 @@ export const UsuarioEdita = () => {
             </ButtonWraper>
           </form>
         </ContentWrapper>
-      </MainContainer>
+      </MainContainer> */}
     </>
   );
 };

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adicionaUsuarioSchema } from "../../utils/schemas";
 import { IUser } from "../../types/user";
@@ -12,29 +12,19 @@ import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from "react-icons/hi";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
-import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
+import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
+import { UsersContext } from "../../context/UserContext";
 
 export const UsuarioCadastra = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IUser>({
+  const { createUser } = useContext(UsersContext);
+
+  const { register, handleSubmit, control, formState: { errors } } = useForm<IUser>({
     resolver: yupResolver(adicionaUsuarioSchema),
   });
 
-  const [atuacao, setAtuacao] = React.useState("");
-  const [trilha, setTrilha] = React.useState("");
-
-  const handleChangeSelect = (event: SelectChangeEvent) => {
-    setAtuacao(event.target.value as string);
-  };
-
-  const handleChangeSelect2 = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
+  const [tipoDePerfil, setTipoDePerfil] = React.useState('');
 
   return (
     <>
@@ -48,6 +38,11 @@ export const UsuarioCadastra = () => {
             text={"Dashboard"}
             icone={<HiChartPie />}
             link={"/dashboard"}
+          />
+          <ButtonMenuLateral
+            text={"Usuários"}
+            icone={<HiUsers />}
+            link={"/usuarios"}
           />
           <ButtonMenuLateral
             text={"Alunos"}
@@ -72,92 +67,57 @@ export const UsuarioCadastra = () => {
         </MenuLateral>
         <ContentWrapper>
           <Titulo>Cadastro Usuário</Titulo>
-          <form>
-            <TextField
-              id="nome-cadastra-usuario"
-              label="Nome"
-              variant="outlined"
-              sx={{
-                width: "100%",
-                marginBottom: "-5%",
-                marginTop: "10%",
-                backgroundColor: "white",
-              }}
-              {...register("nome")}
-              size="small"
-            />
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
-            <TextField
-              id="email-cadastra-usuario"
-              label="E-mail"
-              variant="outlined"
-              sx={{
-                width: "100%",
-                marginBottom: "-5%",
-                marginTop: "10%",
-                backgroundColor: "white",
-              }}
-              {...register("email")}
-              size="small"
-            />
-              {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-            
-            <TextField
-              id="senha-cadastra-usuario"
-              label="Senha"
-              variant="outlined"
-              type='password'
-              sx={{
-                width: "100%",
-                marginBottom: "5%",
-                marginTop: "10%",
-                backgroundColor: "white",
-              }}
-              {...register("senha")}
-              size="small"
-            />
-              {errors.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
-            <FormControl
-              sx={{  width: '100%', heigth: 50, backgroundColor: "white" }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="select-usuario-atuacao-label"  {...register("atuacao")}>Atuação</InputLabel>
-              {errors.atuacao && <ErrorMessage>{errors.atuacao.message}</ErrorMessage>}
-              <Select
-                labelId="select-usuario-atuacao-label"
-                id="select-usuario-atuacao"
-                value={atuacao}
-                label="atuacao"
-                onChange={handleChangeSelect}
-              >
+          <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
+            <TextField id="nome" label="Nome *" variant="outlined"
+              sx={{ width: "100%", marginTop: "10%", backgroundColor: "white" }} {...register("nome")} size="small" />
+            {errors.nome && <ErrorMessage2>{errors.nome.message}</ErrorMessage2>}
 
-                <MenuItem value={"intrutor"}>Instrutor</MenuItem>
-                <MenuItem value={"coordenador"}>Coordenador</MenuItem>
-                <MenuItem value={"administrador"}>Administrador</MenuItem>
-                <MenuItem value={"gestaoPessoa"}>Gestao de Pessoas</MenuItem>
-                <MenuItem value={"aluno"}>Aluno</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl
-              sx={{  width: '100%', marginTop: '5%',heigth: 50, backgroundColor: "white" }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="select-usuario-aluno-trilha-label" {...register("atuacao")}>Trilha</InputLabel>
-              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
-              <Select
-                labelId="select-usuario-aluno-trilha-label"
-                id="select-usuario-aluno"
-                value={trilha}
-                label="trilha-aluno"
-                onChange={handleChangeSelect2}
+            <TextField id="login" label="Login *" variant="outlined"
+              sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("login")} size="small" />
+            {errors.login && <ErrorMessage2>{errors.login.message}</ErrorMessage2>}
+
+            <TextField id="email" label="E-mail *"  variant="outlined" sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("email")} size="small" />
+            {errors.email && <ErrorMessage2>{errors.email.message}</ErrorMessage2>}
+
+            <TextField id="senha" label="Senha *" variant="outlined" type='password' sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("senha")} size="small" />
+            {errors.senha && <ErrorMessage2>{errors.senha.message}</ErrorMessage2>}
+
+            <TextField id="cidade" label="Cidade *" variant="outlined" sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("cidade")} size="small" />
+            {errors.cidade && <ErrorMessage2>{errors.cidade.message}</ErrorMessage2>}
+
+            <FormControl sx={{ width: '100%', marginTop: "5%" }} fullWidth size="small" >
+              <InputLabel id="label-tipo-perfil" >Tipo de Perfil *</InputLabel>
+              <Controller
+              name="tipoPerfil"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <Select
+                labelId="select-tipo-perfil-label"
+                id="tipoPerfil"
+                label="Tipo de Perfil"
+                {...field}
+                value={tipoDePerfil}
+                onChange={(newValue) => {
+                  field.onChange(newValue)
+                  setTipoDePerfil(newValue.target.value)
+                }}
+                sx={{ backgroundColor: "white" }}
               >
-                <MenuItem value={"backEnd"}>BackEnd</MenuItem>
-                <MenuItem value={"frontEnd"}>FrontEnd</MenuItem>
-                <MenuItem value={"qa"}>QA</MenuItem>
+                <MenuItem value={5}>Gestão de Pessoas</MenuItem>
+                <MenuItem value={1}>Coordenador</MenuItem>
+                <MenuItem value={3}>Instrutor</MenuItem>
+                <MenuItem value={2}>Aluno</MenuItem>
               </Select>
+                )
+              }}
+              />
+              {errors.tipoPerfil && <ErrorMessage2>{errors.tipoPerfil.message}</ErrorMessage2>}
             </FormControl>
+
+            <TextField id="especialidade" label="Especialidade" variant="outlined" sx={{ width: "100%", marginBottom: "8%", marginTop: "5%", backgroundColor: "white" }} {...register("especialidade")} size="small" />
+            {errors.especialidade && <ErrorMessage2>{errors.especialidade.message}</ErrorMessage2>}
+
             <ButtonWraper>
               <ButtonPrimary
                 label="Adicionar"

@@ -12,11 +12,11 @@ import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from "react-icons/hi";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 
-export const CadastraAluno = () => {
+export const VinculaAluno = () => {
   const {
     register,
     handleSubmit,
@@ -48,6 +48,11 @@ export const CadastraAluno = () => {
             text={"Dashboard"}
             icone={<HiChartPie />}
             link={"/dashboard"}
+          />
+          <ButtonMenuLateral
+            text={"Usuários"}
+            icone={<HiUsers />}
+            link={"/usuarios"}
           />
           <ButtonMenuLateral
             text={"Alunos"}
@@ -109,32 +114,6 @@ export const CadastraAluno = () => {
                 <MenuItem value={"backend"}>Backend</MenuItem>
                 <MenuItem value={"frontend"}>Frontend</MenuItem>
                 <MenuItem value={"qa"}>QA</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl
-              sx={{
-                width: "100%",
-                marginBottom: "5%",
-                backgroundColor: "white",
-              }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="select-cadastra-modulo" {...register("modulo")}>
-                Módulo
-              </InputLabel>
-              {errors.modulo && <ErrorMessage>{errors.modulo.message}</ErrorMessage>}
-              <Select
-                labelId="select-edita-modulo"
-                id="edita-modulo"
-                value={modulo}
-                label="Modulo"
-                onChange={handleChangeSelect2}
-              >
-                <MenuItem value={"modulo1"}>Módulo 1</MenuItem>
-                <MenuItem value={"modulo2"}>Módulo 2</MenuItem>
-                <MenuItem value={"modulo3"}>Módulo 3</MenuItem>
-                <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
               </Select>
             </FormControl>
             <ButtonWraper>

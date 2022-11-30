@@ -19,8 +19,32 @@ export const UsersProvider = ({ children }: IChildren) => {
     try {
       nProgress.start();
 
+      let userType
+
+      switch (user.tipoPerfil) {
+        case 1:
+          userType = 'COORDENADOR'
+          break
+
+        case 2:
+          userType = 'ALUNO'
+          break
+
+        case 3:
+          userType = 'INSTRUTOR'
+          break
+
+        case 5:
+          userType = 'GESTAO'
+          break
+
+        default:
+          userType = ''
+          break
+      }
+
       api.defaults.headers.common['Authorization'] = token;
-      await api.post('/pessoa', user);
+      await api.post(`/usuario/cadastro?tipoPerfil=${userType}`, user);
 
       toast.success('Pessoa cadastrada com sucesso!', toastConfig);
       navigate('/usuarios');

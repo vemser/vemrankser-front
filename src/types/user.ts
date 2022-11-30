@@ -1,6 +1,7 @@
 export interface IUserLogin {
     email: string,
-    senha: string
+    senha: string,
+    nome?: string
 }
 
 export interface IChildren {
@@ -9,17 +10,20 @@ export interface IChildren {
 
 export interface IUser {
     nome: string,
+    login: string,
     email: string,
     senha: string,
-    atuacao: string,
-    trilha?: string,
+    cidade: string,
+    tipoPerfil: number,
+    especialidade?: string,
+    foto?: string,
     statusUsuario?: string
 }
 
 export interface IUserContext {
-    createUser: (User: IUser) => Promise<void>,
+    createUser: (user: IUser) => Promise<void>,
     getUsersList: (page: number) => Promise<void>,
     editUser: (data: IUser ) => Promise<void>,
-    user: IUser[] | any,
+    user: IUser[],
     totalPages: number
 }

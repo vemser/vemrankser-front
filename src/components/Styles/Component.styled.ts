@@ -44,3 +44,10 @@ export const ErrorMessage = styled.span`
   font-weight: 600;
   user-select: none;
 `
+
+export const ErrorMessage2 = styled.span`
+  color: #f50031;
+  font-size: 0.8rem;
+  font-weight: 600;
+  user-select: none;
+`
