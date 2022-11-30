@@ -20,9 +20,9 @@ export const Atividades = () => {
 
   const { getAtividade, atividades } = useContext(AtividadeContext);
 
-  // useEffect(() => {
-  //   getAtividade('1')
-  // }, [])
+  useEffect(() => {
+    getAtividade('1')
+  }, [])
 
 
 
