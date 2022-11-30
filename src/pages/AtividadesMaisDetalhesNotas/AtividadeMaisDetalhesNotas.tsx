@@ -4,8 +4,9 @@ import { ButtonPrimary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCard, SimpleCardAtividades, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import userDummy from '../../assets/user.png';
+import TextField from '@mui/material/TextField';
 
 export const AtividadesDetalhesNotas = () => {
   return (
@@ -50,20 +51,27 @@ export const AtividadesDetalhesNotas = () => {
             <Link to='/atividades/notas'>
             <ButtonPrimary
               label="Voltar"
-              id="button-edita-aluno"
+              id="button-volta-mural-notas"
               type="submit"
             />
             </Link>
-          
         </div>
         <SimpleCardWrapper>
-           <SimpleCard>
+           <SimpleCardAtividades>
             <img src={userDummy} alt="Foto" />
             <SimpleCardContent>
               <p><span>Aluno 1</span></p>
               <p className='date-info'><span>____/100</span></p>
+              <p><span>Link da Atividade:</span></p>
+              <div className='textarea-link'>
+                 <p>Link</p>
+              </div>
+         <p><span>Commentários:</span></p>
+            <div className='textarea-comentário'>
+               <p>Melhorar</p>
+            </div>
             </SimpleCardContent>
-          </SimpleCard>
+          </SimpleCardAtividades>
           </SimpleCardWrapper>
           </section>
         </SimpleCardContainer>

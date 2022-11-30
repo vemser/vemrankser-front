@@ -17,6 +17,7 @@ import { NotasContext } from '../../context/Notascontext';
 export const AtividadesNotas = () => {
   const [trilha, setTrilha] = React.useState('');
   const [modulo, setModulo] = React.useState("");
+  const [atividade, setAtividade] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -24,11 +25,15 @@ export const AtividadesNotas = () => {
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
+
+  const handleChangeSelect3 = (event: SelectChangeEvent) => {
+    setAtividade(event.target.value as string);
+  };
   const { getNotas, notas } = useContext(NotasContext);
 
-  useEffect(() => {
-    getNotas('1')
-  }, [])
+  // useEffect(() => {
+  //   getNotas('1')
+  // }, [])
 
   return (
     <SimpleCardContainer>
@@ -70,10 +75,10 @@ export const AtividadesNotas = () => {
 
         <div className='flex'>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Trilha</InputLabel>
+            <InputLabel id="select-trilha-label-mural-notas">Trilha</InputLabel>
             <Select
-              labelId="select-atividade-label"
-              id="select-atividade"
+              labelId="select-trilha-label-mural-notas"
+              id="select-trilha-mural-notas"
               value={trilha}
               label="Trilha"
               onChange={handleChange}
@@ -85,54 +90,48 @@ export const AtividadesNotas = () => {
             </Select>
           </FormControl>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Trilha</InputLabel>
+            <InputLabel id="select-atividade-label-mural-notas">Atividade</InputLabel>
             <Select
-              labelId="select-atividade-label"
-              id="select-atividade"
-              value={trilha}
-              label="Trilha"
-              onChange={handleChange}
+              labelId="select-atividade-label-mural-notas"
+              id="select-atividade-mural-noras"
+              value={atividade}
+              label="Atividade"
+              onChange={ handleChangeSelect3}
             >
-              <MenuItem value={'geral'}>Geral</MenuItem>
-              <MenuItem value={'backend'}>Backend</MenuItem>
-              <MenuItem value={'frontend'}>Frontend</MenuItem>
-              <MenuItem value={'qa'}>QA</MenuItem>
+              <MenuItem value={'atividade1'}>Atividade 1</MenuItem>
+              <MenuItem value={'atividade2'}>Atividade 2</MenuItem>
+              <MenuItem value={'atividade3'}>Atividade 3</MenuItem>
+              <MenuItem value={'atividade4'}>Atividade 4</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Trilha</InputLabel>
+            <InputLabel id="select-modulo-label-mural-atividade">Módulo</InputLabel>
             <Select
-              labelId="select-atividade-label"
-              id="select-atividade"
-              value={trilha}
-              label="Trilha"
-              onChange={handleChange}
+              labelId="select-modulo-label-mural-atividade"
+              id="select-modulo-mural-atividade"
+              value={modulo}
+              label="Módulo"
+              onChange={handleChangeSelect2}
             >
-              <MenuItem value={'geral'}>Geral</MenuItem>
-              <MenuItem value={'backend'}>Backend</MenuItem>
-              <MenuItem value={'frontend'}>Frontend</MenuItem>
-              <MenuItem value={'qa'}>QA</MenuItem>
+              <MenuItem value={'modulo3'}>Módulo 1</MenuItem>
+              <MenuItem value={'modulo2'}>Módulo 2</MenuItem>
+              <MenuItem value={'modulo3'}>Módulo 3</MenuItem>
+              <MenuItem value={'modulo4'}>Módulo 4</MenuItem>
             </Select>
           </FormControl>
-          <ButtonPrimary
-              label="Devolver"
-              id="button-edita-aluno"
-              type="submit"
-            />
         </div>
         <SimpleCardWrapper>
-        {notas.map((nota: INotas) => {
-                return(
+        {/* {notas.map((nota: INotas) => {
+                return( */}
                 <SimpleCardNotes>
                   <img src={userDummy} alt="Foto" />
                   <SimpleCardContent>
-                    <p><span>{nota.nome}</span></p>
-                    <p className='date-info'><span>{nota.nota}/100</span></p>
+                    <p><span>Aluno 1</span></p> 
+                    <p className='date-info'><span>___/100</span></p>
                   </SimpleCardContent>
-                  <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Mais detalhes'} /></Link>
-                </SimpleCardNotes>)
-              })}
-         
+                  <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Devolver'} /></Link>
+                </SimpleCardNotes>
+                {/* )})}  */}
           </SimpleCardWrapper>
           </section>
         </SimpleCardContainer>

@@ -16,7 +16,7 @@ export const NotasProvider = ({ children }: IChildren) => {
     try {
         api.defaults.headers.common['Authorization'] = token;
         nProgress.start();
-        const { data } = await api.get(`/atividade/listar-nota?pagina=${parseInt(page) - 1}&tamanho=1`);
+        const { data } = await api.get(`/atividade/listar-nota?pagina=${parseInt(page) - 1}&tamanho=5`);
         setTotalPages(data.totalPages);
         setNotas(data.elementos);
         console.log(data.elementos)

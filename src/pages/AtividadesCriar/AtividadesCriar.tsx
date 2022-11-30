@@ -83,7 +83,7 @@ export const AtividadesCriar = () => {
         <Titulo>Adicionar Nova Atividade</Titulo>
         <form>
           <TextField
-            id="nome-cadastra-aluno"
+            id="titulo-cadastra-atividade"
             label="Título"
             variant="outlined"
             sx={{
@@ -95,7 +95,7 @@ export const AtividadesCriar = () => {
             size="small"
           />
           <TextField
-            id="outlined-multiline-static"
+            id="descricao-cadastra-atividade"
             label="Descrição"
             multiline
             rows={6}
@@ -113,10 +113,10 @@ export const AtividadesCriar = () => {
             fullWidth
             size="small"
           >
-            <InputLabel id="select-cadastra-modulo">Módulo</InputLabel>
+            <InputLabel id="select-cadastra-atividade-modulo">Módulo</InputLabel>
             <Select
-              labelId="select-edita-modulo"
-              id="edita-modulo"
+              labelId="select-cadastra-atividade-modulo"
+              id="cadastra-atividade-modulo"
               value={modulo}
               label="Modulo"
               onChange={handleChangeSelect2}
@@ -136,12 +136,12 @@ export const AtividadesCriar = () => {
             fullWidth
             size="small"
           >
-            <InputLabel id="select-cadastra-trilha">
+            <InputLabel id="select-cadastra-atividade-trilha">
               Peso
             </InputLabel>
             <Select
-              labelId="select-edita-trilha"
-              id="edita-trilha"
+              labelId="select-cadastra-atividade-trilha"
+              id="cadastra-atividade-trilha"
               value={trilha}
               label="Trilha"
               onChange={handleChangeSelect}
@@ -156,13 +156,13 @@ export const AtividadesCriar = () => {
           <ButtonWraper>
             <ButtonPrimary
               label="Adicionar"
-              id="button-edita-aluno"
+              id="button-adiciona-atividade"
               type="submit"
             />
             <Link to="/atividades">
               <ButtonSecondary
                 label="Cancelar"
-                id="button-cancela-aluno"
+                id="button-cancela-cadastro-atividade"
                 type="button"
               />
             </Link>

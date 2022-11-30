@@ -11,4 +11,6 @@ export interface IAtividadeContext {
     getAtividade: (page: string) => Promise<void>
     atividades: IAtividade[]
     setAtividades: React.Dispatch<React.SetStateAction<IAtividade[]>>
-  }
+}
+
+
