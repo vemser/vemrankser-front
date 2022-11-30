@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
@@ -10,6 +10,8 @@ import userDummy from "../../assets/user.png";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper, Buttons } from "../../components/Styles/ButtonCard";
+import { AlunoContext } from "../../context/Aluno";
+import { IAluno, ITrilha, UserStatus } from "../../types/aluno";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -17,6 +19,13 @@ export const Aluno = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+
+  const { getAlunos, alunos } = useContext(AlunoContext);
+
+  useEffect(() => {
+    getAlunos('1')
+  }, [])
+
   return (
     <>
       <ButtonCardContainer>
@@ -102,17 +111,22 @@ export const Aluno = () => {
           </div>
           <ButtonCardWrapper>
             <ButtonCard>
+            {alunos?.map((aluno: IAluno) => {
+          return(
               <ButtonCardContent>
                 <img src={userDummy} alt="Foto" />
                 <div>
-                  <p><span>Nome:</span> Luiza Valentini </p>
-                  <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
+                  <p><span>Nome:</span> {aluno.nome} </p>
+                  <p><span>E-mail:</span> {aluno.email} </p>
                 </div>
                 <div>
-                <p><span>Status:</span> ativo </p>
-                  <p><span>Trilha: </span> Backend </p>
+                <p><span>Status:</span> {aluno.status===UserStatus.ATIVO?'ativo':'inativo'}</p>
+                {aluno?.trilhas.map((trilhas: ITrilha) =>
+                       <p><span>Trilha:</span>{trilhas.nome}</p>
+            )}
                 </div>
               </ButtonCardContent>
+                        )})}
             </ButtonCard>
           </ButtonCardWrapper>
         </section>
