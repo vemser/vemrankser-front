@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
-import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta";
+import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
+import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog,HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
-import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
-import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper, Buttons } from "../../components/Styles/ButtonCard";
 import { AlunoContext } from "../../context/Aluno";
 import { IAluno, ITrilha } from "../../types/aluno";
 
@@ -100,7 +99,6 @@ export const Aluno = () => {
                 </Select>
               </FormControl>
             </div>
-
             <BarraDePesquisa>
               <BarraPesquisa
                 label={"Pesquisar"}

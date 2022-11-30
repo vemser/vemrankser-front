@@ -1,18 +1,12 @@
-
-
 export interface IAluno {
     nome: string,
     email: string,
     statusUsuario: number,
     trilhas: ITrilha[],
   }
-
-  export interface ITrilha {
+export interface ITrilha {
     nome: string,
-
   }
-
-
 export interface IChildren{
     children?:React.ReactNode;
 }
@@ -23,3 +17,12 @@ export interface IAlunoContext {
     setAlunos: React.Dispatch<React.SetStateAction<IAluno[]>>
     getAlunosWithFilters: (page: string, nome?: string) => Promise<void>
   }
+
+
+  export interface ICriaAlunos {
+    nome: string,
+    dataNascimento: string,
+    cpf: string,
+    email: string,
+    idPessoa: number
+}

@@ -46,6 +46,8 @@ export const AlunoProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+
+
   return (
     <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, getAlunosWithFilters }}>
       {children}

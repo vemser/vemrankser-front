@@ -26,14 +26,9 @@ export const VinculaAluno = () => {
   });
 
   const [trilha, setTrilha] = React.useState("");
-  const [modulo, setModulo] = React.useState("");
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
-  };
-
-  const handleChangeSelect2 = (event: SelectChangeEvent) => {
-    setModulo(event.target.value as string);
   };
 
   return (
