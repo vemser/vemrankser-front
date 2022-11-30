@@ -159,11 +159,11 @@ export const SimpleCardAtividades = styled.div`
         border: 1px solid grey;
         border-radius: 5px;
         height: 200px;
-        width: 300px;
+        width: 200%;
         padding: 2%;
     }
     .textarea-link{
-        width: 300px;
+        width: 200%;
         height: 50px;
         border: 1px solid grey;
         border-radius: 5px;
@@ -173,10 +173,60 @@ export const SimpleCardAtividades = styled.div`
         transition: 1s;
         transform: scale(1.01);
     }
-    @media (max-width: 850px) {
+    @media screen and (max-width: 1184px) {
+       
+        .textarea-link{
+            width: 140%
+
+    }
+    .textarea-comentário{
+        width: 140%
+
+    }
+    }
+    @media screen and (max-width: 850px) {
+        width: 55%;
+        .textarea-link{
+            width: 140%
+
+    }
+    .textarea-comentário{
+        width: 140%
+
+    }
+    }
+    @media screen and (max-width: 666px) {
+        width: 55%;
+        .textarea-link{
+        width: 120%;
+    }
+    .textarea-comentário{
+        width: 120%;
+
+    }
+        gap: 10px;
+    }
+    @media screen and (max-width: 557px) {
+        width: 55%;
+        .textarea-link{
         width: 100%;
     }
+    .textarea-comentário{
+        width: 100%;
+
+    }
+        gap: 10px;
+    }
+
     @media screen and (max-width: 460px) {
+        width: 65%;
+        .textarea-link{
+        width: 100%;
+    }
+    .textarea-comentário{
+        width: 100%;
+
+    }
         gap: 10px;
     }
     img {
