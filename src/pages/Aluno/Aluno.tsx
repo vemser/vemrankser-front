@@ -5,17 +5,17 @@ import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiTrash, HiClipboardList, HiSearch, HiUsers } from "react-icons/hi";
+import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog,HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper, Buttons } from "../../components/Styles/ButtonCard";
 import { AlunoContext } from "../../context/Aluno";
-import { IAluno, ITrilha, UserStatus } from "../../types/aluno";
+import { IAluno, ITrilha } from "../../types/aluno";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
-  const [ pesquisaAluno, setPesquisa] = React.useState("");
+  const [pesquisaAluno, setPesquisa] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -26,16 +26,14 @@ export const Aluno = () => {
   useEffect(() => {
     getAlunos('1')
   }, [])
- 
-  const handlePesquisaChange = ( e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+  const handlePesquisaChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setPesquisa(e.target.value)
   }
 
   const handlePesquisa = () => {
     getAlunosWithFilters('1', pesquisaAluno)
   }
-
-
 
   return (
     <>
@@ -88,7 +86,7 @@ export const Aluno = () => {
                 size="small"
               >
                 <InputLabel id="select-aluno-label">Trilha</InputLabel>
-                <Select
+                <Select 
                   labelId="select-aluno-label"
                   id="select-atividade"
                   value={trilha}
@@ -123,31 +121,30 @@ export const Aluno = () => {
             </Link>
           </div>
           <ButtonCardWrapper>
-            <ButtonCard>
-            {alunos.length>0?alunos?.map((aluno: IAluno) => {
-          return(
-              <ButtonCardContent>
-                <img src={userDummy} alt="Foto" />
-                <div>
-                  <p><span>Nome:</span> {aluno.nome} </p>
-                  <p><span>E-mail:</span> {aluno.email} </p>
-                </div>
-                <div>
-                <p><span>Status:</span> {aluno.status===UserStatus.ATIVO?'ativo':'inativo'}</p>
-                {aluno?.trilhas.map((trilhas: ITrilha) =>
-                       <p><span>Trilha:</span>{trilhas.nome}</p>
-            )}
-                </div>
-              </ButtonCardContent>
-                        )}):<p>Nenhum aluno enontrado!</p>}
-            </ButtonCard>
+              {alunos.length > 0 ? alunos?.map((aluno: IAluno) => {
+                return (
+                  <ButtonCard>
+                  <ButtonCardContent>
+                    <img src={userDummy} alt="Foto" />
+                    <div>
+                      <p><span>Nome:</span> {aluno.nome} </p>
+                      <p><span>E-mail:</span> {aluno.email} </p>
+                    </div>
+                    <div>
+                      <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
+                      {aluno?.trilhas.map((trilhas: ITrilha) =>
+                        <p><span>Trilha:</span>{trilhas.nome}</p>
+                      )}
+                    </div>
+                  </ButtonCardContent>
+                  </ButtonCard>
+                )
+              }) : <p>Nenhum aluno enontrado!</p>}
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>
     </>
   );
 };
-function getAlunosWithFilters(arg0: string, pesquisaAluno: string) {
-  throw new Error("Function not implemented.");
-}
+
 

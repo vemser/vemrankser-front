@@ -1,13 +1,9 @@
-import { UsersContext } from "../context/UserContext";
 
-export enum UserStatus{
-   INATIVO = 0,
-    ATIVO = 1,
-}
+
 export interface IAluno {
     nome: string,
     email: string,
-    status: UserStatus,
+    statusUsuario: number,
     trilhas: ITrilha[],
   }
 
