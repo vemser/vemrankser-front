@@ -15,7 +15,7 @@ import { Usuario } from './pages/Usuario/Usuario';
 import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
 import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
-import { AlunoProvider } from './context/Aluno';
+import { AlunoProvider } from './context/AlunoContext';
 
 export const Router = () => {
   return (

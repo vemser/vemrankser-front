@@ -1,38 +1,52 @@
-import React, { ChangeEvent, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog,HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
-import { AlunoContext } from "../../context/Aluno";
+import { AlunoContext } from "../../context/AlunoContext";
 import { IAluno, ITrilha } from "../../types/aluno";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
   const [pesquisaAluno, setPesquisa] = React.useState("");
+  const { getAlunos, alunos,totalPages } = useContext(AlunoContext);
+  const [ searchParam, setSearchParam] = useSearchParams();
+  const [alunoData, setAlunoData ] = useState(alunos)
+  const [input, setInput ] = useState<string>('')
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
-
-  const { getAlunos, alunos, getAlunosWithFilters } = useContext(AlunoContext);
-
-  useEffect(() => {
-    getAlunos('1')
-  }, [])
-
   const handlePesquisaChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setPesquisa(e.target.value)
   }
 
-  const handlePesquisa = () => {
-    getAlunosWithFilters('1', pesquisaAluno)
+  const filtraAluno = (input: string) => {
+     const pesquisaFiltro = alunos.filter((aluno)=>{
+      const resultado = aluno.nome.toLowerCase().includes(input) || aluno.email.toLowerCase().includes(input)
+      return resultado
+     })
+     setAlunoData(pesquisaFiltro);
   }
+
+   const pagina  = useMemo(()=> {
+       return Number(searchParam.get("pagina") || "1")
+   },[searchParam]) 
+
+   useEffect(() => {
+    getAlunos(pagina)
+  }, [pagina])
+
+
+  // const filtraPorTrilha = () => {
+  //   filtraPorTrilha()
+  // }
 
   return (
     <>
@@ -100,14 +114,17 @@ export const Aluno = () => {
               </FormControl>
             </div>
             <BarraDePesquisa>
-              <BarraPesquisa
-                label={"Pesquisar"}
+            <TextField variant="outlined" sx={{ width: 300,backgroundColor: "white" }}
+                fullWidth
+                size="small"
+                label={"Filtrar por nome ou email"}
                 id={"barra-de-pesquisa-aluno"}
-                value={pesquisaAluno}
-                setValue={handlePesquisaChange}
+                onChange={(search) => setInput(search.target.value.toLowerCase())}
               />
-              <i onClick={handlePesquisa}>
-                <HiSearch size={"28px"} />
+              <i >
+                <HiSearch size={"28px"} 
+                onClick={()=> filtraAluno(input)}
+                />
               </i>
             </BarraDePesquisa>
             <Link to={"/alunos/vincular"}>
@@ -139,6 +156,7 @@ export const Aluno = () => {
                 )
               }) : <p>Nenhum aluno enontrado!</p>}
           </ButtonCardWrapper>
+          <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })}color="primary" />
         </section>
       </ButtonCardContainer>
     </>

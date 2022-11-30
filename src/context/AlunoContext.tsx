@@ -12,11 +12,11 @@ export const AlunoProvider = ({ children }: IChildren) => {
   const [totalPages, setTotalPages] = useState(0);
   const token = localStorage.getItem('token');
 
-  const getAlunos = async (page: string) => {
+  const getAlunos = async (page: number) => {
     try {
       api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
-      const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${parseInt(page) - 1}&tamanho=4`);
+      const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page - 1}&tamanho=4`);
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);
       console.log(data.elementos)
@@ -29,27 +29,27 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
-  const getAlunosWithFilters = async (page: string, nome?: string) => {
-    try {
-      api.defaults.headers.common['Authorization'] = token;
-      nProgress.start();
-      const queryString = `?pagina=${parseInt(page) - 1}&tamanho=4${nome ? `&nome=${nome}` : ""}`
-      const { data } = await api.get(`/usuario/lista-alunos-trilha${queryString}`);
-      setTotalPages(data.totalPages);
-      setAlunos(data.elementos);
-      console.log(data.elementos)
+  // const getAlunosWithFilters = async (page: string, nome?: string) => {
+  //   try {
+  //     api.defaults.headers.common['Authorization'] = token;
+  //     nProgress.start();
+  //     const queryString = `?pagina=${parseInt(page) - 1}&tamanho=4${nome ? `&nome=${nome}` : ""}`
+  //     const { data } = await api.get(`/usuario/lista-alunos-trilha${queryString}`);
+  //     setTotalPages(data.totalPages);
+  //     setAlunos(data.elementos);
+  //     console.log(data.elementos)
 
-    } catch (error) {
-      console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
-    } finally {
-      nProgress.done();
-    }
-  }
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+  //   } finally {
+  //     nProgress.done();
+  //   }
+  // }
 
 
   return (
-    <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, getAlunosWithFilters }}>
+    <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, totalPages }}>
       {children}
     </AlunoContext.Provider>
   );

@@ -12,10 +12,10 @@ export interface IChildren{
 }
 
 export interface IAlunoContext {
-    getAlunos: (page: string) => Promise<void>
-    alunos: IAluno[]
-    setAlunos: React.Dispatch<React.SetStateAction<IAluno[]>>
-    getAlunosWithFilters: (page: string, nome?: string) => Promise<void>
+    getAlunos: (page: number) => Promise<void>,
+    alunos: IAluno[],
+    setAlunos: React.Dispatch<React.SetStateAction<IAluno[]>>,
+    totalPages: number,
   }
 
 
