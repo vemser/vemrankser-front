@@ -87,7 +87,7 @@ export const AtividadesCriar = () => {
             label="Título"
             variant="outlined"
             sx={{
-              width: "100%",
+              width: '300px',
               marginBottom: "5%",
               marginTop: "10%",
               backgroundColor: "white",
@@ -100,13 +100,13 @@ export const AtividadesCriar = () => {
             multiline
             rows={6}
             variant="outlined"
-            sx={{ width: "100%", marginBottom: "5%", backgroundColor: "white" }}
+            sx={{ width: '300px', marginBottom: "5%", backgroundColor: "white" }}
           />
 
            <CheckMarks />
           <FormControl
             sx={{
-              width: "100%",
+              width: '300px',
               marginBottom: "5%",
               backgroundColor: "white",
             }}
@@ -129,7 +129,7 @@ export const AtividadesCriar = () => {
           </FormControl>
           <FormControl
             sx={{
-              width: "100%",
+              width: '300px',
               marginBottom: "5%",
               backgroundColor: "white",
             }}

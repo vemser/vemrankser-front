@@ -16,7 +16,7 @@ export const AtividadeProvider = ({ children }: IChildren) => {
     try {
         api.defaults.headers.common['Authorization'] = token;
         nProgress.start();
-        const { data } = await api.get(`/atividade/listar-mural?pagina=${parseInt(page) - 1}&tamanho=1`);
+        const { data } = await api.get(`/atividade/listar-mural?pagina=${parseInt(page) - 1}&tamanho=4`);
         setTotalPages(data.totalPages);
         setAtividades(data.elementos);
         console.log(data.elementos)

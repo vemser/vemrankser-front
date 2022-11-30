@@ -18,7 +18,7 @@ export default function InputData() {
           }}
           renderInput={(params) => <TextField 
             sx={{
-                width: "100%",
+                width: '300px',
                 marginBottom: "5%",
                 backgroundColor: "white",
               }}

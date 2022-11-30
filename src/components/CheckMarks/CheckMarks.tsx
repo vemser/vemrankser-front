@@ -27,9 +27,10 @@ export default function CheckMarks() {
 
   return (
     <div>
-      <FormControl sx={{ Width: '100%'}}>
+      <FormControl >
         <InputLabel  id="demo-multiple-checkbox-label">Trilha</InputLabel>
         <Select
+         sx={{ width: '300px', height: '40px', marginBottom: '5%', backgroundColor: 'white'}}
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
