@@ -129,7 +129,7 @@ export const AtividadesNotas = () => {
                     <p><span>Aluno 1</span></p> 
                     <p className='date-info'><span>___/100</span></p>
                   </SimpleCardContent>
-                  <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Devolver'} /></Link>
+                  <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Corrigir'} /></Link>
                 </SimpleCardNotes>
                 {/* )})}  */}
           </SimpleCardWrapper>

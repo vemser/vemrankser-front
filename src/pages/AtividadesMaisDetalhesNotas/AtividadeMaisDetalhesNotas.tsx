@@ -1,10 +1,10 @@
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { ButtonPrimary } from '../../components/Buttons/Button';
+import { ButtonPrimary, ButtonSecondary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardAtividades, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCard, SimpleCardAtividades, SimpleCardContainer, SimpleCardContent, SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import userDummy from '../../assets/user.png';
 import TextField from '@mui/material/TextField';
 
@@ -48,30 +48,59 @@ export const AtividadesDetalhesNotas = () => {
         </Titulo>
 
         <div className='flex'>
-            <Link to='/atividades/notas'>
-            <ButtonPrimary
+        </div>
+        <SimpleCardWrapper>
+           <SimpleCardAtividades>
+            <SimpleCardContentAtividade>
+              <p><span>Aluno 1</span></p>
+              <p className='date-info'><span>
+              <TextField
+            id="titulo-cadastra-atividade"
+            label="Nota"
+            variant="outlined"
+            sx={{
+              width: '150px',
+              marginBottom: "2%",
+              marginTop: "-2%",
+              backgroundColor: "white",
+            }}
+            size="small"
+          />
+                </span></p>
+              <p><span>Link da Atividade:</span></p>
+              <TextField
+            id="titulo-cadastra-atividade"
+            label="Link"
+            variant="outlined"
+            sx={{
+              width: '100%',
+              marginTop: "-2%",
+              marginBottom: "2%",
+              backgroundColor: "white",
+            }}
+            size="small"
+          />
+            <p><span>Comentário:</span></p>
+          <TextField
+            id="descricao-cadastra-atividade"
+            label="Comentários"
+            multiline
+            rows={6}
+            variant="outlined"
+            sx={{ width: '100%', marginBottom: "2%",  marginTop: "-2%",backgroundColor: "white" }}
+          />
+            </SimpleCardContentAtividade> 
+          
+          </SimpleCardAtividades> 
+          <Link to={'atividades/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Corrigir'} /></Link>
+           
+           <Link to='/atividades/notas'>
+            <ButtonSecondary
               label="Voltar"
               id="button-volta-mural-notas"
               type="submit"
             />
             </Link>
-        </div>
-        <SimpleCardWrapper>
-           <SimpleCardAtividades>
-            <img src={userDummy} alt="Foto" />
-            <SimpleCardContent>
-              <p><span>Aluno 1</span></p>
-              <p className='date-info'><span>____/100</span></p>
-              <p><span>Link da Atividade:</span></p>
-              <div className='textarea-link'>
-                 <p>Link</p>
-              </div>
-         <p><span>Commentários:</span></p>
-            <div className='textarea-comentário'>
-               <p>Melhorar</p>
-            </div>
-            </SimpleCardContent>
-          </SimpleCardAtividades>
           </SimpleCardWrapper>
           </section>
         </SimpleCardContainer>
