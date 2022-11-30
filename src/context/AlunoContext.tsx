@@ -29,25 +29,6 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
-  // const getAlunosWithFilters = async (page: string, nome?: string) => {
-  //   try {
-  //     api.defaults.headers.common['Authorization'] = token;
-  //     nProgress.start();
-  //     const queryString = `?pagina=${parseInt(page) - 1}&tamanho=4${nome ? `&nome=${nome}` : ""}`
-  //     const { data } = await api.get(`/usuario/lista-alunos-trilha${queryString}`);
-  //     setTotalPages(data.totalPages);
-  //     setAlunos(data.elementos);
-  //     console.log(data.elementos)
-
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
-  //   } finally {
-  //     nProgress.done();
-  //   }
-  // }
-
-
   return (
     <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, totalPages }}>
       {children}

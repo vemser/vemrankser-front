@@ -3,7 +3,6 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
-import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
@@ -15,25 +14,14 @@ import { IAluno, ITrilha } from "../../types/aluno";
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
   const [pesquisaAluno, setPesquisa] = React.useState("");
-  const { getAlunos, alunos,totalPages } = useContext(AlunoContext);
+  const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
   const [ searchParam, setSearchParam] = useSearchParams();
-  const [alunoData, setAlunoData ] = useState(alunos)
-  const [input, setInput ] = useState<string>('')
+  const [alunoData, setAlunoData ] = useState([] as IAluno[])
+  const [nome,setNome ] = useState<string>('')
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
-  const handlePesquisaChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setPesquisa(e.target.value)
-  }
-
-  const filtraAluno = (input: string) => {
-     const pesquisaFiltro = alunos.filter((aluno)=>{
-      const resultado = aluno.nome.toLowerCase().includes(input) || aluno.email.toLowerCase().includes(input)
-      return resultado
-     })
-     setAlunoData(pesquisaFiltro);
-  }
 
    const pagina  = useMemo(()=> {
        return Number(searchParam.get("pagina") || "1")
@@ -43,6 +31,24 @@ export const Aluno = () => {
     getAlunos(pagina)
   }, [pagina])
 
+  useEffect(() => {
+    setAlunoData(alunos)
+    console.log(alunos)
+  }, [alunos])
+
+  const filtraAluno = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const keyWord = event.target.value
+    if (keyWord !== '') {
+      const resultado = alunos.filter((aluno) => {
+        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
+      });
+      console.log(resultado)
+      setAlunoData(resultado);
+    } else {
+      setAlunoData(alunos);
+    }
+    setNome(keyWord)
+  }
 
   // const filtraPorTrilha = () => {
   //   filtraPorTrilha()
@@ -118,12 +124,12 @@ export const Aluno = () => {
                 fullWidth
                 size="small"
                 label={"Filtrar por nome ou email"}
+                value={nome}
                 id={"barra-de-pesquisa-aluno"}
-                onChange={(search) => setInput(search.target.value.toLowerCase())}
+                onChange={filtraAluno}
               />
               <i >
                 <HiSearch size={"28px"} 
-                onClick={()=> filtraAluno(input)}
                 />
               </i>
             </BarraDePesquisa>
@@ -136,7 +142,7 @@ export const Aluno = () => {
             </Link>
           </div>
           <ButtonCardWrapper>
-              {alunos.length > 0 ? alunos?.map((aluno: IAluno) => {
+              {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
                 return (
                   <ButtonCard>
                   <ButtonCardContent>
