@@ -17,7 +17,8 @@ export interface IUser {
     tipoPerfil: number,
     especialidade?: string,
     foto?: string,
-    statusUsuario?: string
+    statusUsuario?: string,
+    idUsuario?: number
 }
 
 export interface IUserContext {

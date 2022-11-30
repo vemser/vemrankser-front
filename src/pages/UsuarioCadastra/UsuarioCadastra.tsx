@@ -68,24 +68,27 @@ export const UsuarioCadastra = () => {
         <ContentWrapper>
           <Titulo>Cadastro Usuário</Titulo>
           <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
+            <label>Foto do usuário</label>
+            <input type="file" id="input-file" accept="image/*" />
+
             <TextField id="nome" label="Nome *" variant="outlined"
-              sx={{ width: "100%", marginTop: "10%", backgroundColor: "white" }} {...register("nome")} size="small" />
+              sx={{ width: "300px", marginTop: "10%", backgroundColor: "white" }} {...register("nome")} size="small" />
             {errors.nome && <ErrorMessage2>{errors.nome.message}</ErrorMessage2>}
 
             <TextField id="login" label="Login *" variant="outlined"
-              sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("login")} size="small" />
+              sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} {...register("login")} size="small" />
             {errors.login && <ErrorMessage2>{errors.login.message}</ErrorMessage2>}
 
-            <TextField id="email" label="E-mail *"  variant="outlined" sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("email")} size="small" />
+            <TextField id="email" label="E-mail *"  variant="outlined" sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} {...register("email")} size="small" />
             {errors.email && <ErrorMessage2>{errors.email.message}</ErrorMessage2>}
 
-            <TextField id="senha" label="Senha *" variant="outlined" type='password' sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("senha")} size="small" />
+            <TextField id="senha" label="Senha *" variant="outlined" type='password' sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} {...register("senha")} size="small" />
             {errors.senha && <ErrorMessage2>{errors.senha.message}</ErrorMessage2>}
 
-            <TextField id="cidade" label="Cidade *" variant="outlined" sx={{ width: "100%", marginTop: "5%", backgroundColor: "white" }} {...register("cidade")} size="small" />
+            <TextField id="cidade" label="Cidade *" variant="outlined" sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} {...register("cidade")} size="small" />
             {errors.cidade && <ErrorMessage2>{errors.cidade.message}</ErrorMessage2>}
 
-            <FormControl sx={{ width: '100%', marginTop: "5%" }} fullWidth size="small" >
+            <FormControl sx={{ width: '300px', marginTop: "5%" }} fullWidth size="small" >
               <InputLabel id="label-tipo-perfil" >Tipo de Perfil *</InputLabel>
               <Controller
               name="tipoPerfil"
@@ -115,7 +118,7 @@ export const UsuarioCadastra = () => {
               {errors.tipoPerfil && <ErrorMessage2>{errors.tipoPerfil.message}</ErrorMessage2>}
             </FormControl>
 
-            <TextField id="especialidade" label="Especialidade" variant="outlined" sx={{ width: "100%", marginBottom: "8%", marginTop: "5%", backgroundColor: "white" }} {...register("especialidade")} size="small" />
+            <TextField id="especialidade" label="Especialidade" variant="outlined" sx={{ width: "300px", marginBottom: "8%", marginTop: "5%", backgroundColor: "white" }} {...register("especialidade")} size="small" />
             {errors.especialidade && <ErrorMessage2>{errors.especialidade.message}</ErrorMessage2>}
 
             <ButtonWraper>

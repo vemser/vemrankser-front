@@ -11,6 +11,7 @@ export const AuthContext = createContext({} as IAuthContext);
 
 export const AuthProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     const userSignup = async (newUser: IUserLogin) => {
         // try {
@@ -38,7 +39,7 @@ export const AuthProvider = ({ children }: IChildren) => {
     
             localStorage.setItem('token', data);
 
-            navigate('/alunos')
+            navigate('/alunos');
         } catch (error) {
             toast.error('Houve algum erro, por favor tente novamente!', toastConfig);
             console.log(error);
@@ -52,11 +53,24 @@ export const AuthProvider = ({ children }: IChildren) => {
         api.defaults.headers.common['Authorization'] = undefined;
         
         localStorage.removeItem('user');
+        localStorage.removeItem('tipo');
         navigate('/');
     }
 
+    const getLoggedUser = async () => {
+        try {
+            api.defaults.headers['Authorization'] = token;
+            const { data } = await api.get(`/usuario/pegar-usuario-logado`);
+
+            localStorage.setItem('user', data.nome);
+            localStorage.setItem('tipo', data.tipoPerfil);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{ userSignup, handleLogin, handleLogout }}>
+        <AuthContext.Provider value={{ userSignup, getLoggedUser, handleLogin, handleLogout }}>
             {children}
         </AuthContext.Provider>
     )

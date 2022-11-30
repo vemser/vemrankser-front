@@ -1,18 +1,48 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
-import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiTrash, HiClipboardList, HiSearch, HiUsers } from "react-icons/hi";
+import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper, Buttons } from "../../components/Styles/ButtonCard";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
+  const { getLoggedUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    getLoggedUser()
+  }, [])
+
+  const user = localStorage.getItem('user');
+  const tipo = localStorage.getItem('tipo');
+
+  function verificaTipoUsuario(tipoPerfil: number) {
+    switch (tipoPerfil) {
+      case 1:
+        return 'Coordenador'
+
+      case 2:
+        return 'Aluno'
+
+      case 3:
+        return 'Instrutor'
+
+      case 4:
+        return 'Admin'
+
+      case 5:
+        return 'Gestão'
+
+      default:
+        return 'Indefinido'
+    }
+  }
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -21,8 +51,8 @@ export const Aluno = () => {
     <>
       <ButtonCardContainer>
         <MenuLateral
-          nomeDoUsuario={"Luiza Valentini"}
-          cargoDoUsuario={"ADMIN"}
+          nomeDoUsuario={`${user}`}
+          cargoDoUsuario={`${verificaTipoUsuario(Number(tipo))}`}
           fotoDePerfil={""}
         >
           <ButtonMenuLateral

@@ -1,44 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adicionaUsuarioSchema } from "../../utils/schemas";
+import { editaUsuarioSchema } from "../../utils/schemas";
 import { IUser } from "../../types/user";
-import { TextField } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
-import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
+import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
+import { UsersContext } from "../../context/UserContext";
 
 export const UsuarioEdita = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IUser>({
-    resolver: yupResolver(adicionaUsuarioSchema),
+  const { editUser } = useContext(UsersContext);
+  const { state } = useLocation();
+  const { register, handleSubmit, formState: { errors } } = useForm<IUser>({
+    resolver: yupResolver(editaUsuarioSchema),
   });
 
-  const [atuacao, setAtuacao] = React.useState("");
-  const [trilha, setTrilha] = React.useState("");
+  const [tipoDePerfil, setTipoDePerfil] = React.useState('');
 
-  const handleChangeSelect = (event: SelectChangeEvent) => {
-    setAtuacao(event.target.value as string);
-  };
-
-  const handleChangeSelect2 = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
+  console.log(state, state.nome)
 
   return (
     <>
-      {/* <MainContainer>
+      <MainContainer>
         <MenuLateral
           nomeDoUsuario={"Luiza Valentini"}
           cargoDoUsuario={"ADMIN"}
@@ -76,112 +64,57 @@ export const UsuarioEdita = () => {
           />
         </MenuLateral>
         <ContentWrapper>
-          <Titulo>Edita Usuário</Titulo>
-          <form>
-            <TextField
-              id="nome-edita-usuario"
-              label="Nome"
-              variant="outlined"
-              sx={{
-                width: "100%",
-                marginBottom: "-5%",
-                marginTop: "10%",
-                backgroundColor: "white",
-              }}
-              {...register("nome")}
-              size="small"
-            />
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
-            <TextField
-              id="email-edita-usuario"
-              label="E-mail"
-              variant="outlined"
-              sx={{
-                width: "100%",
-                marginBottom: "-5%",
-                marginTop: "10%",
-                backgroundColor: "white",
-              }}
-              {...register("email")}
-              size="small"
-            />
-              {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-            
-            <TextField
-              id="senha-edita-usuario"
-              label="Senha"
-              variant="outlined"
-              type='password'
-              sx={{
-                width: "100%",
-                marginBottom: "5%",
-                marginTop: "10%",
-                backgroundColor: "white",
-              }}
-              {...register("senha")}
-              size="small"
-            />
-              {errors.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
-            <FormControl
-              sx={{  width: '100%', heigth: 50, backgroundColor: "white" }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="select-edita-usuario-atuacao-label"  {...register("atuacao")}>Atuação</InputLabel>
-              {errors.atuacao && <ErrorMessage>{errors.atuacao.message}</ErrorMessage>}
-              <Select
-                labelId="select-edita-usuario-atuacao-label"
-                id="select-usuario-atuacao"
-                value={atuacao}
-                label="atuacao"
-                onChange={handleChangeSelect}
-              >
+          <Titulo>Editar Usuário</Titulo>
+          <form onSubmit={handleSubmit((data: IUser) => editUser(data))}>
 
-                <MenuItem value={"intrutor"}>Instrutor</MenuItem>
-                <MenuItem value={"coordenador"}>Coordenador</MenuItem>
-                <MenuItem value={"administrador"}>Administrador</MenuItem>
-                <MenuItem value={"gestaoPessoa"}>Gestao de Pessoas</MenuItem>
-                <MenuItem value={"aluno"}>Aluno</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl
-              sx={{  width: '100%', marginTop: '5%',heigth: 50, backgroundColor: "white" }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="select-edita-usuario-aluno-trilha-label" {...register("atuacao")}>Trilha</InputLabel>
-              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
-              <Select
-                labelId="select-edita-usuario-aluno-trilha-label"
-                id="select-edita-usuario-aluno"
-                value={trilha}
-                label="trilha-aluno"
-                onChange={handleChangeSelect2}
+            <TextField id="nome" label="Nome *" variant="outlined"
+              sx={{ width: "300px", marginTop: "10%", backgroundColor: "white" }} value={state.nome} {...register("nome")} size="small" />
+            {errors.nome && <ErrorMessage2>{errors.nome.message}</ErrorMessage2>}
+
+            <TextField id="login" label="Login *" variant="outlined"
+              sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} value={state.login} {...register("login")} size="small" />
+            {errors.login && <ErrorMessage2>{errors.login.message}</ErrorMessage2>}
+
+            <TextField id="email" label="E-mail *" variant="outlined" sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} {...register("email")} value={state.email} size="small" />
+            {errors.email && <ErrorMessage2>{errors.email.message}</ErrorMessage2>}
+
+            <TextField id="senha" label="Senha *" variant="outlined" type='password' sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} value={state.senha} {...register("senha")} size="small" />
+            {errors.senha && <ErrorMessage2>{errors.senha.message}</ErrorMessage2>}
+
+            <TextField id="cidade" label="Cidade *" variant="outlined" sx={{ width: "300px", marginTop: "5%", backgroundColor: "white" }} {...register("cidade")} value={state.cidade} size="small" />
+            {errors.cidade && <ErrorMessage2>{errors.cidade.message}</ErrorMessage2>}
+
+            <TextField id="especialidade" label="Especialidade" variant="outlined" sx={{ width: "300px", marginBottom: "5%", marginTop: "5%", backgroundColor: "white" }} {...register("especialidade")} value={state.especialidade} size="small" />
+            {errors.especialidade && <ErrorMessage2>{errors.especialidade.message}</ErrorMessage2>}
+
+            <FormControl>
+              <RadioGroup
+                sx={{  marginBottom: "8%" }}
+                value={state.statusUsuario}
+                name="radio-buttons-group"
               >
-                <MenuItem value={"backEnd"}>BackEnd</MenuItem>
-                <MenuItem value={"frontEnd"}>FrontEnd</MenuItem>
-                <MenuItem value={"qa"}>QA</MenuItem>
-              </Select>
+                <FormControlLabel value="1" control={<Radio />} label="Ativo" />
+                <FormControlLabel value="1" control={<Radio />} label="Inativo" />
+              </RadioGroup>
             </FormControl>
+
             <ButtonWraper>
-            <Link to="/administrador">
               <ButtonPrimary
-                label="Editar"
-                id="button-edita-usuario"
+                label="Adicionar"
+                id="button-adiciona-usuario"
                 type="submit"
               />
-              </Link>
-              <Link to="/administrador">
+              <Link to="/usuarios">
                 <ButtonSecondary
                   label="Cancelar"
-                  id="button-cancela-edicao-usuario"
+                  id="button-cancela-usuario"
                   type="button"
                 />
               </Link>
             </ButtonWraper>
           </form>
         </ContentWrapper>
-      </MainContainer> */}
+      </MainContainer>
     </>
   );
 };
