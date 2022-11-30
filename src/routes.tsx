@@ -17,6 +17,7 @@ import { UsersProvider } from './context/UserContext';
 import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AtividadeProvider } from './context/AtividadesContext';
+import { AtividadesDetalhesNotas } from './pages/AtividadesMaisDetalhesNotas/AtividadeMaisDetalhesNotas';
 
 export const Router = () => {
   return (

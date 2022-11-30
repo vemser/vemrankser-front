@@ -120,7 +120,7 @@ export const AtividadesNotas = () => {
               <p><span>Aluno 1</span></p>
               <p className='date-info'><span>____/100</span></p>
             </SimpleCardContent>
-            <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Mais detalhes'} /></Link>
+            <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Mais detalhes'} /></Link>
           </SimpleCardNotes>
           </SimpleCardWrapper>
           </section>
