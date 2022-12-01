@@ -11,6 +11,7 @@ import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper }
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
+import CheckMarksAluno from "../../components/CheckMarks/CheckMarksAluno";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -120,25 +121,7 @@ export const Aluno = () => {
           </Titulo>
           <div className="flex">
             <div>
-              <FormControl
-                sx={{ width: 200, backgroundColor: "white" }}
-                fullWidth
-                size="small"
-              >
-                <InputLabel id="select-aluno-label">Trilha</InputLabel>
-                <Select
-                  labelId="select-aluno-label"
-                  id="select-atividade"
-                  value={trilha}
-                  label="Trilha"
-                  onChange={handleSelect}
-                >
-                  <MenuItem value={'geral'}>Geral</MenuItem>
-                  <MenuItem value={"backend"}>Backend</MenuItem>
-                  <MenuItem value={"frontend"}>Frontend</MenuItem>
-                  <MenuItem value={"qa"}>QA</MenuItem>
-                </Select>
-              </FormControl>
+            <CheckMarksAluno />
             </div>
             <BarraDePesquisa>
               <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
