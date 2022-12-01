@@ -110,21 +110,22 @@ export const VinculaAluno = () => {
               id="nome-vincula-aluno"
               label="Login"
               variant="outlined"
-              sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
+              sx={{ width: "100%", marginBottom: "5%", marginTop: "2%", backgroundColor: 'white' }}
               {...register("login")}
               size="small"
             />  
+              {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
 
             <FormControl
               sx={{
                 width: "100%",
                 marginBottom: "5%",
+                marginTop: "5%",
                 backgroundColor: "white",
               }}
               fullWidth
               size="small"
             >
-              {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
               <InputLabel id="vincula-aluno-trilha" {...register("nome")}>
                 Trilha
               </InputLabel>
@@ -146,6 +147,7 @@ export const VinculaAluno = () => {
               sx={{
                 width: "100%",
                 marginBottom: "5%",
+                marginTop: "5%",
                 backgroundColor: "white",
               }}
               fullWidth
@@ -154,7 +156,6 @@ export const VinculaAluno = () => {
               <InputLabel id="vincula-aluno-edicao" {...register("edicao")}>
                 Edição
               </InputLabel>
-              {errors.edicao && <ErrorMessage>{errors.edicao.message}</ErrorMessage>}
               <Select
               
                 labelId="select-vincula-aluno-edicao"
@@ -169,6 +170,7 @@ export const VinculaAluno = () => {
                 )}
               </Select>
             </FormControl>
+            {errors.edicao && <ErrorMessage>{errors.edicao.message}</ErrorMessage>}
             <ButtonWraper>
               <ButtonPrimary
                 label="Adicionar"

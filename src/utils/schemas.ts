@@ -7,7 +7,7 @@ export const loginSchema = yup.object().shape({
 export const vinculaAlunoSchema = yup.object().shape({
      nome: yup.string().required('Por favor, selecione uma opção')
     .label("Nome"),
-    edicao: yup.number().required('Por favor, selecione uma opção'),
+    edicao: yup.string().required('Por favor, selecione uma opção'),
     login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
 })
 

@@ -149,9 +149,10 @@ export const Aluno = () => {
                 id={"barra-de-pesquisa-aluno"}
                 onChange={handleNome}
               />
-
+             <i>
               <HiSearch size={"28px"}
               />
+              </i>
 
             </BarraDePesquisa>
             <Link to={"/alunos/vincular"}>
@@ -175,7 +176,7 @@ export const Aluno = () => {
                     <div>
                       <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
                       {aluno?.trilhas.map((trilhas: ITrilha) =>
-                        <p><span>Trilha:</span>{trilhas.nome}</p>
+                        <p><span>Trilha: </span>{trilhas.nome}</p>
                       )}
                     </div>
                   </ButtonCardContent>
