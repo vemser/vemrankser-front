@@ -1,3 +1,4 @@
+
 import * as yup from 'yup';
 
 export const loginSchema = yup.object().shape({
@@ -19,3 +20,18 @@ export const adicionaUsuarioSchema = yup.object().shape({
     especialidade: yup.string().trim(),
     tipoPerfil: yup.number().required('Por favor, selecione uma opção')
 })
+export const editaAlunoSchema = yup.object().shape({
+    nome: yup.string().required('Por favor, digite o nome do aluno').min(2, 'Nome  inválido').email('Por favor, digite o nome do aluno corretamente').trim(),
+    trilha: yup.string().required('Por favor, selecione uma opção').oneOf(['Geral', 'Backend', 'Frontend', 'QA'])
+    .label("Trilha"),
+    modulo: yup.string().required('Por favor, selecione uma opção')
+})
+export const cadastraAtividadeSchema = yup.object().shape({
+    titulo: yup.string().required('Por favor, digite o titulo da atividade').trim(),
+    descricao: yup.string().required('Por favor, digite a descrição da atividade').trim(),
+    trilha: yup.string().required('Por favor, selecione pelo meno uma trilha'),
+    modulo: yup.string().required('Por favor, selecione um módulo'),
+    dataEntrega: yup.date().required().min("2022-11-30", "Date inválida, por favor digite outra data")
+});
+   
+
