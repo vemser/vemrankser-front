@@ -5,8 +5,7 @@ export interface ITrilha {
   }
 
   export interface IVinculaTrilha {
-    nome: string,
-    edicao: number,
+    idTrilha: number,
     login: string
   }
 

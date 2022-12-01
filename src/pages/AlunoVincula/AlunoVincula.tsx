@@ -27,10 +27,7 @@ export const VinculaAluno = () => {
   });
 
   const [trilha, setTrilha] = React.useState("");
-  const [edicao, setEdicao] = React.useState("");
   const {trilhas, getTrilhas, vinculaTrilha} = useContext(VinculaTrilhaContext)
-  const [edicoes, setEdicoes] = React.useState<number[]>([]);
-  const [trilhasFiltradas, setTrilhasfiltradas ] = React.useState<string[]>([]);
 
 
   useEffect(()=>{
@@ -38,25 +35,8 @@ export const VinculaAluno = () => {
   },[])
 
 
-  useEffect(()=>{
-     const trilhasFiltradas = new Set<string>();
-     trilhas.forEach((trilha:ITrilha)=> trilhasFiltradas.add(trilha.nome))
-     setTrilhasfiltradas(Array.from(trilhasFiltradas))
-  },[trilhas])
-
-  useEffect(()=> {
-    const trilhasFiltradas = trilhas.filter((value:ITrilha)=> value.nome === trilha)
-    const edicoes = trilhasFiltradas.map((value:ITrilha)=> value.edicao)
-    console.log(edicoes)
-    console.log(trilhasFiltradas)
-    setEdicoes(edicoes)
-  }, [trilha])
-
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
-  };
-  const handleChangeSelect2 = (event: SelectChangeEvent) => {
-    setEdicao(event.target.value as string);
   };
   const vinculaAluno = (data:IVinculaTrilha) => {
      vinculaTrilha(data)
@@ -126,7 +106,7 @@ export const VinculaAluno = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="vincula-aluno-trilha" {...register("nome")}>
+              <InputLabel id="vincula-aluno-trilha" >
                 Trilha
               </InputLabel>
               <Select
@@ -134,43 +114,15 @@ export const VinculaAluno = () => {
                 id="edita-trilha"
                 value={trilha}
                 label="Trilha"
-                {...register("nome")}
+                {...register("idTrilha")}
                 onChange={handleChangeSelect}
               >
-                {trilhasFiltradas&&trilhasFiltradas.map((trilha:string)=>
-                 <MenuItem value={trilha}>{trilha}</MenuItem>
+                {trilhas&&trilhas.map((trilha:ITrilha)=>
+                 <MenuItem value={trilha.idTrilha}>{trilha.nome} - edição {trilha.edicao}</MenuItem>
                 )}
               </Select>
             </FormControl>
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
-            <FormControl
-              sx={{
-                width: "100%",
-                marginBottom: "5%",
-                marginTop: "5%",
-                backgroundColor: "white",
-              }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="vincula-aluno-edicao" {...register("edicao")}>
-                Edição
-              </InputLabel>
-              <Select
-              
-                labelId="select-vincula-aluno-edicao"
-                id="vincula-aluno-edicao"
-                value={edicao}
-                label="Trilha"
-                {...register("edicao")}
-                onChange={handleChangeSelect2}
-              >
-                {edicoes.map((edicao:number)=>
-                <MenuItem value={edicao}>{edicao}</MenuItem>
-                )}
-              </Select>
-            </FormControl>
-            {errors.edicao && <ErrorMessage>{errors.edicao.message}</ErrorMessage>}
+            {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
             <ButtonWraper>
               <ButtonPrimary
                 label="Adicionar"
