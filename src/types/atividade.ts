@@ -2,6 +2,12 @@ export interface IAtividade {
     nome: string;
     dataEntrega: string;
   }
+  export interface ITrilha {
+    nome: string,
+    edicao: number,
+    anoEdicao: string,
+    idTrilha: number
+  }
 
 export interface IChildren{
     children?:React.ReactNode;

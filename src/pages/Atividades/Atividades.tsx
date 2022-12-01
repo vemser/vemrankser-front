@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import userDummy from '../../assets/user.png';
@@ -24,7 +24,26 @@ export const Atividades = () => {
     getAtividade('1')
   }, [])
 
+  useEffect(() => {
+    let listaFiltrada = alunos
+    listaFiltrada = filtraAluno(nome, listaFiltrada)
+    listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
+    setAlunoData(listaFiltrada)
+  }, [nome, trilha])
 
+  const filtraAtividadePorTrilha = (keyWord: string, listaAtividades: IAtividade[]) => {
+    if (keyWord !== '' && keyWord !== 'geral') {
+      listaAtividades = atividades.filter((atividade) => {
+        return atividade.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
+      });
+    }
+    return listaAlunos
+  }
+
+  const handleSelect = (event: SelectChangeEvent) => {
+    const keyWord = event.target.value
+    setTrilha(keyWord)
+  }
 
   return (
     <SimpleCardContainer>
