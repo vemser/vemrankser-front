@@ -13,19 +13,22 @@ import { IAtividade } from '../../types/atividade';
 
 export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
+  const [status, setStatus] = React.useState('');
   const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
-
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+  const handleChange2 = (event: SelectChangeEvent) => {
+    setStatus(event.target.value as string);
+  };
 
   const { getAtividade, atividades } = useContext(AtividadeContext);
 
-  useEffect(() => {
-    getAtividade('1')
-    setAtividadeData(atividades)
-  },[atividades])
+  // useEffect(() => {
+  //   getAtividade('1')
+  //   // setAtividadeData(atividades)
+  // },[atividades])
 
   useEffect(() => {
     let listaAtividades = atividades
@@ -106,8 +109,21 @@ export const Atividades = () => {
               <MenuItem value={'qa'}>QA</MenuItem>
             </Select>
           </FormControl>
+          <FormControl sx={{ width: '300px', backgroundColor: 'white' }} fullWidth size="small">
+            <InputLabel id="select-atividade-label">Status</InputLabel>
+            <Select
+              labelId="select-atividade-label"
+              id="select-atividade"
+              value={status}
+              label="Trilha"
+              onChange={handleChange2}
+            >
+              <MenuItem value={'geral'}>Pendente</MenuItem>
+              <MenuItem value={'backend'}>Concluída</MenuItem>
+            </Select>
+          </FormControl>
 
-          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Nova Atividade'} /></Link>
+          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Add Atividade'} /></Link>
 
           <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar Notas'} /></Link>
         </div>
