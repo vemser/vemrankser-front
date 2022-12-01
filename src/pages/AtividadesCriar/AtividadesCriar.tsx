@@ -33,6 +33,7 @@ import { ICadastraAtividade } from "../../types/cadastraAtividade";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AtividadeContext } from "../../context/AtividadesContext";
+import { ITrilha } from "../../types/atividade";
 
 export const AtividadesCriar = () => {
   const {
@@ -48,9 +49,11 @@ export const AtividadesCriar = () => {
   const {criaAtividade} = useContext(AtividadeContext)
 
     
-  const handleChangeSelect = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
+  const handleSelect = (event: SelectChangeEvent) => {
+    const keyWord = event.target.value
+    console.log(keyWord)
+    setTrilha(keyWord)
+  }
 
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
@@ -123,8 +126,25 @@ export const AtividadesCriar = () => {
             sx={{ width: '300px', marginBottom: "5%", backgroundColor: "white" }}
           />
             {errors.instrucoes && <ErrorMessage>{errors.instrucoes.message}</ErrorMessage>}
+            <div>
+            <FormControl >
+        <InputLabel  id="demo-multiple-checkbox-label">Trilha</InputLabel>
+        <Select
+                labelId="select-vincula-aluno-trilha"
+                id="edita-trilha"
+                value={trilha}
+                label="Trilha"
+                onChange={handleSelect}
+                // renderValue={}
+              >
+                {trilhas&&trilhas.map((trilha:ITrilha)=>
+                 <MenuItem value={trilha.idTrilha}>{trilha.nome} - edição {trilha.edicao}</MenuItem>
+                )}
+              </Select>
+            </FormControl>
+            </div>
 
-           {/* <CheckMarks />
+    
            {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>} */}
 
           <FormControl
