@@ -13,7 +13,7 @@ import { IAtividade } from '../../types/atividade';
 
 export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
-  const [ atividadeData, setAtividadeData ] = React.useState([] );
+  const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
 
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -98,7 +98,7 @@ export const Atividades = () => {
               id="select-atividade"
               value={trilha}
               label="Trilha"
-              onChange={handleChange}
+              onChange={handleSelect}
             >
               <MenuItem value={'geral'}>Geral</MenuItem>
               <MenuItem value={'backend'}>Backend</MenuItem>
