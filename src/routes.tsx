@@ -15,7 +15,7 @@ import { Usuario } from './pages/Usuario/Usuario';
 import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
 import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
-import { Admin } from './components/DefaultPages/Admin';
+import { Admin } from './components/Layouts/Admin';
 
 export const Router = () => {
   return (

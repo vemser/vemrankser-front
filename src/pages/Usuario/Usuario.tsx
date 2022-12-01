@@ -28,14 +28,15 @@ export const Usuario = () => {
       nProgress.start();
 
       api.defaults.headers.common['Authorization'] = token;
+
       const { data } = await api.get(`/usuario/lista-usuarios?pagina=${page - 1}&tamanho=6`);
       setTotalPages(data.quantidadePaginas);
-      const dataTableFormated = data.elementos.map((usuarios: IUser) => {
+      const dataTableFormatted = data.elementos.map((usuarios: IUser) => {
         return ({ ...usuarios, id: usuarios.idUsuario || Math.random() })
       })
 
       setUser(data.elementos);
-      setDataTable(dataTableFormated);
+      setDataTable(dataTableFormatted);
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
@@ -54,10 +55,10 @@ export const Usuario = () => {
 
   function filtraUsuario(input: string) {
     const filterSearch = user.filter((usuario) => {
-      const resultado = usuario.nome.toLowerCase().includes(input) || usuario.email.toLowerCase().includes(input)
-      return resultado
+      const resultado = usuario.nome.toLowerCase().includes(input) || usuario.email.toLowerCase().includes(input);
+      return resultado;
     })
-    setDataTable(filterSearch)
+    setDataTable(filterSearch);
   }
 
   const handleKeyPress = (event: any) => {
@@ -65,6 +66,16 @@ export const Usuario = () => {
       filtraUsuario(input);
     }
   }
+
+  function generateRandomId() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
 
   const columns: any[] = [
     { field: 'nome', headerName: 'Nome', width: 200 },
@@ -116,55 +127,54 @@ export const Usuario = () => {
   }
 
   return (
-    <>
-      <ButtonCardContainer>
-        <section>
-          <Titulo>
-            Usuários
-          </Titulo>
-          <div className="flex">
-            <BarraDePesquisa>
-              <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
-                fullWidth
-                size="small"
-                label={"Filtrar por nome ou email"}
-                id={"barra-de-pesquisa-usuario"}
-                onChange={(search) => setInput(search.target.value.toLowerCase())}
-                onKeyPress={handleKeyPress}
-              />
-              <i>
-                <HiSearch size={"28px"}
-                  onClick={() => filtraUsuario(input)} />
-              </i>
-            </BarraDePesquisa>
+    <ButtonCardContainer>
+      <section>
+        <Titulo>
+          Usuários
+        </Titulo>
+        <div className="flex">
+          <BarraDePesquisa>
+            <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
+              fullWidth
+              size="small"
+              label={"Filtrar por nome ou email"}
+              id={"barra-de-pesquisa-usuario"}
+              onChange={(search) => setInput(search.target.value.toLowerCase())}
+              onKeyPress={handleKeyPress}
+            />
+            <i>
+              <HiSearch size={"28px"}
+                onClick={() => filtraUsuario(input)} />
+            </i>
+          </BarraDePesquisa>
 
-            <Link to={"/usuarios/cadastrar"}>
-              <ButtonPrimary
-                type={"button"}
-                id={"botao-adiciona-usuario"}
-                label={"Cadastrar usuário"}
-              />
-            </Link>
-          </div>
-          <ButtonCardWrapper>
-            <TableContainer component={Paper} variant="outlined" sx={{ m: 1, width: '100%', height: '430px' }}>
-              <DataGrid
-                rows={dataTable}
-                columns={columns}
-                pageSize={6}
-                rowsPerPageOptions={[6]}
-                hideFooter={true}
-                sx={{ height: '370px' }}
-              />
-              <Pagination sx={{ width: '100%', height: 50, alignItems: 'center', display: 'flex', justifyContent: 'center' }}
-                page={pagina}
-                count={totalPages}
-                onChange={(e, newPage) => setSearchParams({ pagina: newPage.toString() }, { replace: true })}
-              />
-            </TableContainer>
-          </ButtonCardWrapper>
-        </section>
-      </ButtonCardContainer>
-    </>
+          <Link to={"/usuarios/cadastrar"}>
+            <ButtonPrimary
+              type={"button"}
+              id={"botao-adiciona-usuario"}
+              label={"Cadastrar usuário"}
+            />
+          </Link>
+        </div>
+        <ButtonCardWrapper>
+          <TableContainer component={Paper} variant="outlined" sx={{ m: 1, width: '100%', height: '430px' }}>
+            <DataGrid
+              rows={dataTable}
+              columns={columns}
+              pageSize={6}
+              rowsPerPageOptions={[6]}
+              hideFooter={true}
+              sx={{ height: '370px' }}
+              getRowId={(row: any) =>  generateRandomId()}
+            />
+            <Pagination sx={{ width: '100%', height: 50, alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+              page={pagina}
+              count={totalPages}
+              onChange={(e, newPage) => setSearchParams({ pagina: newPage.toString() }, { replace: true })}
+            />
+          </TableContainer>
+        </ButtonCardWrapper>
+      </section>
+    </ButtonCardContainer>
   );
 };
