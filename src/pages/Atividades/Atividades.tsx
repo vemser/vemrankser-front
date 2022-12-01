@@ -13,6 +13,8 @@ import { IAtividade } from '../../types/atividade';
 
 export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
+  const [ atividadeData, setAtividadeData ] = React.useState([] );
+
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -22,14 +24,14 @@ export const Atividades = () => {
 
   useEffect(() => {
     getAtividade('1')
-  }, [])
+    setAtividadeData(atividades)
+  },[atividades])
 
   useEffect(() => {
-    let listaFiltrada = alunos
-    listaFiltrada = filtraAluno(nome, listaFiltrada)
-    listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
-    setAlunoData(listaFiltrada)
-  }, [nome, trilha])
+    let listaAtividades = atividades
+    listaAtividades = filtraAtividadePorTrilha(trilha, listaAtividades)
+    setAtividadeData(listaAtividades)
+  }, [trilha])
 
   const filtraAtividadePorTrilha = (keyWord: string, listaAtividades: IAtividade[]) => {
     if (keyWord !== '' && keyWord !== 'geral') {
@@ -37,7 +39,7 @@ export const Atividades = () => {
         return atividade.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
       });
     }
-    return listaAlunos
+    return listaAtividades
   }
 
   const handleSelect = (event: SelectChangeEvent) => {

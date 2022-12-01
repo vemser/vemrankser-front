@@ -1,6 +1,7 @@
 export interface IAtividade {
     nome: string;
     dataEntrega: string;
+    trilhas: ITrilha[];
   }
   export interface ITrilha {
     nome: string,
