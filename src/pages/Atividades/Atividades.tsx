@@ -26,10 +26,10 @@ export const Atividades = () => {
 
   const { getAtividade, atividades } = useContext(AtividadeContext);
 
-  // useEffect(() => {
-  //   getAtividade('1')
-  //   // setAtividadeData(atividades)
-  // },[atividades])
+  useEffect(() => {
+    getAtividade('1')
+    setAtividadeData(atividades)
+  },[])
 
   useEffect(() => {
     let listaAtividades = atividades

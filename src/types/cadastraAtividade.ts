@@ -1,11 +1,10 @@
-import { number } from "yup";
-
 export interface ICadastraAtividade{
     titulo: string,
-    descricao: string,
-    trilha: string,
-    modulo: string,
-    peso: number,
-    dataEntre: string,
+    instrucoes: string,
+    idTrilha: number,
+    idModulo: number,
+    pesoAtividade: number,
+    dataEntrega: string,
 
 }
+

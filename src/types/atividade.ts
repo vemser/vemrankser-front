@@ -1,3 +1,5 @@
+import { ICadastraAtividade } from "./cadastraAtividade";
+
 export interface IAtividade {
     nome: string;
     dataEntrega: string;
@@ -18,6 +20,7 @@ export interface IAtividadeContext {
     getAtividade: (page: string) => Promise<void>
     atividades: IAtividade[]
     setAtividades: React.Dispatch<React.SetStateAction<IAtividade[]>>
+    criaAtividade: (payload: ICadastraAtividade) => Promise<void>
 }
 
 

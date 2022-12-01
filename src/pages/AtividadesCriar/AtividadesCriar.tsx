@@ -25,13 +25,14 @@ import {
   ButtonPrimary,
   ButtonSecondary,
 } from "../../components/Buttons/Button";
-import React from "react";
+import React, { useContext } from "react";
 import InputData from "../../components/InputData/InputData";
 import CheckMarks from "../../components/CheckMarks/CheckMarks";
 import { cadastraAtividadeSchema } from "../../utils/schemas";
 import { ICadastraAtividade } from "../../types/cadastraAtividade";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AtividadeContext } from "../../context/AtividadesContext";
 
 export const AtividadesCriar = () => {
   const {
@@ -44,6 +45,7 @@ export const AtividadesCriar = () => {
   
   const [trilha, setTrilha] = React.useState("");
   const [modulo, setModulo] = React.useState("");
+  const {criaAtividade} = useContext(AtividadeContext)
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -52,6 +54,12 @@ export const AtividadesCriar = () => {
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
+
+  const cadastraAtividade = (data: ICadastraAtividade) => {
+     criaAtividade(data)
+ }
+  
+
 
   return (
     <MainContainer>
@@ -93,8 +101,9 @@ export const AtividadesCriar = () => {
       </MenuLateral>
       <ContentWrapper>
         <Titulo>Adicionar Nova Atividade</Titulo>
-        <form>
+        <form onSubmit={handleSubmit(cadastraAtividade)}>
           <TextField
+            {...register("titulo")}
             id="titulo-cadastra-atividade"
             label="Título"
             variant="outlined"
@@ -113,12 +122,13 @@ export const AtividadesCriar = () => {
             multiline
             rows={6}
             variant="outlined"
+            {...register("instrucoes")}
             sx={{ width: '300px', marginBottom: "5%", backgroundColor: "white" }}
           />
-            {errors.descricao && <ErrorMessage>{errors.descricao.message}</ErrorMessage>}
+            {errors.instrucoes && <ErrorMessage>{errors.instrucoes.message}</ErrorMessage>}
 
            <CheckMarks />
-           {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
+           {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
 
           <FormControl
             sx={{
@@ -135,6 +145,7 @@ export const AtividadesCriar = () => {
               id="cadastra-atividade-modulo"
               value={modulo}
               label="Modulo"
+              {...register("idModulo")}
               onChange={handleChangeSelect2}
             >
               <MenuItem value={"modulo1"}>Módulo 1</MenuItem>
@@ -143,7 +154,7 @@ export const AtividadesCriar = () => {
               <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
             </Select>
           </FormControl>
-          {errors.modulo && <ErrorMessage>{errors.modulo.message}</ErrorMessage>}
+          {errors.idModulo && <ErrorMessage>{errors.idModulo.message}</ErrorMessage>}
           <FormControl
             sx={{
               width: '300px',
@@ -161,6 +172,7 @@ export const AtividadesCriar = () => {
               id="cadastra-atividade-trilha"
               value={trilha}
               label="Trilha"
+              {...register("pesoAtividade")}
               onChange={handleChangeSelect}
             >
               <MenuItem value={"1"}>1</MenuItem>
@@ -170,7 +182,7 @@ export const AtividadesCriar = () => {
               <MenuItem value={"5"}>5</MenuItem>
             </Select>
           </FormControl>
-          {errors.peso && <ErrorMessage>{errors.peso.message}</ErrorMessage>}
+          {errors.pesoAtividade && <ErrorMessage>{errors.pesoAtividade.message}</ErrorMessage>}
           <InputData />
           <ButtonWraper>
             <ButtonPrimary
