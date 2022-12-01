@@ -3,13 +3,12 @@ import * as yup from 'yup';
 export const loginSchema = yup.object().shape({
     email: yup.string().required('Por favor, digite seu email').min(2, 'Email inválido').email('Por favor, digite um email válido').trim(),
     senha: yup.string().required('Por favor, digite sua senha').trim()
-})
-
+}) 
 export const vinculaAlunoSchema = yup.object().shape({
-    nome: yup.string().required('Por favor, digite o nome do aluno').min(2, 'Nome  inválido').trim(),
-    trilha: yup.string().required('Por favor, selecione uma opção').oneOf(['Backend', 'Frontend', 'QA'])
-    .label("Trilha"),
-    edicao: yup.string().required('Por favor, selecione uma opção').oneOf(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'])
+     nome: yup.string().required('Por favor, selecione uma opção')
+    .label("Nome"),
+    edicao: yup.number().required('Por favor, selecione uma opção'),
+    login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
 })
 
 export const adicionaUsuarioSchema = yup.object().shape({

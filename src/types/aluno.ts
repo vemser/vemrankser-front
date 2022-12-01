@@ -1,12 +1,12 @@
+import { ITrilha } from "./vinculaTrilha";
+
 export interface IAluno {
     nome: string,
     email: string,
     statusUsuario: number,
     trilhas: ITrilha[],
   }
-export interface ITrilha {
-    nome: string,
-  }
+
 export interface IChildren{
     children?:React.ReactNode;
 }

@@ -15,6 +15,7 @@ import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
 import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
 import { AlunoProvider } from './context/AlunoContext';
+import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 
 export const Router = () => {
   return (
@@ -23,6 +24,7 @@ export const Router = () => {
       <AuthProvider>
         <UsersProvider>
           <AlunoProvider>
+            <VinculaTrilhaProvider>
             <Routes>
             <Route path={'/'} element={<Login />} />
             <Route element={<PrivateRoute />}>
@@ -36,6 +38,7 @@ export const Router = () => {
               <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
             </Route>
           </Routes>
+            </VinculaTrilhaProvider>
           </AlunoProvider>
         </UsersProvider>
       </AuthProvider>

@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
 import { AlunoContext } from "../../context/AlunoContext";
-import { IAluno, ITrilha } from "../../types/aluno";
+import { IAluno } from "../../types/aluno";
+import { ITrilha } from "../../types/vinculaTrilha";
 import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";

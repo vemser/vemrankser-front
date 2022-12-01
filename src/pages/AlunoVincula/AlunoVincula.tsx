@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { vinculaAlunoSchema } from "../../utils/schemas";
-import { IVinculaAluno } from "../../types/vinculaAluno";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -15,18 +14,43 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
+import { ITrilha, IVinculaTrilha } from "../../types/vinculaTrilha";
 
 export const VinculaAluno = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IVinculaAluno>({
+  } = useForm<IVinculaTrilha>({
     resolver: yupResolver(vinculaAlunoSchema),
   });
 
   const [trilha, setTrilha] = React.useState("");
   const [edicao, setEdicao] = React.useState("");
+  const {trilhas, getTrilhas, vinculaTrilha} = useContext(VinculaTrilhaContext)
+  const [edicoes, setEdicoes] = React.useState<number[]>([]);
+  const [trilhasFiltradas, setTrilhasfiltradas ] = React.useState<string[]>([]);
+
+
+  useEffect(()=>{
+    getTrilhas();
+  },[])
+
+
+  useEffect(()=>{
+     const trilhasFiltradas = new Set<string>();
+     trilhas.forEach((trilha:ITrilha)=> trilhasFiltradas.add(trilha.nome))
+     setTrilhasfiltradas(Array.from(trilhasFiltradas))
+  },[trilhas])
+
+  useEffect(()=> {
+    const trilhasFiltradas = trilhas.filter((value:ITrilha)=> value.nome === trilha)
+    const edicoes = trilhasFiltradas.map((value:ITrilha)=> value.edicao)
+    console.log(edicoes)
+    console.log(trilhasFiltradas)
+    setEdicoes(edicoes)
+  }, [trilha])
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -34,7 +58,9 @@ export const VinculaAluno = () => {
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setEdicao(event.target.value as string);
   };
-
+  const vinculaAluno = (data:IVinculaTrilha) => {
+     vinculaTrilha(data)
+  }
 
   return (
     <>
@@ -79,16 +105,15 @@ export const VinculaAluno = () => {
           <Titulo>
             Adicionar aluno à trilha
           </Titulo>
-          <form>
+          <form onSubmit={handleSubmit(vinculaAluno)}>
             <TextField
               id="nome-vincula-aluno"
-              label="Nome"
+              label="Login"
               variant="outlined"
               sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
-              {...register("nome")}
+              {...register("login")}
               size="small"
-            />
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
+            />  
 
             <FormControl
               sx={{
@@ -99,23 +124,24 @@ export const VinculaAluno = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="vincula-aluno-trilha" {...register("trilha")}>
+              {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
+              <InputLabel id="vincula-aluno-trilha" {...register("nome")}>
                 Trilha
               </InputLabel>
-              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
               <Select
                 labelId="select-vincula-aluno-trilha"
                 id="edita-trilha"
                 value={trilha}
                 label="Trilha"
+                {...register("nome")}
                 onChange={handleChangeSelect}
               >
-                <MenuItem value={"geral"}>Geral</MenuItem>
-                <MenuItem value={"backend"}>Backend</MenuItem>
-                <MenuItem value={"frontend"}>Frontend</MenuItem>
-                <MenuItem value={"qa"}>QA</MenuItem>
+                {trilhasFiltradas&&trilhasFiltradas.map((trilha:string)=>
+                 <MenuItem value={trilha}>{trilha}</MenuItem>
+                )}
               </Select>
             </FormControl>
+            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
             <FormControl
               sx={{
                 width: "100%",
@@ -130,23 +156,17 @@ export const VinculaAluno = () => {
               </InputLabel>
               {errors.edicao && <ErrorMessage>{errors.edicao.message}</ErrorMessage>}
               <Select
+              
                 labelId="select-vincula-aluno-edicao"
                 id="vincula-aluno-edicao"
                 value={edicao}
                 label="Trilha"
+                {...register("edicao")}
                 onChange={handleChangeSelect2}
               >
-                <MenuItem value={"edicao1"}>1</MenuItem>
-                <MenuItem value={"edicao2"}>2</MenuItem>
-                <MenuItem value={"edicao3"}>3</MenuItem>
-                <MenuItem value={"edicao4"}>4</MenuItem>
-                <MenuItem value={"edicao5"}>5</MenuItem>
-                <MenuItem value={"edicao6"}>6</MenuItem>
-                <MenuItem value={"edicao7"}>7</MenuItem>
-                <MenuItem value={"edicao8"}>8</MenuItem>
-                <MenuItem value={"edicao9"}>9</MenuItem>
-                <MenuItem value={"edicao10"}>10</MenuItem>
-                <MenuItem value={"edicao11"}>11</MenuItem>
+                {edicoes.map((edicao:number)=>
+                <MenuItem value={edicao}>{edicao}</MenuItem>
+                )}
               </Select>
             </FormControl>
             <ButtonWraper>
