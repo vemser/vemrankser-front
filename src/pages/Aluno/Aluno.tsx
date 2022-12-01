@@ -8,71 +8,46 @@ import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
-import CheckMarksAluno from "../../components/CheckMarks/CheckMarksAluno";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
-  const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
+  const { getAlunos, alunos, totalPages, getAlunosWithNome, getAlunosWithTrilha} = useContext(AlunoContext);
   const [searchParam, setSearchParam] = useSearchParams();
-  const [alunoData, setAlunoData] = useState([] as IAluno[])
   const [nome, setNome] = useState<string>('')
+  const {getTrilhas, trilhas} = useContext(VinculaTrilhaContext)
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam])
 
   useEffect(() => {
+    if(nome){
+   getAlunosWithNome(pagina, nome)
+   return
+    }
+    if(trilha){
+      getAlunosWithTrilha(pagina, parseInt(trilha))
+      return
+    }
     getAlunos(pagina)
-  }, [pagina])
+  }, [pagina, trilha, nome])
 
   useEffect(() => {
-    setAlunoData(alunos)
-  }, [alunos])
-
-
-  useEffect(() => {
-    let listaFiltrada = alunos
-    listaFiltrada = filtraAluno(nome, listaFiltrada)
-    listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
-    setAlunoData(listaFiltrada)
-  }, [nome, trilha])
-
-  const filtraAluno = (keyWord: string, listaAlunos: IAluno[]) => {
-    if (keyWord !== '') {
-      listaAlunos = alunos.filter((aluno) => {
-        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
-      });
-    }
-    return listaAlunos
-  }
-  const filtraAlunoPorTrilha = (keyWord: string, listaAlunos: IAluno[]) => {
-    if (keyWord !== '' && keyWord !== 'geral') {
-      listaAlunos = alunos.filter((aluno) => {
-        return aluno.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
-      });
-    }
-    return listaAlunos
-  }
+    getTrilhas()
+  }, [])
 
   const handleSelect = (event: SelectChangeEvent) => {
     const keyWord = event.target.value
+    console.log(keyWord)
     setTrilha(keyWord)
   }
 
   const handleNome = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const keyWord = event.target.value
-    if (keyWord !== '') {
-      const resultado = alunos.filter((aluno) => {
-        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
-      });
-      console.log(resultado)
-      setAlunoData(resultado);
-    } else {
-      setAlunoData(alunos);
-    }
     setNome(keyWord)
   }
 
@@ -121,7 +96,21 @@ export const Aluno = () => {
           </Titulo>
           <div className="flex">
             <div>
-            <CheckMarksAluno />
+            <FormControl >
+        <InputLabel  id="demo-multiple-checkbox-label">Trilha</InputLabel>
+        <Select
+                labelId="select-vincula-aluno-trilha"
+                id="edita-trilha"
+                value={trilha}
+                label="Trilha"
+                onChange={handleSelect}
+                // renderValue={}
+              >
+                {trilhas&&trilhas.map((trilha:ITrilha)=>
+                 <MenuItem value={trilha.idTrilha}>{trilha.nome} - edição {trilha.edicao}</MenuItem>
+                )}
+              </Select>
+            </FormControl>
             </div>
             <BarraDePesquisa>
               <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
@@ -147,7 +136,7 @@ export const Aluno = () => {
             </Link>
           </div>
           <ButtonCardWrapper>
-            {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
+            {alunos.length > 0 ? alunos?.map((aluno: IAluno) => {
               return (
                 <ButtonCard>
                   <ButtonCardContent>

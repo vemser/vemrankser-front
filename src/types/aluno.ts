@@ -16,6 +16,9 @@ export interface IAlunoContext {
     alunos: IAluno[],
     setAlunos: React.Dispatch<React.SetStateAction<IAluno[]>>,
     totalPages: number,
+    getAlunosWithNome: (page: number, nome: string) => Promise<void>
+    getAlunosWithTrilha: (page: number, idTrilha: number) => Promise<void>
+   
   }
 
 
