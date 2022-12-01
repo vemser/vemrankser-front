@@ -158,9 +158,7 @@ export const Aluno = () => {
                     </div>
                     <div>
                       <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
-                      {aluno?.trilhas.map((trilhas: ITrilha) =>
-                        <p><span>Trilha: </span>{trilhas.nome}</p>
-                      )}
+                      <p><span>Trilha: </span>{aluno.trilhas&&aluno.trilhas.map((trilha: ITrilha)=> trilha.nome).join(', ')}</p>
                     </div>
                   </ButtonCardContent>
                 </ButtonCard>

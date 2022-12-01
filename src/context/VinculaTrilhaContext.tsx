@@ -30,7 +30,8 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
     try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      await api.post(`/trilha/adicionar-aluno-trilha?login=${payload.login}&idTrilha=${payload.idTrilha}`, payload);
+      await api.post(`/trilha/adicionar-aluno-trilha?login=${payload.login}&idTrilha=${payload.idTrilha}`, {...payload,idTrilha:[payload.idTrilha]});
+      toast.success('Aluno vinculado com sucesso!')
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
@@ -38,7 +39,6 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-
   return (
     <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha }}>
       {children}
