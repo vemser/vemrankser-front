@@ -45,8 +45,7 @@ export const AuthProvider = ({ children }: IChildren) => {
             api.defaults.headers['Authorization'] = token;
             const { data } = await api.get(`/usuario/pegar-usuario-logado`);
 
-            localStorage.setItem('user', data.nome);
-            localStorage.setItem('tipo', data.tipoPerfil);
+            localStorage.setItem('user', data);
             
         } catch (error) {
             console.log(error);
