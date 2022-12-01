@@ -29,7 +29,6 @@ export const Aluno = () => {
 
   useEffect(() => {
     setAlunoData(alunos)
-    console.log(alunos)
   }, [alunos])
 
 
@@ -45,7 +44,6 @@ export const Aluno = () => {
       listaAlunos = alunos.filter((aluno) => {
         return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
       });
-      console.log(listaAlunos)
     }
     return listaAlunos
   }
@@ -54,7 +52,6 @@ export const Aluno = () => {
       listaAlunos = alunos.filter((aluno) => {
         return aluno.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
       });
-      console.log(listaAlunos)
     }
     return listaAlunos
   }

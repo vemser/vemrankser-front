@@ -19,7 +19,6 @@ export const AlunoProvider = ({ children }: IChildren) => {
       const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page - 1}&tamanho=4`);
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);
-      console.log(data.elementos)
 
     } catch (error) {
       console.error(error);
