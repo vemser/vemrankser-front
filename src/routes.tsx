@@ -5,7 +5,6 @@ import { AtividadesCriar } from './pages/AtividadesCriar/AtividadesCriar';
 import { AtividadesNotas } from './pages/AtividadesNotas/AtividadesNotas';
 import { Aluno } from './pages/Aluno/Aluno';
 import { VinculaAluno } from './pages/AlunoVincula/AlunoVincula';
-import { EditaAluno } from './pages/AlunoEditar/EditaAluno';
 import { Login } from './pages/Login/Login';
 import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from './routes/PrivateRoute';
@@ -16,7 +15,6 @@ import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
 import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
 import { AlunoProvider } from './context/AlunoContext';
-import { VinculaAlunoProvider, VinculaAlunoContext } from './context/VinculaAlunoContext';
 
 export const Router = () => {
   return (
@@ -25,7 +23,6 @@ export const Router = () => {
       <AuthProvider>
         <UsersProvider>
           <AlunoProvider>
-            <VinculaAlunoProvider>
             <Routes>
             <Route path={'/'} element={<Login />} />
             <Route element={<PrivateRoute />}>
@@ -34,13 +31,11 @@ export const Router = () => {
               <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
               <Route path={'/alunos'} element={<Aluno />} />
               <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-              <Route path={'/alunos/editar'} element={<EditaAluno />} />
               <Route path={'/usuarios'} element={<Usuario />} />
               <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
               <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
             </Route>
           </Routes>
-            </VinculaAlunoProvider>
           </AlunoProvider>
         </UsersProvider>
       </AuthProvider>

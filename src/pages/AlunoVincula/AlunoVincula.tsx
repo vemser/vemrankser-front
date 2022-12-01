@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { vinculaAlunoSchema } from "../../utils/schemas";
-import { IEditaAluno } from "../../types/editaAluno";
+import { IVinculaAluno } from "../../types/vinculaAluno";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -21,7 +21,7 @@ export const VinculaAluno = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IEditaAluno>({
+  } = useForm<IVinculaAluno>({
     resolver: yupResolver(vinculaAlunoSchema),
   });
 
@@ -81,7 +81,7 @@ export const VinculaAluno = () => {
           </Titulo>
           <form>
             <TextField
-              id="nome-cadastra-aluno"
+              id="nome-vincula-aluno"
               label="Nome"
               variant="outlined"
               sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
@@ -99,12 +99,12 @@ export const VinculaAluno = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
+              <InputLabel id="vincula-aluno-trilha" {...register("trilha")}>
                 Trilha
               </InputLabel>
               {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
               <Select
-                labelId="select-edita-trilha"
+                labelId="select-vincula-aluno-trilha"
                 id="edita-trilha"
                 value={trilha}
                 label="Trilha"
@@ -125,33 +125,40 @@ export const VinculaAluno = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
+              <InputLabel id="vincula-aluno-edicao" {...register("edicao")}>
                 Edição
               </InputLabel>
-              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
+              {errors.edicao && <ErrorMessage>{errors.edicao.message}</ErrorMessage>}
               <Select
-                labelId="select-edita-trilha"
-                id="edita-trilha"
+                labelId="select-vincula-aluno-edicao"
+                id="vincula-aluno-edicao"
                 value={edicao}
                 label="Trilha"
                 onChange={handleChangeSelect2}
               >
-                <MenuItem value={"edicao1"}>Edição 1</MenuItem>
-                <MenuItem value={"edicao2"}>Edição 2</MenuItem>
-                <MenuItem value={"edicao3"}>Edição 3</MenuItem>
-                <MenuItem value={"edicao4"}>Edição 4</MenuItem>
+                <MenuItem value={"edicao1"}>1</MenuItem>
+                <MenuItem value={"edicao2"}>2</MenuItem>
+                <MenuItem value={"edicao3"}>3</MenuItem>
+                <MenuItem value={"edicao4"}>4</MenuItem>
+                <MenuItem value={"edicao5"}>5</MenuItem>
+                <MenuItem value={"edicao6"}>6</MenuItem>
+                <MenuItem value={"edicao7"}>7</MenuItem>
+                <MenuItem value={"edicao8"}>8</MenuItem>
+                <MenuItem value={"edicao9"}>9</MenuItem>
+                <MenuItem value={"edicao10"}>10</MenuItem>
+                <MenuItem value={"edicao11"}>11</MenuItem>
               </Select>
             </FormControl>
             <ButtonWraper>
               <ButtonPrimary
                 label="Adicionar"
-                id="button-edita-aluno"
+                id="button-vincula-aluno"
                 type="submit"
               />
               <Link to="/alunos">
                 <ButtonSecondary
                   label="Cancelar"
-                  id="button-cancela-aluno"
+                  id="button-volta-vincula-aluno"
                   type="button"
                 />
               </Link>

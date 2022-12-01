@@ -1,4 +1,6 @@
 import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
+import { AlunoContext } from "../../context/AlunoContext";
+import { IAluno, ITrilha } from "../../types/aluno";
 import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
@@ -8,12 +10,9 @@ import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper }
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
-import { AlunoContext } from "../../context/AlunoContext";
-import { IAluno, ITrilha } from "../../types/aluno";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
-  const [pesquisaAluno, setPesquisa] = React.useState("");
   const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [alunoData, setAlunoData] = useState([] as IAluno[])
@@ -149,10 +148,10 @@ export const Aluno = () => {
                 id={"barra-de-pesquisa-aluno"}
                 onChange={handleNome}
               />
-              <i >
-                <HiSearch size={"28px"}
-                />
-              </i>
+
+              <HiSearch size={"28px"}
+              />
+
             </BarraDePesquisa>
             <Link to={"/alunos/vincular"}>
               <ButtonPrimary
