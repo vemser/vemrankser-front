@@ -15,6 +15,7 @@ import { Usuario } from './pages/Usuario/Usuario';
 import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
 import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
+import { Admin } from './components/DefaultPages/Admin';
 
 export const Router = () => {
   return (
@@ -25,15 +26,17 @@ export const Router = () => {
           <Routes>
             <Route path={'/'} element={<Login />} />
             <Route element={<PrivateRoute />}>
-              <Route path={'/atividades'} element={<Atividades />} />
-              <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-              <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-              <Route path={'/alunos'} element={<Aluno />} />
-              <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-              <Route path={'/alunos/editar'} element={<EditaAluno />} />
-              <Route path={'/usuarios'} element={<Usuario />} />
-              <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
-              <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+              <Route element={<Admin />}>
+                <Route path={'/atividades'} element={<Atividades />} />
+                <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+                <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+                <Route path={'/alunos'} element={<Aluno />} />
+                <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
+                <Route path={'/alunos/editar'} element={<EditaAluno />} />
+                <Route path={'/usuarios'} element={<Usuario />} />
+                <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
+                <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+              </Route>
             </Route>
           </Routes>
         </UsersProvider>

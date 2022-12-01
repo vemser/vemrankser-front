@@ -84,7 +84,7 @@ export const Usuario = () => {
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem icon={<HiPencilAlt size={20} />} label="Editar"
-            onClick={() => navigate('/usuarios/editar', { state: params.dataTable })}
+            onClick={() => navigate('/usuarios/editar', { state: params.row })}
             color="inherit"
             key={params.row.idUsuario}
           />,
@@ -118,42 +118,6 @@ export const Usuario = () => {
   return (
     <>
       <ButtonCardContainer>
-        <MenuLateral
-          nomeDoUsuario={"Luiza Valentini"}
-          cargoDoUsuario={"ADMIN"}
-          fotoDePerfil={""}
-        >
-          <ButtonMenuLateral
-            text={"Dashboard"}
-            icone={<HiChartPie />}
-            link={"/dashboard"}
-          />
-          <ButtonMenuLateral
-            text={"Usuários"}
-            icone={<HiUsers />}
-            link={"/usuarios"}
-          />
-          <ButtonMenuLateral
-            text={"Alunos"}
-            icone={<HiAcademicCap />}
-            link={"/alunos"}
-          />
-          <ButtonMenuLateral
-            text={"Atividades"}
-            icone={<HiBookOpen />}
-            link={"/atividades"}
-          />
-          <ButtonMenuLateral
-            text={"Perfil"}
-            icone={<HiUser />}
-            link={"/perfil"}
-          />
-          <ButtonMenuLateral
-            text={"Configurações"}
-            icone={<HiCog />}
-            link={"/configurações"}
-          />
-        </MenuLateral>
         <section>
           <Titulo>
             Usuários

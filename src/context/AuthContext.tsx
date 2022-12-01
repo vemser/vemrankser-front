@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IAuthContext } from '../types/auth';
 import { IUserLogin, IChildren } from '../types/user'
@@ -12,23 +12,6 @@ export const AuthContext = createContext({} as IAuthContext);
 export const AuthProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-
-    const userSignup = async (newUser: IUserLogin) => {
-        // try {
-        //     nProgress.start();
-
-        //     let user = {login: newUser.login, senha: newUser.senha}            
-        //     await api.post('/usuario/cadastro', user);
-
-        //     toast.success('Usuário cadastrado com sucesso!', toastConfig);           
-        //     navigate('/');
-        // } catch (error) {
-        //     toast.error('Houve algum erro, por favor tente novamente!', toastConfig);
-        //     console.log(error);
-        // } finally {
-        //     nProgress.done();
-        // }
-    }
 
     const handleLogin = async (user: IUserLogin) => {
         try {
@@ -64,13 +47,18 @@ export const AuthProvider = ({ children }: IChildren) => {
 
             localStorage.setItem('user', data.nome);
             localStorage.setItem('tipo', data.tipoPerfil);
+            
         } catch (error) {
             console.log(error);
         }
     }
 
+    useEffect(() => {
+        getLoggedUser()
+    }, []);
+
     return (
-        <AuthContext.Provider value={{ userSignup, getLoggedUser, handleLogin, handleLogout }}>
+        <AuthContext.Provider value={{ getLoggedUser, handleLogin, handleLogout }}>
             {children}
         </AuthContext.Provider>
     )

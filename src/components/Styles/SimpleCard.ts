@@ -2,9 +2,13 @@ import styled from 'styled-components';
 
 export const SimpleCardContainer = styled.div`
     display: flex;
+    width: 80%;
+    @media (max-width: 1000px) {
+    width: 100%;
+    }
     section {
-        width: 80%;
         min-height: 100vh;
+        width: 100%;
         padding: 40px;
         display: flex;
         flex-direction: column;

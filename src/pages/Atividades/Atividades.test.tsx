@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Atividades } from './Atividades';
 
-
 describe('testa se o título está na tela', () => {
     test('deve achar o título na tela pelo texto', () => {
         render(<Atividades />);

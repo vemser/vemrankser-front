@@ -18,11 +18,20 @@ export const MenuLateralContainer = styled.div<menuLateralContainerProps>`
   @media (max-width: 1000px) {
     display:${(props) => props.mobileOpen ? 'flex' : 'none'};
     width: 100vw;
+    min-height: 100vw;
     overflow: hidden;
     flex-direction: column;
     position: absolute;
     z-index: 5;
     margin: 0;
+    &::before {
+      content: '';
+      inset: 0;
+      z-index: -1;
+      height: 100%;
+      position: fixed;
+      background-color: var(--cor-primaria);
+    }
   }
 `;
 
@@ -114,7 +123,7 @@ export const LogOut = styled.div`
 
 export const ButtonHandler= styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   height: 35px;
   margin: 10px;
   cursor: pointer;

@@ -75,12 +75,12 @@ export const UsersProvider = ({ children }: IChildren) => {
 
   const editUser = async (data: IUser) => {
     try {
-      nProgress.start()
+      nProgress.start();
 
-      await api.put(`/pessoa/${data.nome}`, data);
+      await api.put(`/usuario/atualizar/${data.idUsuario}`, data);
 
-      toast.success("Usuário editado com sucesso!", toastConfig);
-      navigate('/people');
+      toast.success("Usuário atualizado com sucesso!", toastConfig);
+      navigate('/usuarios');
     } catch (error) {
       console.error(error);
       toast.error("Ocorreu algum erro, tente novamente!", toastConfig);

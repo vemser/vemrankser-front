@@ -37,102 +37,62 @@ export const VinculaAluno = () => {
   };
 
   return (
-    <>
-      <MainContainer>
-        <MenuLateral
-          nomeDoUsuario={"Luiza Valentini"}
-          cargoDoUsuario={"ADMIN"}
-          fotoDePerfil={""}
-        >
-          <ButtonMenuLateral
-            text={"Dashboard"}
-            icone={<HiChartPie />}
-            link={"/dashboard"}
-          />
-          <ButtonMenuLateral
-            text={"Usuários"}
-            icone={<HiUsers />}
-            link={"/usuarios"}
-          />
-          <ButtonMenuLateral
-            text={"Alunos"}
-            icone={<HiAcademicCap />}
-            link={"/alunos"}
-          />
-          <ButtonMenuLateral
-            text={"Atividades"}
-            icone={<HiBookOpen />}
-            link={"/atividades"}
-          />
-          <ButtonMenuLateral
-            text={"Perfil"}
-            icone={<HiUser />}
-            link={"/perfil"}
-          />
-          <ButtonMenuLateral
-            text={"Configurações"}
-            icone={<HiCog />}
-            link={"/configurações"}
-          />
-        </MenuLateral>
-        <ContentWrapper>
-          <Titulo>
-            Adicionar aluno à trilha
-          </Titulo>
-          <form>
-            <TextField
-              id="nome-cadastra-aluno"
-              label="Nome"
-              variant="outlined"
-              sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
-              {...register("nome")}
-              size="small"
-            />
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
+    <ContentWrapper>
+      <Titulo>
+        Adicionar aluno à trilha
+      </Titulo>
+      <form>
+        <TextField
+          id="nome-cadastra-aluno"
+          label="Nome"
+          variant="outlined"
+          sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
+          {...register("nome")}
+          size="small"
+        />
+        {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
 
-            <FormControl
-              sx={{
-                width: "100%",
-                marginBottom: "5%",
-                backgroundColor: "white",
-              }}
-              fullWidth
-              size="small"
-            >
-              <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
-                Trilha
-              </InputLabel>
-              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
-              <Select
-                labelId="select-edita-trilha"
-                id="edita-trilha"
-                value={trilha}
-                label="Trilha"
-                onChange={handleChangeSelect}
-              >
-                <MenuItem value={"geral"}>Geral</MenuItem>
-                <MenuItem value={"backend"}>Backend</MenuItem>
-                <MenuItem value={"frontend"}>Frontend</MenuItem>
-                <MenuItem value={"qa"}>QA</MenuItem>
-              </Select>
-            </FormControl>
-            <ButtonWraper>
-              <ButtonPrimary
-                label="Adicionar"
-                id="button-edita-aluno"
-                type="submit"
-              />
-              <Link to="/alunos">
-                <ButtonSecondary
-                  label="Cancelar"
-                  id="button-cancela-aluno"
-                  type="button"
-                />
-              </Link>
-            </ButtonWraper>
-          </form>
-        </ContentWrapper>
-      </MainContainer>
-    </>
+        <FormControl
+          sx={{
+            width: "100%",
+            marginBottom: "5%",
+            backgroundColor: "white",
+          }}
+          fullWidth
+          size="small"
+        >
+          <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
+            Trilha
+          </InputLabel>
+          {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
+          <Select
+            labelId="select-edita-trilha"
+            id="edita-trilha"
+            value={trilha}
+            label="Trilha"
+            onChange={handleChangeSelect}
+          >
+            <MenuItem value={"geral"}>Geral</MenuItem>
+            <MenuItem value={"backend"}>Backend</MenuItem>
+            <MenuItem value={"frontend"}>Frontend</MenuItem>
+            <MenuItem value={"qa"}>QA</MenuItem>
+          </Select>
+        </FormControl>
+        <ButtonWraper>
+          <ButtonPrimary
+            label="Adicionar"
+            id="button-edita-aluno"
+            type="submit"
+          />
+          <Link to="/alunos">
+            <ButtonSecondary
+              label="Cancelar"
+              id="button-cancela-aluno"
+              type="button"
+            />
+          </Link>
+        </ButtonWraper>
+      </form>
+    </ContentWrapper>
   );
 };
