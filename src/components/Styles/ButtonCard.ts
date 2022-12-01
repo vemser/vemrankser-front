@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 export const ButtonCardContainer = styled.div`
   display: flex;
+  width: 80%;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
   section {
-    width: 80%;
+    width: 100%;
     min-height: 100vh;
     padding: 40px;
     display: flex;
@@ -12,12 +16,11 @@ export const ButtonCardContainer = styled.div`
     gap: 50px;
     background-color: #f5f5f5;
     @media (max-width: 1000px) {
-        width: 100vw;
         gap: 36px;
     }
   }
   .flex {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
