@@ -13,7 +13,7 @@ import {
   ContentWrapper,
   MainContainer,
 } from "../../components/Styles/Container.styled";
-import { Titulo } from "../../components/Styles/Component.styled";
+import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -28,8 +28,20 @@ import {
 import React from "react";
 import InputData from "../../components/InputData/InputData";
 import CheckMarks from "../../components/CheckMarks/CheckMarks";
+import { cadastraAtividadeSchema } from "../../utils/schemas";
+import { ICadastraAtividade } from "../../types/cadastraAtividade";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const AtividadesCriar = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ICadastraAtividade>({
+    resolver: yupResolver(cadastraAtividadeSchema),
+  });
+  
   const [trilha, setTrilha] = React.useState("");
   const [modulo, setModulo] = React.useState("");
 
@@ -94,6 +106,7 @@ export const AtividadesCriar = () => {
             }}
             size="small"
           />
+          {errors.titulo && <ErrorMessage>{errors.titulo.message}</ErrorMessage>}
           <TextField
             id="descricao-cadastra-atividade"
             label="Descrição"
@@ -102,8 +115,11 @@ export const AtividadesCriar = () => {
             variant="outlined"
             sx={{ width: '300px', marginBottom: "5%", backgroundColor: "white" }}
           />
+            {errors.descricao && <ErrorMessage>{errors.descricao.message}</ErrorMessage>}
 
            <CheckMarks />
+           {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
+
           <FormControl
             sx={{
               width: '300px',
@@ -127,6 +143,7 @@ export const AtividadesCriar = () => {
               <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
             </Select>
           </FormControl>
+          {errors.modulo && <ErrorMessage>{errors.modulo.message}</ErrorMessage>}
           <FormControl
             sx={{
               width: '300px',
@@ -146,12 +163,14 @@ export const AtividadesCriar = () => {
               label="Trilha"
               onChange={handleChangeSelect}
             >
-              <MenuItem value={"geral"}>1</MenuItem>
-              <MenuItem value={"backend"}>2</MenuItem>
-              <MenuItem value={"frontend"}>3</MenuItem>
-              <MenuItem value={"qa"}>4</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
             </Select>
           </FormControl>
+          {errors.peso && <ErrorMessage>{errors.peso.message}</ErrorMessage>}
           <InputData />
           <ButtonWraper>
             <ButtonPrimary

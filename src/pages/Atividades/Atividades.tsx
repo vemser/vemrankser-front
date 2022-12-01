@@ -12,6 +12,7 @@ import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
 
 export const Atividades = () => {
+  
   const [trilha, setTrilha] = React.useState('');
   const [status, setStatus] = React.useState('');
   const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
