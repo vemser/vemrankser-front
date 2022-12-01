@@ -124,13 +124,12 @@ export const Atividades = () => {
             </Select>
           </FormControl>
 
-          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Add Atividade'} /></Link>
+          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Adicionar'} /></Link>
 
-          <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar Notas'} /></Link>
+          <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar'} /></Link>
         </div>
 
-        <SimpleCardWrapper>
-
+        <SimpleCardWrapper> 
         {atividades?.map((atividade: IAtividade) => {
           return(
            <SimpleCard>

@@ -28,16 +28,16 @@ export const editaAlunoSchema = yup.object().shape({
 })
 export const cadastraAtividadeSchema = yup.object().shape({
     titulo: yup.string().required('Por favor, digite o titulo da atividade').trim(),
-    descricao: yup.string().required('Por favor, digite a descrição da atividade').trim(),
-    trilha: yup.string().required('Por favor, selecione pelo meno uma trilha'),
-    modulo: yup.string().required('Por favor, selecione um módulo'),
+    instrucoes: yup.string().required('Por favor, digite a descrição da atividade').trim(),
+    trilha: yup.number().required('Por favor, selecione pelo meno uma trilha'),
+    idModulo: yup.string().required('Por favor, selecione um módulo'),
+    pesoAtividade: yup.string().required('Por favor, selecione o peso'),
     dataEntrega: yup.date().required().min("2022-11-30", "Date inválida, por favor digite outra data")
 });
 
 export const detalhesNotasSchema = yup.object().shape({
     nota: yup.number().required('Por favor, digite a nota do aluno'),
     link: yup.string().required('Por favor, adicione o link da atividade').trim(),
-   
 });
 
 

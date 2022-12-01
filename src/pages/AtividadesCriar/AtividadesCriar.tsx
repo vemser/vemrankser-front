@@ -47,6 +47,7 @@ export const AtividadesCriar = () => {
   const [modulo, setModulo] = React.useState("");
   const {criaAtividade} = useContext(AtividadeContext)
 
+    
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
@@ -55,11 +56,7 @@ export const AtividadesCriar = () => {
     setModulo(event.target.value as string);
   };
 
-  const cadastraAtividade = (data: ICadastraAtividade) => {
-     criaAtividade(data)
- }
   
-
 
   return (
     <MainContainer>
@@ -101,7 +98,7 @@ export const AtividadesCriar = () => {
       </MenuLateral>
       <ContentWrapper>
         <Titulo>Adicionar Nova Atividade</Titulo>
-        <form onSubmit={handleSubmit(cadastraAtividade)}>
+        <form onSubmit={handleSubmit((data: ICadastraAtividade) =>  criaAtividade(data))}>
           <TextField
             {...register("titulo")}
             id="titulo-cadastra-atividade"
@@ -127,8 +124,8 @@ export const AtividadesCriar = () => {
           />
             {errors.instrucoes && <ErrorMessage>{errors.instrucoes.message}</ErrorMessage>}
 
-           <CheckMarks />
-           {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
+           {/* <CheckMarks />
+           {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>} */}
 
           <FormControl
             sx={{
@@ -192,9 +189,10 @@ export const AtividadesCriar = () => {
             />
             <Link to="/atividades">
               <ButtonSecondary
+                type="button"
                 label="Cancelar"
                 id="button-cancela-cadastro-atividade"
-                type="button"
+              
               />
             </Link>
           </ButtonWraper>

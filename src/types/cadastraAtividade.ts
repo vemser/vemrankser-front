@@ -4,7 +4,7 @@ export interface ICadastraAtividade{
     idTrilha: number,
     idModulo: number,
     pesoAtividade: number,
+    dataCriacao: string,
     dataEntrega: string,
-
 }
 

@@ -27,26 +27,7 @@ export default function CheckMarks() {
 
   return (
     <div>
-      <FormControl >
-        <InputLabel  id="demo-multiple-checkbox-label">Trilha</InputLabel>
-        <Select
-         sx={{ width: '300px', height: '40px', marginBottom: '5%', backgroundColor: 'white'}}
-          labelId="demo-multiple-checkbox-label"
-          id="demo-multiple-checkbox"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput label="Escolha a trilha" />}
-          renderValue={(selected) => selected.join(', ')}
-        >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      
     </div>
   );
 }

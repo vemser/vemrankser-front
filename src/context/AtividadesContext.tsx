@@ -31,10 +31,10 @@ export const AtividadeProvider = ({ children }: IChildren) => {
   }
   const criaAtividade = async (payload: ICadastraAtividade) => {
     try {
-      api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
+      api.defaults.headers.common['Authorization'] = token;
       const { data } = await api.post(`/atividade?idModulo=${payload.idModulo}&idTrilha=${payload.idTrilha}`, payload);
-       
+      toast.success('Atividade cadastrada com sucesso!', toastConfig);
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
