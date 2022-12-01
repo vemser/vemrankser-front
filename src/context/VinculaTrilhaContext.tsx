@@ -14,8 +14,8 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
 
   const getTrilhas = async () => {
     try {
-      api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
+      api.defaults.headers.common['Authorization'] = token;
       const { data } = await api.get(`/trilha/lista-trilha-nome`);
       setTrilhas(data);
 
@@ -28,9 +28,9 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
   }
   const vinculaTrilha = async (payload:IVinculaTrilha) => {
     try {
-      api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
-      const { data } = await api.post(`/trilha/adicionar-aluno-trilha?login=${payload.login}&idTrilha=${payload.idTrilha}`);
+      api.defaults.headers.common['Authorization'] = token;
+      await api.post(`/trilha/adicionar-aluno-trilha?login=${payload.login}&idTrilha=${payload.idTrilha}`, payload);
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);

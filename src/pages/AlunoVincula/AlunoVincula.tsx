@@ -29,15 +29,14 @@ export const VinculaAluno = () => {
   const [trilha, setTrilha] = React.useState("");
   const {trilhas, getTrilhas, vinculaTrilha} = useContext(VinculaTrilhaContext)
 
-
   useEffect(()=>{
     getTrilhas();
   },[])
 
-
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+  
   const vinculaAluno = (data:IVinculaTrilha) => {
      vinculaTrilha(data)
   }
