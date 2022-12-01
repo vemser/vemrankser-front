@@ -4,9 +4,9 @@ import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog,HiSearch, HiUsers } from "react-icons/hi";
+import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import { AlunoContext } from "../../context/AlunoContext";
 import { IAluno, ITrilha } from "../../types/aluno";
@@ -15,19 +15,15 @@ export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
   const [pesquisaAluno, setPesquisa] = React.useState("");
   const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
-  const [ searchParam, setSearchParam] = useSearchParams();
-  const [alunoData, setAlunoData ] = useState([] as IAluno[])
-  const [nome,setNome ] = useState<string>('')
+  const [searchParam, setSearchParam] = useSearchParams();
+  const [alunoData, setAlunoData] = useState([] as IAluno[])
+  const [nome, setNome] = useState<string>('')
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
+  const pagina = useMemo(() => {
+    return Number(searchParam.get("pagina") || "1")
+  }, [searchParam])
 
-   const pagina  = useMemo(()=> {
-       return Number(searchParam.get("pagina") || "1")
-   },[searchParam]) 
-
-   useEffect(() => {
+  useEffect(() => {
     getAlunos(pagina)
   }, [pagina])
 
@@ -36,7 +32,39 @@ export const Aluno = () => {
     console.log(alunos)
   }, [alunos])
 
-  const filtraAluno = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+  useEffect(() => {
+    let listaFiltrada = alunos
+    listaFiltrada = filtraAluno(nome, listaFiltrada)
+    listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
+    setAlunoData(listaFiltrada)
+  }, [nome, trilha])
+
+  const filtraAluno = (keyWord: string, listaAlunos: IAluno[]) => {
+    if (keyWord !== '') {
+      listaAlunos = alunos.filter((aluno) => {
+        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
+      });
+      console.log(listaAlunos)
+    }
+    return listaAlunos
+  }
+  const filtraAlunoPorTrilha = (keyWord: string, listaAlunos: IAluno[]) => {
+    if (keyWord !== '' && keyWord !== 'geral') {
+      listaAlunos = alunos.filter((aluno) => {
+        return aluno.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
+      });
+      console.log(listaAlunos)
+    }
+    return listaAlunos
+  }
+
+  const handleSelect = (event: SelectChangeEvent) => {
+    const keyWord = event.target.value
+    setTrilha(keyWord)
+  }
+
+  const handleNome = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const keyWord = event.target.value
     if (keyWord !== '') {
       const resultado = alunos.filter((aluno) => {
@@ -49,10 +77,6 @@ export const Aluno = () => {
     }
     setNome(keyWord)
   }
-
-  // const filtraPorTrilha = () => {
-  //   filtraPorTrilha()
-  // }
 
   return (
     <>
@@ -105,14 +129,14 @@ export const Aluno = () => {
                 size="small"
               >
                 <InputLabel id="select-aluno-label">Trilha</InputLabel>
-                <Select 
+                <Select
                   labelId="select-aluno-label"
                   id="select-atividade"
                   value={trilha}
                   label="Trilha"
-                  onChange={handleChange}
+                  onChange={handleSelect}
                 >
-                  <MenuItem value={"geral"}>Geral</MenuItem>
+                  <MenuItem value={'geral'}>Geral</MenuItem>
                   <MenuItem value={"backend"}>Backend</MenuItem>
                   <MenuItem value={"frontend"}>Frontend</MenuItem>
                   <MenuItem value={"qa"}>QA</MenuItem>
@@ -120,16 +144,16 @@ export const Aluno = () => {
               </FormControl>
             </div>
             <BarraDePesquisa>
-            <TextField variant="outlined" sx={{ width: 300,backgroundColor: "white" }}
+              <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
                 fullWidth
                 size="small"
                 label={"Filtrar por nome ou email"}
                 value={nome}
                 id={"barra-de-pesquisa-aluno"}
-                onChange={filtraAluno}
+                onChange={handleNome}
               />
               <i >
-                <HiSearch size={"28px"} 
+                <HiSearch size={"28px"}
                 />
               </i>
             </BarraDePesquisa>
@@ -142,9 +166,9 @@ export const Aluno = () => {
             </Link>
           </div>
           <ButtonCardWrapper>
-              {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
-                return (
-                  <ButtonCard>
+            {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
+              return (
+                <ButtonCard>
                   <ButtonCardContent>
                     <img src={userDummy} alt="Foto" />
                     <div>
@@ -158,11 +182,11 @@ export const Aluno = () => {
                       )}
                     </div>
                   </ButtonCardContent>
-                  </ButtonCard>
-                )
-              }) : <p>Nenhum aluno enontrado!</p>}
+                </ButtonCard>
+              )
+            }) : <p>Nenhum aluno enontrado!</p>}
           </ButtonCardWrapper>
-          <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })}color="primary" />
+          <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
         </section>
       </ButtonCardContainer>
     </>

@@ -26,10 +26,15 @@ export const VinculaAluno = () => {
   });
 
   const [trilha, setTrilha] = React.useState("");
+  const [edicao, setEdicao] = React.useState("");
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+  const handleChangeSelect2 = (event: SelectChangeEvent) => {
+    setEdicao(event.target.value as string);
+  };
+
 
   return (
     <>
@@ -109,6 +114,32 @@ export const VinculaAluno = () => {
                 <MenuItem value={"backend"}>Backend</MenuItem>
                 <MenuItem value={"frontend"}>Frontend</MenuItem>
                 <MenuItem value={"qa"}>QA</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl
+              sx={{
+                width: "100%",
+                marginBottom: "5%",
+                backgroundColor: "white",
+              }}
+              fullWidth
+              size="small"
+            >
+              <InputLabel id="select-cadastra-trilha" {...register("trilha")}>
+                Edição
+              </InputLabel>
+              {errors.trilha && <ErrorMessage>{errors.trilha.message}</ErrorMessage>}
+              <Select
+                labelId="select-edita-trilha"
+                id="edita-trilha"
+                value={edicao}
+                label="Trilha"
+                onChange={handleChangeSelect2}
+              >
+                <MenuItem value={"edicao1"}>Edição 1</MenuItem>
+                <MenuItem value={"edicao2"}>Edição 2</MenuItem>
+                <MenuItem value={"edicao3"}>Edição 3</MenuItem>
+                <MenuItem value={"edicao4"}>Edição 4</MenuItem>
               </Select>
             </FormControl>
             <ButtonWraper>
