@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { editaUsuarioSchema } from "../../utils/schemas";
 import { IUser } from "../../types/user";
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from "@mui/material";
-import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
+import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
-import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
-import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
+import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
 import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
 import { UsersContext } from "../../context/UserContext";
 

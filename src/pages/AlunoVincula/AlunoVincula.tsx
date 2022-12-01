@@ -8,12 +8,9 @@ import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
-import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
-import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
+import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 
 export const VinculaAluno = () => {

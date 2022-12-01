@@ -1,9 +1,7 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
-import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { Pagination, Paper, TableContainer, TextField } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers, HiPencilAlt } from "react-icons/hi";
+import { HiSearch, HiPencilAlt } from "react-icons/hi";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCardContainer, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { useEffect, useMemo, useState } from "react";
