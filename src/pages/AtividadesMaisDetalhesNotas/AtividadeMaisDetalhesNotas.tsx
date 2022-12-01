@@ -3,12 +3,23 @@ import { Link } from 'react-router-dom';
 import { ButtonPrimary, ButtonSecondary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
-import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardAtividades, SimpleCardContainer, SimpleCardContent, SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { ErrorMessage, Titulo } from '../../components/Styles/Component.styled';
+import { SimpleCardAtividades, SimpleCardContainer,SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import userDummy from '../../assets/user.png';
 import TextField from '@mui/material/TextField';
+import { useForm } from 'react-hook-form';
+import { IDetalheAtividade } from '../../types/detalheAtividade';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { detalhesNotasSchema } from '../../utils/schemas';
 
 export const AtividadesDetalhesNotas = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IDetalheAtividade>({
+    resolver: yupResolver(detalhesNotasSchema),
+  });
   return (
     <SimpleCardContainer>
     <MenuLateral
@@ -64,8 +75,10 @@ export const AtividadesDetalhesNotas = () => {
               marginTop: "-2%",
               backgroundColor: "white",
             }}
+            {...register("nota")}
             size="small"
           />
+            {errors.nota && <ErrorMessage>{errors.nota.message}</ErrorMessage>}
                 </span></p>
               <p><span>Link da Atividade:</span></p>
               <TextField
@@ -78,8 +91,10 @@ export const AtividadesDetalhesNotas = () => {
               marginBottom: "2%",
               backgroundColor: "white",
             }}
+            {...register("link")}
             size="small"
           />
+            {errors.link && <ErrorMessage>{errors.link.message}</ErrorMessage>}
             <p><span>Comentário:</span></p>
           <TextField
             id="descricao-cadastra-atividade"
@@ -89,6 +104,7 @@ export const AtividadesDetalhesNotas = () => {
             variant="outlined"
             sx={{ width: '100%', marginBottom: "2%",  marginTop: "-2%",backgroundColor: "white" }}
           />
+
             </SimpleCardContentAtividade> 
           
           </SimpleCardAtividades> 
@@ -99,6 +115,7 @@ export const AtividadesDetalhesNotas = () => {
               label="Voltar"
               id="button-volta-mural-notas"
               type="submit"
+    
             />
             </Link>
           </SimpleCardWrapper>

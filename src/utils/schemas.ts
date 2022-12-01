@@ -33,5 +33,13 @@ export const cadastraAtividadeSchema = yup.object().shape({
     modulo: yup.string().required('Por favor, selecione um módulo'),
     dataEntrega: yup.date().required().min("2022-11-30", "Date inválida, por favor digite outra data")
 });
+
+export const detalhesNotasSchema = yup.object().shape({
+    nota: yup.number().required('Por favor, digite a nota do aluno'),
+    link: yup.string().required('Por favor, adicione o link da atividade').trim(),
+   
+});
+
+
    
 
