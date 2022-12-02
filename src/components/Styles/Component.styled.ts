@@ -39,15 +39,14 @@ export const BarraDePesquisa = styled.div`
 
 export const ErrorMessage = styled.span`
   color: #f50031;
-  margin-top: -15px;
+  margin-top: -10px;
+  margin-bottom: 10px;
   font-size: 0.9rem;
   font-weight: 600;
-  user-select: none;
 `
 
 export const ErrorMessage2 = styled.span`
   color: #f50031;
   font-size: 0.8rem;
   font-weight: 600;
-  user-select: none;
 `

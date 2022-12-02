@@ -8,7 +8,7 @@ import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { Checkbox, FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
@@ -19,24 +19,12 @@ export const Aluno = () => {
   const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
   const { trilhas, getTrilhas, getAlunosEmTrilha, alunoEmTrilha } = useContext(VinculaTrilhaContext);
   const [searchParam, setSearchParam] = useSearchParams();
-  const [nome, setNome] = useState<string>('')
-  const {getTrilhas, trilhas} = useContext(VinculaTrilhaContext)
+  const [nome, setNome] = useState<string>('');
+  const [ alunoData, setAlunoData ] = useState<IAluno[]>([]);
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam]);
-
-  useEffect(() => {
-    if(nome){
-   getAlunosWithNome(pagina, nome)
-   return
-    }
-    if(trilha){
-      getAlunosWithTrilha(pagina, parseInt(trilha))
-      return
-    }
-    getAlunos(pagina)
-  }, [pagina, trilha, nome])
 
   useEffect(() => {
     setAlunoData(alunos)
@@ -47,28 +35,32 @@ export const Aluno = () => {
   }, [])
 
   useEffect(() => {
-    let listaFiltrada = alunos
-    listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
-    setAlunoData(listaFiltrada)
-  }, [trilha])
+    getAlunos(pagina)
+  }, [pagina])
 
-  const filtraAluno = (keyWord: string, listaAlunos: IAluno[]) => {
-    if (keyWord !== '') {
-      listaAlunos = alunos.filter((aluno) => {
-        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
-      });
-    }
-    return listaAlunos
-  }
+  // useEffect(() => {
+  //   let listaFiltrada = alunos
+  //   listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
+  //   setAlunoData(listaFiltrada)
+  // }, [trilha])
 
-  const filtraAlunoPorTrilha = (keyWord: string, listaAlunos: IAluno[]) => {
-    if (keyWord !== '' && keyWord !== 'geral') {
-      listaAlunos = alunos.filter((aluno) => {
-        return aluno.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
-      });
-    }
-    return listaAlunos
-  }
+  // const filtraAluno = (keyWord: string, listaAlunos: IAluno[]) => {
+  //   if (keyWord !== '') {
+  //     listaAlunos = alunos.filter((aluno) => {
+  //       return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
+  //     });
+  //   }
+  //   return listaAlunos
+  // }
+
+  // const filtraAlunoPorTrilha = (keyWord: string, listaAlunos: IAluno[]) => {
+  //   if (keyWord !== '' && keyWord !== 'geral') {
+  //     listaAlunos = alunos.filter((aluno) => {
+  //       return aluno.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
+  //     });
+  //   }
+  //   return listaAlunos
+  // }
 
   const handleSelect = async (event: SelectChangeEvent) => {
     const keyWord = event.target.value;
