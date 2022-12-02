@@ -14,9 +14,11 @@ export const AlunoProvider = ({ children }: IChildren) => {
 
   const getAlunos = async (page: number) => {
     try {
-      api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
-      const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page - 1}&tamanho=4`);
+      api.defaults.headers.common['Authorization'] = token;
+
+      const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page -1}&tamanho=4`);
+      
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);
 

@@ -83,8 +83,6 @@ export const Usuario = () => {
     }
   }
 
-  console.log(user)
-
   return (
     <>
       <ButtonCardContainer>

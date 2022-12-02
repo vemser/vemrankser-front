@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { vinculaAlunoSchema } from "../../utils/schemas";
-import { TextField } from "@mui/material";
+import { OutlinedInput, TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,29 +18,24 @@ import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { ITrilha, IVinculaTrilha } from "../../types/vinculaTrilha";
 
 export const VinculaAluno = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IVinculaTrilha>({
+  const { trilhas, getTrilhas, vinculaTrilha } = useContext(VinculaTrilhaContext)
+  const [trilha, setTrilha] = useState<number[]>([]);
+  const { register, handleSubmit, control, formState: { errors } } = useForm<IVinculaTrilha>({
     resolver: yupResolver(vinculaAlunoSchema),
   });
 
-  const [trilha, setTrilha] = React.useState("");
-  const {trilhas, getTrilhas, vinculaTrilha} = useContext(VinculaTrilhaContext)
-
-
-  useEffect(()=>{
+  useEffect(() => {
     getTrilhas();
-  },[])
+  }, []);
 
-
-  const handleChangeSelect = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
+  const handleChange = (event: SelectChangeEvent<typeof trilha>) => {
+    const {
+      target: { value },
+    } = event;
+    setTrilha((trilhaValue) => {
+      return [...trilhaValue, Number(value)]
+    });
   };
-  const vinculaAluno = (data:IVinculaTrilha) => {
-     vinculaTrilha(data)
-  }
 
   return (
     <>
@@ -85,22 +80,30 @@ export const VinculaAluno = () => {
           <Titulo>
             Adicionar aluno à trilha
           </Titulo>
-          <form onSubmit={handleSubmit(vinculaAluno)}>
+          <form onSubmit={handleSubmit((data: IVinculaTrilha) => vinculaTrilha(data))}>
             <TextField
               id="nome-vincula-aluno"
               label="Login"
               variant="outlined"
-              sx={{ width: "100%", marginBottom: "5%", marginTop: "2%", backgroundColor: 'white' }}
+              sx={{ width: "100%", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
               {...register("login")}
               size="small"
-            />  
-              {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
+            />
+            {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
 
-            <FormControl
+            <select {...register("idTrilha")} style={{ width: 400, height: 100 }} multiple name="idTrilha" id="idTrilha">
+              {trilhas.map((trilha: ITrilha) =>
+                <option key={trilha.idTrilha} value={trilha.idTrilha}>
+                  {trilha.nome} - edição {trilha.edicao}
+                </option>
+              )}
+            </select>
+            {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
+
+            {/* <FormControl
               sx={{
                 width: "100%",
-                marginBottom: "5%",
-                marginTop: "5%",
+                marginBottom: "8%",
                 backgroundColor: "white",
               }}
               fullWidth
@@ -109,20 +112,37 @@ export const VinculaAluno = () => {
               <InputLabel id="vincula-aluno-trilha" >
                 Trilha
               </InputLabel>
-              <Select
-                labelId="select-vincula-aluno-trilha"
-                id="edita-trilha"
-                value={trilha}
-                label="Trilha"
-                {...register("idTrilha")}
-                onChange={handleChangeSelect}
-              >
-                {trilhas&&trilhas.map((trilha:ITrilha)=>
-                 <MenuItem value={trilha.idTrilha}>{trilha.nome} - edição {trilha.edicao}</MenuItem>
-                )}
-              </Select>
-            </FormControl>
+              <Controller
+                name="idTrilha"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      labelId="select-vincula-aluno-trilha"
+                      id="idTrilha"
+                      label="Trilha"
+                      multiple
+                      {...field}
+                      value={trilha}
+                      input={<OutlinedInput label="Name" />}
+                      onChange={(newValue) => {
+                        field.onChange(newValue)
+                        handleChange(newValue)
+                      }}
+                      sx={{ backgroundColor: "white" }}
+                    >
+                      {trilhas.map((trilha: ITrilha) =>
+                        <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
+                          {trilha.nome} - edição {trilha.edicao}
+                        </MenuItem>
+                      )}
+                    </Select>
+                  )
+                }}
+              />
             {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
+            </FormControl> */}
+
             <ButtonWraper>
               <ButtonPrimary
                 label="Adicionar"

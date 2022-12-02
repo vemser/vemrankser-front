@@ -3,10 +3,9 @@ import * as yup from 'yup';
 export const loginSchema = yup.object().shape({
     email: yup.string().required('Por favor, digite seu email').min(2, 'Email inválido').email('Por favor, digite um email válido').trim(),
     senha: yup.string().required('Por favor, digite sua senha').trim()
-}) 
+})
 export const vinculaAlunoSchema = yup.object().shape({
-     idTrilha: yup.number().required('Por favor, selecione uma opção')
-    .label("nome"),
+    idTrilha: yup.array().required('Por favor, selecione uma opção'),
     login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
 })
 

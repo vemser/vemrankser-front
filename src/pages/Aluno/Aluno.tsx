@@ -11,17 +11,20 @@ import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper }
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
+import { api } from "../../utils/api";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
   const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
+  const { trilhas, getTrilhas, getAlunosEmTrilha, alunoEmTrilha } = useContext(VinculaTrilhaContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [alunoData, setAlunoData] = useState([] as IAluno[])
   const [nome, setNome] = useState<string>('')
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
-  }, [searchParam])
+  }, [searchParam]);
 
   useEffect(() => {
     getAlunos(pagina)
@@ -31,13 +34,15 @@ export const Aluno = () => {
     setAlunoData(alunos)
   }, [alunos])
 
+  useEffect(() => {
+    getTrilhas()
+  }, [])
 
   useEffect(() => {
     let listaFiltrada = alunos
-    listaFiltrada = filtraAluno(nome, listaFiltrada)
     listaFiltrada = filtraAlunoPorTrilha(trilha, listaFiltrada)
     setAlunoData(listaFiltrada)
-  }, [nome, trilha])
+  }, [trilha])
 
   const filtraAluno = (keyWord: string, listaAlunos: IAluno[]) => {
     if (keyWord !== '') {
@@ -47,6 +52,7 @@ export const Aluno = () => {
     }
     return listaAlunos
   }
+
   const filtraAlunoPorTrilha = (keyWord: string, listaAlunos: IAluno[]) => {
     if (keyWord !== '' && keyWord !== 'geral') {
       listaAlunos = alunos.filter((aluno) => {
@@ -56,9 +62,31 @@ export const Aluno = () => {
     return listaAlunos
   }
 
-  const handleSelect = (event: SelectChangeEvent) => {
-    const keyWord = event.target.value
-    setTrilha(keyWord)
+  const handleSelect = async (event: SelectChangeEvent) => {
+    const keyWord = event.target.value;
+    setTrilha(keyWord);
+
+    api.get(`/trilha/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
+      ({ data }) => {
+        const { elementos } = data
+
+        const { usuarios } = elementos[0]
+
+        const formatedOldOBJ = elementos.map((trilha: any) => {
+          return ({
+            ...usuarios[0],
+            trilhas: [{
+              nome: trilha.nome,
+              edicao: trilha.edicao,
+              anoEdicao: trilha.anoEdicao,
+              idTrilha: trilha.idTrilha
+            }]
+          })
+        })
+
+        setAlunoData(formatedOldOBJ);
+      }
+    )
   }
 
   const handleNome = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -67,7 +95,6 @@ export const Aluno = () => {
       const resultado = alunos.filter((aluno) => {
         return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
       });
-      console.log(resultado)
       setAlunoData(resultado);
     } else {
       setAlunoData(alunos);
@@ -118,6 +145,7 @@ export const Aluno = () => {
           <Titulo>
             Alunos
           </Titulo>
+
           <div className="flex">
             <div>
               <FormControl
@@ -133,25 +161,25 @@ export const Aluno = () => {
                   label="Trilha"
                   onChange={handleSelect}
                 >
-                  <MenuItem value={'geral'}>Geral</MenuItem>
-                  <MenuItem value={"backend"}>Backend</MenuItem>
-                  <MenuItem value={"frontend"}>Frontend</MenuItem>
-                  <MenuItem value={"qa"}>QA</MenuItem>
+                  {trilhas.map((trilhaSelect: ITrilha) => {
+                    return <MenuItem value={trilhaSelect.idTrilha}>{trilhaSelect.nome}</MenuItem>
+                  })}
                 </Select>
               </FormControl>
             </div>
+
             <BarraDePesquisa>
               <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
                 fullWidth
                 size="small"
-                label={"Filtrar por nome ou email"}
+                label={"Pesquisar por nome"}
                 value={nome}
                 id={"barra-de-pesquisa-aluno"}
                 onChange={handleNome}
               />
-             <i>
-              <HiSearch size={"28px"}
-              />
+              <i>
+                <HiSearch size={"28px"}
+                />
               </i>
 
             </BarraDePesquisa>
@@ -165,8 +193,10 @@ export const Aluno = () => {
           </div>
           <ButtonCardWrapper>
             {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
+              const ultimaTrilha = aluno.trilhas.length - 1
+
               return (
-                <ButtonCard>
+                <ButtonCard key={aluno.email}>
                   <ButtonCardContent>
                     <img src={userDummy} alt="Foto" />
                     <div>
@@ -175,14 +205,15 @@ export const Aluno = () => {
                     </div>
                     <div>
                       <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
-                      {aluno?.trilhas.map((trilhas: ITrilha) =>
-                        <p><span>Trilha: </span>{trilhas.nome}</p>
-                      )}
+                      <p><span>Trilha: </span>
+                        {aluno.trilhas.length !== 0 ? aluno?.trilhas.map((trilhas: ITrilha, index) => {
+                          return index === ultimaTrilha ? trilhas.nome : trilhas.nome + `, `
+                        }) : 'Sem trilha vinculada'}</p>
                     </div>
                   </ButtonCardContent>
                 </ButtonCard>
               )
-            }) : <p>Nenhum aluno enontrado!</p>}
+            }) : <p>Nenhum aluno encontrado!</p>}
           </ButtonCardWrapper>
           <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
         </section>
@@ -190,5 +221,3 @@ export const Aluno = () => {
     </>
   );
 };
-
-
