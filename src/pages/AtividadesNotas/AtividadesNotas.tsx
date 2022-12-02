@@ -25,7 +25,7 @@ export const AtividadesNotas = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
-  const handleChangeSelect2 = (event: SelectChangeEvent) => {
+  const handleChangeSelect2= (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
 

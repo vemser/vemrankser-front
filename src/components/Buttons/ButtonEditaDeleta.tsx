@@ -19,9 +19,9 @@ const ButtonEditaDeletaStyle = styled(Button)({
   }
 })
 
-export const ButtonEditaDeleta = ({ icone, label }: IButtonEditaDeleta): JSX.Element => {
+export const ButtonEditaDeleta = ({ icone, label , id}: IButtonEditaDeleta): JSX.Element => {
   return (
-    <ButtonEditaDeletaStyle variant="outlined" startIcon={icone}>
+    <ButtonEditaDeletaStyle variant="outlined" id={id} startIcon={icone}>
       <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
         {label}
       </Typography>

@@ -7,12 +7,13 @@ import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'react-icons/hi';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCard, SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
 import {format} from 'date-fns'
+import { ButtonEditaDeleta } from '../../components/Buttons/ButtonEditaDeleta';
 
-export const Atividades = () => {
+export const AtividadesAluno = () => {
   
   const [trilha, setTrilha] = React.useState('');
   const [status, setStatus] = React.useState('');
@@ -20,9 +21,6 @@ export const Atividades = () => {
   const [searchParam, setSearchParam] = useSearchParams();
   const { getAtividade, atividades, totalPages } = useContext(AtividadeContext);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
   const handleChange2 = (event: SelectChangeEvent) => {
     setStatus(event.target.value as string);
   };
@@ -35,26 +33,6 @@ export const Atividades = () => {
     getAtividade(pagina)
     setAtividadeData(atividades)
   },[pagina])
-
-  useEffect(() => {
-    let listaAtividades = atividades
-    listaAtividades = filtraAtividadePorTrilha(trilha, listaAtividades)
-    setAtividadeData(listaAtividades)
-  }, [trilha])
-
-  const filtraAtividadePorTrilha = (keyWord: string, listaAtividades: IAtividade[]) => {
-    if (keyWord !== '' && keyWord !== 'geral') {
-      listaAtividades = atividades.filter((atividade) => {
-        return atividade.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
-      });
-    }
-    return listaAtividades
-  }
-
-  const handleSelect = (event: SelectChangeEvent) => {
-    const keyWord = event.target.value
-    setTrilha(keyWord)
-  }
 
   return (
     <SimpleCardContainer>
@@ -96,54 +74,35 @@ export const Atividades = () => {
       </MenuLateral>
       <section>
         <Titulo>
-          Mural de Atividades
+          Mural de Atividades Aluno
         </Titulo>
 
         <div className='flex'>
-          <FormControl sx={{ width: 200, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Trilha</InputLabel>
-            <Select
-              labelId="select-atividade-label"
-              id="select-atividade"
-              value={trilha}
-              label="Trilha"
-              onChange={handleSelect}
-            >
-              <MenuItem value={'geral'}>Geral</MenuItem>
-              <MenuItem value={'backend'}>Backend</MenuItem>
-              <MenuItem value={'frontend'}>Frontend</MenuItem>
-              <MenuItem value={'qa'}>QA</MenuItem>
-            </Select>
-          </FormControl>
           <FormControl sx={{ width: '300px', backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Status</InputLabel>
+            <InputLabel id="select-status-label">Status</InputLabel>
             <Select
-              labelId="select-atividade-label"
-              id="select-atividade"
+              labelId="select-status-label"
+              id="select-status"
               value={status}
               label="Trilha"
               onChange={handleChange2}
             >
-              <MenuItem value={'geral'}>Pendente</MenuItem>
-              <MenuItem value={'backend'}>Concluída</MenuItem>
+              <MenuItem value={'pendente'}>Pendente</MenuItem>
+              <MenuItem value={'concluida'}>Concluída</MenuItem>
             </Select>
           </FormControl>
-
-          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Adicionar'} /></Link>
-
-          <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar'} /></Link>
         </div>
-
         <SimpleCardWrapper> 
         {atividades?.map((atividade: IAtividade) => {
           return(
-           <SimpleCard>
-            <img src={userDummy} alt="Foto" />
+           <SimpleCardAtividadeAluno>
             <SimpleCardContent>
-              <p><span>{atividade.nomeInstrutor}</span> postou uma nova atividade.</p>
-              <p className='date-info'>{format(new Date(atividade.dataEntrega), 'dd/mm/yyyy')}</p>
+              <p><span>Atividade:</span> 1</p>
             </SimpleCardContent>
-          </SimpleCard>
+            <Link to={"/atividades/aluno/entrega"}>  
+            <ButtonEditaDeleta icone={""} id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
+            </Link>
+          </SimpleCardAtividadeAluno>
           )})}
         </SimpleCardWrapper>
         <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />

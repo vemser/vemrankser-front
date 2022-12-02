@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { Atividades } from './pages/Atividades/Atividades';
+import {  AtividadesInstrutor } from './pages/Atividades/AtividadesInstrutor';
 import { AtividadesCriar } from './pages/AtividadesCriar/AtividadesCriar';
 import { AtividadesNotas } from './pages/AtividadesNotas/AtividadesNotas';
 import { Aluno } from './pages/Aluno/Aluno';
@@ -21,6 +21,8 @@ import { AtividadesDetalhesNotas } from './pages/AtividadesMaisDetalhesNotas/Ati
 import { NotasProvider } from './context/Notascontext';
 import { ModuloProvider } from './context/ModuloContext';
 import { ComentarioProvider } from './context/ComentarioContext';
+import { AtividadesAluno } from './pages/Atividades/AtividadesAluno';
+import { EntregaAtividade } from './pages/Atividades/EntregaAtividadeAluno';
 
 export const Router = () => {
   return (
@@ -33,23 +35,26 @@ export const Router = () => {
               <AtividadeProvider>
                 <ModuloProvider>
                   < NotasProvider>
-                  <ComentarioProvider>
-                    <Routes>
-                      <Route path={'/'} element={<Login />} />
-                      <Route element={<PrivateRoute />}>
-                        <Route path={'/atividades'} element={<Atividades />} />
-                        <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-                        <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-                        <Route path={'/atividades/corrige/notas'} element={<AtividadesDetalhesNotas />} />
-                        <Route path={'/alunos'} element={<Aluno />} />
-                        <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-                        <Route path={'/usuarios'} element={<Usuario />} />
-                        <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
-                        <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
-                      </Route>
-                    </Routes>
-                  </ComentarioProvider>
-                    
+                    <ComentarioProvider>
+                      <Routes>
+                        <Route path={'/'} element={<Login />} />
+                        <Route element={<PrivateRoute />}>
+                          <Route path={'/atividades'} element={<AtividadesInstrutor />} />
+                          <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+                          <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
+                          <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+                          <Route path={'/atividades/aluno/entrega'} element={ <EntregaAtividade />} />
+                          <Route path={'/atividades/corrige/notas'} element={<AtividadesDetalhesNotas />} />
+                          <Route path={'/alunos'} element={<Aluno />} />
+                          <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
+                          <Route path={'/usuarios'} element={<Usuario />} />
+                          <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
+                          <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+                          
+                        </Route>
+                      </Routes>
+                    </ComentarioProvider>
+
                   </NotasProvider>
                 </ModuloProvider>
               </AtividadeProvider>
