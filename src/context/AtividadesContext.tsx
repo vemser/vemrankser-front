@@ -42,6 +42,8 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+
+
   return (
     <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade  }}>
       {children}

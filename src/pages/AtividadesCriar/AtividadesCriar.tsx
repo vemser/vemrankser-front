@@ -145,7 +145,7 @@ export const AtividadesCriar = () => {
             </div>
 
     
-           {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>} */}
+           {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
 
           <FormControl
             sx={{
@@ -190,7 +190,7 @@ export const AtividadesCriar = () => {
               value={trilha}
               label="Trilha"
               {...register("pesoAtividade")}
-              onChange={handleChangeSelect}
+              onChange={handleChangeSelect2}
             >
               <MenuItem value={"1"}>1</MenuItem>
               <MenuItem value={"2"}>2</MenuItem>
