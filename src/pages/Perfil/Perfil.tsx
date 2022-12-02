@@ -43,11 +43,8 @@ export const Perfil = () => {
         <ContentWrapper>
             <PerfilContainer>
                 <header>
-                    <Avatar
-                    src={imageDummy}
-                    alt={`Foto de usuário`}
-                    sx={{ width: 140, height: 140 }}
-                    />
+                    <img src={imageDummy}
+                    alt={`Foto de usuário`} />
                     <div>
                         <h4>Anderson da Lima Silva</h4>
                         <p><span>Login:</span> anderson.silva</p>
