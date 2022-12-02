@@ -17,7 +17,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
 
-      const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page -1}&tamanho=4`);
+      const { data } = await api.get(`/usuario/lista-alunos-trilha-geral?pagina=${page -1}&tamanho=4`);
       
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);

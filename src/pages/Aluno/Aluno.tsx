@@ -46,25 +46,7 @@ export const Aluno = () => {
     api.defaults.headers.common['Authorization'] = token;
 
     api.get(`/trilha/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
-      ({ data }) => {
-        const { elementos } = data;
-
-        const { usuarios } = elementos[0];
-
-        const formatedOldOBJ = elementos.map((trilha: any) => {
-          return ({
-            ...usuarios[0],
-            trilhas: [{
-              nome: trilha.nome,
-              edicao: trilha.edicao,
-              anoEdicao: trilha.anoEdicao,
-              idTrilha: trilha.idTrilha
-            }]
-          })
-        })
-
-        setAlunoData(formatedOldOBJ);
-      }
+      ({ data }) => { setAlunoData(data.elementos); }
     )
   }
 
