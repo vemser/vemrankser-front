@@ -11,18 +11,22 @@ import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper }
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
 import {format} from 'date-fns'
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
+import { ITrilha } from '../../types/vinculaTrilha';
+import { UsersContext } from '../../context/UserContext';
 
 export const AtividadesInstrutor = () => {
   
-  const [trilha, setTrilha] = React.useState('');
+  const [trilha, setTrilha] = React.useState("");
   const [status, setStatus] = React.useState('');
-  const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
   const [searchParam, setSearchParam] = useSearchParams();
-  const { getAtividade, atividades, totalPages } = useContext(AtividadeContext);
+  const { getAtividade, atividades, totalPages, getAtividadeWithIdTrilha } = useContext(AtividadeContext);
+  const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
+  const { user,  getUsersList} = useContext(UsersContext)
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
+  // const handleChange = (event: SelectChangeEvent) => {
+  //   setTrilha(event.target.value as string);
+  // };
   const handleChange2 = (event: SelectChangeEvent) => {
     setStatus(event.target.value as string);
   };
@@ -32,29 +36,29 @@ export const AtividadesInstrutor = () => {
   }, [searchParam])
   
   useEffect(() => {
+    if(trilha){
+      getAtividadeWithIdTrilha(pagina, parseInt(trilha))
+      return
+    }
     getAtividade(pagina)
-    setAtividadeData(atividades)
-  },[pagina])
+  }, [pagina, trilha])
 
   useEffect(() => {
-    let listaAtividades = atividades
-    listaAtividades = filtraAtividadePorTrilha(trilha, listaAtividades)
-    setAtividadeData(listaAtividades)
-  }, [trilha])
+    getTrilhas()
+    getUsersList()
+    console.log(user)
+  }, [])
 
-  const filtraAtividadePorTrilha = (keyWord: string, listaAtividades: IAtividade[]) => {
-    if (keyWord !== '' && keyWord !== 'geral') {
-      listaAtividades = atividades.filter((atividade) => {
-        return atividade.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
-      });
-    }
-    return listaAtividades
-  }
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+
 
   const handleSelect = (event: SelectChangeEvent) => {
     const keyWord = event.target.value
     setTrilha(keyWord)
   }
+
 
   return (
     <SimpleCardContainer>
@@ -109,31 +113,13 @@ export const AtividadesInstrutor = () => {
               label="Trilha"
               onChange={handleSelect}
             >
-              <MenuItem value={'geral'}>Geral</MenuItem>
-              <MenuItem value={'backend'}>Backend</MenuItem>
-              <MenuItem value={'frontend'}>Frontend</MenuItem>
-              <MenuItem value={'qa'}>QA</MenuItem>
+              {trilhas&&trilhas.map((trilha:ITrilha)=> <MenuItem value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
             </Select>
           </FormControl>
-          <FormControl sx={{ width: '300px', backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label">Status</InputLabel>
-            <Select
-              labelId="select-atividade-label"
-              id="select-atividade"
-              value={status}
-              label="Trilha"
-              onChange={handleChange2}
-            >
-              <MenuItem value={'geral'}>Pendente</MenuItem>
-              <MenuItem value={'backend'}>Concluída</MenuItem>
-            </Select>
-          </FormControl>
-
           <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Adicionar'} /></Link>
 
           <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar'} /></Link>
         </div>
-
         <SimpleCardWrapper> 
         {atividades?.map((atividade: IAtividade) => {
           return(

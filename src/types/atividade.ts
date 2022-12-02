@@ -18,6 +18,7 @@ export interface IAtividadeContext {
     totalPages: number
     avaliar: (idAtividade: number, pontuacao: number) => Promise<void>
     entregar: (idAtividade: number, link: string) => Promise<void>
+    getAtividadeWithIdTrilha: (page: number, idTrilha: number) => Promise<void>
 }
 
 

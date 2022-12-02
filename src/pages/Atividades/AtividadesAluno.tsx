@@ -7,7 +7,7 @@ import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'react-icons/hi';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
 import {format} from 'date-fns'
