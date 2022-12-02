@@ -73,7 +73,7 @@ export const Admin = () => {
                 <ButtonMenuLateral
                     text={"Configurações"}
                     icone={<HiCog />}
-                    link={"/configurações"}
+                    link={"/configuracoes"}
                 />
             </MenuLateral>
             <Outlet />

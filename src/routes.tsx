@@ -18,6 +18,8 @@ import { PrivateRoute } from './routes/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { Dashboard } from './pages/Dashboard/Dashboard';
+import { Configuracoes } from './pages/Configuracoes/Configuracoes';
 
 export const Router = () => {
   return (
@@ -40,6 +42,8 @@ export const Router = () => {
                     <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                     <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
                     <Route path={'/perfil'} element={<Perfil />} />
+                    <Route path={'/dashboard'} element={<Dashboard />} />
+                    <Route path={'/configuracoes'} element={<Configuracoes />} />
                   </Route>
                 </Route>
               </Routes>
