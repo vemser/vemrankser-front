@@ -8,7 +8,7 @@ import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
@@ -19,16 +19,24 @@ export const Aluno = () => {
   const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
   const { trilhas, getTrilhas, getAlunosEmTrilha, alunoEmTrilha } = useContext(VinculaTrilhaContext);
   const [searchParam, setSearchParam] = useSearchParams();
-  const [alunoData, setAlunoData] = useState([] as IAluno[])
   const [nome, setNome] = useState<string>('')
+  const {getTrilhas, trilhas} = useContext(VinculaTrilhaContext)
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam]);
 
   useEffect(() => {
+    if(nome){
+   getAlunosWithNome(pagina, nome)
+   return
+    }
+    if(trilha){
+      getAlunosWithTrilha(pagina, parseInt(trilha))
+      return
+    }
     getAlunos(pagina)
-  }, [pagina])
+  }, [pagina, trilha, nome])
 
   useEffect(() => {
     setAlunoData(alunos)
