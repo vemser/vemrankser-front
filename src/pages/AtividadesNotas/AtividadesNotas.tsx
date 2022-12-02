@@ -1,15 +1,15 @@
+import React, { useContext, useEffect, useMemo } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { useContext, useEffect, useMemo } from 'react';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import userDummy from '../../assets/user.png';
 import { INotas } from '../../types/notas';
 import { NotasContext } from '../../context/Notascontext';
@@ -81,9 +81,9 @@ export const AtividadesNotas = () => {
 
         <div className='flex'>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-trilha-label-mural-notas">Trilha</InputLabel>
+            <InputLabel id="label-select-trilha-mural-notas">Trilha</InputLabel>
             <Select
-              labelId="select-trilha-label-mural-notas"
+              labelId="label-select-trilha-mural-notas"
               id="select-trilha-mural-notas"
               value={trilha}
               label="Trilha"
@@ -96,9 +96,9 @@ export const AtividadesNotas = () => {
             </Select>
           </FormControl>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-atividade-label-mural-notas">Atividade</InputLabel>
+            <InputLabel id="label-select-atividade-mural-notas">Atividade</InputLabel>
             <Select
-              labelId="select-atividade-label-mural-notas"
+              labelId="label-select-atividade-mural-notas"
               id="select-atividade-mural-noras"
               value={atividade}
               label="Atividade"
@@ -111,9 +111,9 @@ export const AtividadesNotas = () => {
             </Select>
           </FormControl>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="select-modulo-label-mural-atividade">Módulo</InputLabel>
+            <InputLabel id="label-select-modulo-mural-atividade">Módulo</InputLabel>
             <Select
-              labelId="select-modulo-label-mural-atividade"
+              labelId="lanel-select-modulo-label-mural-atividade"
               id="select-modulo-mural-atividade"
               value={modulo}
               label="Módulo"
@@ -135,7 +135,7 @@ export const AtividadesNotas = () => {
                     <p><span>{nota.nome}</span></p> 
                     <p className='date-info'><span>{nota.nota}/100</span></p>
                   </SimpleCardContent>
-                  <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Corrigir'} /></Link>
+                  <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
                 </SimpleCardNotes>
                  )})}  
           </SimpleCardWrapper>

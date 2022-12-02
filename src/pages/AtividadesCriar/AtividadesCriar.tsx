@@ -1,48 +1,27 @@
-import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
-import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import {
-  HiAcademicCap,
-  HiBookOpen,
-  HiChartPie,
-  HiCog,
-  HiUser,
-  HiUsers,
-} from "react-icons/hi";
-import {
-  ButtonWraper,
-  ContentWrapper,
-  MainContainer,
-} from "../../components/Styles/Container.styled";
-import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
-
-import {
-  ButtonPrimary,
-  ButtonSecondary,
-} from "../../components/Buttons/Button";
-import React, { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from "react";
-import { cadastraAtividadeSchema } from "../../utils/schemas";
-import { ICadastraAtividade } from "../../types/cadastraAtividade";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AtividadeContext } from "../../context/AtividadesContext";
-import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
-import { ITrilha } from "../../types/vinculaTrilha";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
+import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
+import { ButtonWraper,ContentWrapper,MainContainer,} from "../../components/Styles/Container.styled";
+import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
+import { ButtonPrimary,ButtonSecondary,} from "../../components/Buttons/Button";
+import {HiAcademicCap,HiBookOpen,HiChartPie,HiCog,HiUser,HiUsers,} from "react-icons/hi";
+import { cadastraAtividadeSchema } from "../../utils/schemas";
+import { ICadastraAtividade } from "../../types/cadastraAtividade";
+import { AtividadeContext } from "../../context/AtividadesContext";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { ModuloContext } from "../../context/ModuloContext";
-import { pseudoRandomBytes } from "crypto";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Dayjs } from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Input } from "@mui/material";
+
 
 export const AtividadesCriar = () => {
   const {
@@ -170,8 +149,8 @@ export const AtividadesCriar = () => {
         <InputLabel  id="demo-multiple-checkbox-label">Trilha</InputLabel>
         <Select
          sx={{ width: '300px', height: '40px', backgroundColor: 'white', marginBottom: '5%'}}
-          labelId="demo-multiple-checkbox-label"
-          id="demo-multiple-checkbox"
+          labelId="label-checkbox-multiplaescolha-trilha"
+          id="checkbox-trilha"
           multiple
           value={trilhasSelecionadas}
           onChange={handleTrilhasSelecionadasChange}
@@ -198,9 +177,9 @@ export const AtividadesCriar = () => {
             fullWidth
             size="small"
           >
-            <InputLabel id="select-cadastra-atividade-modulo">Módulo</InputLabel>
+            <InputLabel id="label-select-cadastra-atividade-modulo">Módulo</InputLabel>
             <Select
-              labelId="select-cadastra-atividade-modulo"
+              labelId="label-select-cadastra-atividade-modulo"
               id="cadastra-atividade-modulo"
               value={modulo}
               label="Modulo"
@@ -223,13 +202,13 @@ export const AtividadesCriar = () => {
             fullWidth
             size="small"
           >
-            <InputLabel id="select-cadastra-atividade-trilha">
+            <InputLabel id="label-select-cadastra-atividade-peso">
               Peso
             </InputLabel>
             <Select
-              labelId="select-cadastra-atividade-trilha"
-              id="cadastra-atividade-trilha"
-              label="Trilha"
+              labelId="label-select-cadastra-atividade-peso"
+              id="cadastra-atividade-peso"
+              label="Peso"
               value={peso}
               {...register("pesoAtividade")}
               onChange={handleChangePeso}
@@ -255,20 +234,20 @@ export const AtividadesCriar = () => {
           }}
           fullWidth
           size="small"
-           className="input-data" {...register('dataEntrega')} placeholder={'teste'} type={'date'} value={dataEntrega} onChange={ 
+           className="input-data" id={'textfield-data'} {...register('dataEntrega')} placeholder={'teste'} type={'date'} value={dataEntrega} onChange={ 
                handleDataEntregaChange} />
       {errors.dataEntrega && <ErrorMessage>{errors.dataEntrega.message}</ErrorMessage>}
           <ButtonWraper>
             <ButtonPrimary
               label="Adicionar"
-              id="button-adiciona-atividade"
+              id="botao-adiciona-atividade"
               type="submit"
             />
             <Link to="/atividades">
               <ButtonSecondary
                 type="button"
                 label="Cancelar"
-                id="button-cancela-cadastro-atividade"
+                id="botao-cancela-cadastro-atividade"
               />
             </Link>
           </ButtonWraper>

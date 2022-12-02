@@ -73,7 +73,7 @@ export const AtividadesDetalhesNotas = () => {
               <p><span>Aluno 1</span></p>
               <p className='date-info'><span>
               <TextField
-            id="titulo-cadastra-atividade"
+            id="da-nota-atividade"
             value={nota}
             onChange={(e)=>setNota(parseInt(e.target.value))}
             label="Nota"
@@ -89,7 +89,7 @@ export const AtividadesDetalhesNotas = () => {
                 </span></p>
               <p><span>Link da Atividade:</span></p>
               <TextField
-            id="titulo-cadastra-atividade"
+            id="link-atividade"
             value={link}
             onChange={(e)=>setLink(e.target.value)}
             label="Link"
@@ -104,7 +104,7 @@ export const AtividadesDetalhesNotas = () => {
           />
             <p><span>Comentário:</span></p>
           <TextField
-            id="descricao-cadastra-atividade"
+            id="comentario-atvidade"
             value={comentario}
             onChange={(e)=>setComentario(e.target.value)}
             label="Comentários"
@@ -116,7 +116,7 @@ export const AtividadesDetalhesNotas = () => {
             </SimpleCardContentAtividade> 
           
           </SimpleCardAtividades> 
-          <ButtonCorrigir type={'button'}label={'Corrigir'} onClick={corrigiAtividade} id={'button-corrigi-atividade'}/>
+          <ButtonCorrigir type={'button'}label={'Corrigir'} onClick={corrigiAtividade} id={'botao-corrigi-atividade'}/>
            <Link to='/atividades/notas'>
             <ButtonSecondary
               label="Voltar"
