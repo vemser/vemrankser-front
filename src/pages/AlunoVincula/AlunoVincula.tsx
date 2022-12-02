@@ -8,8 +8,8 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
+import Select from "@mui/material/Select";
+import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { ITrilha, IVinculaTrilha } from "../../types/vinculaTrilha";
@@ -38,103 +38,51 @@ export const VinculaAluno = () => {
       <Titulo>
         Adicionar aluno à trilha
       </Titulo>
-      <form>
+      <form onSubmit={handleSubmit((data: IVinculaTrilha) => vinculaTrilha(data))}>
         <TextField
-          id="nome-cadastra-aluno"
-          label="Nome"
+          id="nome-vincula-aluno"
+          label="Login"
           variant="outlined"
-          sx={{ width: "100%", marginBottom: "5%", marginTop: "10%", backgroundColor: 'white' }}
-          {...register("nome")}
+          sx={{ width: "100%", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
+          {...register("login")}
           size="small"
         />
-        {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
-    <MainContainer>
-      <MenuLateral
-        nomeDoUsuario={"Luiza Valentini"}
-        cargoDoUsuario={"ADMIN"}
-        fotoDePerfil={""}
-      >
-        <ButtonMenuLateral
-          text={"Dashboard"}
-          icone={<HiChartPie />}
-          link={"/dashboard"}
-        />
-        <ButtonMenuLateral
-          text={"Usuários"}
-          icone={<HiUsers />}
-          link={"/usuarios"}
-        />
-        <ButtonMenuLateral
-          text={"Alunos"}
-          icone={<HiAcademicCap />}
-          link={"/alunos"}
-        />
-        <ButtonMenuLateral
-          text={"Atividades"}
-          icone={<HiBookOpen />}
-          link={"/atividades"}
-        />
-        <ButtonMenuLateral
-          text={"Perfil"}
-          icone={<HiUser />}
-          link={"/perfil"}
-        />
-        <ButtonMenuLateral
-          text={"Configurações"}
-          icone={<HiCog />}
-          link={"/configurações"}
-        />
-      </MenuLateral>
-      <ContentWrapper>
-        <Titulo>
-          Adicionar aluno à trilha
-        </Titulo>
-        <form onSubmit={handleSubmit((data: IVinculaTrilha) => vinculaTrilha(data))}>
-          <TextField
-            id="nome-vincula-aluno"
-            label="Login"
-            variant="outlined"
-            sx={{ width: "100%", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
-            {...register("login")}
-            size="small"
+        {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
+
+        <FormControl sx={{ width: "100%", marginBottom: "5%", backgroundColor: "white" }} fullWidth size="small">
+          <InputLabel id="demo-multiple-name-label">Trilha</InputLabel>
+          <Select
+            id="idTrilha"
+            multiple
+            value={trilha}
+            {...register("idTrilha")}
+            onChange={handleChange}
+            input={<OutlinedInput label="Name" />}
+          >
+            {trilhas.map((trilha: ITrilha) =>
+              <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
+                {trilha.nome} - edição {trilha.edicao}
+              </MenuItem>
+            )}
+          </Select>
+        </FormControl>
+        {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
+
+        <ButtonWraper>
+          <ButtonPrimary
+            label="Adicionar"
+            id="button-vincula-aluno"
+            type="submit"
           />
-          {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
-
-          <FormControl sx={{ width: "100%", marginBottom: "5%", backgroundColor: "white" }} fullWidth size="small">
-            <InputLabel id="demo-multiple-name-label">Trilha</InputLabel>
-            <Select
-              id="idTrilha"
-              multiple
-              value={trilha}
-              {...register("idTrilha")}
-              onChange={handleChange}
-              input={<OutlinedInput label="Name" />}
-            >
-              {trilhas.map((trilha: ITrilha) =>
-                <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
-                  {trilha.nome} - edição {trilha.edicao}
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-          {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
-
-          <ButtonWraper>
-            <ButtonPrimary
-              label="Adicionar"
-              id="button-vincula-aluno"
-              type="submit"
+          <Link to="/alunos">
+            <ButtonSecondary
+              label="Cancelar"
+              id="button-volta-vincula-aluno"
+              type="button"
             />
-            <Link to="/alunos">
-              <ButtonSecondary
-                label="Cancelar"
-                id="button-volta-vincula-aluno"
-                type="button"
-              />
-            </Link>
-          </ButtonWraper>
-        </form>
-      </ContentWrapper>
-    </MainContainer>
+          </Link>
+        </ButtonWraper>
+      </form>
+    </ContentWrapper>
   );
 };

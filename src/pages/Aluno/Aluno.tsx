@@ -4,15 +4,11 @@ import { IAluno } from "../../types/aluno";
 import { ITrilha } from "../../types/vinculaTrilha";
 import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { HiSearch } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
-import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { HiUser, HiChartPie, HiAcademicCap, HiBookOpen, HiCog, HiSearch, HiUsers } from "react-icons/hi";
-import userDummy from "../../assets/user.png";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { api } from "../../utils/api";
 
@@ -85,42 +81,6 @@ export const Aluno = () => {
 
   return (
     <ButtonCardContainer>
-      <MenuLateral
-        nomeDoUsuario={"Luiza Valentini"}
-        cargoDoUsuario={"ADMIN"}
-        fotoDePerfil={""}
-      >
-        <ButtonMenuLateral
-          text={"Dashboard"}
-          icone={<HiChartPie />}
-          link={"/dashboard"}
-        />
-        <ButtonMenuLateral
-          text={"Usuários"}
-          icone={<HiUsers />}
-          link={"/usuarios"}
-        />
-        <ButtonMenuLateral
-          text={"Alunos"}
-          icone={<HiAcademicCap />}
-          link={"/alunos"}
-        />
-        <ButtonMenuLateral
-          text={"Atividades"}
-          icone={<HiBookOpen />}
-          link={"/atividades"}
-        />
-        <ButtonMenuLateral
-          text={"Perfil"}
-          icone={<HiUser />}
-          link={"/perfil"}
-        />
-        <ButtonMenuLateral
-          text={"Configurações"}
-          icone={<HiCog />}
-          link={"/configurações"}
-        />
-      </MenuLateral>
       <section>
         <Titulo>
           Alunos

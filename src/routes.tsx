@@ -36,7 +36,6 @@ export const Router = () => {
                 <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
                 <Route path={'/alunos'} element={<Aluno />} />
                 <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-                <Route path={'/alunos/editar'} element={<EditaAluno />} />
                 <Route path={'/usuarios'} element={<Usuario />} />
                 <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                 <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
