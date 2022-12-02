@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { vinculaAlunoSchema } from "../../utils/schemas";
 import { OutlinedInput, TextField } from "@mui/material";
@@ -10,7 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from "react-icons/hi";
 import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
@@ -20,7 +20,7 @@ import { ITrilha, IVinculaTrilha } from "../../types/vinculaTrilha";
 export const VinculaAluno = () => {
   const { trilhas, getTrilhas, vinculaTrilha } = useContext(VinculaTrilhaContext)
   const [trilha, setTrilha] = useState<number[]>([]);
-  const { register, handleSubmit, control, formState: { errors } } = useForm<IVinculaTrilha>({
+  const { register, handleSubmit, formState: { errors } } = useForm<IVinculaTrilha>({
     resolver: yupResolver(vinculaAlunoSchema),
   });
 

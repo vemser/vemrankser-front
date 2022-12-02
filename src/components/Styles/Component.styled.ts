@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Titulo = styled.h1`
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 500;
     user-select: none;
-    color: var(--cor-texto);
+    color: var(--cor-primaria);
     text-align: center;
     @media screen and (max-width: 460px) {
         font-size: 1.6rem;

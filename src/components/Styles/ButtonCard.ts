@@ -102,7 +102,7 @@ export const ButtonCardContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 80px;
+  gap: 40px;
   font-size: 1rem;
   @media screen and (max-width: 460px) {
       font-size: 0.9rem;
@@ -118,6 +118,42 @@ export const ButtonCardContent = styled.div`
     justify-content: flex-start;
     flex-direction: column;
     gap: 10px;
+    p {
+      white-space: pre-line;
+    }
+  }
+  .firstSection {
+    width: 280px;
+    @media (max-width: 1600px) {
+        width: 200px;
+    }
+    @media (max-width: 1400px) {
+        width: 280px;
+    }
+    @media (max-width: 1100px) {
+        width: 200px;
+    }
+    @media (max-width: 1000px) {
+        width: 230px;
+    }
+    @media (max-width: 850px) {
+        width: 100%;
+    }
+  }
+  .secondSection {
+    width: 250px;
+    @media (max-width: 1600px) {
+        width: 170px;
+    }
+    @media (max-width: 1400px) {
+        width: 180px;
+    }
+    @media (max-width: 1000px) {
+        width: 200px;
+    }
+    @media (max-width: 850px) {
+        width: 100%;
+    }
   }
   p {
     font-size: 1rem;

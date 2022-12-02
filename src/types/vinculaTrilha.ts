@@ -14,7 +14,5 @@ export interface IVinculaTrilha {
 export interface IVinculaTrilhaContext {
   getTrilhas: () => Promise<void>,
   trilhas: ITrilha[]
-  vinculaTrilha: (payload: IVinculaTrilha) => Promise<void>,
-  getAlunosEmTrilha: (idTrilha: string) => Promise<void>,
-  alunoEmTrilha: any
+  vinculaTrilha: (payload: IVinculaTrilha) => Promise<void>
 }

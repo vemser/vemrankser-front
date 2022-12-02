@@ -163,7 +163,6 @@ export const Usuario = () => {
                 </TableHead>
                 <TableBody>
                   {dataTable.length !== 0 ? dataTable.map((usuario: IUser) => {
-                    console.log(usuario.tipoPerfil)
                     return (
                       <TableRow key={usuario.email}>
                         <TableCell sx={{ fontSize: '0.9rem', fontFamily: 'Inter' }}>{usuario.nome}</TableCell>
