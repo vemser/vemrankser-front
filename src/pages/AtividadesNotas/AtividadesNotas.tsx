@@ -12,7 +12,7 @@ import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrap
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import userDummy from '../../assets/user.png';
 import { INotas } from '../../types/notas';
-import { NotasContext } from '../../context/Notascontext';
+import { NotasContext } from '../../context/NotasContext';
 import Pagination from '@mui/material/Pagination';
 
 export const AtividadesNotas = () => {
@@ -20,12 +20,12 @@ export const AtividadesNotas = () => {
   const [modulo, setModulo] = React.useState("");
   const [atividade, setAtividade] = React.useState("");
   const [searchParam, setSearchParam] = useSearchParams();
-  const { getNotas, notas, totalPages} = useContext(NotasContext);
+  const { getNotas, notas, totalPages } = useContext(NotasContext);
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
-  const handleChangeSelect2= (event: SelectChangeEvent) => {
+  const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
 
@@ -43,38 +43,38 @@ export const AtividadesNotas = () => {
 
   return (
     <SimpleCardContainer>
-    <MenuLateral
-      nomeDoUsuario={"Luiza Valentini"}
-      cargoDoUsuario={"ADMIN"}
-      fotoDePerfil={""}
-    >
-      <ButtonMenuLateral
-        text={"Dashboard"}
-        icone={<HiChartPie />}
-        link={"/dashboard"}
-      />
-      <ButtonMenuLateral
-        text={"Alunos"}
-        icone={<HiAcademicCap />}
-        link={"/alunos"}
-      />
-      <ButtonMenuLateral
-        text={"Atividades"}
-        icone={<HiBookOpen />}
-        link={"/atividades"}
-      />
-      <ButtonMenuLateral
-        text={"Perfil"}
-        icone={<HiUser />}
-        link={"/perfil"}
-      />
-      <ButtonMenuLateral
-        text={"Configurações"}
-        icone={<HiCog />}
-        link={"/configurações"}
-      />
-    </MenuLateral>
-    <section>
+      <MenuLateral
+        nomeDoUsuario={"Luiza Valentini"}
+        cargoDoUsuario={"ADMIN"}
+        fotoDePerfil={""}
+      >
+        <ButtonMenuLateral
+          text={"Dashboard"}
+          icone={<HiChartPie />}
+          link={"/dashboard"}
+        />
+        <ButtonMenuLateral
+          text={"Alunos"}
+          icone={<HiAcademicCap />}
+          link={"/alunos"}
+        />
+        <ButtonMenuLateral
+          text={"Atividades"}
+          icone={<HiBookOpen />}
+          link={"/atividades"}
+        />
+        <ButtonMenuLateral
+          text={"Perfil"}
+          icone={<HiUser />}
+          link={"/perfil"}
+        />
+        <ButtonMenuLateral
+          text={"Configurações"}
+          icone={<HiCog />}
+          link={"/configurações"}
+        />
+      </MenuLateral>
+      <section>
         <Titulo>
           Mural de Notas
         </Titulo>
@@ -102,7 +102,7 @@ export const AtividadesNotas = () => {
               id="select-atividade-mural-noras"
               value={atividade}
               label="Atividade"
-              onChange={ handleChangeSelect3}
+              onChange={handleChangeSelect3}
             >
               <MenuItem value={'atividade1'}>Atividade 1</MenuItem>
               <MenuItem value={'atividade2'}>Atividade 2</MenuItem>
@@ -127,20 +127,21 @@ export const AtividadesNotas = () => {
           </FormControl>
         </div>
         <SimpleCardWrapper>
-        {notas.map((nota: INotas) => {
-                return(
-                <SimpleCardNotes>
-                  <img src={userDummy} alt="Foto" />
-                  <SimpleCardContent>
-                    <p><span>{nota.nome}</span></p> 
-                    <p className='date-info'><span>{nota.nota}/100</span></p>
-                  </SimpleCardContent>
-                  <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
-                </SimpleCardNotes>
-                 )})}  
-          </SimpleCardWrapper>
-          <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
-          </section>
-        </SimpleCardContainer>
+          {notas.map((nota: INotas) => {
+            return (
+              <SimpleCardNotes>
+                <img src={userDummy} alt="Foto" />
+                <SimpleCardContent>
+                  <p><span>{nota.nome}</span></p>
+                  <p className='date-info'><span>{nota.nota}/100</span></p>
+                </SimpleCardContent>
+                <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
+              </SimpleCardNotes>
+            )
+          })}
+        </SimpleCardWrapper>
+        <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
+      </section>
+    </SimpleCardContainer>
   )
 }

@@ -22,7 +22,7 @@ export const AtividadesInstrutor = () => {
   const [searchParam, setSearchParam] = useSearchParams();
   const { getAtividade, atividades, totalPages, getAtividadeWithIdTrilha } = useContext(AtividadeContext);
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
-  const { user,  getUsersList} = useContext(UsersContext)
+
 
   // const handleChange = (event: SelectChangeEvent) => {
   //   setTrilha(event.target.value as string);
@@ -45,15 +45,8 @@ export const AtividadesInstrutor = () => {
 
   useEffect(() => {
     getTrilhas()
-    getUsersList()
-    console.log(user)
   }, [])
-
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
-
+  
   const handleSelect = (event: SelectChangeEvent) => {
     const keyWord = event.target.value
     setTrilha(keyWord)

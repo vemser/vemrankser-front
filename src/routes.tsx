@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import {  AtividadesInstrutor } from './pages/Atividades/AtividadesInstrutor';
+import { AtividadesInstrutor } from './pages/Atividades/AtividadesInstrutor';
 import { AtividadesCriar } from './pages/AtividadesCriar/AtividadesCriar';
 import { AtividadesNotas } from './pages/AtividadesNotas/AtividadesNotas';
 import { Aluno } from './pages/Aluno/Aluno';
@@ -18,7 +18,7 @@ import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AtividadeProvider } from './context/AtividadesContext';
 import { AtividadesDetalhesNotas } from './pages/AtividadesMaisDetalhesNotas/AtividadeMaisDetalhesNotas';
-import { NotasProvider } from './context/Notascontext';
+import { NotasProvider } from './context/NotasContext';
 import { ModuloProvider } from './context/ModuloContext';
 import { ComentarioProvider } from './context/ComentarioContext';
 import { AtividadesAluno } from './pages/Atividades/AtividadesAluno';
@@ -43,14 +43,14 @@ export const Router = () => {
                           <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
                           <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
                           <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-                          <Route path={'/atividades/aluno/entrega'} element={ <EntregaAtividade />} />
+                          <Route path={'/atividades/aluno/entrega'} element={<EntregaAtividade />} />
                           <Route path={'/atividades/corrige/notas'} element={<AtividadesDetalhesNotas />} />
                           <Route path={'/alunos'} element={<Aluno />} />
                           <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
                           <Route path={'/usuarios'} element={<Usuario />} />
                           <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                           <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
-                          
+
                         </Route>
                       </Routes>
                     </ComentarioProvider>
