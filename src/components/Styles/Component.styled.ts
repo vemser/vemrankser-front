@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Titulo = styled.h1`
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 500;
     user-select: none;
-    color: var(--cor-texto);
+    color: var(--cor-primaria);
     text-align: center;
     @media screen and (max-width: 460px) {
         font-size: 1.6rem;
@@ -39,15 +39,14 @@ export const BarraDePesquisa = styled.div`
 
 export const ErrorMessage = styled.span`
   color: #f50031;
-  margin-top: -15px;
+  margin-top: -10px;
+  margin-bottom: 10px;
   font-size: 0.9rem;
   font-weight: 600;
-  user-select: none;
 `
 
 export const ErrorMessage2 = styled.span`
   color: #f50031;
   font-size: 0.8rem;
   font-weight: 600;
-  user-select: none;
 `
