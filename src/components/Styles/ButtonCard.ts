@@ -135,3 +135,76 @@ export const Buttons = styled.div`
   flex-direction: row;
   gap: 10px;
 `;
+
+export const ButtonCardDashboard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 100px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  gap: 40px;
+  padding: 20px;
+  transition: 0.5s;
+  @media (max-width: 850px) {
+      flex-direction: column;
+      height: auto;
+  }
+  &:hover {
+    transition: 1s;
+    transform: scale(1.01);
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    @media screen and (max-width: 460px) {
+        width: 40px;
+        height: 40px;
+    }
+  }
+  @media (max-width: 850px) {
+      width: 100%;
+  }
+  @media screen and (max-width: 460px) {
+      gap: 10px;
+  }
+`;
+export const ButtonCardDashboardInformacoes = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  height: 200px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  gap: 40px;
+  padding: 20px;
+  transition: 0.5s;
+  @media (max-width: 850px) {
+      flex-direction: column;
+      height: auto;
+  }
+  &:hover {
+    transition: 1s;
+    transform: scale(1.01);
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    @media screen and (max-width: 460px) {
+        width: 40px;
+        height: 40px;
+    }
+  }
+  @media (max-width: 850px) {
+      width: 100%;
+  }
+  @media screen and (max-width: 460px) {
+      gap: 10px;
+  }
+`;

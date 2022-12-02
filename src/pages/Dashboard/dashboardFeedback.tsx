@@ -2,14 +2,14 @@ import {  MenuItem, Select, SelectChangeEvent } from "@mui/material"
 import FormControl from "@mui/material/FormControl"
 import InputLabel from "@mui/material/InputLabel"
 import React from "react"
-import { ButtonPrimary } from "../../components/Buttons/Button"
+import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button"
 import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
 import { Titulo } from "../../components/Styles/Component.styled"
 import userDummy from "../../assets/user.png";
 import { GiChampions } from "react-icons/gi"
 import { Link } from "react-router-dom"
 
-export const DashBoard = () => {
+export const DashBoardFeedback = () => {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -20,7 +20,7 @@ export const DashBoard = () => {
          <ButtonCardContainer>
       <section>
         <Titulo>
-          Dashboard
+          Feedback
         </Titulo>
         <div className="flex">
           <div>
@@ -44,18 +44,17 @@ export const DashBoard = () => {
               </Select>
             </FormControl>
           </div>
-          <Link to={"/dashboard/feedback"}>
-          <ButtonPrimary
+            <ButtonPrimary
               type={"button"}
               id={"botao-vincula-aluno"}
               label={"Feedbacks"}
             />
-          </Link>
             <Link to={"/dashboard/informacoes"}>
-            <ButtonPrimary
-              type={"button"}
-              id={"botao-vincula-aluno"}
-              label={"Informações"}
+            <ButtonSecondary 
+              label={'voltar'}
+              type={'button'}
+              id={''}
+            
             />
             </Link>
         </div>

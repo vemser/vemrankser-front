@@ -17,6 +17,8 @@ import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
 import { Admin } from './components/Layouts/Admin';
 import { DashBoard } from './pages/Dashboard/dashboard';
+import { DashBoardInformacoes } from './pages/Dashboard/dashboardInforacoes';
+import { DashBoardFeedback } from './pages/Dashboard/dashboardFeedback';
 
 export const Router = () => {
   return (
@@ -38,6 +40,8 @@ export const Router = () => {
                 <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                 <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
                 <Route path={'/dashboard'} element={<DashBoard />} />
+                <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
+                <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
               </Route>
             </Route>
           </Routes>
