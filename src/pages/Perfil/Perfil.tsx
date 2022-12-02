@@ -36,13 +36,13 @@ export const Perfil = () => {
         }
     }
 
-    console.log(usuario)
+    const image = usuario.foto;
 
     return (
         <ContentWrapper>
             <PerfilContainer>
                 <header>
-                    <img id='perfil-foto' src={usuario.foto}
+                    <img id='perfil-foto' src={`data:image/jpeg;base64,${image}`}
                         alt={`Foto de ${usuario.nome}`} />
                     <div>
                         <h4 id='perfil-nome' >{usuario.nome}</h4>
@@ -51,7 +51,7 @@ export const Perfil = () => {
                         <p id='perfil-tipo-de-conta'><span>Tipo de conta:</span> {verificaTipoUsuario(usuario.tipoPerfil)}</p>
                         {usuario.trilhas.length !== 0 ?
                             <p><span>Trilha: </span>
-                            
+
                                 {usuario?.trilhas.map
                                     ((trilhas: ITrilha, index: any) => {
                                         const ultimaTrilha = usuario.trilhas.length - 1
@@ -64,6 +64,13 @@ export const Perfil = () => {
                         }
                     </div>
                 </header>
+
+
+
+                        
+
+
+
                 <section>
                     <h5 id='perfil-atividades-vinculadas' >Atividades Vinculadas</h5>
                     <div>

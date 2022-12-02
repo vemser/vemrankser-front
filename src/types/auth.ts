@@ -1,4 +1,4 @@
-import { IUser, IUserLogin } from './user';
+import { IUserLogin } from './user';
 
 export interface IAuthContext {
     handleLogin: (user: IUserLogin) => Promise<void>,

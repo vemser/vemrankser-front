@@ -50,7 +50,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
       nProgress.start();
       const { data } = await api.get(`/trilha/lista-usuarios?pagina=${page - 1}&tamanho=4&idTrilha=${idTrilha}`);
       setTotalPages(data.quantidadePaginas);
-      console.log(data)
+      
       setAlunos(data.elementos.usuarios);
     } catch (error) {
       console.error(error);

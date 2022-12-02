@@ -36,12 +36,14 @@ export const Admin = () => {
         }
     }
 
+    const image = usuario.foto
+
     return (
         <main style={{ display: 'flex', width: '100%' }}>
             <MenuLateral
                 nomeDoUsuario={usuario.nome}
                 cargoDoUsuario={verificaTipoUsuario(usuario.tipoPerfil)}
-                fotoDePerfil={""}
+                fotoDePerfil={`data:image/jpeg;base64,${image}`}
             >
                 <ButtonMenuLateral
                     text={"Dashboard"}

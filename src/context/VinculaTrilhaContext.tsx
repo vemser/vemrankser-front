@@ -16,12 +16,11 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
 
   const getTrilhas = async () => {
     try {
-      nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/trilha/lista-trilha-nome`);
-
       setTrilhas(data);
+      
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
@@ -50,6 +49,7 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+
   return (
     <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha }}>
       {children}
