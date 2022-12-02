@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import userDummy from '../../assets/user.png';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
@@ -16,6 +16,8 @@ export const Atividades = () => {
   const [trilha, setTrilha] = React.useState('');
   const [status, setStatus] = React.useState('');
   const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
+  const [searchParam, setSearchParam] = useSearchParams();
+  const { getAtividade, atividades, totalPages } = useContext(AtividadeContext);
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -24,12 +26,14 @@ export const Atividades = () => {
     setStatus(event.target.value as string);
   };
 
-  const { getAtividade, atividades } = useContext(AtividadeContext);
-
+  const pagina = useMemo(() => {
+    return Number(searchParam.get("pagina") || "1")
+  }, [searchParam])
+  
   useEffect(() => {
-    getAtividade('1')
+    getAtividade(pagina)
     setAtividadeData(atividades)
-  },[])
+  },[pagina])
 
   useEffect(() => {
     let listaAtividades = atividades
@@ -135,13 +139,13 @@ export const Atividades = () => {
            <SimpleCard>
             <img src={userDummy} alt="Foto" />
             <SimpleCardContent>
-              <p><span>{atividade.nome}</span> postou uma nova atividade.</p>
+              <p><span>{atividade.nomeInstrutor}</span> postou uma nova atividade.</p>
               <p className='date-info'>{atividade.dataEntrega}</p>
             </SimpleCardContent>
           </SimpleCard>
           )})}
-         
         </SimpleCardWrapper>
+        <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
       </section>
     </SimpleCardContainer>
   )

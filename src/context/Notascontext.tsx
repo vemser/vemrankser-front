@@ -12,12 +12,12 @@ export const NotasProvider = ({ children }: IChildren) => {
   const [ totalPages, setTotalPages] = useState(0);
   const token = localStorage.getItem('token');
 
-  const getNotas = async (page: string) => {
+  const getNotas = async (page: number) => {
     try {
         api.defaults.headers.common['Authorization'] = token;
         nProgress.start();
-        const { data } = await api.get(`/atividade/listar-nota?pagina=${parseInt(page) - 1}&tamanho=5`);
-        setTotalPages(data.totalPages);
+        const { data } = await api.get(`/atividade/listar-nota?pagina=${page - 1}&tamanho=5`);
+        setTotalPages(data.quantidadePaginas);
         setNotas(data.elementos);
         console.log(data.elementos)
 
@@ -29,7 +29,7 @@ export const NotasProvider = ({ children }: IChildren) => {
     }
 }
   return (
-    <NotasContext.Provider value={{ getNotas, notas, setNotas }}>
+    <NotasContext.Provider value={{ getNotas, notas, setNotas, totalPages }}>
       {children}
     </NotasContext.Provider>
   );

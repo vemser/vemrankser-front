@@ -8,7 +8,9 @@ export interface IChildren{
 }
 
 export interface INotasContext {
-    getNotas: (page: string) => Promise<void>
+    getNotas: (page: number) => Promise<void>
     notas: INotas[]
     setNotas: React.Dispatch<React.SetStateAction<INotas[]>>
+    totalPages: number
+    
   }

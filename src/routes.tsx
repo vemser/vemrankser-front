@@ -19,6 +19,8 @@ import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AtividadeProvider } from './context/AtividadesContext';
 import { AtividadesDetalhesNotas } from './pages/AtividadesMaisDetalhesNotas/AtividadeMaisDetalhesNotas';
 import { NotasProvider } from './context/Notascontext';
+import { ModuloProvider } from './context/ModuloContext';
+import { ComentarioProvider } from './context/ComentarioContext';
 
 export const Router = () => {
   return (
@@ -28,21 +30,29 @@ export const Router = () => {
         <UsersProvider>
           <AlunoProvider>
             <VinculaTrilhaProvider>
-            <AtividadeProvider>
-            <Routes>
-            <Route path={'/'} element={<Login />} />
-            <Route element={<PrivateRoute />}>
-              <Route path={'/atividades'} element={<Atividades />} />
-              <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-              <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-              <Route path={'/alunos'} element={<Aluno />} />
-              <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-              <Route path={'/usuarios'} element={<Usuario />} />
-              <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
-              <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
-            </Route>
-          </Routes>
-          </AtividadeProvider>
+              <AtividadeProvider>
+                <ModuloProvider>
+                  < NotasProvider>
+                  <ComentarioProvider>
+                    <Routes>
+                      <Route path={'/'} element={<Login />} />
+                      <Route element={<PrivateRoute />}>
+                        <Route path={'/atividades'} element={<Atividades />} />
+                        <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+                        <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+                        <Route path={'/atividades/corrige/notas/:idAtividade'} element={<AtividadesDetalhesNotas />} />
+                        <Route path={'/alunos'} element={<Aluno />} />
+                        <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
+                        <Route path={'/usuarios'} element={<Usuario />} />
+                        <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
+                        <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+                      </Route>
+                    </Routes>
+                  </ComentarioProvider>
+                    
+                  </NotasProvider>
+                </ModuloProvider>
+              </AtividadeProvider>
             </VinculaTrilhaProvider>
           </AlunoProvider>
         </UsersProvider>

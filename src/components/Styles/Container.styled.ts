@@ -20,6 +20,7 @@ export const ContentWrapper = styled.div`
     align-items: center;
     width: 30%;
   }
+
 `;
 
 export const ButtonWraper = styled.div`

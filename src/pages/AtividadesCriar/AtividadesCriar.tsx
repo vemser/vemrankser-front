@@ -25,15 +25,24 @@ import {
   ButtonPrimary,
   ButtonSecondary,
 } from "../../components/Buttons/Button";
-import React, { useContext } from "react";
-import InputData from "../../components/InputData/InputData";
-import CheckMarks from "../../components/CheckMarks/CheckMarks";
+import React, { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { cadastraAtividadeSchema } from "../../utils/schemas";
 import { ICadastraAtividade } from "../../types/cadastraAtividade";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AtividadeContext } from "../../context/AtividadesContext";
-import { ITrilha } from "../../types/atividade";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
+import { ITrilha } from "../../types/vinculaTrilha";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
+import { ModuloContext } from "../../context/ModuloContext";
+import { pseudoRandomBytes } from "crypto";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Input } from "@mui/material";
 
 export const AtividadesCriar = () => {
   const {
@@ -47,19 +56,49 @@ export const AtividadesCriar = () => {
   const [trilha, setTrilha] = React.useState("");
   const [modulo, setModulo] = React.useState("");
   const {criaAtividade} = useContext(AtividadeContext)
+  const {getTrilhas, trilhas} = useContext(VinculaTrilhaContext)
+  const [trilhasSelecionadas, setTrilhasSelecionadas] = useState<number[]>([])
+  const [peso, setPeso] = useState<number>()
+  const {getModulos, modulos} = useContext(ModuloContext)
+  const [dataEntrega, setDataEntrega] = useState<string>();
 
-    
-  const handleSelect = (event: SelectChangeEvent) => {
-    const keyWord = event.target.value
-    console.log(keyWord)
-    setTrilha(keyWord)
-  }
 
+  useEffect(()=>{
+    getTrilhas()
+    getModulos()
+  },[])
+ 
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
+    
   };
 
-  
+  const handleChangePeso = (event: SelectChangeEvent<number>)=>{
+    const {
+      target: { value },
+    } = event;
+    if(!(typeof value==='string')){
+      setPeso(value)
+    }
+  }
+  const handleDataEntregaChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setDataEntrega(event.target.value)
+  }
+
+  const handleTrilhasSelecionadasChange = (event: SelectChangeEvent<typeof trilhasSelecionadas>) => {
+    const {
+      target: { value },
+    } = event;
+    if(!(typeof value==='string')){
+       setTrilhasSelecionadas(
+     value
+    );
+    }
+  };
+
+  const enviaAtividade = (data: ICadastraAtividade) => {
+    criaAtividade({...data,idTrilha:trilhasSelecionadas})
+  }
 
   return (
     <MainContainer>
@@ -101,7 +140,7 @@ export const AtividadesCriar = () => {
       </MenuLateral>
       <ContentWrapper>
         <Titulo>Adicionar Nova Atividade</Titulo>
-        <form onSubmit={handleSubmit((data: ICadastraAtividade) =>  criaAtividade(data))}>
+        <form onSubmit={handleSubmit(enviaAtividade)}>
           <TextField
             {...register("titulo")}
             id="titulo-cadastra-atividade"
@@ -130,21 +169,24 @@ export const AtividadesCriar = () => {
             <FormControl >
         <InputLabel  id="demo-multiple-checkbox-label">Trilha</InputLabel>
         <Select
-                labelId="select-vincula-aluno-trilha"
-                id="edita-trilha"
-                value={trilha}
-                label="Trilha"
-                onChange={handleSelect}
-                // renderValue={}
-              >
-                {trilhas&&trilhas.map((trilha:ITrilha)=>
-                 <MenuItem value={trilha.idTrilha}>{trilha.nome} - edição {trilha.edicao}</MenuItem>
-                )}
-              </Select>
-            </FormControl>
+         sx={{ width: '300px', height: '40px', backgroundColor: 'white', marginBottom: '5%'}}
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={trilhasSelecionadas}
+          onChange={handleTrilhasSelecionadasChange}
+          input={<OutlinedInput label="Escolha a trilha" />}
+          renderValue={(selected) => trilhas.filter((trilha)=> selected.includes(trilha.idTrilha)).map((trilha)=>trilha.nome).join(', ')}
+        >
+          {trilhas.map((trilha) => (
+            <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
+              <Checkbox checked={trilhasSelecionadas.indexOf(trilha.idTrilha) > -1} />
+              <ListItemText primary={trilha.nome} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
             </div>
-
-    
            {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
 
           <FormControl
@@ -165,10 +207,10 @@ export const AtividadesCriar = () => {
               {...register("idModulo")}
               onChange={handleChangeSelect2}
             >
-              <MenuItem value={"modulo1"}>Módulo 1</MenuItem>
-              <MenuItem value={"modulo2"}>Módulo 2</MenuItem>
-              <MenuItem value={"modulo3"}>Módulo 3</MenuItem>
-              <MenuItem value={"modulo4"}>Módulo 4</MenuItem>
+              {modulos&&modulos.map((modulo) =>  <MenuItem value={modulo.idModulo}>
+                {modulo.nome}
+              </MenuItem>
+              )}
             </Select>
           </FormControl>
           {errors.idModulo && <ErrorMessage>{errors.idModulo.message}</ErrorMessage>}
@@ -187,20 +229,35 @@ export const AtividadesCriar = () => {
             <Select
               labelId="select-cadastra-atividade-trilha"
               id="cadastra-atividade-trilha"
-              value={trilha}
               label="Trilha"
+              value={peso}
               {...register("pesoAtividade")}
-              onChange={handleChangeSelect2}
+              onChange={handleChangePeso}
             >
-              <MenuItem value={"1"}>1</MenuItem>
-              <MenuItem value={"2"}>2</MenuItem>
-              <MenuItem value={"3"}>3</MenuItem>
-              <MenuItem value={"4"}>4</MenuItem>
-              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
             </Select>
           </FormControl>
           {errors.pesoAtividade && <ErrorMessage>{errors.pesoAtividade.message}</ErrorMessage>}
-          <InputData />
+          <TextField 
+          sx={{
+            width: '300px',
+            marginBottom: "5%",
+            backgroundColor: "white",
+          }}
+          fullWidth
+          size="small"
+           className="input-data" {...register('dataEntrega')} placeholder={'teste'} type={'date'} value={dataEntrega} onChange={ 
+               handleDataEntregaChange} />
+      {errors.dataEntrega && <ErrorMessage>{errors.dataEntrega.message}</ErrorMessage>}
           <ButtonWraper>
             <ButtonPrimary
               label="Adicionar"
@@ -212,7 +269,6 @@ export const AtividadesCriar = () => {
                 type="button"
                 label="Cancelar"
                 id="button-cancela-cadastro-atividade"
-              
               />
             </Link>
           </ButtonWraper>

@@ -1,10 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
 import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiSearch, HiUser, HiUsers } from "react-icons/hi";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import { IAluno } from "../../types/aluno";
+import Pagination from "@mui/material/Pagination";
+import { ITrilha } from "../../types/vinculaTrilha";
+import { AlunoContext } from "../../context/AlunoContext";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -136,7 +147,7 @@ export const Aluno = () => {
               return (
                 <ButtonCard>
                   <ButtonCardContent>
-                    <img src={userDummy} alt="Foto" />
+                    {/* <img src={userDummy} alt="Foto" /> */}
                     <div>
                       <p><span>Nome:</span> {aluno.nome} </p>
                       <p><span>E-mail:</span> {aluno.email} </p>

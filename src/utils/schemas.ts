@@ -29,9 +29,9 @@ export const editaAlunoSchema = yup.object().shape({
 export const cadastraAtividadeSchema = yup.object().shape({
     titulo: yup.string().required('Por favor, digite o titulo da atividade').trim(),
     instrucoes: yup.string().required('Por favor, digite a descrição da atividade').trim(),
-    trilha: yup.number().required('Por favor, selecione pelo meno uma trilha'),
-    idModulo: yup.string().required('Por favor, selecione um módulo'),
-    pesoAtividade: yup.string().required('Por favor, selecione o peso'),
+    // trilha: yup.number().required('Por favor, selecione pelo meno uma trilha'),
+    idModulo: yup.number().required('Por favor, selecione um módulo'),
+    pesoAtividade: yup.number().required('Por favor, selecione o peso'),
     dataEntrega: yup.date().required().min("2022-11-30", "Date inválida, por favor digite outra data")
 });
 

@@ -1,26 +1,23 @@
 import { ICadastraAtividade } from "./cadastraAtividade";
+import { ITrilha } from "./vinculaTrilha";
 
 export interface IAtividade {
-    nome: string;
+    nomeInstrutor: string;
     dataEntrega: string;
     trilhas: ITrilha[];
   }
-  export interface ITrilha {
-    nome: string,
-    edicao: number,
-    anoEdicao: string,
-    idTrilha: number
-  }
-
 export interface IChildren{
     children?:React.ReactNode;
 }
 
 export interface IAtividadeContext {
-    getAtividade: (page: string) => Promise<void>
+    getAtividade: (page: number) => Promise<void>
     atividades: IAtividade[]
     setAtividades: React.Dispatch<React.SetStateAction<IAtividade[]>>
     criaAtividade: (payload: ICadastraAtividade) => Promise<void>
+    totalPages: number
+    avaliar: (idAtividade: number, pontuacao: number) => Promise<void>
+    entregar: (idAtividade: number, link: string) => Promise<void>
 }
 
 

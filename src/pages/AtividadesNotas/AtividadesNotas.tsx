@@ -2,9 +2,9 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ButtonPrimary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
@@ -13,11 +13,14 @@ import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrap
 import userDummy from '../../assets/user.png';
 import { INotas } from '../../types/notas';
 import { NotasContext } from '../../context/Notascontext';
+import Pagination from '@mui/material/Pagination';
 
 export const AtividadesNotas = () => {
   const [trilha, setTrilha] = React.useState('');
   const [modulo, setModulo] = React.useState("");
   const [atividade, setAtividade] = React.useState("");
+  const [searchParam, setSearchParam] = useSearchParams();
+  const { getNotas, notas, totalPages} = useContext(NotasContext);
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -29,11 +32,14 @@ export const AtividadesNotas = () => {
   const handleChangeSelect3 = (event: SelectChangeEvent) => {
     setAtividade(event.target.value as string);
   };
-  const { getNotas, notas } = useContext(NotasContext);
 
-  // useEffect(() => {
-  //   getNotas('1')
-  // }, [])
+  const pagina = useMemo(() => {
+    return Number(searchParam.get("pagina") || "1")
+  }, [searchParam])
+
+  useEffect(() => {
+    getNotas(pagina)
+  }, [pagina])
 
   return (
     <SimpleCardContainer>
@@ -121,18 +127,19 @@ export const AtividadesNotas = () => {
           </FormControl>
         </div>
         <SimpleCardWrapper>
-        {/* {notas.map((nota: INotas) => {
-                return( */}
+        {notas.map((nota: INotas) => {
+                return(
                 <SimpleCardNotes>
                   <img src={userDummy} alt="Foto" />
                   <SimpleCardContent>
-                    <p><span>Aluno 1</span></p> 
-                    <p className='date-info'><span>___/100</span></p>
+                    <p><span>{nota.nome}</span></p> 
+                    <p className='date-info'><span>{nota.nota}/100</span></p>
                   </SimpleCardContent>
-                  <Link to={'/atividades/detalhes/notas'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Corrigir'} /></Link>
+                  <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Corrigir'} /></Link>
                 </SimpleCardNotes>
-                {/* )})}  */}
+                 )})}  
           </SimpleCardWrapper>
+          <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
           </section>
         </SimpleCardContainer>
   )
