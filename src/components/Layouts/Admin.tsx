@@ -12,7 +12,7 @@ export const Admin = () => {
         getLoggedUser()
     }, []);
 
-    const usuario = localStorage.getItem('user');
+    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -39,8 +39,8 @@ export const Admin = () => {
     return (
         <main style={{ display: 'flex', width: '100%' }}>
             <MenuLateral
-                nomeDoUsuario={`${usuario}`}
-                cargoDoUsuario={`${verificaTipoUsuario(Number(usuario))}`}
+                nomeDoUsuario={usuario.nome}
+                cargoDoUsuario={verificaTipoUsuario(usuario.tipoPerfil)}
                 fotoDePerfil={""}
             >
                 <ButtonMenuLateral

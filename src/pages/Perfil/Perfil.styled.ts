@@ -18,10 +18,10 @@ export const PerfilContainer = styled.div`
         height: 34%;
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        gap: 15px;
+        justify-content: center;
+        gap: 30px;
         padding: 40px 0;
-        text-align: center;
+        text-align: left;
         background-color: var(--cor-primaria);
         border-radius: 10px 10px 0 0;
         @media screen and (max-width: 640px) {
@@ -44,14 +44,15 @@ export const PerfilContainer = styled.div`
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 5px;
+            gap: 10px;
             font-size: 1rem;
+            font-weight: 500;
             color: white;
             span {
-                font-weight: 600;
-                font-size: 0.9rem;
                 width: 100%;
                 white-space: pre-line;
+                color: #afc8ff;
+                margin-right: 5px;
             }
             p {
                 @media screen and (max-width: 600px) {
@@ -62,6 +63,7 @@ export const PerfilContainer = styled.div`
         h4 {
             font-size: 1.4rem;
             font-weight: 600;
+            margin-bottom: 15px;
             color: var(--branco);
             user-select: none;
             @media screen and (max-width: 600px) {

@@ -1,10 +1,9 @@
-import { Avatar } from '@mui/material'
 import { useContext, useEffect } from 'react';
-import { Titulo } from '../../components/Styles/Component.styled'
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { AuthContext } from '../../context/AuthContext';
 import { PerfilContainer } from './Perfil.styled';
 import imageDummy from '../../assets/teste.jpg';
+import { ITrilha } from '../../types/vinculaTrilha';
 
 export const Perfil = () => {
     const { getLoggedUser } = useContext(AuthContext);
@@ -13,9 +12,7 @@ export const Perfil = () => {
         getLoggedUser()
     }, []);
 
-    // {`${verificaTipoUsuario(Number(tipo))}`}
-
-    const user = localStorage.getItem('user');
+    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -39,27 +36,41 @@ export const Perfil = () => {
         }
     }
 
+    console.log(usuario)
+
     return (
         <ContentWrapper>
             <PerfilContainer>
                 <header>
-                    <img src={imageDummy}
-                    alt={`Foto de usuário`} />
+                    <img id='perfil-foto' src={usuario.foto}
+                        alt={`Foto de ${usuario.nome}`} />
                     <div>
-                        <h4>Anderson da Lima Silva</h4>
-                        <p><span>Login:</span> anderson.silva</p>
-                        <p><span>Email:</span> anderson.silva@dbccompany.com.br</p>
-                        <p><span>Tipo de conta:</span> Instrutor</p>
-                        <p><span>Trilha:</span> QA</p>
+                        <h4 id='perfil-nome' >{usuario.nome}</h4>
+                        <p id='perfil-login' ><span>Login:</span> {usuario.login}</p>
+                        <p id='perfil-email' ><span>Email:</span> {usuario.email}</p>
+                        <p id='perfil-tipo-de-conta'><span>Tipo de conta:</span> {verificaTipoUsuario(usuario.tipoPerfil)}</p>
+                        {usuario.trilhas.length !== 0 ?
+                            <p><span>Trilha: </span>
+                            
+                                {usuario?.trilhas.map
+                                    ((trilhas: ITrilha, index: any) => {
+                                        const ultimaTrilha = usuario.trilhas.length - 1
+                                        return (index === ultimaTrilha ?
+                                            trilhas.nome
+                                            : trilhas.nome + `, `)
+                                    })
+                                } </p>
+                            : ''
+                        }
                     </div>
                 </header>
                 <section>
-                    <h5>Atividades Vinculadas</h5>
+                    <h5 id='perfil-atividades-vinculadas' >Atividades Vinculadas</h5>
                     <div>
                         <p>Nenhuma atividade encontrada!</p>
                     </div>
                 </section>
             </PerfilContainer>
-        </ContentWrapper>
+        </ContentWrapper >
     )
 }
