@@ -1,16 +1,16 @@
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { Link, useParams } from 'react-router-dom';
-import { ButtonPrimary, ButtonSecondary } from '../../components/Buttons/Button';
+import { useContext, useState } from 'react';
+import { ButtonSecondary } from '../../components/Buttons/Button';
 import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
-import { ErrorMessage, Titulo } from '../../components/Styles/Component.styled';
+import { Titulo } from '../../components/Styles/Component.styled';
+import TextField from '@mui/material/TextField';
 import { SimpleCardAtividades, SimpleCardContainer,SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import userDummy from '../../assets/user.png';
-import TextField from '@mui/material/TextField';
-import { useContext, useState } from 'react';
-import { Button } from '@mui/material';
+import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { ComentarioContext } from '../../context/ComentarioContext';
+import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
 
 export const AtividadesDetalhesNotas = () => {
  const [nota, setNota] = useState<number>()
@@ -20,10 +20,13 @@ export const AtividadesDetalhesNotas = () => {
   const { criaComentario } = useContext(ComentarioContext)
   const {idAtividade} = useParams()
   
+  const canCorrigirAtividade = idAtividade&&nota&&link&&comentario
   const corrigiAtividade = () =>{
-     
+    if(!canCorrigirAtividade) return
+     avaliar(parseInt(idAtividade), nota)
+     entregar(parseInt(idAtividade), link)
+     criaComentario(parseInt(idAtividade),comentario)
   }
-
   return (
     <SimpleCardContainer>
     <MenuLateral
@@ -113,13 +116,12 @@ export const AtividadesDetalhesNotas = () => {
             </SimpleCardContentAtividade> 
           
           </SimpleCardAtividades> 
-          <Button  variant="contained" onClick={corrigiAtividade}>Corrigir</Button>
+          <ButtonCorrigir type={'button'}label={'Corrigir'} onClick={corrigiAtividade} id={'button-corrigi-atividade'}/>
            <Link to='/atividades/notas'>
             <ButtonSecondary
               label="Voltar"
               id="button-volta-mural-notas"
               type="submit"
-    
             />
             </Link>
           </SimpleCardWrapper>

@@ -10,6 +10,7 @@ import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
+import {format} from 'date-fns'
 
 export const Atividades = () => {
   
@@ -140,7 +141,7 @@ export const Atividades = () => {
             <img src={userDummy} alt="Foto" />
             <SimpleCardContent>
               <p><span>{atividade.nomeInstrutor}</span> postou uma nova atividade.</p>
-              <p className='date-info'>{atividade.dataEntrega}</p>
+              <p className='date-info'>{format(new Date(atividade.dataEntrega), 'dd/mm/yyyy')}</p>
             </SimpleCardContent>
           </SimpleCard>
           )})}
