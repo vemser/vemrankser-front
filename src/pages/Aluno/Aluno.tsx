@@ -1,25 +1,91 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
+import { AlunoContext } from "../../context/AlunoContext";
+import { IAluno } from "../../types/aluno";
+import { ITrilha } from "../../types/vinculaTrilha";
+import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { HiSearch } from "react-icons/hi";
 import userDummy from "../../assets/user.png";
-import BarraPesquisa from "../../components/BarraPesquisa/BarraPesquisa";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
+import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
+import { api } from "../../utils/api";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
+  const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
+  const { trilhas, getTrilhas } = useContext(VinculaTrilhaContext);
+  const [searchParam, setSearchParam] = useSearchParams();
+  const [nome, setNome] = useState<string>('');
+  const [alunoData, setAlunoData] = useState<IAluno[]>([]);
+  const token = localStorage.getItem('token');
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setTrilha(event.target.value as string);
-  };
+  const pagina = useMemo(() => {
+    return Number(searchParam.get("pagina") || "1")
+  }, [searchParam]);
+
+  useEffect(() => {
+    setAlunoData(alunos)
+  }, [alunos])
+
+  useEffect(() => {
+    getTrilhas()
+  }, [])
+
+  useEffect(() => {
+    getAlunos(pagina)
+  }, [pagina])
+
+  const handleSelect = async (event: SelectChangeEvent) => {
+    const keyWord = event.target.value;
+    setTrilha(keyWord);
+
+    api.defaults.headers.common['Authorization'] = token;
+
+    api.get(`/trilha/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
+      ({ data }) => {
+        const { elementos } = data;
+
+        const { usuarios } = elementos[0];
+
+        const formatedOldOBJ = elementos.map((trilha: any) => {
+          return ({
+            ...usuarios[0],
+            trilhas: [{
+              nome: trilha.nome,
+              edicao: trilha.edicao,
+              anoEdicao: trilha.anoEdicao,
+              idTrilha: trilha.idTrilha
+            }]
+          })
+        })
+
+        setAlunoData(formatedOldOBJ);
+      }
+    )
+  }
+
+  const handleNome = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const keyWord = event.target.value
+    if (keyWord !== '') {
+      const resultado = alunos.filter((aluno) => {
+        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
+      });
+      setAlunoData(resultado);
+    } else {
+      setAlunoData(alunos);
+    }
+    setNome(keyWord);
+  }
+
   return (
     <ButtonCardContainer>
       <section>
         <Titulo>
           Alunos
         </Titulo>
+
         <div className="flex">
           <div>
             <FormControl
@@ -33,24 +99,29 @@ export const Aluno = () => {
                 id="select-atividade"
                 value={trilha}
                 label="Trilha"
-                onChange={handleChange}
+                onChange={handleSelect}
               >
-                <MenuItem value={"geral"}>Geral</MenuItem>
-                <MenuItem value={"backend"}>Backend</MenuItem>
-                <MenuItem value={"frontend"}>Frontend</MenuItem>
-                <MenuItem value={"qa"}>QA</MenuItem>
+                {trilhas.map((trilhaSelect: ITrilha) => {
+                  return <MenuItem key={trilhaSelect.idTrilha} value={trilhaSelect.idTrilha}>{trilhaSelect.nome}</MenuItem>
+                })}
               </Select>
             </FormControl>
           </div>
 
           <BarraDePesquisa>
-            <BarraPesquisa
-              label={"Pesquisar"}
+            <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
+              fullWidth
+              size="small"
+              label={"Pesquisar por nome"}
+              value={nome}
               id={"barra-de-pesquisa-aluno"}
+              onChange={handleNome}
             />
             <i>
-              <HiSearch size={"28px"} />
+              <HiSearch size={"28px"}
+              />
             </i>
+
           </BarraDePesquisa>
           <Link to={"/alunos/vincular"}>
             <ButtonPrimary
@@ -61,69 +132,33 @@ export const Aluno = () => {
           </Link>
         </div>
         <ButtonCardWrapper>
-          <ButtonCard>
-            <ButtonCardContent>
-              <img src={userDummy} alt="Foto" />
-              <div>
-                <p><span>Nome:</span> Luiza Valentini </p>
-                <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-              </div>
-              <div>
-                <p><span>Login:</span> Luiza.valentini </p>
-                <p><span>Cidade: </span> Caxias do sul </p>
-              </div>
-              <div>
-                <p><span>Status:</span> ativo </p>
-              </div>
-            </ButtonCardContent>
-          </ButtonCard>
-          <ButtonCard>
-            <ButtonCardContent>
-              <img src={userDummy} alt="Foto" />
-              <div>
-                <p><span>Nome:</span> Luiza Valentini </p>
-                <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-              </div>
-              <div>
-                <p><span>Login:</span> Luiza.valentini </p>
-                <p><span>Cidade: </span> Caxias do sul </p>
-              </div>
-              <div>
-                <p><span>Status:</span> ativo </p>
-              </div>
-            </ButtonCardContent>
-          </ButtonCard><ButtonCard>
-            <ButtonCardContent>
-              <img src={userDummy} alt="Foto" />
-              <div>
-                <p><span>Nome:</span> Luiza Valentini </p>
-                <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-              </div>
-              <div>
-                <p><span>Login:</span> Luiza.valentini </p>
-                <p><span>Cidade: </span> Caxias do sul </p>
-              </div>
-              <div>
-                <p><span>Status:</span> ativo </p>
-              </div>
-            </ButtonCardContent>
-          </ButtonCard><ButtonCard>
-            <ButtonCardContent>
-              <img src={userDummy} alt="Foto" />
-              <div>
-                <p><span>Nome:</span> Luiza Valentini </p>
-                <p><span>E-mail:</span> testedeemailgrande@mail.com </p>
-              </div>
-              <div>
-                <p><span>Login:</span> Luiza.valentini </p>
-                <p><span>Cidade: </span> Caxias do sul </p>
-              </div>
-              <div>
-                <p><span>Status:</span> ativo </p>
-              </div>
-            </ButtonCardContent>
-          </ButtonCard>
+          {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
+            const ultimaTrilha = aluno.trilhas.length - 1
+
+            return (
+              <ButtonCard key={aluno.email}>
+                <ButtonCardContent>
+                  <img src={userDummy} alt="Foto" />
+                  <div className="firstSection">
+                    <p><span>Nome:</span> {aluno.nome} </p>
+                    <p><span>E-mail:</span> {aluno.email} </p>
+                  </div>
+                  <div className="secondSection">
+                    <p><span>Login: </span> {aluno.login} </p>
+                    <p><span>Trilha: </span>
+                      {aluno.trilhas.length !== 0 ? aluno?.trilhas.map((trilhas: ITrilha, index) => {
+                        return index === ultimaTrilha ? trilhas.nome : trilhas.nome + `, `
+                      }) : 'Sem trilha vinculada'}</p>
+                  </div>
+                  <div className="thirdSection">
+                    <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
+                  </div>
+                </ButtonCardContent>
+              </ButtonCard>
+            )
+          }) : <p>Nenhum aluno encontrado!</p>}
         </ButtonCardWrapper>
+        <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
       </section>
     </ButtonCardContainer>
   );

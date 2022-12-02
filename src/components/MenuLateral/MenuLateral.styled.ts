@@ -59,7 +59,7 @@ export const MenuLateralTitle = styled.div`
 `;
 
 export const FotoDePerfil = styled.div`
-  height: 120px;
+  height: 130px;
   width: 130px;
   background-color: var(--branco);
   border-radius: 50%;

@@ -135,7 +135,7 @@ export const Usuario = () => {
             <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
               fullWidth
               size="small"
-              label={"Filtrar por nome ou email"}
+              label={"Buscar por nome ou email"}
               id={"barra-de-pesquisa-usuario"}
               onChange={(search) => setInput(search.target.value.toLowerCase())}
               onKeyPress={handleKeyPress}

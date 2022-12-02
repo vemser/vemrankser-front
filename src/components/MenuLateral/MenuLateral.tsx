@@ -7,7 +7,7 @@ import { IoRocketOutline } from "react-icons/io5";
 import { AuthContext } from "../../context/AuthContext";
 
 export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePerfil }: IMenuLateral) => {
-  let [menuOpen, setMenuOpen] = useState<boolean>(false);
+  let [ menuOpen, setMenuOpen ] = useState<boolean>(false);
   const { handleLogout } = useContext(AuthContext);
 
   return (
