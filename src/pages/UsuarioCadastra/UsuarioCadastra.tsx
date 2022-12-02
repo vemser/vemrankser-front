@@ -13,7 +13,7 @@ import Select from "@mui/material/Select";
 import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
 import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
 import { UsersContext } from "../../context/UserContext";
-import Dropzone from 'react-dropzone';
+// import Dropzone from 'react-dropzone';
 
 export const UsuarioCadastra = () => {
   const { createUser } = useContext(UsersContext);
@@ -29,7 +29,7 @@ export const UsuarioCadastra = () => {
       <Titulo>Cadastro Usuário</Titulo>
       <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
 
-        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+        {/* <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()}>
@@ -38,7 +38,7 @@ export const UsuarioCadastra = () => {
               </div>
             </section>
           )}
-        </Dropzone>
+        </Dropzone> */}
 
         <TextField id="nome" label="Nome *" variant="outlined"
           sx={{ width: "300px", marginTop: "10%", backgroundColor: "white" }} {...register("nome")} size="small" />

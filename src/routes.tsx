@@ -16,6 +16,7 @@ import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
 import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
 import { UsersProvider } from './context/UserContext';
 import { Admin } from './components/Layouts/Admin';
+import { DashBoard } from './pages/Dashboard/dashboard';
 
 export const Router = () => {
   return (
@@ -36,6 +37,7 @@ export const Router = () => {
                 <Route path={'/usuarios'} element={<Usuario />} />
                 <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                 <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+                <Route path={'/dashboard'} element={<DashBoard />} />
               </Route>
             </Route>
           </Routes>
