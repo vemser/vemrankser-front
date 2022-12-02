@@ -7,12 +7,12 @@ import { MenuLateral } from '../MenuLateral/MenuLateral'
 
 export const Admin = () => {
     const { getLoggedUser } = useContext(AuthContext);
-    const user = localStorage.getItem('user');
-    const tipo = localStorage.getItem('tipo');
 
     useEffect(() => {
         getLoggedUser()
     }, []);
+
+    const usuario = localStorage.getItem('user');
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -39,8 +39,8 @@ export const Admin = () => {
     return (
         <main style={{ display: 'flex', width: '100%' }}>
             <MenuLateral
-                nomeDoUsuario={`${user}`}
-                cargoDoUsuario={`${verificaTipoUsuario(Number(tipo))}`}
+                nomeDoUsuario={`${usuario}`}
+                cargoDoUsuario={`${verificaTipoUsuario(Number(usuario))}`}
                 fotoDePerfil={""}
             >
                 <ButtonMenuLateral

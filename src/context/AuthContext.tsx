@@ -12,6 +12,7 @@ export const AuthContext = createContext({} as IAuthContext);
 export const AuthProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
+    const [ usuario, setUsuario ] = useState('');
 
     const handleLogin = async (user: IUserLogin) => {
         try {
@@ -36,7 +37,6 @@ export const AuthProvider = ({ children }: IChildren) => {
         api.defaults.headers.common['Authorization'] = undefined;
         
         localStorage.removeItem('user');
-        localStorage.removeItem('tipo');
         navigate('/');
     }
 
@@ -45,8 +45,8 @@ export const AuthProvider = ({ children }: IChildren) => {
             api.defaults.headers['Authorization'] = token;
             const { data } = await api.get(`/usuario/pegar-usuario-logado`);
 
-            localStorage.setItem('user', data);
-            
+            localStorage.setItem('user', JSON.stringify(data));
+
         } catch (error) {
             console.log(error);
         }
