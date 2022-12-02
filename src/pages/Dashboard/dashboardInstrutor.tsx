@@ -1,16 +1,15 @@
-import {  MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material"
+import {  MenuItem, Select, SelectChangeEvent } from "@mui/material"
 import FormControl from "@mui/material/FormControl"
 import InputLabel from "@mui/material/InputLabel"
 import React from "react"
-import { ButtonSecondary } from "../../components/Buttons/Button"
-import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
-import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled"
+import { ButtonPrimary } from "../../components/Buttons/Button"
+import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
+import { Titulo } from "../../components/Styles/Component.styled"
 import userDummy from "../../assets/user.png";
+import { GiChampions } from "react-icons/gi"
 import { Link } from "react-router-dom"
-import { HiSearch } from "react-icons/hi"
-import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta"
 
-export const DashBoardFeedback = () => {
+export const DashBoard = () => {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -21,7 +20,7 @@ export const DashBoardFeedback = () => {
          <ButtonCardContainer>
       <section>
         <Titulo>
-          Feedback
+          Dashboard
         </Titulo>
         <div className="flex">
           <div>
@@ -45,47 +44,44 @@ export const DashBoardFeedback = () => {
               </Select>
             </FormControl>
           </div>
-          <BarraDePesquisa>
-              <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
-                fullWidth
-                size="small"
-                // size="small"
-                label={"Filtrar por nome ou email"}
-                // value={nome}
-                id={"barra-de-pesquisa-aluno"}
-                // onChange={handleNome}
-              />
-             <i>
-              <HiSearch size={"28px"}
-              />
-              </i>
-            </BarraDePesquisa>
-            <Link to={"/dashboard"}>
-            <ButtonSecondary 
-              label={'voltar'}
-              type={'button'}
-              id={''}
+          <Link to={"/dashboard/feedback"}>
+          <ButtonPrimary
+              type={"button"}
+              id={"botao-vincula-aluno"}
+              label={"Feedbacks"}
+            />
+          </Link>
+            <Link to={"/dashboard/informacoes"}>
+            <ButtonPrimary
+              type={"button"}
+              id={"botao-vincula-aluno"}
+              label={"Informações"}
             />
             </Link>
         </div>
         <ButtonCardWrapper>
-          <ButtonCardDashboardFeedback>
+          <ButtonCardDashboard>
             <ButtonCardContent>
               <img src={userDummy} alt="Foto" />
               <div>
                 <p><span>Nome: </span>Luiza Valentini</p>
               </div>
-              <div className="button-adiciona-visualiza-feedback">
-                <Link to={'/dashboard/feedback/visualiza/pontos'}> 
-                 <ButtonEditaDeleta icone={''} label={"Visualizar"} />
-                </Link>
+              <div>
+                <p><span>Pontos:</span> 1300 </p>
+              </div>
+              <div>
+                <p><span>Posição:</span>1</p>
+              </div>
+              <div>
+                <GiChampions size={'40px'} color={'var(--cor-primaria)'}/>
               </div>
             </ButtonCardContent>
-          </ButtonCardDashboardFeedback>
+          </ButtonCardDashboard>
         </ButtonCardWrapper>
       </section>
     </ButtonCardContainer>
         </>
+
     )
 }
 

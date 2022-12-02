@@ -9,7 +9,7 @@ import userDummy from "../../assets/user.png";
 import { GiChampions } from "react-icons/gi"
 import { Link } from "react-router-dom"
 
-export const DashBoard = () => {
+export const DashBoardAluno = () => {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -20,7 +20,7 @@ export const DashBoard = () => {
          <ButtonCardContainer>
       <section>
         <Titulo>
-          Dashboard
+          Dashboard - Aluno
         </Titulo>
         <div className="flex">
           <div>
@@ -44,7 +44,7 @@ export const DashBoard = () => {
               </Select>
             </FormControl>
           </div>
-          <Link to={"/dashboard/feedback"}>
+          <Link to={"/dashboard/feedback/aluno"}>
           <ButtonPrimary
               type={"button"}
               id={"botao-vincula-aluno"}
@@ -73,7 +73,75 @@ export const DashBoard = () => {
                 <p><span>Posição:</span>1</p>
               </div>
               <div>
-                <GiChampions size={'40px'}/>
+                <GiChampions size={'40px'}  color={'var(--cor-primaria)'}/>
+              </div>
+            </ButtonCardContent>
+          </ButtonCardDashboard>
+          <ButtonCardDashboard>
+            <ButtonCardContent>
+              <img src={userDummy} alt="Foto" />
+              <div>
+                <p><span>Nome: </span>Luiza Valentini</p>
+              </div>
+              <div>
+                <p><span>Pontos:</span> 1300 </p>
+              </div>
+              <div>
+                <p><span>Posição:</span>1</p>
+              </div>
+              <div>
+                <GiChampions size={'40px'}  color={'var(--cor-primaria)'}/>
+              </div>
+            </ButtonCardContent>
+          </ButtonCardDashboard>
+          <ButtonCardDashboard>
+            <ButtonCardContent>
+              <img src={userDummy} alt="Foto" />
+              <div>
+                <p><span>Nome: </span>Luiza Valentini</p>
+              </div>
+              <div>
+                <p><span>Pontos:</span> 1300 </p>
+              </div>
+              <div>
+                <p><span>Posição:</span>1</p>
+              </div>
+              <div>
+                <GiChampions size={'40px'}  color={'var(--cor-primaria)'}/>
+              </div>
+            </ButtonCardContent>
+          </ButtonCardDashboard>
+          <ButtonCardDashboard>
+            <ButtonCardContent>
+              <img src={userDummy} alt="Foto" />
+              <div>
+                <p><span>Nome: </span>Luiza Valentini</p>
+              </div>
+              <div>
+                <p><span>Pontos:</span> 1300 </p>
+              </div>
+              <div>
+                <p><span>Posição:</span>1</p>
+              </div>
+              <div>
+                <GiChampions size={'40px'}  color={'var(--cor-primaria)'}/>
+              </div>
+            </ButtonCardContent>
+          </ButtonCardDashboard>
+          <ButtonCardDashboard>
+            <ButtonCardContent>
+              <img src={userDummy} alt="Foto" />
+              <div>
+                <p><span>Nome: </span>Luiza Valentini</p>
+              </div>
+              <div>
+                <p><span>Pontos:</span> 1300 </p>
+              </div>
+              <div>
+                <p><span>Posição:</span>1</p>
+              </div>
+              <div>
+                <GiChampions size={'40px'} color={'var(--cor-primaria)'}/>
               </div>
             </ButtonCardContent>
           </ButtonCardDashboard>

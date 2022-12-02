@@ -7,7 +7,7 @@ const ButtonEditaDeletaStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
   color: "var(--branco)",
   width: 120,
-  height: 40,
+  height: 30,
   transition: '0.5s',
   '&:hover': {
     transition: '0.5s',
