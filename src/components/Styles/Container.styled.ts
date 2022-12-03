@@ -17,6 +17,11 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  div{
+    display: flex;
+    gap: 2%;
+    margin-top: 3%;
+  }
   @media (max-width: 1000px) {
     width: 100%;
   }

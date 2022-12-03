@@ -4,35 +4,38 @@ import { Titulo } from '../../components/Styles/Component.styled'
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { SimpleCardConfiguracoes, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard'
 
-export const ConfiguracoesCoordenador = () => {
+export const ConfiguracoesInstrutor = () => {
   return (
       <ContentWrapper>
         <Titulo>
-          Configurações
+          Configurações Instrutor
         </Titulo>
         <div>
-          <Link to={'/configuracoes/adiciona/trilha'}>
-           <ButtonPrimary label={'Adicionar Trilha'} id={''} type={'button'} />
+          <Link to={'/configuracoes/adiciona/modulo'}>
+           <ButtonPrimary label={'Adicionar Modulo'} id={''} type={'button'} />
           </Link>
-        <Link to={"/configuracoes/vincula/instrutor"}>
-           <ButtonPrimary label={'Vincular instrutor'} id={''} type={'button'} /> 
+        <Link to={"/configuracoes/vincula/modulo"}>
+           <ButtonPrimary label={'Vincular Modulo'} id={''} type={'button'} /> 
         </Link>
         </div>
         <SimpleCardConfiguracoes>
           <SimpleCardContent>
-            <p>A Trilha <span>Backend</span> foi adicionada.</p>
+            <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
           </SimpleCardContent>
         </SimpleCardConfiguracoes>
         <SimpleCardConfiguracoes>
           <SimpleCardContent>
-            <p>A Trilha <span>Frontend</span> foi adicionada.</p>
+            <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
           </SimpleCardContent>
         </SimpleCardConfiguracoes>
         <SimpleCardConfiguracoes>
           <SimpleCardContent>
-            <p>A Trilha <span>Backend</span> foi adicionada.</p>
+            <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
           </SimpleCardContent>
         </SimpleCardConfiguracoes>
+      
+      
+      
       </ContentWrapper>
 
   )

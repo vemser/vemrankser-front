@@ -115,3 +115,35 @@ export const SimpleCardContent = styled.div`
         font-weight: 500;
     }
 `
+export const SimpleCardConfiguracoes = styled.div`
+    display: flex;
+    align-items: center;
+    width: 30%;
+    height: 100px;
+    margin-top: 2%;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    gap: 40px;
+    padding: 20px;
+    transition: 0.5s;
+    &:hover {
+        transition: 1s;
+        transform: scale(1.01);
+    }
+    @media (max-width: 850px) {
+        width: 25%;
+    }
+    @media screen and (max-width: 460px) {
+        gap: 10px;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        @media screen and (max-width: 460px) {
+            width: 40px;
+            height: 40px;
+        }
+    }
+`

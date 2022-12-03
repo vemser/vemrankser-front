@@ -19,7 +19,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { Dashboard } from './pages/Dashboard/Dashboard';
-import { Configuracoes } from './pages/Configuracoes/ConfiguracoesCoordenador';
+import { ConfiguracoesCoordenador } from './pages/Configuracoes/ConfiguracoesCoordenador';
+import { ConfiguracoesAdicionaTrilha } from './pages/Configuracoes/ConfiguracoesAdicionaTrilha';
+import { ConfiguracoesVinculaInstrutor } from './pages/Configuracoes/ConfiguracoesVinculaInstrutor';
+import { ConfiguracoesInstrutor } from './pages/Configuracoes/ConfiguracoesInstrutor';
+import { ConfiguracoesAdicionaModulo } from './pages/Configuracoes/ConfiguracoesAdicionaModulo';
+import { ConfiguracoesVinculaModulo } from './pages/Configuracoes/ConfiguracoesVinculaModulo';
 
 export const Router = () => {
   return (
@@ -43,7 +48,12 @@ export const Router = () => {
                     <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
                     <Route path={'/perfil'} element={<Perfil />} />
                     <Route path={'/dashboard'} element={<Dashboard />} />
-                    <Route path={'/configuracoes'} element={<Configuracoes />} />
+                    <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
+                    <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
+                    <Route path={'/configuracoes/adiciona/trilha'} element={<ConfiguracoesAdicionaTrilha />} />
+                    <Route path={'/configuracoes/adiciona/modulo'} element={<ConfiguracoesAdicionaModulo />} />
+                    <Route path={'/configuracoes/vincula/modulo'} element={<ConfiguracoesVinculaModulo />} />
+                    <Route path={'/configuracoes/vincula/instrutor'} element={<ConfiguracoesVinculaInstrutor />} />
                   </Route>
                 </Route>
               </Routes>
@@ -54,3 +64,4 @@ export const Router = () => {
     </BrowserRouter>
   )
 }
+
