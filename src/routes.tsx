@@ -32,6 +32,14 @@ import { AtividadesAluno } from './pages/Atividades/AtividadesAluno';
 import { EntregaAtividade } from './pages/Atividades/EntregaAtividadeAluno';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { DashBoard } from './pages/Dashboard/dashboardInstrutor';
+import { DashBoardInformacoes } from './pages/Dashboard/dashboardInforacoes';
+import { DashBoardFeedback } from './pages/Dashboard/dashboardFeedback';
+import {  DashBoardVisualiza } from './pages/Dashboard/DashboardVisualiza';
+import { DashBoardAdiciona } from './pages/Dashboard/dashboardAdiciona';
+import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
+import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
+
 
 export const Router = () => {
   return (
@@ -69,7 +77,15 @@ export const Router = () => {
                             <Route path={'/configuracoes/adicionar-modulo'} element={<CadastrarModulo />} />
                             <Route path={'/configuracoes/vincular-modulo'} element={<VincularModulo />} />
                             <Route path={'/configuracoes/vincular-instrutor'} element={<VincularInstrutor />} />
-                          </Route>
+                            <Route path={'/dashboard'} element={<DashBoard />} />
+                <Route path={'/dashboard/aluno'} element={<DashBoardAluno />} />
+                <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
+                <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
+                <Route path={'/dashboard/feedback/aluno'} element={<DashBoardFeedbackAluno />} />
+                <Route path={'/dashboard/feedback/visualiza/pontos'} element={< DashBoardVisualiza />} />
+                <Route path={'/dashboard/feedback/adiciona/pontos'} element={<DashBoardAdiciona />} />
+                
+              </Route>
                         </Route>
                       </Routes>
                     </ComentarioProvider>
