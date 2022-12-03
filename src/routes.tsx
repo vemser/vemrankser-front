@@ -28,7 +28,7 @@ import { VincularModulo } from './pages/Configuracoes/VincularModulo';
 
 export const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ToastContainer />
       <AuthProvider>
         <UsersProvider>
