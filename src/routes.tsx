@@ -39,6 +39,7 @@ import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
 import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { PerfilProvider } from './context/PerfilContext';
 import { UsuarioCadastraFoto } from './pages/UsuarioCadastraFoto/UsuarioCadastraFoto';
 
 
@@ -53,41 +54,43 @@ export const Router = () => {
               <AtividadeProvider>
                 <ModuloProvider>
                   < NotasProvider>
-                    <ComentarioProvider>
-                      <Routes>
-                        <Route path={'/'} element={<Login />} />
-                        <Route element={<PrivateRoute />}>
-                          <Route element={<Admin />}>
-                            <Route path={'/atividades'} element={<AtividadesInstrutor />} />
-                            <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-                            <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
-                            <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-                            <Route path={'/atividades/aluno/entrega'} element={<EntregaAtividade />} />
-                            <Route path={'/atividades/corrige/notas'} element={<AtividadesDetalhesNotas />} />
-                            <Route path={'/alunos'} element={<Aluno />} />
-                            <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-                            <Route path={'/usuarios'} element={<Usuario />} />
-                            <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
-                            <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
-                            <Route path={'/usuarios/cadastrar-foto'} element={<UsuarioCadastraFoto />} />
+                    < PerfilProvider>
+                      <ComentarioProvider>
+                        <Routes>
+                          <Route path={'/'} element={<Login />} />
+                          <Route element={<PrivateRoute />}>
+                            <Route element={<Admin />}>
+                              <Route path={'/atividades'} element={<AtividadesInstrutor />} />
+                              <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+                              <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
+                              <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+                              <Route path={'/atividades/aluno/entrega'} element={<EntregaAtividade />} />
+                              <Route path={'/atividades/corrige/notas'} element={<AtividadesDetalhesNotas />} />
+                              <Route path={'/alunos'} element={<Aluno />} />
+                              <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
+                              <Route path={'/usuarios'} element={<Usuario />} />
+                              <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
+                              <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+                              <Route path={'/usuarios/cadastrar-foto'} element={<UsuarioCadastraFoto />} />
                             <Route path={'/perfil'} element={<Perfil />} />
-                            <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
-                            <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
-                            <Route path={'/configuracoes/adicionar-trilha'} element={<CadastrarTrilha />} />
-                            <Route path={'/configuracoes/adicionar-modulo'} element={<CadastrarModulo />} />
-                            <Route path={'/configuracoes/vincular-modulo'} element={<VincularModulo />} />
-                            <Route path={'/configuracoes/vincular-instrutor'} element={<VincularInstrutor />} />
-                            <Route path={'/dashboard'} element={<DashBoard />} />
-                            <Route path={'/dashboard/aluno'} element={<DashBoardAluno />} />
-                            <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
-                            <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
-                            <Route path={'/dashboard/feedback/aluno'} element={<DashBoardFeedbackAluno />} />
-                            <Route path={'/dashboard/feedback/visualiza/pontos'} element={< DashBoardVisualiza />} />
-                            <Route path={'/dashboard/feedback/adiciona/pontos'} element={<DashBoardAdiciona />} />
+                              <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
+                              <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
+                              <Route path={'/configuracoes/adicionar-trilha'} element={<CadastrarTrilha />} />
+                              <Route path={'/configuracoes/adicionar-modulo'} element={<CadastrarModulo />} />
+                              <Route path={'/configuracoes/vincular-modulo'} element={<VincularModulo />} />
+                              <Route path={'/configuracoes/vincular-instrutor'} element={<VincularInstrutor />} />
+                              <Route path={'/dashboard'} element={<DashBoard />} />
+                              <Route path={'/dashboard/aluno'} element={<DashBoardAluno />} />
+                              <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
+                              <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
+                              <Route path={'/dashboard/feedback/aluno'} element={<DashBoardFeedbackAluno />} />
+                              <Route path={'/dashboard/feedback/visualiza/pontos'} element={< DashBoardVisualiza />} />
+                              <Route path={'/dashboard/feedback/adiciona/pontos'} element={<DashBoardAdiciona />} />
+                            </Route>
                           </Route>
-                        </Route>
-                      </Routes>
-                    </ComentarioProvider>
+                        </Routes>
+                      </ComentarioProvider>
+                    </PerfilProvider>
                   </NotasProvider>
                 </ModuloProvider>
               </AtividadeProvider>
