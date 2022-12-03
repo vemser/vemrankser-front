@@ -4,6 +4,7 @@ import { ITrilha } from "./vinculaTrilha";
 export interface IAtividade {
     nomeInstrutor: string;
     dataEntrega: string;
+    dataCriacao: string;
     trilhas: ITrilha[];
   }
 export interface IChildren{
@@ -18,6 +19,7 @@ export interface IAtividadeContext {
     totalPages: number
     avaliar: (idAtividade: number, pontuacao: number) => Promise<void>
     entregar: (idAtividade: number, link: string) => Promise<void>
+    getAtividadeWithIdTrilha: (page: number, idTrilha: number) => Promise<void>
 }
 
 export interface IAtividadeById {

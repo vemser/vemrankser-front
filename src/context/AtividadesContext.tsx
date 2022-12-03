@@ -73,10 +73,24 @@ export const AtividadeProvider = ({ children }: IChildren) => {
          nProgress.done();
        }
      }
-    
+     const getAtividadeWithIdTrilha = async (page: number, idTrilha: number) => {
+      try {
+        api.defaults.headers.common['Authorization'] = token;
+        nProgress.start();
+        const { data } = await api.get(`/atividade/listar-mural-instrutor?pagina=${page - 1}&tamanho=4&idTrilha=${idTrilha}`);
+        setTotalPages(data.quantidadePaginas);
+        setAtividades(data.elementos);
+        console.log(data.elementos)
+      } catch (error) {
+        console.error(error);
+        toast.error('Nenhuma atividade encontrada nessa trilha! Por favor, selecione outra trilha', toastConfig);
+      } finally {
+        nProgress.done();
+      }
+    }
 
   return (
-    <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar }}>
+    <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar, getAtividadeWithIdTrilha }}>
       {children}
     </AtividadeContext.Provider>
   );
