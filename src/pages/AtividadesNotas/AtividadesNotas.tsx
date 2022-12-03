@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,9 +9,8 @@ import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import userDummy from '../../assets/user.webp';
-import { INotas } from '../../types/notas';
+import { INotas, INotasFilterParams } from '../../types/notas';
 import { NotasContext } from '../../context/Notascontext';
 import Pagination from '@mui/material/Pagination';
 import { AtividadeContext } from '../../context/AtividadesContext';
@@ -29,6 +28,7 @@ export const AtividadesNotas = () => {
   const {getAtividadeWithIdTrilha,  getAtividade} = useContext(AtividadeContext);
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
   const { getModulos, modulos } = useContext(ModuloContext)
+  const [ filterParams, setFilterParams ] = useState<INotasFilterParams>({atividadeStatus:'PENDENTE'})
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -45,23 +45,25 @@ export const AtividadesNotas = () => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam])
 
-  useEffect(() => {
-    if (trilha) {
-      getAtividadeWithIdTrilha(pagina, parseInt(trilha))
-      return
-    }
-    getAtividade(pagina)
-  }, [pagina, trilha])
+   useEffect(()=>{
+    const newFilterParams={...filterParams}
+       if(trilha){
+         newFilterParams.idTrilha=parseInt(trilha)
+       }
+       if(modulo){
+        newFilterParams.idModulo=parseInt(modulo)
+      }
+      setFilterParams(newFilterParams)
+  }, [trilha,modulo])
 
   useEffect(() => {
     getTrilhas()
     getModulos()
   }, [])
 
-
   useEffect(() => {
-    getNotas(pagina)
-  }, [pagina])
+    getNotas(pagina, filterParams)
+  }, [pagina, filterParams])
 
   return (
     <SimpleCardContainer>
@@ -103,7 +105,6 @@ export const AtividadesNotas = () => {
                   <img src={userDummy} alt="Foto" />
                   <SimpleCardContent>
                     <p><span>{nota.nome}</span></p> 
-                    <p className='date-info'><span>{nota.nota}/100</span></p>
                   </SimpleCardContent>
                   <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
                 </SimpleCardNotes>
