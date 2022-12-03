@@ -6,34 +6,38 @@ import { SimpleCardConfiguracoes, SimpleCardContent, SimpleCardWrapper } from '.
 
 export const ConfiguracoesInstrutor = () => {
   return (
-      <ContentWrapper>
-        <Titulo>
-          Configurações Instrutor
-        </Titulo>
-        <div>
-          <Link to={'/configuracoes/adicionar-modulo'}>
-           <ButtonPrimary label={'Adicionar Modulo'} id={''} type={'button'} />
-          </Link>
-        <Link to={"/configuracoes/vincular-modulo"}>
-           <ButtonPrimary label={'Vincular Modulo'} id={''} type={'button'} /> 
-        </Link>
-        </div>
-        <SimpleCardConfiguracoes>
-          <SimpleCardContent>
-            <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
-          </SimpleCardContent>
-        </SimpleCardConfiguracoes>
-        <SimpleCardConfiguracoes>
-          <SimpleCardContent>
-            <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
-          </SimpleCardContent>
-        </SimpleCardConfiguracoes>
-        <SimpleCardConfiguracoes>
-          <SimpleCardContent>
-            <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
-          </SimpleCardContent>
-        </SimpleCardConfiguracoes>
-      </ContentWrapper>
+    <ContentWrapper>
+      <Titulo>
+        Configurações
+      </Titulo>
 
+      <div className='flex'>
+        <Link to={'/configuracoes/adicionar-modulo'}>
+          <ButtonPrimary label={'Adicionar Módulo'} id={'botao-adicionar-modulo'} type={'button'} />
+        </Link>
+        <Link to={"/configuracoes/vincular-modulo"}>
+          <ButtonPrimary label={'Vincular Módulo'} id={'botao-vincular-modulo'} type={'button'} />
+        </Link>
+      </div>
+
+      <SimpleCardConfiguracoes>
+        <SimpleCardContent>
+          <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
+        </SimpleCardContent>
+      </SimpleCardConfiguracoes>
+
+      <SimpleCardConfiguracoes>
+        <SimpleCardContent>
+          <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
+        </SimpleCardContent>
+      </SimpleCardConfiguracoes>
+
+      <SimpleCardConfiguracoes>
+        <SimpleCardContent>
+          <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
+        </SimpleCardContent>
+      </SimpleCardConfiguracoes>
+
+    </ContentWrapper>
   )
 }

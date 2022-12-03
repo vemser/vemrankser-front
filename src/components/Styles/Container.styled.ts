@@ -17,11 +17,6 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  div{
-    display: flex;
-    gap: 2%;
-    margin-top: 3%;
-  }
   @media (max-width: 1000px) {
     width: 100%;
   }
@@ -30,6 +25,22 @@ export const ContentWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 30%;
+  }
+  .flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 40px;
+    div {
+      display: flex;
+      gap: 20px;
+    }
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 `;
 

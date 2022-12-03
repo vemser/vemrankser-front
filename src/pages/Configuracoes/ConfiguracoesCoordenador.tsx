@@ -6,34 +6,39 @@ import { SimpleCardConfiguracoes, SimpleCardContent, SimpleCardWrapper } from '.
 
 export const ConfiguracoesCoordenador = () => {
   return (
-      <ContentWrapper>
-        <Titulo>
-          Configurações
-        </Titulo>
-        <div>
-          <Link to={'/configuracoes/adiciona/trilha'}>
-           <ButtonPrimary label={'Adicionar Trilha'} id={''} type={'button'} />
-          </Link>
-        <Link to={"/configuracoes/vincula/instrutor"}>
-           <ButtonPrimary label={'Vincular instrutor'} id={''} type={'button'} /> 
-        </Link>
-        </div>
-        <SimpleCardConfiguracoes>
-          <SimpleCardContent>
-            <p>A Trilha <span>Backend</span> foi adicionada.</p>
-          </SimpleCardContent>
-        </SimpleCardConfiguracoes>
-        <SimpleCardConfiguracoes>
-          <SimpleCardContent>
-            <p>A Trilha <span>Frontend</span> foi adicionada.</p>
-          </SimpleCardContent>
-        </SimpleCardConfiguracoes>
-        <SimpleCardConfiguracoes>
-          <SimpleCardContent>
-            <p>A Trilha <span>Backend</span> foi adicionada.</p>
-          </SimpleCardContent>
-        </SimpleCardConfiguracoes>
-      </ContentWrapper>
+    <ContentWrapper>
+      <Titulo>
+        Configurações
+      </Titulo>
 
+      <div className='flex'>
+        <Link to={'/configuracoes/adicionar-trilha'}>
+          <ButtonPrimary label={'Cadastrar Trilha'} id={'botao-adicionar-trilha'} type={'button'} />
+        </Link>
+        
+        <Link to={"/configuracoes/vincular-instrutor"}>
+          <ButtonPrimary label={'Vincular instrutor'} id={'botao-vincular-'} type={'button'} />
+        </Link>
+      </div>
+
+      <SimpleCardConfiguracoes>
+        <SimpleCardContent>
+          <p>A Trilha <span>Backend</span> foi adicionada.</p>
+        </SimpleCardContent>
+      </SimpleCardConfiguracoes>
+
+      <SimpleCardConfiguracoes>
+        <SimpleCardContent>
+          <p>A Trilha <span>Frontend</span> foi adicionada.</p>
+        </SimpleCardContent>
+      </SimpleCardConfiguracoes>
+
+      <SimpleCardConfiguracoes>
+        <SimpleCardContent>
+          <p>A Trilha <span>Backend</span> foi adicionada.</p>
+        </SimpleCardContent>
+      </SimpleCardConfiguracoes>
+
+    </ContentWrapper>
   )
 }

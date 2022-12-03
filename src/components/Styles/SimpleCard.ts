@@ -118,7 +118,8 @@ export const SimpleCardContent = styled.div`
 export const SimpleCardConfiguracoes = styled.div`
     display: flex;
     align-items: center;
-    width: 30%;
+    justify-content: center;
+    width: 40%;
     height: 100px;
     margin-top: 2%;
     background-color: white;
@@ -132,14 +133,16 @@ export const SimpleCardConfiguracoes = styled.div`
         transform: scale(1.01);
     }
     @media (max-width: 850px) {
-        width: 25%;
+        width: 60%;
     }
     @media screen and (max-width: 460px) {
+        width: 80%;
         gap: 10px;
     }
     img {
         width: 60px;
         height: 60px;
+        border-radius: 50%;
         object-fit: cover;
         @media screen and (max-width: 460px) {
             width: 40px;

@@ -121,7 +121,6 @@ export const Aluno = () => {
         <Titulo>
           Alunos
         </Titulo>
-
         <div className="flex">
           <div>
             <FormControl

@@ -7,28 +7,24 @@ import { ButtonPrimary, ButtonSecondary } from '../../components/Buttons/Button'
 import { Titulo } from '../../components/Styles/Component.styled'
 import { ButtonWraper, ContentWrapper } from '../../components/Styles/Container.styled'
 
-export const ConfiguracoesVinculaModulo = () => {
+export const VincularModulo = () => {
   return (
       <ContentWrapper>
         <Titulo>
-        Vincula Instrutor a nova trilha 
+        Vincular Módulo à Trilha
         </Titulo>
         <form>
           <FormControl
-            sx={{
-              width: '300px',
-              
-              backgroundColor: "var(--cor-de-fundo)",
-            }}
+            sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'var(--branco)' }}
             fullWidth
             size="small"
           >
-             <InputLabel id="label-select-escolhe-instrutor">
-              Instrutores
+             <InputLabel id="label-select-escolhe-modulo">
+              Módulo
             </InputLabel>
             <Select
-              labelId="label-select-escolhe-instrutor"
-              id="escolhe-instrutor-trilha"
+              labelId="label-select-escolhe-modulo"
+              id="escolhe-modulo"
               label="Instrutores"
             //   onChange={}
             >
@@ -45,20 +41,16 @@ export const ConfiguracoesVinculaModulo = () => {
             </Select>
           </FormControl>
           <FormControl
-            sx={{
-              width: '300px',
-              
-              backgroundColor: "var(--cor-de-fundo)",
-            }}
+            sx={{ width: "300px", marginBottom: "5%", backgroundColor: 'var(--branco)' }}
             fullWidth
             size="small"
           >
-             <InputLabel id="label-select-escolhe-edicao">
-              Edição
+             <InputLabel id="label-select-escolhe-trilha">
+              Trilha
             </InputLabel>
             <Select
-              labelId="label-select-escolhe-edicao"
-              id="escolhe-edicao-trilha"
+              labelId="label-select-escolhe-trilha"
+              id="escolhe-trilha"
               label="Edicao"
             //   onChange={}
             >
@@ -78,7 +70,7 @@ export const ConfiguracoesVinculaModulo = () => {
             <Link to={'/configuracoes'}>
             <ButtonPrimary
               label="Adicionar"
-              id="botao-vincula-instrutor-trilha"
+              id="botao-vincula-modulo-trilha"
               type="submit"
             />
             </Link>
@@ -87,7 +79,7 @@ export const ConfiguracoesVinculaModulo = () => {
               <ButtonSecondary
                 type="button"
                 label="Cancelar"
-                id="botao-cancela-vincula-instrutor-trilha"
+                id="botao-cancela-vincula-modulo-trilha"
               />
             </Link>
           </ButtonWraper>

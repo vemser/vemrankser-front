@@ -36,20 +36,20 @@ export const VinculaAluno = () => {
   return (
     <ContentWrapper>
       <Titulo>
-        Adicionar aluno à trilha
+        Vincular Aluno à Trilha
       </Titulo>
       <form onSubmit={handleSubmit((data: IVinculaTrilha) => vinculaTrilha(data))}>
         <TextField
           id="nome-vincula-aluno"
           label="Login"
           variant="outlined"
-          sx={{ width: "100%", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
+          sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
           {...register("login")}
           size="small"
         />
         {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
 
-        <FormControl sx={{ width: "100%", marginBottom: "5%", backgroundColor: "white" }} fullWidth size="small">
+        <FormControl sx={{ width: "300px", marginBottom: "5%", backgroundColor: "white" }} fullWidth size="small">
           <InputLabel id="demo-multiple-name-label">Trilha</InputLabel>
           <Select
             id="idTrilha"

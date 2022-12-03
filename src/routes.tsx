@@ -20,11 +20,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { ConfiguracoesCoordenador } from './pages/Configuracoes/ConfiguracoesCoordenador';
-import { ConfiguracoesAdicionaTrilha } from './pages/Configuracoes/ConfiguracoesAdicionaTrilha';
-import { ConfiguracoesVinculaInstrutor } from './pages/Configuracoes/ConfiguracoesVinculaInstrutor';
+import { CadastrarTrilha } from './pages/Configuracoes/CadastrarTrilha';
+import { VincularInstrutor } from './pages/Configuracoes/VincularInstrutor';
 import { ConfiguracoesInstrutor } from './pages/Configuracoes/ConfiguracoesInstrutor';
-import { ConfiguracoesAdicionaModulo } from './pages/Configuracoes/ConfiguracoesAdicionaModulo';
-import { ConfiguracoesVinculaModulo } from './pages/Configuracoes/ConfiguracoesVinculaModulo';
+import { CadastrarModulo } from './pages/Configuracoes/CadastrarModulo';
+import { VincularModulo } from './pages/Configuracoes/VincularModulo';
 
 export const Router = () => {
   return (
@@ -50,10 +50,10 @@ export const Router = () => {
                     <Route path={'/dashboard'} element={<Dashboard />} />
                     <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
                     <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
-                    <Route path={'/configuracoes/adicionar-trilha'} element={<ConfiguracoesAdicionaTrilha />} />
-                    <Route path={'/configuracoes/adicionar-modulo'} element={<ConfiguracoesAdicionaModulo />} />
-                    <Route path={'/configuracoes/vincular-modulo'} element={<ConfiguracoesVinculaModulo />} />
-                    <Route path={'/configuracoes/vincular-instrutor'} element={<ConfiguracoesVinculaInstrutor />} />
+                    <Route path={'/configuracoes/adicionar-trilha'} element={<CadastrarTrilha />} />
+                    <Route path={'/configuracoes/adicionar-modulo'} element={<CadastrarModulo />} />
+                    <Route path={'/configuracoes/vincular-modulo'} element={<VincularModulo />} />
+                    <Route path={'/configuracoes/vincular-instrutor'} element={<VincularInstrutor />} />
                   </Route>
                 </Route>
               </Routes>
