@@ -4,16 +4,16 @@ import { Outlet } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext';
 import { ButtonMenuLateral } from '../Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../MenuLateral/MenuLateral';
-import userDummy from '../../assets/user.png';
+import userDummy from '../../assets/user.webp';
 
 export const Admin = () => {
-    const { getLoggedUser } = useContext(AuthContext);
+    const { getLoggedUser, usuario } = useContext(AuthContext);
 
     useEffect(() => {
         getLoggedUser();
     }, []);
 
-    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
+    // const usuario = JSON.parse(localStorage.getItem('user') || '{}');
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -37,14 +37,12 @@ export const Admin = () => {
         }
     }
 
-    const image = usuario.foto
-
     return (
         <main style={{ display: 'flex', width: '100%' }}>
             <MenuLateral
                 nomeDoUsuario={usuario.nome}
                 cargoDoUsuario={verificaTipoUsuario(usuario.tipoPerfil)}
-                fotoDePerfil={image !== null && 'foto' ? `data:image/jpeg;base64,${image}` : userDummy }
+                fotoDePerfil={usuario.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy }
             >
                 <ButtonMenuLateral
                     text={"Dashboard"}

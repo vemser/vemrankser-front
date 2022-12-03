@@ -5,12 +5,13 @@ import { ITrilha } from "../../types/vinculaTrilha";
 import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { HiSearch } from "react-icons/hi";
-import userDummy from "../../assets/user.png";
+import userDummy from "../../assets/user.webp";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { api } from "../../utils/api";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -19,7 +20,7 @@ export const Aluno = () => {
   const [searchParam, setSearchParam] = useSearchParams();
   const [nome, setNome] = useState<string>('');
   const [alunoData, setAlunoData] = useState<IAluno[]>([]);
-  const token = localStorage.getItem('token');
+  const { token } = useContext(AuthContext);
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")

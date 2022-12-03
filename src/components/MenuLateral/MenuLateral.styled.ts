@@ -95,7 +95,8 @@ export const CargoDoUsuario = styled.div`
 
 export const ButtonsCategorias = styled.div`
   margin-top: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  gap: 18px;
   display: flex;
   flex-direction: column;
 `;

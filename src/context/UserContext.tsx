@@ -1,25 +1,25 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IUserContext, IChildren, IUser } from '../types/user';
 import { api } from '../utils/api';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../types/toast';
 import nProgress from 'nprogress';
+import { AuthContext } from './AuthContext';
 
 export const UsersContext = createContext({} as IUserContext);
 
 export const UsersProvider = ({ children }: IChildren) => {
   const [user, setUser] = useState<IUser[]>([]);
   const [totalPages, setTotalPages] = useState(0);
-
-  const token = localStorage.getItem('token');
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const createUser = async (user: IUser) => {
     try {
       nProgress.start();
 
-      let userType
+      let userType;
 
       switch (user.tipoPerfil) {
         case 1:

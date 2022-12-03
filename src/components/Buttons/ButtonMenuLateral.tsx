@@ -9,7 +9,6 @@ const ButtonMenuLateralPrimaryStyle = styled(Button)({
   color: 'var(--cor-texto)',
   width: 190,
   height: 40,
-  marginBottom: '8%',
   textAlign: 'left',
   fontSize: '1rem',
   justifyContent: 'flex-start',

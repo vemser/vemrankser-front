@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { ButtonPrimary } from '../../components/Buttons/Button';
-import userDummy from '../../assets/user.png';
+import userDummy from '../../assets/user.webp';
 import { Link } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
