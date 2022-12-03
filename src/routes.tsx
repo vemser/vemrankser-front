@@ -19,7 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { Dashboard } from './pages/Dashboard/Dashboard';
-import { Configuracoes } from './pages/Configuracoes/Configuracoes';
+import { Configuracoes } from './pages/Configuracoes/ConfiguracoesCoordenador';
 
 export const Router = () => {
   return (
