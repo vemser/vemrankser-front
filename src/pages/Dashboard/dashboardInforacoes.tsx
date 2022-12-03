@@ -24,7 +24,7 @@ export const DashBoardInformacoes = () => {
           <ButtonSecondary
             label={'voltar'}
             type={'button'}
-            id={''}
+            id={'bota-informacoes-volta-dashboard'}
           />
           </Link>
           <ButtonCardWrapper>

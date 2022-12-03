@@ -50,10 +50,10 @@ export const DashBoardAluno = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="select-aluno-label">Trilha</InputLabel>
+              <InputLabel id="label-select-trilha-dashboard-aluno">Trilha</InputLabel>
               <Select
-                labelId="select-aluno-label"
-                id="select-atividade"
+                labelId="label-select-trilha-dashboard-aluno"
+                id="select-trilha-dashboard-aluno"
                 value={trilha}
                 label="Trilha"
                 onChange={handleChange}
@@ -62,17 +62,17 @@ export const DashBoardAluno = () => {
               </Select>
             </FormControl>
           </div>
-          <Link to={"'/dashboard/feedback/aluno"}>
+          <Link to={"/dashboard/feedback/aluno"}>
           <ButtonPrimary
               type={"button"}
-              id={"botao-vincula-aluno"}
+              id={"botao-dashboard-feedbacks"}
               label={"Feedbacks"}
             />
           </Link>
             <Link to={"/dashboard/informacoes"}>
             <ButtonPrimary
               type={"button"}
-              id={"botao-vincula-aluno"}
+              id={"botao-dashboard-informacoes"}
               label={"Informações"}
             />
             </Link>

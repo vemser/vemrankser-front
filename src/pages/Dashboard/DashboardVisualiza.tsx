@@ -16,14 +16,14 @@ export const DashBoardVisualiza = () => {
         <div className="flex">
           <div>
             <Link to={"/dashboard/feedback/adiciona-pontos"}>
-             <ButtonPrimary label={"Adicionar"} id={""} type={undefined} />
+             <ButtonPrimary label={"Adicionar"} id={"botao-adiciona-feedback"} type={undefined} />
             </Link>
           </div>
           <Link to={"/dashboard/feedback"}>
            <ButtonSecondary 
               label={'voltar'}
               type={'button'}
-              id={''}
+              id={'botao-feedback-volta-dashboard'}
             />
           </Link>
         </div>

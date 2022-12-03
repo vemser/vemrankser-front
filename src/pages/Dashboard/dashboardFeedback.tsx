@@ -65,10 +65,10 @@ export const DashBoardFeedback = () => {
               fullWidth
               size="small"
             >
-              <InputLabel id="select-aluno-label">Trilha</InputLabel>
+              <InputLabel id="label-select-trilha-dashboard-feedback-intrutor">Trilha</InputLabel>
               <Select
-                labelId="select-aluno-label"
-                id="select-atividade"
+                labelId="label-select-trilha-dashboard-feedback"
+                id="select-trilha-dashboard-feedback"
                 value={trilha}
                 label="Trilha"
                 onChange={handleTrilhaChange}
@@ -83,7 +83,7 @@ export const DashBoardFeedback = () => {
                 size="small"
                 label={"Filtrar por nome"}
                 value={nome}
-                id={"barra-de-pesquisa-aluno"}
+                id={"barra-de-pesquisa-dashboard-feedback"}
                 onChange={handleNomeChange}
               />
              <i>
@@ -109,7 +109,7 @@ export const DashBoardFeedback = () => {
               </div>
               <div className="button-adiciona-visualiza-feedback">
                 <Link to={`/dashboard/feedback/visualiza-pontos/${aluno.idUsuario}`}> 
-                 <ButtonEditaDeleta icone={''} label={"Visualizar"} id={""} />
+                 <ButtonEditaDeleta label={"Visualizar"} id={"botao-visualiza-feedback"} />
                 </Link>
               </div>
             </ButtonCardContent>
