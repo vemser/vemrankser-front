@@ -1,11 +1,10 @@
-import {  SelectChangeEvent } from "@mui/material"
-import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button"
-import { ButtonCardContainer, ButtonCardContent, ButtonCardContentVizualiza, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
+import { ButtonCardContainer, ButtonCardContentVizualiza, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
 import { Titulo } from "../../components/Styles/Component.styled"
 
 export const DashBoardVisualiza = () => {
+  const {idUsuario} = useParams()
 
   return (
     <>
@@ -16,17 +15,17 @@ export const DashBoardVisualiza = () => {
         </Titulo>
         <div className="flex">
           <div>
-            <Link to={"/dashboard/feedback/adiciona/pontos"}>
+            <Link to={"/dashboard/feedback/adiciona-pontos"}>
              <ButtonPrimary label={"Adicionar"} id={""} type={undefined} />
             </Link>
           </div>
-           {/* <Link to={'/dashbo'} /> */}
-            <ButtonSecondary 
+          <Link to={"/dashboard/feedback"}>
+           <ButtonSecondary 
               label={'voltar'}
               type={'button'}
               id={''}
             />
-            {/* </Link> */}
+          </Link>
         </div>
         <ButtonCardWrapper>
         <p><strong>Pontos Positivos</strong></p>

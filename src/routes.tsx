@@ -16,7 +16,6 @@ import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from './routes/PrivateRoute';
-import { Dashboard } from './pages/Dashboard/Dashboard';
 import { ConfiguracoesCoordenador } from './pages/Configuracoes/ConfiguracoesCoordenador';
 import { CadastrarTrilha } from './pages/Configuracoes/CadastrarTrilha';
 import { VincularInstrutor } from './pages/Configuracoes/VincularInstrutor';
@@ -80,8 +79,8 @@ export const Router = () => {
                             <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
                             <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
                             <Route path={'/dashboard/feedback/aluno'} element={<DashBoardFeedbackAluno />} />
-                            <Route path={'/dashboard/feedback/visualiza/pontos'} element={< DashBoardVisualiza />} />
-                            <Route path={'/dashboard/feedback/adiciona/pontos'} element={<DashBoardAdiciona />} />
+                            <Route path={'/dashboard/feedback/visualiza-pontos/:idUsuario'} element={< DashBoardVisualiza />} />
+                            <Route path={'/dashboard/feedback/adiciona-pontos'} element={<DashBoardAdiciona />} />
                           </Route>
                         </Route>
                       </Routes>
