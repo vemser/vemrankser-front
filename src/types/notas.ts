@@ -1,6 +1,7 @@
 export interface INotas {
     nome: string;
     nota: number;
+    idAtividade: number;
   }
 
 export interface IChildren{

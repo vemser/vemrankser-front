@@ -18,7 +18,7 @@ import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AtividadeProvider } from './context/AtividadesContext';
 import { AtividadesDetalhesNotas } from './pages/AtividadesMaisDetalhesNotas/AtividadeMaisDetalhesNotas';
-import { NotasProvider } from './context/NotasContext';
+import { NotasProvider } from './context/Notascontext';
 import { ModuloProvider } from './context/ModuloContext';
 import { ComentarioProvider } from './context/ComentarioContext';
 import { AtividadesAluno } from './pages/Atividades/AtividadesAluno';
