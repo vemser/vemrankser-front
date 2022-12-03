@@ -29,7 +29,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
     try {
       api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
-      const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page - 1}&tamanho=4&nome=${nome}`);
+      const { data } = await api.get(`/usuario/lista-alunos-trilha-geral?pagina=${page - 1}&tamanho=4&nome=${nome}`);
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);
 
@@ -41,24 +41,8 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
-  const getAlunosWithTrilha = async (page: number, idTrilha: number) => {
-    try {
-      api.defaults.headers.common['Authorization'] = token;
-      nProgress.start();
-      const { data } = await api.get(`/trilha/lista-usuarios?pagina=${page - 1}&tamanho=4&idTrilha=${idTrilha}`);
-      setTotalPages(data.quantidadePaginas);
-      
-      setAlunos(data.elementos.usuarios);
-    } catch (error) {
-      console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
-    } finally {
-      nProgress.done();
-    }
-  }
-
   return (
-    <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, setTotalPages, totalPages, getAlunosWithNome, getAlunosWithTrilha }}>
+    <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, setTotalPages, totalPages, getAlunosWithNome }}>
       {children}
     </AlunoContext.Provider>
   );

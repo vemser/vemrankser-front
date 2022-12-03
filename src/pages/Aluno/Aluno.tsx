@@ -5,7 +5,7 @@ import { ITrilha } from "../../types/vinculaTrilha";
 import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { HiSearch } from "react-icons/hi";
-import userDummy from "../../assets/user.png";
+import userDummy from "../../assets/user.webp";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";

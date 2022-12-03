@@ -5,3 +5,17 @@ export interface IAuthContext {
     getLoggedUser: () => Promise<void>,
     handleLogout: () => Promise<void>
 }
+
+export interface IGetUser {
+    idUsuario: number,
+    foto: string[],
+    nome: string,
+    login: string,
+    email: string,
+    pontuacaoAluno: number,
+    statusUsusario: number,
+    tipoPerfil: number,
+    cidade: string,
+    especialidade: string,
+    trilhas: any
+}

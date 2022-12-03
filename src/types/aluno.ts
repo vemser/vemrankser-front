@@ -20,7 +20,6 @@ export interface IAlunoContext {
   totalPages: number,
   setTotalPages: React.Dispatch<React.SetStateAction<number>>,
   getAlunosWithNome: (page: number, nome: string) => Promise<void>
-  getAlunosWithTrilha: (page: number, idTrilha: number) => Promise<void>
 
 }
 
