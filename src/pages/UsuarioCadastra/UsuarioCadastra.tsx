@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,17 +16,40 @@ import { UsersContext } from "../../context/UserContext";
 
 export const UsuarioCadastra = () => {
   const { createUser } = useContext(UsersContext);
+  const [tipoDePerfil, setTipoDePerfil] = React.useState('');
+  const [ newPicture, setNewPicture ] = useState<string>('');
 
   const { register, handleSubmit, control, formState: { errors } } = useForm<IUser>({
     resolver: yupResolver(adicionaUsuarioSchema),
   });
 
-  const [tipoDePerfil, setTipoDePerfil] = React.useState('');
+  // const handleSubmitImage = async (event: any) => {
+  //   event.preventDefault()
+  //   const formData = new FormData();
+  //   formData.append("selectedFile", selectedFile);
+  //   try {
+  //     const response = await api({
+  //       method: "post",
+  //       url: "/usuario/upload-imagem/1",
+  //       data: formData,
+  //       headers: { "Content-Type": "multipart/form-data" },
+  //     });
+  //   } catch(error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <ContentWrapper>
       <Titulo>Cadastro Usuário</Titulo>
       <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
+
+        {/* <input
+          type="file"
+          accept="image/*"
+          id='foto'
+          onChange={(e) => handleSubmitImage(e)}
+        /> */}
 
         <TextField id="nome" label="Nome *" variant="outlined"
           sx={{ width: "300px", marginTop: "10%", backgroundColor: "white" }} {...register("nome")} size="small" />

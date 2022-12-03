@@ -18,6 +18,8 @@ import { PrivateRoute } from './routes/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { Dashboard } from './pages/Dashboard/Dashboard';
+import { Configuracoes } from './pages/Configuracoes/Configuracoes';
 
 export const Router = () => {
   return (
@@ -27,22 +29,24 @@ export const Router = () => {
         <UsersProvider>
           <AlunoProvider>
             <VinculaTrilhaProvider>
-            <Routes>
-            <Route path={'/'} element={<Login />} />
-            <Route element={<PrivateRoute />}>
-              <Route element={<Admin />}>
-                <Route path={'/atividades'} element={<Atividades />} />
-                <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
-                <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-                <Route path={'/alunos'} element={<Aluno />} />
-                <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-                <Route path={'/usuarios'} element={<Usuario />} />
-                <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
-                <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
-                <Route path={'/perfil'} element={<Perfil />} />
-              </Route>
-            </Route>
-          </Routes>
+              <Routes>
+                <Route path={'/'} element={<Login />} />
+                <Route element={<PrivateRoute />}>
+                  <Route element={<Admin />}>
+                    <Route path={'/atividades'} element={<Atividades />} />
+                    <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
+                    <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
+                    <Route path={'/alunos'} element={<Aluno />} />
+                    <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
+                    <Route path={'/usuarios'} element={<Usuario />} />
+                    <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
+                    <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+                    <Route path={'/perfil'} element={<Perfil />} />
+                    <Route path={'/dashboard'} element={<Dashboard />} />
+                    <Route path={'/configuracoes'} element={<Configuracoes />} />
+                  </Route>
+                </Route>
+              </Routes>
             </VinculaTrilhaProvider>
           </AlunoProvider>
         </UsersProvider>

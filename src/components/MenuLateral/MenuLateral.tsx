@@ -22,8 +22,7 @@ export const MenuLateral = ({ cargoDoUsuario, nomeDoUsuario, children, fotoDePer
           <i><IoRocketOutline id='login-icone' className='floating' /></i>
         </MenuLateralTitle>
 
-        <FotoDePerfil id='menu-lateral-imagem-perfil'>{fotoDePerfil}
-          <img src={photoDummy} alt="Foto do usuário" /></FotoDePerfil>
+        <FotoDePerfil id='menu-lateral-imagem-perfil'><img src={fotoDePerfil} alt="Foto do usuário" /></FotoDePerfil>
 
         <NomeDoUsuario id='menu-lateral-nome-usuario'>{nomeDoUsuario}</NomeDoUsuario>
 

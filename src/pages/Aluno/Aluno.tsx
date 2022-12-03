@@ -14,7 +14,7 @@ import { api } from "../../utils/api";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
-  const { getAlunos, alunos, totalPages } = useContext(AlunoContext);
+  const { getAlunos, alunos, totalPages, setTotalPages } = useContext(AlunoContext);
   const { trilhas, getTrilhas } = useContext(VinculaTrilhaContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [nome, setNome] = useState<string>('');
@@ -25,43 +25,63 @@ export const Aluno = () => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam]);
 
-  useEffect(() => {
-    setAlunoData(alunos)
-  }, [alunos])
-
-  useEffect(() => {
-    getTrilhas()
-  }, [])
-
-  useEffect(() => {
-    getAlunos(pagina)
-  }, [pagina])
-
   const handleSelect = async (event: SelectChangeEvent) => {
     const keyWord = event.target.value;
     setTrilha(keyWord);
-
+    
     api.defaults.headers.common['Authorization'] = token;
-
-    api.get(`/trilha/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
+    api.get(`/usuario/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
       ({ data }) => {
+        setTotalPages(data.quantidadePaginas);
+        console.log(data)
         const { elementos } = data;
-
-        const { usuarios } = elementos[0];
-
-        const formatedOldOBJ = elementos.map((trilha: any) => {
-          return ({
-            ...usuarios[0],
+        const formatted = elementos.map((usuario: any) => {
+          return {
+            idUsuario: usuario.idUsuario,
+            foto: usuario.foto,
+            nome: usuario.nome,
+            email: usuario.email,
+            login: usuario.login,
+            statusUsuario: usuario.statusUsuario,
+            tipoPerfil: usuario.tipoPerfil,
             trilhas: [{
-              nome: trilha.nome,
-              edicao: trilha.edicao,
-              anoEdicao: trilha.anoEdicao,
-              idTrilha: trilha.idTrilha
+              nome: usuario.nomeTrilha,
+              edicao: usuario.edicao,
+              anoEdicao: usuario.anoEdicao,
+              idTrilha: usuario.idTrilha
             }]
-          })
-        })
+          };
+        });
+        setAlunoData(formatted);
+      }
+    )
+  }
 
-        setAlunoData(formatedOldOBJ);
+  const getFilteredList = () => {
+    api.defaults.headers.common['Authorization'] = token;
+    api.get(`/usuario/lista-alunos-trilha?pagina=${pagina - 1}&tamanho=4&idTrilha=${trilha}`).then(
+      ({ data }) => {
+        setTotalPages(data.quantidadePaginas);
+        console.log(data)
+        const { elementos } = data;
+        const formatted = elementos.map((usuario: any) => {
+          return {
+            idUsuario: usuario.idUsuario,
+            foto: usuario.foto,
+            nome: usuario.nome,
+            email: usuario.email,
+            login: usuario.login,
+            statusUsuario: usuario.statusUsuario,
+            tipoPerfil: usuario.tipoPerfil,
+            trilhas: [{
+              nome: usuario.nomeTrilha,
+              edicao: usuario.edicao,
+              anoEdicao: usuario.anoEdicao,
+              idTrilha: usuario.idTrilha
+            }]
+          };
+        });
+        setAlunoData(formatted);
       }
     )
   }
@@ -78,6 +98,22 @@ export const Aluno = () => {
     }
     setNome(keyWord);
   }
+
+  useEffect(() => {
+    setAlunoData(alunos)
+  }, [alunos]);
+
+  useEffect(() => {
+    getTrilhas()
+  }, []);
+
+  useEffect(() => {
+    if (trilha !== '') {
+      getFilteredList();
+    } else {
+      getAlunos(pagina);
+    }
+  }, [pagina]);
 
   return (
     <ButtonCardContainer>
@@ -101,6 +137,7 @@ export const Aluno = () => {
                 label="Trilha"
                 onChange={handleSelect}
               >
+                <MenuItem key={''} value={''}>Sem filtro</MenuItem>
                 {trilhas.map((trilhaSelect: ITrilha) => {
                   return <MenuItem key={trilhaSelect.idTrilha} value={trilhaSelect.idTrilha}>{trilhaSelect.nome}</MenuItem>
                 })}
@@ -138,7 +175,7 @@ export const Aluno = () => {
             return (
               <ButtonCard key={aluno.email}>
                 <ButtonCardContent>
-                  <img src={userDummy} alt="Foto" />
+                  <img src={aluno.foto !== null && 'foto' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt="Foto" />
                   <div className="firstSection">
                     <p><span>Nome:</span> {aluno.nome} </p>
                     <p><span>E-mail:</span> {aluno.email} </p>
@@ -151,7 +188,7 @@ export const Aluno = () => {
                       }) : 'Sem trilha vinculada'}</p>
                   </div>
                   <div className="thirdSection">
-                    <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
+                    <p><span>Status:</span> {aluno.statusUsuario === 1 ? <span className="ativo">Ativo</span> : <span className="inativo">Inativo</span>}</p>
                   </div>
                 </ButtonCardContent>
               </ButtonCard>

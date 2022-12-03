@@ -9,10 +9,10 @@ export const Admin = () => {
     const { getLoggedUser } = useContext(AuthContext);
 
     useEffect(() => {
-        getLoggedUser()
+        getLoggedUser();
     }, []);
 
-    const usuario = localStorage.getItem('user');
+    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -36,12 +36,14 @@ export const Admin = () => {
         }
     }
 
+    const image = usuario.foto
+
     return (
         <main style={{ display: 'flex', width: '100%' }}>
             <MenuLateral
-                nomeDoUsuario={`${usuario}`}
-                cargoDoUsuario={`${verificaTipoUsuario(Number(usuario))}`}
-                fotoDePerfil={""}
+                nomeDoUsuario={usuario.nome}
+                cargoDoUsuario={verificaTipoUsuario(usuario.tipoPerfil)}
+                fotoDePerfil={`data:image/jpeg;base64,${image}`}
             >
                 <ButtonMenuLateral
                     text={"Dashboard"}
@@ -71,7 +73,7 @@ export const Admin = () => {
                 <ButtonMenuLateral
                     text={"Configurações"}
                     icone={<HiCog />}
-                    link={"/configurações"}
+                    link={"/configuracoes"}
                 />
             </MenuLateral>
             <Outlet />

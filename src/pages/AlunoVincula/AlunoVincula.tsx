@@ -9,7 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
 import Select from "@mui/material/Select";
-import { ButtonWraper, ContentWrapper, MainContainer } from "../../components/Styles/Container.styled";
+import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { ITrilha, IVinculaTrilha } from "../../types/vinculaTrilha";

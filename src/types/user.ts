@@ -16,7 +16,7 @@ export interface IUser {
     cidade: string,
     tipoPerfil: number,
     especialidade?: string,
-    foto?: string,
+    foto?: any,
     statusUsuario?: string,
     idUsuario?: number
 }
