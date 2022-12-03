@@ -92,3 +92,50 @@ export const PerfilContainer = styled.div`
         }
     }
 `
+
+export const CardPerfil = styled.article`
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 80px;
+    background-color: var(--cor-primaria);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    gap: 40px;
+    padding: 20px;
+    transition: 0.5s;
+    color: white;
+    @media (max-width: 850px) {
+        width: 100%;
+    }
+    @media screen and (max-width: 460px) {
+        gap: 10px;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        @media screen and (max-width: 460px) {
+            width: 40px;
+            height: 40px;
+        }
+    }
+`
+
+export const CardPerfilContent = styled.article`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1rem;
+    @media screen and (max-width: 460px) {
+        font-size: 0.9rem;
+    }
+    span {
+        font-weight: 600;
+    }
+    .date-info {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+`

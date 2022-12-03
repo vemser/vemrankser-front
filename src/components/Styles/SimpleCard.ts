@@ -97,6 +97,25 @@ export const SimpleCard = styled.div`
         }
     }
 `
+
+export const SimpleCardContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1rem;
+    @media screen and (max-width: 460px) {
+        font-size: 0.9rem;
+    }
+    span {
+        font-weight: 600;
+    }
+    .date-info {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+`
+
 export const SimpleCardNotes = styled.div`
     display: flex;
     align-items: center;
@@ -129,23 +148,6 @@ export const SimpleCardNotes = styled.div`
     }
 `
 
-export const SimpleCardContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    font-size: 1rem;
-    @media screen and (max-width: 460px) {
-        font-size: 0.9rem;
-    }
-    span {
-        font-weight: 600;
-    }
-    .date-info {
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
-`
 export const SimpleCardConfiguracoes = styled.div`
     display: flex;
     align-items: center;

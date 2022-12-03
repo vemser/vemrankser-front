@@ -1,12 +1,16 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { AuthContext } from '../../context/AuthContext';
-import { PerfilContainer } from './Perfil.styled';
+import { CardPerfil, CardPerfilContent, PerfilContainer } from './Perfil.styled';
 import { ITrilha } from '../../types/vinculaTrilha';
 import userDummy from '../../assets/user.webp';
+import { Typography } from '@mui/material';
+import { PerfilContext } from '../../context/PerfilContext';
 
 export const Perfil = () => {
     const { usuario } = useContext(AuthContext);
+    const { getAtividadesbyId } = useContext(PerfilContext);
+    const trilhasUser = usuario.trilha || [];
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -30,8 +34,6 @@ export const Perfil = () => {
         }
     }
 
-    const trilhasUser = usuario.trilha || [];
-
     return (
         <ContentWrapper>
             <PerfilContainer>
@@ -39,7 +41,9 @@ export const Perfil = () => {
                     <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy}
                         alt={`Foto de ${usuario.nome}`} />
                     <div>
-                        <h4 id='perfil-nome' >{usuario.nome}</h4>
+                        <h4 id='perfil-nome' ><Typography textTransform='capitalize' fontSize='1.4rem' fontWeight='600' color='var(--branco)' fontFamily='Inter'>
+                            {usuario.nome}
+                        </Typography></h4>
                         <p id='perfil-login' ><span>Login:</span> {usuario.login}</p>
                         <p id='perfil-email' ><span>Email:</span> {usuario.email}</p>
                         <p id='perfil-tipo-de-conta'><span>Tipo de conta:</span> {verificaTipoUsuario(usuario.tipoPerfil)}</p>
@@ -60,6 +64,23 @@ export const Perfil = () => {
                 </header>
                 <section>
                     <h5 id='perfil-atividades-vinculadas' >Atividades Vinculadas</h5>
+
+                    <CardPerfil>
+
+                        <CardPerfilContent>
+
+                            Atividade aqui
+
+                        </CardPerfilContent>
+
+                    </CardPerfil>
+
+
+
+
+
+
+                    
                     <div>
                         <p>Nenhuma atividade encontrada!</p>
                     </div>
