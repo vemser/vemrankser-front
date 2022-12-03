@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { vinculaAlunoSchema } from "../../utils/schemas";
-import { OutlinedInput, TextField } from "@mui/material";
+import { Checkbox, OutlinedInput, TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -59,7 +59,7 @@ export const VinculaAluno = () => {
             onChange={handleChange}
             input={<OutlinedInput label="Name" />}
           >
-            {trilhas.map((trilha: ITrilha) =>
+            {trilhas.map((trilha) =>
               <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
                 {trilha.nome} - edição {trilha.edicao}
               </MenuItem>

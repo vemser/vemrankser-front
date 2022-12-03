@@ -10,12 +10,9 @@ import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { ButtonMenuLateral } from "../../components/Buttons/ButtonMenuLateral";
-import { MenuLateral } from "../../components/MenuLateral/MenuLateral";
-import { ButtonWraper, ContentWrapper, MainContainer, } from "../../components/Styles/Container.styled";
+import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonPrimary, ButtonSecondary, } from "../../components/Buttons/Button";
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers, } from "react-icons/hi";
 import { cadastraAtividadeSchema } from "../../utils/schemas";
 import { ICadastraAtividade } from "../../types/cadastraAtividade";
 import { AtividadeContext } from "../../context/AtividadesContext";
@@ -111,6 +108,7 @@ export const AtividadesCriar = () => {
           <FormControl >
             <InputLabel id="demo-multiple-checkbox-label">Trilha</InputLabel>
             <Select
+              label="Trilha"
               sx={{ width: '300px', height: '40px', backgroundColor: 'white', marginBottom: '5%' }}
               labelId="label-checkbox-multiplaescolha-trilha"
               id="checkbox-trilha"

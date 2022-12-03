@@ -1,7 +1,7 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import { Pagination, Paper, TableContainer, TextField } from "@mui/material";
-import { HiSearch, HiPencilAlt } from "react-icons/hi";
+import { HiSearch, HiPencilAlt, HiOutlinePhotograph } from "react-icons/hi";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCardContainer, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { useContext, useEffect, useMemo, useState } from "react";
@@ -76,26 +76,31 @@ export const Usuario = () => {
 }
 
   const columns: any[] = [
-    { field: 'nome', headerName: 'Nome', width: 200 },
+    { field: 'nome', headerName: 'Nome' },
     { field: 'email', headerName: 'Email', width: 300 },
     {
-      field: 'tipoPerfil', headerName: 'Tipo', width: 180,
+      field: 'tipoPerfil', headerName: 'Tipo',
       valueGetter: (params: GridValueGetterParams) =>
         `${verificaTipoUsuario(params.row.tipoPerfil)}`
     },
     {
-      field: 'statusUsuario', headerName: 'Status', width: 100,
+      field: 'statusUsuario', headerName: 'Status',
       valueGetter: (params: GridValueGetterParams) =>
         `${params.row.statusUsuario == 1 ? 'Ativo' : 'Inativo'}`
     },
     {
-      field: 'actions', type: 'actions', headerName: 'Editar', width: 100, cellClassName: 'actions',
+      field: 'actions', type: 'actions', headerName: 'Ações', cellClassName: 'actions',
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem icon={<HiPencilAlt size={20} />} label="Editar"
             onClick={() => navigate('/usuarios/editar', { state: params.row })}
             color="inherit"
             key={params.row.idUsuario}
+          />,
+          <GridActionsCellItem icon={<HiOutlinePhotograph size={20} />} label="Adicionar foto"
+            onClick={() => navigate('/usuarios/cadastrar-foto', { state: params.row })}
+            color="inherit"
+            key={params.row.email}
           />,
         ];
       },
@@ -155,14 +160,14 @@ export const Usuario = () => {
           </Link>
         </div>
         <ButtonCardWrapper>
-          <TableContainer component={Paper} variant="outlined" sx={{ m: 1, width: '100%', height: '430px' }}>
+          <TableContainer component={Paper} variant="outlined" sx={{ m: 1, height: '430px', minWidth: 'auto' }}>
             <DataGrid
               rows={dataTable}
               columns={columns}
               pageSize={6}
               rowsPerPageOptions={[6]}
               hideFooter={true}
-              sx={{ height: '370px' }}
+              sx={{ height: '370px', width: 'auto' }}
               getRowId={(row: any) =>  generateRandomId()}
             />
             <Pagination sx={{ width: '100%', height: 50, alignItems: 'center', display: 'flex', justifyContent: 'center' }}

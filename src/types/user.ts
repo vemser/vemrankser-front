@@ -4,6 +4,11 @@ export interface IUserLogin {
     nome?: string
 }
 
+export interface IUserPhoto {
+    idUsuario: number,
+    foto: string
+}
+
 export interface IChildren {
     children?: React.ReactNode
 }
@@ -25,6 +30,7 @@ export interface IUserContext {
     createUser: (user: IUser) => Promise<void>,
     getUsersList: (page: number) => Promise<void>,
     editUser: (data: IUser ) => Promise<void>,
+    addImage: (data: IUserPhoto) => Promise<void>,
     user: IUser[],
     totalPages: number
 }

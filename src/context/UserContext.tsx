@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IUserContext, IChildren, IUser } from '../types/user';
+import { IUserContext, IChildren, IUser, IUserPhoto } from '../types/user';
 import { api } from '../utils/api';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../types/toast';
@@ -55,6 +55,22 @@ export const UsersProvider = ({ children }: IChildren) => {
     }
   }
 
+  const addImage = async (data: IUserPhoto) => {
+    try {
+      nProgress.start();
+      api.defaults.headers.common['Authorization'] = token;
+      await api.post(`/usuario/upload-imagem/${data.idUsuario}`, data);
+
+      toast.success('Foto adicionada com sucesso!', toastConfig);
+      navigate('/usuarios');
+    } catch (error) {
+      toast.error('Ocorreu algum erro, por favor tente novamente!', toastConfig);
+      console.error(error);
+    } finally {
+      nProgress.done();
+    }
+  }
+
   const getUsersList = async (page: number) => {
     try {
       nProgress.start();
@@ -89,7 +105,7 @@ export const UsersProvider = ({ children }: IChildren) => {
   };
 
   return (
-    <UsersContext.Provider value={{ createUser, getUsersList, user, editUser, totalPages }}>
+    <UsersContext.Provider value={{ createUser, addImage, getUsersList, user, editUser, totalPages }}>
       {children}
     </UsersContext.Provider>
   )

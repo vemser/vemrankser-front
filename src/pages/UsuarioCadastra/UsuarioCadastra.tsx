@@ -23,33 +23,10 @@ export const UsuarioCadastra = () => {
     resolver: yupResolver(adicionaUsuarioSchema),
   });
 
-  // const handleSubmitImage = async (event: any) => {
-  //   event.preventDefault()
-  //   const formData = new FormData();
-  //   formData.append("selectedFile", selectedFile);
-  //   try {
-  //     const response = await api({
-  //       method: "post",
-  //       url: "/usuario/upload-imagem/1",
-  //       data: formData,
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //     });
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-  // }
-
   return (
     <ContentWrapper>
       <Titulo>Cadastrar Usuário</Titulo>
       <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
-
-        {/* <input
-          type="file"
-          accept="image/*"
-          id='foto'
-          onChange={(e) => handleSubmitImage(e)}
-        /> */}
 
         <TextField id="nome" label="Nome *" variant="outlined"
           sx={{ width: "300px", marginTop: "8%", backgroundColor: "white" }} {...register("nome")} size="small" />

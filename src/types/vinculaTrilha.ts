@@ -3,7 +3,8 @@ import { IAluno } from "./aluno"
 export interface ITrilha {
   nome: string,
   idTrilha: number,
-  edicao: number
+  edicao: number,
+  indexOf?: any
 }
 
 export interface IVinculaTrilha {

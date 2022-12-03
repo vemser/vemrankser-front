@@ -143,7 +143,7 @@ export const Aluno = () => {
           </div>
 
           <BarraDePesquisa>
-            <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
+            <TextField variant="outlined" sx={{ width: 280, backgroundColor: "white" }}
               fullWidth
               size="small"
               label={"Pesquisar por nome"}

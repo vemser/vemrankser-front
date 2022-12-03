@@ -33,6 +33,7 @@ export const PerfilContainer = styled.div`
             width: 160px;
             height: 160px;
             border-radius: 50%;
+            background-color: white;
             object-fit: cover;
             border: 3px solid var(--branco);
             @media screen and (max-width: 1600px) {

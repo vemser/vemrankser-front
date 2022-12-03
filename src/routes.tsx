@@ -39,6 +39,7 @@ import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
 import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { UsuarioCadastraFoto } from './pages/UsuarioCadastraFoto/UsuarioCadastraFoto';
 
 
 export const Router = () => {
@@ -68,6 +69,7 @@ export const Router = () => {
                             <Route path={'/usuarios'} element={<Usuario />} />
                             <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                             <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
+                            <Route path={'/usuarios/cadastrar-foto'} element={<UsuarioCadastraFoto />} />
                             <Route path={'/perfil'} element={<Perfil />} />
                             <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
                             <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
