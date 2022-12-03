@@ -39,14 +39,11 @@ export const ConfiguracoesAdicionaModulo = () => {
           size="small"
            className="input-data" id={'textfield-data-fim-cadastra-modulo'} placeholder={'teste'} type={'date'} />
           <ButtonWraper>
-            <Link to={'/configuracoes/instrutor'}>
             <ButtonPrimary
               label="Adicionar"
               id="botao-adiciona-cadastro-modulo"
               type="submit"
             />
-            
-            </Link>
             <Link to={"/configuracoes/instrutor"}>
               <ButtonSecondary
                 type="button"
@@ -56,8 +53,6 @@ export const ConfiguracoesAdicionaModulo = () => {
             </Link>
           </ButtonWraper>
         </form>
-
       </ContentWrapper>
-
   )
 }

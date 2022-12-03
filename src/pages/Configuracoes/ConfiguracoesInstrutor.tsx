@@ -11,10 +11,10 @@ export const ConfiguracoesInstrutor = () => {
           Configurações Instrutor
         </Titulo>
         <div>
-          <Link to={'/configuracoes/adiciona/modulo'}>
+          <Link to={'/configuracoes/adicionar-modulo'}>
            <ButtonPrimary label={'Adicionar Modulo'} id={''} type={'button'} />
           </Link>
-        <Link to={"/configuracoes/vincula/modulo"}>
+        <Link to={"/configuracoes/vincular-modulo"}>
            <ButtonPrimary label={'Vincular Modulo'} id={''} type={'button'} /> 
         </Link>
         </div>
@@ -33,9 +33,6 @@ export const ConfiguracoesInstrutor = () => {
             <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>
           </SimpleCardContent>
         </SimpleCardConfiguracoes>
-      
-      
-      
       </ContentWrapper>
 
   )

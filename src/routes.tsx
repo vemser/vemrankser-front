@@ -50,10 +50,10 @@ export const Router = () => {
                     <Route path={'/dashboard'} element={<Dashboard />} />
                     <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
                     <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
-                    <Route path={'/configuracoes/adiciona/trilha'} element={<ConfiguracoesAdicionaTrilha />} />
-                    <Route path={'/configuracoes/adiciona/modulo'} element={<ConfiguracoesAdicionaModulo />} />
-                    <Route path={'/configuracoes/vincula/modulo'} element={<ConfiguracoesVinculaModulo />} />
-                    <Route path={'/configuracoes/vincula/instrutor'} element={<ConfiguracoesVinculaInstrutor />} />
+                    <Route path={'/configuracoes/adicionar-trilha'} element={<ConfiguracoesAdicionaTrilha />} />
+                    <Route path={'/configuracoes/adicionar-modulo'} element={<ConfiguracoesAdicionaModulo />} />
+                    <Route path={'/configuracoes/vincular-modulo'} element={<ConfiguracoesVinculaModulo />} />
+                    <Route path={'/configuracoes/vincular-instrutor'} element={<ConfiguracoesVinculaInstrutor />} />
                   </Route>
                 </Route>
               </Routes>
