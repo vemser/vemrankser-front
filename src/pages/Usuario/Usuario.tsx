@@ -4,13 +4,14 @@ import { Pagination, Paper, TableContainer, TextField } from "@mui/material";
 import { HiSearch, HiPencilAlt } from "react-icons/hi";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonCardContainer, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { IUser } from "../../types/user";
 import { api } from "../../utils/api";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../types/toast";
 import nProgress from 'nprogress';
 import { DataGrid, GridActionsCellItem, GridRowParams, GridValueGetterParams } from "@mui/x-data-grid";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Usuario = () => {
   const [searchParam, setSearchParams] = useSearchParams();
@@ -18,7 +19,7 @@ export const Usuario = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [input, setInput] = useState<string>('');
   const [dataTable, setDataTable] = useState(user);
-  const token = localStorage.getItem('token');
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const getUsersList = async (page: number) => {

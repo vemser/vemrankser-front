@@ -1,17 +1,18 @@
 import { api } from "../utils/api";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import nProgress from "nprogress";
 import { toast } from "react-toastify";
 import { toastConfig } from "../types/toast";
 import { IChildren } from "../types/aluno";
 import { ITrilha, IVinculaTrilha, IVinculaTrilhaContext } from "../types/vinculaTrilha";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 export const VinculaTrilhaContext = createContext({} as IVinculaTrilhaContext);
 
 export const VinculaTrilhaProvider = ({ children }: IChildren) => {
   const [trilhas, setTrilhas] = useState<ITrilha[]>([]);
-  const token = localStorage.getItem('token');
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const getTrilhas = async () => {
@@ -23,7 +24,6 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       
     } catch (error) {
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
     }
   }
 

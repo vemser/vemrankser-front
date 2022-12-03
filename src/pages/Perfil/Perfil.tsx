@@ -2,17 +2,15 @@ import { useContext, useEffect } from 'react';
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { AuthContext } from '../../context/AuthContext';
 import { PerfilContainer } from './Perfil.styled';
-import imageDummy from '../../assets/teste.jpg';
 import { ITrilha } from '../../types/vinculaTrilha';
+import userDummy from '../../assets/user.webp';
 
 export const Perfil = () => {
-    const { getLoggedUser } = useContext(AuthContext);
+    const { getLoggedUser, usuario } = useContext(AuthContext);
 
     useEffect(() => {
         getLoggedUser()
     }, []);
-
-    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -36,13 +34,11 @@ export const Perfil = () => {
         }
     }
 
-    const image = usuario.foto;
-
     return (
         <ContentWrapper>
             <PerfilContainer>
                 <header>
-                    <img id='perfil-foto' src={`data:image/jpeg;base64,${image}`}
+                    <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy}
                         alt={`Foto de ${usuario.nome}`} />
                     <div>
                         <h4 id='perfil-nome' >{usuario.nome}</h4>
@@ -52,7 +48,7 @@ export const Perfil = () => {
                         {usuario.trilhas.length !== 0 ?
                             <p><span>Trilha: </span>
 
-                                {usuario?.trilhas.map
+                                {usuario.trilhas.map
                                     ((trilhas: ITrilha, index: any) => {
                                         const ultimaTrilha = usuario.trilhas.length - 1
                                         return (index === ultimaTrilha ?

@@ -11,17 +11,22 @@ export const AuthContext = createContext({} as IAuthContext);
 
 export const AuthProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-    const [usuario, setUsuario] = useState('');
+    const [usuario, setUsuario] = useState<any>({});
+    const [token, setToken] = useState<string | null>(null);
 
     const handleLogin = async (user: IUserLogin) => {
         try {
             nProgress.start();
 
             const { data } = await api.post('/usuario/login', user);
+
             api.defaults.headers.common['Authorization'] = data;
 
             localStorage.setItem('token', data);
+
+            setToken(data);
+
+            getLoggedUser();
 
             navigate('/alunos');
         } catch (error) {
@@ -31,26 +36,30 @@ export const AuthProvider = ({ children }: IChildren) => {
             nProgress.done();
         }
     }
+    
+    const getLoggedUser = async () => {
+        try {
+            api.defaults.headers['Authorization'] = token;
+
+            const { data } = await api.get(`/usuario/pegar-usuario-logado`)
+
+            setUsuario(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleLogout = async () => {
         localStorage.removeItem('token');
+        setToken(null);
+
         api.defaults.headers.common['Authorization'] = undefined;
 
-        localStorage.removeItem('user');
         navigate('/');
     }
 
-    const getLoggedUser = async () => {
-        api.defaults.headers['Authorization'] = token;
-        await api.get(`/usuario/pegar-usuario-logado`)
-            .then(({ data }) => { localStorage.setItem('user', JSON.stringify(data)); })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-
     return (
-        <AuthContext.Provider value={{ getLoggedUser, handleLogin, handleLogout }}>
+        <AuthContext.Provider value={{ getLoggedUser, token, usuario, handleLogin, handleLogout }}>
             {children}
         </AuthContext.Provider>
     )

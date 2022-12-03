@@ -13,8 +13,7 @@ import { ErrorMessage } from '../../components/Styles/Component.styled';
 import { ButtonLogin } from '../../components/Buttons/ButtonLogin';
 
 export const Login = () => {
-  const { handleLogin } = useContext(AuthContext);
-  const token = localStorage.getItem('token');
+  const { handleLogin, token } = useContext(AuthContext);
 
   const { register, handleSubmit, formState: { errors } } = useForm<IUserLogin>({
     resolver: yupResolver(loginSchema),
