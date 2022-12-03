@@ -5,7 +5,8 @@ export interface IAluno {
   email: string,
   statusUsuario: number,
   trilhas: ITrilha[],
-  login?: string
+  login?: string,
+  foto?: any
 }
 
 export interface IChildren {

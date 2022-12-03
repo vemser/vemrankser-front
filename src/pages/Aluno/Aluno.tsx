@@ -175,7 +175,7 @@ export const Aluno = () => {
             return (
               <ButtonCard key={aluno.email}>
                 <ButtonCardContent>
-                  <img src={userDummy} alt="Foto" />
+                  <img src={aluno.foto !== null && 'foto' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt="Foto" />
                   <div className="firstSection">
                     <p><span>Nome:</span> {aluno.nome} </p>
                     <p><span>E-mail:</span> {aluno.email} </p>
@@ -188,7 +188,7 @@ export const Aluno = () => {
                       }) : 'Sem trilha vinculada'}</p>
                   </div>
                   <div className="thirdSection">
-                    <p><span>Status:</span> {aluno.statusUsuario === 1 ? 'Ativo' : 'Inativo'}</p>
+                    <p><span>Status:</span> {aluno.statusUsuario === 1 ? <span className="ativo">Ativo</span> : <span className="inativo">Inativo</span>}</p>
                   </div>
                 </ButtonCardContent>
               </ButtonCard>

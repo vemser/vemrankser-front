@@ -87,6 +87,7 @@ export const ButtonCard = styled.div`
   img {
     width: 60px;
     height: 60px;
+    border-radius: 50%;
     object-fit: cover;
     @media screen and (max-width: 460px) {
         width: 40px;
@@ -162,6 +163,14 @@ export const ButtonCardContent = styled.div`
     font-size: 1rem;
     span {
         font-weight: 600;
+    }
+    .ativo {
+      font-weight: 500;
+      color: #05a075;
+    }
+    .inativo {
+      font-weight: 500;
+      color: #e40b36;
     }
   }
 `;
