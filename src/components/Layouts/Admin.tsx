@@ -3,7 +3,8 @@ import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'r
 import { Outlet } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext';
 import { ButtonMenuLateral } from '../Buttons/ButtonMenuLateral';
-import { MenuLateral } from '../MenuLateral/MenuLateral'
+import { MenuLateral } from '../MenuLateral/MenuLateral';
+import userDummy from '../../assets/user.png';
 
 export const Admin = () => {
     const { getLoggedUser } = useContext(AuthContext);
@@ -43,7 +44,7 @@ export const Admin = () => {
             <MenuLateral
                 nomeDoUsuario={usuario.nome}
                 cargoDoUsuario={verificaTipoUsuario(usuario.tipoPerfil)}
-                fotoDePerfil={`data:image/jpeg;base64,${image}`}
+                fotoDePerfil={image !== null && 'foto' ? `data:image/jpeg;base64,${image}` : userDummy }
             >
                 <ButtonMenuLateral
                     text={"Dashboard"}
