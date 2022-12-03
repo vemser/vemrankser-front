@@ -77,7 +77,7 @@ export const DashBoardFeedback = () => {
               </div>
               <div className="button-adiciona-visualiza-feedback">
                 <Link to={'/dashboard/feedback/visualiza/pontos'}> 
-                 <ButtonEditaDeleta icone={''} label={"Visualizar"} />
+                 <ButtonEditaDeleta icone={''}  label={"Visualizar"} />
                 </Link>
               </div>
             </ButtonCardContent>

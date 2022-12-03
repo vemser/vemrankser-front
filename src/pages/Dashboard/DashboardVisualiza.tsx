@@ -29,10 +29,19 @@ export const DashBoardVisualiza = () => {
             {/* </Link> */}
         </div>
         <ButtonCardWrapper>
+        <p><strong>Pontos Positivos</strong></p>
           <ButtonCardDashboardFeedback>
             <ButtonCardContentVizualiza>
+              fff
             </ButtonCardContentVizualiza>
           </ButtonCardDashboardFeedback>
+          <p><strong>Pontos Negativos</strong></p>
+          <ButtonCardDashboardFeedback>
+            <ButtonCardContentVizualiza>
+              fff
+            </ButtonCardContentVizualiza>
+          </ButtonCardDashboardFeedback>
+          
         </ButtonCardWrapper>
       </section>
     </ButtonCardContainer>

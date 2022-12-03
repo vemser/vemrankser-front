@@ -44,7 +44,7 @@ export const DashBoardAluno = () => {
               </Select>
             </FormControl>
           </div>
-          <Link to={"/dashboard/feedback/aluno"}>
+          <Link to={"'/dashboard/feedback/aluno"}>
           <ButtonPrimary
               type={"button"}
               id={"botao-vincula-aluno"}
@@ -60,8 +60,6 @@ export const DashBoardAluno = () => {
             </Link>
         </div>
         <ButtonCardWrapper>
-          <ButtonCardDashboard>
-            <ButtonCardContent>
               <img src={userDummy} alt="Foto" />
               <div>
                 <p><span>Nome: </span>Luiza Valentini</p>
@@ -75,8 +73,6 @@ export const DashBoardAluno = () => {
               <div>
                 <GiChampions size={'40px'}  color={'var(--cor-primaria)'}/>
               </div>
-            </ButtonCardContent>
-          </ButtonCardDashboard>
           <ButtonCardDashboard>
             <ButtonCardContent>
               <img src={userDummy} alt="Foto" />
