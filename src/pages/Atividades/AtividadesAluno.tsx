@@ -36,47 +36,10 @@ export const AtividadesAluno = () => {
 
   return (
     <SimpleCardContainer>
-      <MenuLateral
-        nomeDoUsuario={"Luiza Valentini"}
-        cargoDoUsuario={"ADMIN"}
-        fotoDePerfil={""}
-      >
-        <ButtonMenuLateral
-          text={"Dashboard"}
-          icone={<HiChartPie />}
-          link={"/dashboard"}
-        />
-        <ButtonMenuLateral
-            text={"Usuários"}
-            icone={<HiUsers />}
-            link={"/usuarios"}
-          />
-        <ButtonMenuLateral
-          text={"Alunos"}
-          icone={<HiAcademicCap />}
-          link={"/alunos"}
-        />
-        <ButtonMenuLateral
-          text={"Atividades"}
-          icone={<HiBookOpen />}
-          link={"/atividades"}
-        />
-        <ButtonMenuLateral
-          text={"Perfil"}
-          icone={<HiUser />}
-          link={"/perfil"}
-        />
-        <ButtonMenuLateral
-          text={"Configurações"}
-          icone={<HiCog />}
-          link={"/configurações"}
-        />
-      </MenuLateral>
       <section>
         <Titulo>
           Mural de Atividades Aluno
         </Titulo>
-
         <div className='flex'>
           <FormControl sx={{ width: '300px', backgroundColor: 'white' }} fullWidth size="small">
             <InputLabel id="select-status-label">Status</InputLabel>

@@ -189,15 +189,10 @@ export const SimpleCardAtividades = styled.div`
     width: 60%;
     height: 450px;
     background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     gap: 40px;
     padding: 10px;
     transition: 0.5s;
-    &:hover {
-        transition: 1s;
-        transform: scale(1.01);
-    }
     @media screen and (max-width: 850px) {
         width: 80%;
     }
@@ -214,15 +209,10 @@ export const SimpleCardAtividadesEntrega = styled.div`
     width: 60%;
     height: 150px;
     background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     gap: 40px;
     padding: 10px;
     transition: 0.5s;
-    &:hover {
-        transition: 1s;
-        transform: scale(1.01);
-    }
     @media screen and (max-width: 850px) {
         width: 80%;
     }

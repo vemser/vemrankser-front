@@ -10,7 +10,7 @@ import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
-import userDummy from '../../assets/user.png';
+import userDummy from '../../assets/user.webp';
 import { INotas } from '../../types/notas';
 import { NotasContext } from '../../context/Notascontext';
 import Pagination from '@mui/material/Pagination';
@@ -43,37 +43,6 @@ export const AtividadesNotas = () => {
 
   return (
     <SimpleCardContainer>
-    <MenuLateral
-      nomeDoUsuario={"Luiza Valentini"}
-      cargoDoUsuario={"ADMIN"}
-      fotoDePerfil={""}
-    >
-      <ButtonMenuLateral
-        text={"Dashboard"}
-        icone={<HiChartPie />}
-        link={"/dashboard"}
-      />
-      <ButtonMenuLateral
-        text={"Alunos"}
-        icone={<HiAcademicCap />}
-        link={"/alunos"}
-      />
-      <ButtonMenuLateral
-        text={"Atividades"}
-        icone={<HiBookOpen />}
-        link={"/atividades"}
-      />
-      <ButtonMenuLateral
-        text={"Perfil"}
-        icone={<HiUser />}
-        link={"/perfil"}
-      />
-      <ButtonMenuLateral
-        text={"Configurações"}
-        icone={<HiCog />}
-        link={"/configurações"}
-      />
-    </MenuLateral>
     <section>
         <Titulo>
           Mural de Notas

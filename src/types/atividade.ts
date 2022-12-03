@@ -20,7 +20,6 @@ export interface IAtividadeContext {
     entregar: (idAtividade: number, link: string) => Promise<void>
 }
 
-
 export interface IAtividadeById {
     idAtividade?: number,
     titulo?: string,

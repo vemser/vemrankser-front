@@ -5,6 +5,7 @@ export const loginSchema = yup.object().shape({
     email: yup.string().required('Por favor, digite seu email').min(2, 'Email inválido').email('Por favor, digite um email válido').trim(),
     senha: yup.string().required('Por favor, digite sua senha').trim()
 })
+
 export const vinculaAlunoSchema = yup.object().shape({
     idTrilha: yup.array().typeError('Por favor, selecione uma opção').required('Por favor, selecione uma opção'),
     login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
@@ -19,12 +20,14 @@ export const adicionaUsuarioSchema = yup.object().shape({
     especialidade: yup.string().trim(),
     tipoPerfil: yup.number().required('Por favor, selecione uma opção')
 })
+
 export const editaAlunoSchema = yup.object().shape({
     nome: yup.string().required('Por favor, digite o nome do aluno').min(2, 'Nome  inválido').email('Por favor, digite o nome do aluno corretamente').trim(),
     trilha: yup.string().required('Por favor, selecione uma opção').oneOf(['Geral', 'Backend', 'Frontend', 'QA'])
     .label("Trilha"),
     modulo: yup.string().required('Por favor, selecione uma opção')
 })
+
 export const cadastraAtividadeSchema = yup.object().shape({
     titulo: yup.string().required('Por favor, digite o titulo da atividade').trim(),
     instrucoes: yup.string().required('Por favor, digite a descrição da atividade').trim(),
@@ -38,11 +41,6 @@ export const detalhesNotasSchema = yup.object().shape({
     nota: yup.number().required('Por favor, digite a nota do aluno'),
     link: yup.string().required('Por favor, adicione o link da atividade').trim(),
 });
-
-
-   
-
-
 
 export const editaUsuarioSchema = yup.object().shape({
     nome: yup.string().required('Por favor, digite o nome').min(2, 'O nome deve conter no mínimo 2 letras').trim(),
