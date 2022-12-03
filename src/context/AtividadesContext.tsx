@@ -23,8 +23,6 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       const { data } = await api.get(`/atividade/listar-paginado?pagina=${page - 1}&tamanho=4`);
       setTotalPages(data.quantidadePaginas);
       setAtividades(data.elementos);
-      console.log(data.elementos)
-
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);

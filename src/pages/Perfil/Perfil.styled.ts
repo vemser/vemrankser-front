@@ -128,6 +128,7 @@ export const CardPerfilContent = styled.article`
     justify-content: center;
     gap: 20px;
     font-size: 1rem;
+    color: white;
     @media screen and (max-width: 460px) {
         font-size: 0.9rem;
     }
