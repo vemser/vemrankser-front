@@ -61,7 +61,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
   }
 
   return (
-    <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, totalPages, getAlunosWithNome, getAlunosWithTrilha }}>
+    <AlunoContext.Provider value={{ getAlunos, alunos, setAlunos, setTotalPages, totalPages, getAlunosWithNome, getAlunosWithTrilha }}>
       {children}
     </AlunoContext.Provider>
   );

@@ -12,7 +12,7 @@ export const AuthContext = createContext({} as IAuthContext);
 export const AuthProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const [ usuario, setUsuario ] = useState('');
+    const [usuario, setUsuario] = useState('');
 
     const handleLogin = async (user: IUserLogin) => {
         try {
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }: IChildren) => {
 
             const { data } = await api.post('/usuario/login', user);
             api.defaults.headers.common['Authorization'] = data;
-    
+
             localStorage.setItem('token', data);
 
             navigate('/alunos');
@@ -35,26 +35,19 @@ export const AuthProvider = ({ children }: IChildren) => {
     const handleLogout = async () => {
         localStorage.removeItem('token');
         api.defaults.headers.common['Authorization'] = undefined;
-        
+
         localStorage.removeItem('user');
         navigate('/');
     }
 
     const getLoggedUser = async () => {
-        try {
-            api.defaults.headers['Authorization'] = token;
-            const { data } = await api.get(`/usuario/pegar-usuario-logado`);
-
-            localStorage.setItem('user', JSON.stringify(data));
-
-        } catch (error) {
-            console.log(error);
-        }
+        api.defaults.headers['Authorization'] = token;
+        await api.get(`/usuario/pegar-usuario-logado`)
+            .then(({ data }) => { localStorage.setItem('user', JSON.stringify(data)); })
+            .catch((error) => {
+                console.log(error)
+            })
     }
-
-    useEffect(() => {
-        getLoggedUser()
-    }, []);
 
     return (
         <AuthContext.Provider value={{ getLoggedUser, handleLogin, handleLogout }}>

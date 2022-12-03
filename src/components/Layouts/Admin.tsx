@@ -9,7 +9,7 @@ export const Admin = () => {
     const { getLoggedUser } = useContext(AuthContext);
 
     useEffect(() => {
-        getLoggedUser()
+        getLoggedUser();
     }, []);
 
     const usuario = JSON.parse(localStorage.getItem('user') || '{}');
