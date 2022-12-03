@@ -11,6 +11,8 @@ import { SimpleCard, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper }
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
 import { format } from 'date-fns'
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
+import { ITrilha } from '../../types/vinculaTrilha';
 
 export const AtividadesInstrutor = () => {
   
@@ -19,6 +21,7 @@ export const AtividadesInstrutor = () => {
   const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
   const [searchParam, setSearchParam] = useSearchParams();
   const { getAtividade, atividades, totalPages } = useContext(AtividadeContext);
+  const {getTrilhas, trilhas} = useContext(VinculaTrilhaContext)
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -35,21 +38,6 @@ export const AtividadesInstrutor = () => {
     getAtividade(pagina)
     setAtividadeData(atividades)
   },[pagina])
-
-  useEffect(() => {
-    let listaAtividades = atividades
-    listaAtividades = filtraAtividadePorTrilha(trilha, listaAtividades)
-    setAtividadeData(listaAtividades)
-  }, [trilha])
-
-  const filtraAtividadePorTrilha = (keyWord: string, listaAtividades: IAtividade[]) => {
-    if (keyWord !== '' && keyWord !== 'geral') {
-      listaAtividades = atividades.filter((atividade) => {
-        return atividade.trilhas.some((trilha) => trilha.nome.toLowerCase().startsWith(keyWord.toLowerCase()));
-      });
-    }
-    return listaAtividades
-  }
 
   const handleSelect = (event: SelectChangeEvent) => {
     const keyWord = event.target.value
@@ -73,10 +61,6 @@ export const AtividadesInstrutor = () => {
               label="Trilha"
               onChange={handleSelect}
             >
-              <MenuItem value={'geral'}>Geral</MenuItem>
-              <MenuItem value={'backend'}>Backend</MenuItem>
-              <MenuItem value={'frontend'}>Frontend</MenuItem>
-              <MenuItem value={'qa'}>QA</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ width: '300px', backgroundColor: 'white' }} fullWidth size="small">
