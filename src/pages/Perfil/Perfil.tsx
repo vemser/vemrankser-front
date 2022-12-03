@@ -6,11 +6,7 @@ import { ITrilha } from '../../types/vinculaTrilha';
 import userDummy from '../../assets/user.webp';
 
 export const Perfil = () => {
-    const { getLoggedUser, usuario } = useContext(AuthContext);
-
-    useEffect(() => {
-        getLoggedUser()
-    }, []);
+    const { usuario } = useContext(AuthContext);
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -34,6 +30,8 @@ export const Perfil = () => {
         }
     }
 
+    const trilhasUser = usuario.trilha || [];
+
     return (
         <ContentWrapper>
             <PerfilContainer>
@@ -45,12 +43,12 @@ export const Perfil = () => {
                         <p id='perfil-login' ><span>Login:</span> {usuario.login}</p>
                         <p id='perfil-email' ><span>Email:</span> {usuario.email}</p>
                         <p id='perfil-tipo-de-conta'><span>Tipo de conta:</span> {verificaTipoUsuario(usuario.tipoPerfil)}</p>
-                        {usuario.trilhas.length !== 0 ?
+                        {trilhasUser.length !== 0 ?
                             <p><span>Trilha: </span>
 
-                                {usuario.trilhas.map
+                                {trilhasUser.map
                                     ((trilhas: ITrilha, index: any) => {
-                                        const ultimaTrilha = usuario.trilhas.length - 1
+                                        const ultimaTrilha = trilhasUser.length - 1
                                         return (index === ultimaTrilha ?
                                             trilhas.nome
                                             : trilhas.nome + `, `)
@@ -60,13 +58,6 @@ export const Perfil = () => {
                         }
                     </div>
                 </header>
-
-
-
-                        
-
-
-
                 <section>
                     <h5 id='perfil-atividades-vinculadas' >Atividades Vinculadas</h5>
                     <div>

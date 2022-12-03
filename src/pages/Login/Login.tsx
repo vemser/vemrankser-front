@@ -13,14 +13,14 @@ import { ErrorMessage } from '../../components/Styles/Component.styled';
 import { ButtonLogin } from '../../components/Buttons/ButtonLogin';
 
 export const Login = () => {
-  const { handleLogin, token } = useContext(AuthContext);
-
+  const { handleLogin } = useContext(AuthContext);
+  const token = localStorage.getItem('token');
   const { register, handleSubmit, formState: { errors } } = useForm<IUserLogin>({
     resolver: yupResolver(loginSchema),
   });
 
   if (token) {
-    return <Navigate to='/alunos' />
+    return <Navigate to='/dashboard' />
   }
 
   return (

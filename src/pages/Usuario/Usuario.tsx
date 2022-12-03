@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import { toastConfig } from "../../types/toast";
 import nProgress from 'nprogress';
 import { DataGrid, GridActionsCellItem, GridRowParams, GridValueGetterParams } from "@mui/x-data-grid";
-import { AuthContext } from "../../context/AuthContext";
 
 export const Usuario = () => {
   const [searchParam, setSearchParams] = useSearchParams();
@@ -19,8 +18,8 @@ export const Usuario = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [input, setInput] = useState<string>('');
   const [dataTable, setDataTable] = useState(user);
-  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   const getUsersList = async (page: number) => {
     try {

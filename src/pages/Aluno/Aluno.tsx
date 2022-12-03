@@ -11,7 +11,6 @@ import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper }
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { api } from "../../utils/api";
-import { AuthContext } from "../../context/AuthContext";
 
 export const Aluno = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -20,7 +19,7 @@ export const Aluno = () => {
   const [searchParam, setSearchParam] = useSearchParams();
   const [nome, setNome] = useState<string>('');
   const [alunoData, setAlunoData] = useState<IAluno[]>([]);
-  const { token } = useContext(AuthContext);
+  const token = localStorage.getItem('token');
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
@@ -34,7 +33,6 @@ export const Aluno = () => {
     api.get(`/usuario/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
       ({ data }) => {
         setTotalPages(data.quantidadePaginas);
-        console.log(data)
         const { elementos } = data;
         const formatted = elementos.map((usuario: any) => {
           return {
@@ -63,7 +61,6 @@ export const Aluno = () => {
     api.get(`/usuario/lista-alunos-trilha?pagina=${pagina - 1}&tamanho=4&idTrilha=${trilha}`).then(
       ({ data }) => {
         setTotalPages(data.quantidadePaginas);
-        console.log(data)
         const { elementos } = data;
         const formatted = elementos.map((usuario: any) => {
           return {
