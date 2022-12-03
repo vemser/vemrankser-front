@@ -30,48 +30,50 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+
   const criaAtividade = async (payload: ICadastraAtividade) => {
     try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      const idTrilha = payload.idTrilha?.map((id)=> `&idTrilha=${id}`).join('')
+      const idTrilha = payload.idTrilha?.map((id) => `&idTrilha=${id}`).join('')
       await api.post(`/atividade?idModulo=${payload.idModulo}${idTrilha}`, payload);
       toast.success('Atividade cadastrada com sucesso!', toastConfig);
       navigate('/atividades')
     } catch (error) {
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
     } finally {
       nProgress.done();
     }
   }
+
   const avaliar = async (idAtividade: number, pontuacao: number) => {
- try {
+    try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      await api.put(`/atividade/avaliar?idAtividade=${idAtividade}`, {pontuacao});
+      await api.put(`/atividade/avaliar?idAtividade=${idAtividade}`, { pontuacao });
       toast.success('Atividade corrigida com sucesso!', toastConfig);
       // navigate('/atividades')
     } catch (error) {
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
     } finally {
       nProgress.done();
     }
   }
+
   const entregar = async (idAtividade: number, link: string) => {
     try {
-         nProgress.start();
-         api.defaults.headers.common['Authorization'] = token;
-         await api.put(`/atividade/entregar/${idAtividade}?link=${link}`);
-       } catch (error) {
-         console.error(error);
-         toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
-       } finally {
-         nProgress.done();
-       }
-     }
-    
+      nProgress.start();
+      api.defaults.headers.common['Authorization'] = token;
+      await api.put(`/atividade/entregar/${idAtividade}?link=${link}`);
+    } catch (error) {
+      console.error(error);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
+    } finally {
+      nProgress.done();
+    }
+  }
 
   return (
     <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar }}>

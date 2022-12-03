@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }: IChildren) => {
 
             navigate('/dashboard');
         } catch (error) {
-            toast.error('Houve algum erro, por favor tente novamente!', toastConfig);
+            toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
             console.log(error);
         } finally {
             nProgress.done();
@@ -49,6 +49,8 @@ export const AuthProvider = ({ children }: IChildren) => {
         localStorage.removeItem('token');
 
         api.defaults.headers.common['Authorization'] = undefined;
+
+        setUsuario({});
 
         navigate('/');
     }

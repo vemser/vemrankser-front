@@ -48,7 +48,7 @@ export const UsersProvider = ({ children }: IChildren) => {
       toast.success('Pessoa cadastrada com sucesso!', toastConfig);
       navigate('/usuarios');
     } catch (error) {
-      toast.error('Ocorreu algum erro, por favor tente novamente!', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
       console.error(error);
     } finally {
       nProgress.done();
@@ -64,12 +64,28 @@ export const UsersProvider = ({ children }: IChildren) => {
       toast.success('Foto adicionada com sucesso!', toastConfig);
       navigate('/usuarios');
     } catch (error) {
-      toast.error('Ocorreu algum erro, por favor tente novamente!', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
       console.error(error);
     } finally {
       nProgress.done();
     }
   }
+
+  const editUser = async (data: IUser) => {
+    try {
+      nProgress.start();
+
+      await api.put(`/usuario/atualizar/${data.idUsuario}`, data);
+
+      toast.success("Usuário atualizado com sucesso!", toastConfig);
+      navigate('/usuarios');
+    } catch (error) {
+      console.error(error);
+      toast.error("Houve algum erro, por favor verifique os dados e tente novamente", toastConfig);
+    } finally {
+      nProgress.done();
+    };
+  };
 
   const getUsersList = async (page: number) => {
     try {
@@ -87,22 +103,6 @@ export const UsersProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-
-  const editUser = async (data: IUser) => {
-    try {
-      nProgress.start();
-
-      await api.put(`/usuario/atualizar/${data.idUsuario}`, data);
-
-      toast.success("Usuário atualizado com sucesso!", toastConfig);
-      navigate('/usuarios');
-    } catch (error) {
-      console.error(error);
-      toast.error("Ocorreu algum erro, tente novamente!", toastConfig);
-    } finally {
-      nProgress.done();
-    };
-  };
 
   return (
     <UsersContext.Provider value={{ createUser, addImage, getUsersList, user, editUser, totalPages }}>

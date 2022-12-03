@@ -1,14 +1,14 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { ButtonPrimary } from "../../components/Buttons/Button";
+import { ButtonPrimary } from "../../../components/Buttons/Button";
 import { Pagination, Paper, TableContainer, TextField } from "@mui/material";
 import { HiSearch, HiPencilAlt, HiOutlinePhotograph } from "react-icons/hi";
-import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCardContainer, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { useContext, useEffect, useMemo, useState } from "react";
-import { IUser } from "../../types/user";
-import { api } from "../../utils/api";
+import { BarraDePesquisa, Titulo } from "../../../components/Styles/Component.styled";
+import { ButtonCardContainer, ButtonCardWrapper } from "../../../components/Styles/ButtonCard";
+import { useEffect, useMemo, useState } from "react";
+import { IUser } from "../../../types/user";
+import { api } from "../../../utils/api";
 import { toast } from "react-toastify";
-import { toastConfig } from "../../types/toast";
+import { toastConfig } from "../../../types/toast";
 import nProgress from 'nprogress';
 import { DataGrid, GridActionsCellItem, GridRowParams, GridValueGetterParams } from "@mui/x-data-grid";
 

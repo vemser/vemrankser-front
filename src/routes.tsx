@@ -8,9 +8,10 @@ import { VinculaAluno } from './pages/AlunoVincula/AlunoVincula';
 import { Login } from './pages/Login/Login';
 import { Admin } from './components/Layouts/Admin';
 import { Perfil } from './pages/Perfil/Perfil';
-import { Usuario } from './pages/Usuario/Usuario';
-import { UsuarioCadastra } from './pages/UsuarioCadastra/UsuarioCadastra';
-import { UsuarioEdita } from './pages/UsuarioEdita/UsuarioEdita';
+import { Usuario } from './pages/Admin-Role/Usuario/Usuario';
+import { UsuarioCadastra } from './pages/Admin-Role/UsuarioCadastrar/UsuarioCadastra';
+import { UsuarioEdita } from './pages/Admin-Role/UsuarioEditar/UsuarioEdita';
+import { UsuarioCadastraFoto } from './pages/Admin-Role/UsuarioCadastrarFoto/UsuarioCadastraFoto';
 import { UsersProvider } from './context/UserContext';
 import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
@@ -40,7 +41,6 @@ import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { PerfilProvider } from './context/PerfilContext';
-import { UsuarioCadastraFoto } from './pages/UsuarioCadastraFoto/UsuarioCadastraFoto';
 
 
 export const Router = () => {

@@ -12,7 +12,6 @@ export const ComentarioContext = createContext({} as IComentarioContext);
 export const ComentarioProvider = ({ children }: IChildren) => {
   const token = localStorage.getItem('token');
 
-
   const criaComentario = async (idAtividade: number, comentario: string) => {
  try {
       nProgress.start();
@@ -20,13 +19,11 @@ export const ComentarioProvider = ({ children }: IChildren) => {
       await api.post(`/comentario?idAtividade=${idAtividade}`, {comentario});
     } catch (error) {
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
     } finally {
       nProgress.done();
     }
   }
-
-    
 
   return (
     <ComentarioContext.Provider value={{ criaComentario }}>

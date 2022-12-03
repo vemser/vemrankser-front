@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adicionaFotoSchema, editaUsuarioSchema } from "../../utils/schemas";
-import { IUser, IUserPhoto } from "../../types/user";
-import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
-import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
-import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
-import { UsersContext } from "../../context/UserContext";
+import { adicionaFotoSchema } from "../../../utils/schemas";
+import { IUserPhoto } from "../../../types/user";
+import { ButtonPrimary, ButtonSecondary } from "../../../components/Buttons/Button";
+import { ButtonWraper, ContentWrapper } from "../../../components/Styles/Container.styled";
+import { ErrorMessage2, Titulo } from "../../../components/Styles/Component.styled";
+import { UsersContext } from "../../../context/UserContext";
 import { Avatar, Box, Typography } from "@mui/material";
 
 export const UsuarioCadastraFoto = () => {
