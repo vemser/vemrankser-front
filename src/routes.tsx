@@ -19,11 +19,16 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { Dashboard } from './pages/Dashboard/Dashboard';
-import { Configuracoes } from './pages/Configuracoes/Configuracoes';
+import { ConfiguracoesCoordenador } from './pages/Configuracoes/ConfiguracoesCoordenador';
+import { CadastrarTrilha } from './pages/Configuracoes/CadastrarTrilha';
+import { VincularInstrutor } from './pages/Configuracoes/VincularInstrutor';
+import { ConfiguracoesInstrutor } from './pages/Configuracoes/ConfiguracoesInstrutor';
+import { CadastrarModulo } from './pages/Configuracoes/CadastrarModulo';
+import { VincularModulo } from './pages/Configuracoes/VincularModulo';
 
 export const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ToastContainer />
       <AuthProvider>
         <UsersProvider>
@@ -43,7 +48,13 @@ export const Router = () => {
                     <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                     <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
                     <Route path={'/perfil'} element={<Perfil />} />
-                    <Route path={'/configuracoes'} element={<Configuracoes />} />
+                    <Route path={'/dashboard'} element={<Dashboard />} />
+                    <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
+                    <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
+                    <Route path={'/configuracoes/adicionar-trilha'} element={<CadastrarTrilha />} />
+                    <Route path={'/configuracoes/adicionar-modulo'} element={<CadastrarModulo />} />
+                    <Route path={'/configuracoes/vincular-modulo'} element={<VincularModulo />} />
+                    <Route path={'/configuracoes/vincular-instrutor'} element={<VincularInstrutor />} />
                   </Route>
                 </Route>
               </Routes>
@@ -54,3 +65,4 @@ export const Router = () => {
     </BrowserRouter>
   )
 }
+

@@ -41,7 +41,7 @@ export const UsuarioCadastra = () => {
 
   return (
     <ContentWrapper>
-      <Titulo>Cadastro Usuário</Titulo>
+      <Titulo>Cadastrar Usuário</Titulo>
       <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
 
         {/* <input
@@ -52,7 +52,7 @@ export const UsuarioCadastra = () => {
         /> */}
 
         <TextField id="nome" label="Nome *" variant="outlined"
-          sx={{ width: "300px", marginTop: "10%", backgroundColor: "white" }} {...register("nome")} size="small" />
+          sx={{ width: "300px", marginTop: "8%", backgroundColor: "white" }} {...register("nome")} size="small" />
         {errors.nome && <ErrorMessage2>{errors.nome.message}</ErrorMessage2>}
 
         <TextField id="login" label="Login *" variant="outlined"

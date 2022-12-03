@@ -26,6 +26,22 @@ export const ContentWrapper = styled.div`
     align-items: center;
     width: 30%;
   }
+  .flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 40px;
+    div {
+      display: flex;
+      gap: 20px;
+    }
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
 `;
 
 export const ButtonWraper = styled.div`
