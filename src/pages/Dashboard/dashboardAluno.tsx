@@ -5,7 +5,7 @@ import React from "react"
 import { ButtonPrimary } from "../../components/Buttons/Button"
 import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
 import { Titulo } from "../../components/Styles/Component.styled"
-import userDummy from "../../assets/user.png";
+import userDummy from "../../assets/user.webp";
 import { GiChampions } from "react-icons/gi"
 import { Link } from "react-router-dom"
 

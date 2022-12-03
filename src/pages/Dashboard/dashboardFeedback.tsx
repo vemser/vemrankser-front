@@ -5,7 +5,7 @@ import React from "react"
 import { ButtonSecondary } from "../../components/Buttons/Button"
 import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled"
-import userDummy from "../../assets/user.png";
+import userDummy from "../../assets/user.webp";
 import { Link } from "react-router-dom"
 import { HiSearch } from "react-icons/hi"
 import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta"
@@ -77,7 +77,7 @@ export const DashBoardFeedback = () => {
               </div>
               <div className="button-adiciona-visualiza-feedback">
                 <Link to={'/dashboard/feedback/visualiza/pontos'}> 
-                 <ButtonEditaDeleta icone={''}  label={"Visualizar"} />
+                 {/* <ButtonEditaDeleta icone={''}  label={"Visualizar"} /> */}
                 </Link>
               </div>
             </ButtonCardContent>
