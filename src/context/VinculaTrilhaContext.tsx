@@ -6,14 +6,13 @@ import { toastConfig } from "../types/toast";
 import { IChildren } from "../types/aluno";
 import { ITrilha, IVinculaTrilha, IVinculaTrilhaContext } from "../types/vinculaTrilha";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
 
 export const VinculaTrilhaContext = createContext({} as IVinculaTrilhaContext);
 
 export const VinculaTrilhaProvider = ({ children }: IChildren) => {
   const [trilhas, setTrilhas] = useState<ITrilha[]>([]);
-  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   const getTrilhas = async () => {
     try {

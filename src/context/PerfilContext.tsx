@@ -1,15 +1,14 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { IPerfilContext } from '../types/perfil';
 import { IChildren, IUser } from '../types/user'
 import { api } from '../utils/api';
 import { IAtividadeById } from '../types/atividade';
-import { AuthContext } from './AuthContext';
 
 export const PerfilContext = createContext({} as IPerfilContext);
 
 export const AuthProvider = ({ children }: IChildren) => {
-    const [ atividadesById, setAtividadesById ] = useState<IAtividadeById[]>([])
-    const { token } = useContext(AuthContext);
+    const [ atividadesById, setAtividadesById ] = useState<IAtividadeById[]>([]);
+    const token = localStorage.getItem('token');
 
     const getAtividadesbyId = async (userId: IUser) => {
         try {

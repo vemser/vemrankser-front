@@ -13,8 +13,6 @@ export const Admin = () => {
         getLoggedUser();
     }, []);
 
-    // const usuario = JSON.parse(localStorage.getItem('user') || '{}');
-
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
             case 1:

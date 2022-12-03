@@ -33,6 +33,7 @@ export const Router = () => {
                 <Route path={'/'} element={<Login />} />
                 <Route element={<PrivateRoute />}>
                   <Route element={<Admin />}>
+                    <Route path={'/dashboard'} element={<Dashboard />} />
                     <Route path={'/atividades'} element={<Atividades />} />
                     <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
                     <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
@@ -42,7 +43,6 @@ export const Router = () => {
                     <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                     <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
                     <Route path={'/perfil'} element={<Perfil />} />
-                    <Route path={'/dashboard'} element={<Dashboard />} />
                     <Route path={'/configuracoes'} element={<Configuracoes />} />
                   </Route>
                 </Route>

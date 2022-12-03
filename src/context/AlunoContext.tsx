@@ -1,17 +1,14 @@
 import { api } from "../utils/api";
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import nProgress from "nprogress";
-import { toast } from "react-toastify";
-import { toastConfig } from "../types/toast";
 import { IAluno, IAlunoContext,IChildren } from "../types/aluno";
-import { AuthContext } from "./AuthContext";
 
 export const AlunoContext = createContext({} as IAlunoContext);
 
 export const AlunoProvider = ({ children }: IChildren) => {
   const [ alunos, setAlunos ] = useState<IAluno[]>([]);
   const [ totalPages, setTotalPages ] = useState(0);
-  const { token } = useContext(AuthContext);
+  const token = localStorage.getItem('token');
 
   const getAlunos = async (page: number) => {
     try {
