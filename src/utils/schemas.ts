@@ -64,5 +64,10 @@ export const cadastraTrilhaSchema = yup.object().shape({
     nome: yup.string().required('Por favor, digite o nome da trilha').min(2, 'Nome  inválido').trim(),
     edicao: yup.string().required('Por favor, selecione uma opção')
     .label("Edicao"),
-    anoEdicao: yup.date().required('Por favor, selecione uma opção')
+    anoEdicao: yup.string().required('Por favor, selecione uma opção')
+})
+
+export const vinculaInstrutorSchema = yup.object().shape({
+    idTrilha: yup.array().typeError('Por favor, selecione uma opção').required('Por favor, selecione uma opção'),
+    login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
 })
