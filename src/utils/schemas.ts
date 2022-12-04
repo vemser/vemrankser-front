@@ -71,3 +71,15 @@ export const vinculaInstrutorSchema = yup.object().shape({
     idTrilha: yup.array().typeError('Por favor, selecione uma opção').required('Por favor, selecione uma opção'),
     login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
 })
+export const cadastraNovoModuloSchema = yup.object().shape({
+    nome: yup.string().required('Por favor, digite o nome do módulo').min(2, 'Nome  inválido').trim(),
+    dataInicio: yup.string().required('Por favor, selecione uma opção')
+    .label("Edicao"),
+    dataFim: yup.string().required('Por favor, selecione uma opção'),
+})
+
+export const vinculaModuloTrilhaSchema = yup.object().shape({
+    idTrilha: yup.number().required('Por favor, selecione uma opção'),
+    idModulo: yup.number().required('Por favor, selecione uma opção')
+   
+})

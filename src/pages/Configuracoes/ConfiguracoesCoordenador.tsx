@@ -30,8 +30,8 @@ export const ConfiguracoesCoordenador = () => {
       </div>
 
    {trilhas.map((trilha:ITrilha) =>
-   <SimpleCardConfiguracoes key={trilha.nome}>
-        <SimpleCardContent key={trilha.nome}>
+   <SimpleCardConfiguracoes key={trilha.idTrilha}>
+        <SimpleCardContent>
           <p>A Trilha <span>{trilha.nome}</span> foi adicionada na edição <span>{trilha.edicao}</span> </p>
         </SimpleCardContent>
       </SimpleCardConfiguracoes>

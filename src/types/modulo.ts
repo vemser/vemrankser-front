@@ -9,3 +9,15 @@ export interface IModulo {
     dataFim: string,
     idModulo: number
 }
+
+export interface ICadastraModulo {
+    nome: string,
+    dataInicio: string,
+    dataFim: string,
+    idModulo: number
+}
+
+export interface IVinculaModulo {
+   idModulo: number,
+    idTrilha: number
+}
