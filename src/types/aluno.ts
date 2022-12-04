@@ -7,6 +7,7 @@ export interface IAluno {
   trilhas: ITrilha[],
   login?: string,
   foto?: any
+  idUsuario: number
 }
 
 export interface IChildren {
@@ -20,7 +21,25 @@ export interface IAlunoContext {
   totalPages: number,
   setTotalPages: React.Dispatch<React.SetStateAction<number>>,
   getAlunosWithNome: (page: number, nome: string) => Promise<void>
+  getAlunosPorTrilha: () => Promise<void>
+  alunosTrilha: IContaAlunos[]
+  getAlunosWithFilter: (page: number, filterParams?: IAlunoFilterParams) => Promise<void>
+}
+export interface IAlunoFilterParams{
+ nome?: string,
+ idTrilha?: number,
 
+}
+
+export interface IAlunoTrilha {
+  nomeTrilha: string,
+  idTrilha: number
+}
+
+export interface IContaAlunos {
+  nome: string,
+  idTrilha: number
+  quantidadeAlunos: number,
 }
 
 export interface ICriaAlunos {

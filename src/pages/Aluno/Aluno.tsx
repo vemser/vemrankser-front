@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
 import userDummy from "../../assets/user.webp";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { HiSearch } from "react-icons/hi";
 import { IAluno } from "../../types/aluno";
 import { ITrilha } from "../../types/vinculaTrilha";
@@ -28,7 +28,7 @@ export const Aluno = () => {
   const handleSelect = async (event: SelectChangeEvent) => {
     const keyWord = event.target.value;
     setTrilha(keyWord);
-    
+
     api.defaults.headers.common['Authorization'] = token;
     api.get(`/usuario/lista-alunos-trilha?pagina=0&tamanho=4&idTrilha=${keyWord}`).then(
       ({ data }) => {
@@ -134,7 +134,7 @@ export const Aluno = () => {
                 label="Trilha"
                 onChange={handleSelect}
               >
-                <MenuItem key={''} value={''}>Sem filtro</MenuItem>
+                <MenuItem key={''} value={''} onClick={() => getAlunos(pagina)}>Sem Filtro</MenuItem>
                 {trilhas.map((trilhaSelect: ITrilha) => {
                   return <MenuItem key={trilhaSelect.idTrilha} value={trilhaSelect.idTrilha}>{trilhaSelect.nome}</MenuItem>
                 })}
@@ -172,7 +172,7 @@ export const Aluno = () => {
             return (
               <ButtonCard key={aluno.email}>
                 <ButtonCardContent>
-                  <img src={aluno.foto !== null || '' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt={`Foto de ${aluno.nome}`} />
+                  <img src={aluno.foto !== null || '' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy} alt={`Foto de ${aluno.nome}`} />
                   <div className="firstSection">
                     <p><span>Nome:</span> {aluno.nome} </p>
                     <p><span>E-mail:</span> {aluno.email} </p>

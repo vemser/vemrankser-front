@@ -267,7 +267,7 @@ export const ButtonCardDashboardFeedback = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 65%;
-  height: 100px;
+  height: auto;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
