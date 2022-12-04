@@ -172,7 +172,7 @@ export const Aluno = () => {
             return (
               <ButtonCard key={aluno.email}>
                 <ButtonCardContent>
-                  <img src={aluno.foto !== null && 'foto' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt="Foto" />
+                  <img src={aluno.foto !== null || '' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt={`Foto de ${aluno.nome}`} />
                   <div className="firstSection">
                     <p><span>Nome:</span> {aluno.nome} </p>
                     <p><span>E-mail:</span> {aluno.email} </p>

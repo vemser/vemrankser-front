@@ -14,8 +14,8 @@ export const PerfilProvider = ({ children }: IChildren) => {
         try {
             api.defaults.headers.common['Authorization'] = token;
 
-            const { data } = await api.get(`/atividade/listar-mural-aluno?pagina=0&tamanho=4&atividadeStatus=PENDENTE&idUsuario=${idUsuario}`);
-            setAtividadesById(data);
+            const { data } = await api.get(`/atividade/listar-mural-aluno?pagina=0&tamanho=3&atividadeStatus=PENDENTE&idUsuario=${idUsuario}`);
+            setAtividadesById(data.elementos);
             
         } catch (error) {
             console.log(error);

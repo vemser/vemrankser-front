@@ -41,6 +41,7 @@ import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { PerfilProvider } from './context/PerfilContext';
+import { PerfilGeral } from './pages/Perfil/PerfilGeral';
 
 
 export const Router = () => {
@@ -72,7 +73,8 @@ export const Router = () => {
                               <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
                               <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
                               <Route path={'/usuarios/cadastrar-foto'} element={<UsuarioCadastraFoto />} />
-                            <Route path={'/perfil'} element={<Perfil />} />
+                              <Route path={'/perfil'} element={<Perfil />} />
+                              <Route path={'/perfil-instrutor'} element={<PerfilGeral />} />
                               <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />
                               <Route path={'/configuracoes/instrutor'} element={<ConfiguracoesInstrutor />} />
                               <Route path={'/configuracoes/adicionar-trilha'} element={<CadastrarTrilha />} />
