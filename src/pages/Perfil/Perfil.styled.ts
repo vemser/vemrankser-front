@@ -33,6 +33,7 @@ export const PerfilContainer = styled.div`
             width: 160px;
             height: 160px;
             border-radius: 50%;
+            background-color: white;
             object-fit: cover;
             border: 3px solid var(--branco);
             @media screen and (max-width: 1600px) {
@@ -55,6 +56,9 @@ export const PerfilContainer = styled.div`
                 margin-right: 5px;
             }
             p {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 @media screen and (max-width: 600px) {
                     font-size: 0.9rem;
                 }
@@ -70,6 +74,133 @@ export const PerfilContainer = styled.div`
                 font-size: 1.3rem;
             }
         }
+    }
+    section {
+        width: 100%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: 80%;
+            border-radius: 10px;
+        }
+    }
+`
+
+export const CardPerfil = styled.article`
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 80px;
+    background-color: var(--cor-primaria);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    gap: 40px;
+    padding: 20px;
+    transition: 0.5s;
+    color: white;
+    @media (max-width: 850px) {
+        width: 100%;
+    }
+    @media screen and (max-width: 460px) {
+        gap: 10px;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        @media screen and (max-width: 460px) {
+            width: 40px;
+            height: 40px;
+        }
+    }
+`
+
+export const CardPerfilContent = styled.article`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: left;
+    padding: 0 5px;
+    font-size: 1rem;
+    color: white;
+    @media screen and (max-width: 460px) {
+        font-size: 0.9rem;
+    }
+    .text {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    span {
+        font-weight: 600;
+    }
+    .pendente {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: black;
+    }
+`
+
+export const PerfilGeralContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 60%;
+    background-color: var(--cor-primaria);
+    border-radius: 10px;
+    gap: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    @media screen and (max-width: 1000px) {
+        width: 80%;
+    }
+    img {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background-color: white;
+        object-fit: cover;
+        border: 3px solid var(--branco);
+        @media screen and (max-width: 1600px) {
+            width: 120px;
+            height: 120px;
+        }
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: white;
+        span {
+            width: 100%;
+            white-space: pre-line;
+            color: #afc8ff;
+            margin-right: 5px;
+        }
+    }
+    h4 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--branco);
+        user-select: none;
     }
     section {
         width: 100%;

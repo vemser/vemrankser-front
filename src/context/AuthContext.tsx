@@ -24,11 +24,9 @@ export const AuthProvider = ({ children }: IChildren) => {
 
             localStorage.setItem('token', data);
 
-            getLoggedUser();
-
             navigate('/dashboard');
         } catch (error) {
-            toast.error('Houve algum erro, por favor tente novamente!', toastConfig);
+            toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
             console.log(error);
         } finally {
             nProgress.done();
@@ -37,9 +35,9 @@ export const AuthProvider = ({ children }: IChildren) => {
     
     const getLoggedUser = async () => {
         try {
-            api.defaults.headers['Authorization'] = token;
+            api.defaults.headers.common['Authorization'] = token;
 
-            const { data } = await api.get(`/usuario/pegar-usuario-logado`)
+            const { data } = await api.get(`/usuario/pegar-usuario-logado`);
 
             setUsuario(data);
         } catch (error) {
@@ -51,6 +49,8 @@ export const AuthProvider = ({ children }: IChildren) => {
         localStorage.removeItem('token');
 
         api.defaults.headers.common['Authorization'] = undefined;
+
+        setUsuario({});
 
         navigate('/');
     }

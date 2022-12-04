@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IUserContext, IChildren, IUser } from '../types/user';
+import { IUserContext, IChildren, IUser, IUserPhoto } from '../types/user';
 import { api } from '../utils/api';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../types/toast';
@@ -48,25 +48,29 @@ export const UsersProvider = ({ children }: IChildren) => {
       toast.success('Pessoa cadastrada com sucesso!', toastConfig);
       navigate('/usuarios');
     } catch (error) {
-      toast.error('Ocorreu algum erro, por favor tente novamente!', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
       console.error(error);
     } finally {
       nProgress.done();
     }
   }
+  
+  const addImage = async (data: IUserPhoto) => {
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" }
+    }
 
-  const getUsersList = async (page: number) => {
     try {
       nProgress.start();
-
       api.defaults.headers.common['Authorization'] = token;
-      const { data } = await api.get(`/usuario/lista-usuarios?pagina=${page - 1}&tamanho=6`);
-      setTotalPages(data.quantidadePaginas);
 
-      setUser(data.elementos);
+      await api.post(`/usuario/upload-imagem/${data.idUsuario}`, config);
+
+      toast.success('Foto adicionada com sucesso!', toastConfig);
+      navigate('/usuarios');
     } catch (error) {
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
     } finally {
       nProgress.done();
     }
@@ -82,14 +86,32 @@ export const UsersProvider = ({ children }: IChildren) => {
       navigate('/usuarios');
     } catch (error) {
       console.error(error);
-      toast.error("Ocorreu algum erro, tente novamente!", toastConfig);
+      toast.error("Houve algum erro, por favor verifique os dados e tente novamente", toastConfig);
     } finally {
       nProgress.done();
     };
   };
 
+  const getUsersList = async (page: number) => {
+    try {
+      nProgress.start();
+
+      api.defaults.headers.common['Authorization'] = token;
+
+      const { data } = await api.get(`/usuario/lista-usuarios?pagina=${page - 1}&tamanho=6`);
+      setTotalPages(data.quantidadePaginas);
+
+      setUser(data.elementos);
+    } catch (error) {
+      console.error(error);
+      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+    } finally {
+      nProgress.done();
+    }
+  }
+
   return (
-    <UsersContext.Provider value={{ createUser, getUsersList, user, editUser, totalPages }}>
+    <UsersContext.Provider value={{ createUser, addImage, getUsersList, user, editUser, totalPages }}>
       {children}
     </UsersContext.Provider>
   )

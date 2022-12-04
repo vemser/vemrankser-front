@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editaUsuarioSchema } from "../../utils/schemas";
-import { IUser } from "../../types/user";
+import { editaUsuarioSchema } from "../../../utils/schemas";
+import { IUser } from "../../../types/user";
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
-import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
-import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
-import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
-import { UsersContext } from "../../context/UserContext";
+import { ButtonPrimary, ButtonSecondary } from "../../../components/Buttons/Button";
+import { ButtonWraper, ContentWrapper } from "../../../components/Styles/Container.styled";
+import { ErrorMessage2, Titulo } from "../../../components/Styles/Component.styled";
+import { UsersContext } from "../../../context/UserContext";
 
 export const UsuarioEdita = () => {
   const { editUser } = useContext(UsersContext);

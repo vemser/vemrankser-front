@@ -2,17 +2,17 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adicionaUsuarioSchema } from "../../utils/schemas";
-import { IUser } from "../../types/user";
+import { adicionaUsuarioSchema } from "../../../utils/schemas";
+import { IUser } from "../../../types/user";
 import { TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button";
+import { ButtonPrimary, ButtonSecondary } from "../../../components/Buttons/Button";
 import Select from "@mui/material/Select";
-import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
-import { ErrorMessage2, Titulo } from "../../components/Styles/Component.styled";
-import { UsersContext } from "../../context/UserContext";
+import { ButtonWraper, ContentWrapper } from "../../../components/Styles/Container.styled";
+import { ErrorMessage2, Titulo } from "../../../components/Styles/Component.styled";
+import { UsersContext } from "../../../context/UserContext";
 
 export const UsuarioCadastra = () => {
   const { createUser } = useContext(UsersContext);
@@ -23,33 +23,10 @@ export const UsuarioCadastra = () => {
     resolver: yupResolver(adicionaUsuarioSchema),
   });
 
-  // const handleSubmitImage = async (event: any) => {
-  //   event.preventDefault()
-  //   const formData = new FormData();
-  //   formData.append("selectedFile", selectedFile);
-  //   try {
-  //     const response = await api({
-  //       method: "post",
-  //       url: "/usuario/upload-imagem/1",
-  //       data: formData,
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //     });
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-  // }
-
   return (
     <ContentWrapper>
       <Titulo>Cadastrar Usuário</Titulo>
       <form onSubmit={handleSubmit((data: IUser) => createUser(data))}>
-
-        {/* <input
-          type="file"
-          accept="image/*"
-          id='foto'
-          onChange={(e) => handleSubmitImage(e)}
-        /> */}
 
         <TextField id="nome" label="Nome *" variant="outlined"
           sx={{ width: "300px", marginTop: "8%", backgroundColor: "white" }} {...register("nome")} size="small" />
