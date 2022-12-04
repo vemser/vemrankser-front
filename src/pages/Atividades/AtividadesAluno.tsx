@@ -2,18 +2,19 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
-import { ButtonEditaDeleta } from '../../components/Buttons/ButtonEditaDeleta';
+import { ButtonSmall } from '../../components/Buttons/ButtonSmall';
 import { AuthContext } from '../../context/AuthContext';
+import { SimpleCardAtividadeAluno } from './Atividades.styled';
 
 export const AtividadesAluno = () => {
   
   const [status, setStatus] = React.useState<string>("PENDENTE");
   const [searchParam, setSearchParam] = useSearchParams();
   const { atividades, totalPages, getAtividadeAluno } = useContext(AtividadeContext);
-  const { usuario } = useContext(AuthContext)
+  const { usuario } = useContext(AuthContext);
   
   const handleChange2 = (event: SelectChangeEvent) => {
       setStatus(event.target.value);
@@ -60,7 +61,7 @@ export const AtividadesAluno = () => {
               <p><span>Atividade:</span>{atividade.titulo}</p>
             </SimpleCardContent>
             <Link to={`/atividades/aluno/entrega/${atividade.idAtividade}`}>  
-            <ButtonEditaDeleta icone={""} id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
+            <ButtonSmall id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
             </Link>
           </SimpleCardAtividadeAluno>
           )})}

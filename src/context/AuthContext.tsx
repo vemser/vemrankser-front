@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IAuthContext } from '../types/auth';
 import { IUserLogin, IChildren, IUser } from '../types/user'
@@ -19,9 +19,7 @@ export const AuthProvider = ({ children }: IChildren) => {
             nProgress.start();
 
             const { data } = await api.post('/usuario/login', user);
-
             api.defaults.headers.common['Authorization'] = data;
-
             localStorage.setItem('token', data);
 
             navigate('/dashboard');
@@ -36,7 +34,6 @@ export const AuthProvider = ({ children }: IChildren) => {
     const getLoggedUser = async () => {
         try {
             api.defaults.headers.common['Authorization'] = token;
-
             const { data } = await api.get(`/usuario/pegar-usuario-logado`);
 
             setUsuario(data);

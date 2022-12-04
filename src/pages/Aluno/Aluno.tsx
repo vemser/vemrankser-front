@@ -6,7 +6,7 @@ import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.style
 import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
 import { HiSearch } from "react-icons/hi";
 import { IAluno } from "../../types/aluno";
-import { ITrilha } from "../../types/vinculaTrilha";
+import { ITrilha } from "../../types/trilha";
 import { AlunoContext } from "../../context/AlunoContext";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";

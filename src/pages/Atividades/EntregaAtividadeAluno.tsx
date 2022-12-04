@@ -1,23 +1,24 @@
-import { Link, useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import { ButtonSecondary } from '../../components/Buttons/Button';
 import { Titulo } from '../../components/Styles/Component.styled';
 import TextField from '@mui/material/TextField';
-import { SimpleCardAtividadesEntrega, SimpleCardContainer, SimpleCardContentAtividadeEntrega, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCardContainer, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
-import { AuthContext } from '../../context/AuthContext';
+import { SimpleCardAtividadesEntrega, SimpleCardContentAtividadeEntrega } from './Atividades.styled';
 
 export const EntregaAtividade = () => {
-  const [link, setLink] = useState<string>('')
-  const { entregar} = useContext(AtividadeContext)
-  const {idAtividade} = useParams()
-  const {usuario} = useContext(AuthContext)
+  const [link, setLink] = useState<string>('');
+  const { entregar } = useContext(AtividadeContext);
+  const { idAtividade } = useParams();
+  const { usuario } = useContext(AuthContext);
 
-  const canCorrigirAtividade = idAtividade&&link&&usuario.idUsuario
-  const corrigiAtividade = () =>{
-    if(!canCorrigirAtividade) return
-     entregar(parseInt(idAtividade),link, usuario.idUsuario)
+  const canCorrigirAtividade = idAtividade && link && usuario.idUsuario
+  const corrigiAtividade = () => {
+    if (!canCorrigirAtividade) return
+    entregar(parseInt(idAtividade), link, usuario.idUsuario)
   }
 
   return (
@@ -26,7 +27,6 @@ export const EntregaAtividade = () => {
         <Titulo>
           Entrega atividade
         </Titulo>
-
         <div className='flex'>
         </div>
         <SimpleCardWrapper>
@@ -36,23 +36,23 @@ export const EntregaAtividade = () => {
               </span></p>
               <p><span>Link da Atividade:</span></p>
               <TextField
-            id="link-atividade-feita-aluno"
-            value={link}
-            onChange={(e)=>setLink(e.target.value)}
-            label="Link"
-            variant="outlined"
-            sx={{
-              width: '100%',
-              marginTop: "-2%",
-              marginBottom: "2%",
-              backgroundColor: "white",
-            }}
-            size="small"
-          />
-            </SimpleCardContentAtividadeEntrega> 
-          </SimpleCardAtividadesEntrega> 
-          <ButtonCorrigir type={'button'} onClick={corrigiAtividade} label={'Entregar'}  id={'botao-envia-atividade-aluno'}/>
-           <Link to='/atividades/aluno'>
+                id="link-atividade-feita-aluno"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                label="Link"
+                variant="outlined"
+                sx={{
+                  width: '100%',
+                  marginTop: "-2%",
+                  marginBottom: "2%",
+                  backgroundColor: "white",
+                }}
+                size="small"
+              />
+            </SimpleCardContentAtividadeEntrega>
+          </SimpleCardAtividadesEntrega>
+          <ButtonCorrigir type={'button'} onClick={corrigiAtividade} label={'Entregar'} id={'botao-envia-atividade-aluno'} />
+          <Link to='/atividades/aluno'>
             <ButtonSecondary
               label="Voltar"
               id="button-volta-mural-atividade-aluno"

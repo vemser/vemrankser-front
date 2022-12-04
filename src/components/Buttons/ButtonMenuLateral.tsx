@@ -1,8 +1,8 @@
-import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import { IButtonMenuLateral } from '../../types/buttonMenuLateral';
+import { IButtonMenuLateral } from '../../types/components';
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
 const ButtonMenuLateralPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--branco)',

@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IUserContext, IChildren, IUser, IUserPhoto } from '../types/user';
 import { api } from '../utils/api';
+import { IUserContext, IChildren, IUser, IUserPhoto } from '../types/user';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../types/toast';
 import nProgress from 'nprogress';
@@ -54,8 +54,8 @@ export const UsersProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-  
-  const addImage = async (data: IUserPhoto, ) => {
+
+  const addImage = async (data: IUserPhoto,) => {
     try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
@@ -95,8 +95,8 @@ export const UsersProvider = ({ children }: IChildren) => {
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/usuario/lista-usuarios?pagina=${page - 1}&tamanho=6`);
-      setTotalPages(data.quantidadePaginas);
 
+      setTotalPages(data.quantidadePaginas);
       setUser(data.elementos);
     } catch (error) {
       console.error(error);

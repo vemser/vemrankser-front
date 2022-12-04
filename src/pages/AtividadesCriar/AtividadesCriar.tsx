@@ -14,11 +14,10 @@ import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 import { ButtonPrimary, ButtonSecondary, } from "../../components/Buttons/Button";
 import { cadastraAtividadeSchema } from "../../utils/schemas";
-import { ICadastraAtividade } from "../../types/cadastraAtividade";
+import { ICadastraAtividade } from "../../types/atividade";
 import { AtividadeContext } from "../../context/AtividadesContext";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { ModuloContext } from "../../context/ModuloContext";
-
 
 export const AtividadesCriar = () => {
   const {
@@ -29,7 +28,6 @@ export const AtividadesCriar = () => {
     resolver: yupResolver(cadastraAtividadeSchema),
   });
 
-  const [trilha, setTrilha] = React.useState("");
   const [modulo, setModulo] = React.useState("");
   const { criaAtividade } = useContext(AtividadeContext)
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
@@ -38,7 +36,6 @@ export const AtividadesCriar = () => {
   const { getModulos, modulos } = useContext(ModuloContext)
   const [dataEntrega, setDataEntrega] = useState<string>();
 
-
   useEffect(() => {
     getTrilhas()
     getModulos()
@@ -46,7 +43,6 @@ export const AtividadesCriar = () => {
 
   const handleChangeSelect2 = (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
-
   };
 
   const handleChangePeso = (event: SelectChangeEvent<number>) => {
@@ -56,10 +52,11 @@ export const AtividadesCriar = () => {
     if (!(typeof value === 'string')) {
       setPeso(value)
     }
-  }
+  };
+
   const handleDataEntregaChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDataEntrega(event.target.value)
-  }
+  };
 
   const handleTrilhasSelecionadasChange = (event: SelectChangeEvent<typeof trilhasSelecionadas>) => {
     const {
@@ -74,7 +71,7 @@ export const AtividadesCriar = () => {
 
   const enviaAtividade = (data: ICadastraAtividade) => {
     criaAtividade({ ...data, idTrilha: trilhasSelecionadas })
-  }
+  };
 
   return (
     <ContentWrapper>
@@ -128,7 +125,6 @@ export const AtividadesCriar = () => {
           </FormControl>
         </div>
         {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
-
         <FormControl
           sx={{
             width: '300px',

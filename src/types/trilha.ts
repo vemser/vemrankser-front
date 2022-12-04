@@ -1,4 +1,10 @@
-import { IAluno } from "./aluno"
+export interface IVinculaTrilhaContext {
+  getTrilhas: () => Promise<void>,
+  trilhas: ITrilha[]
+  vinculaTrilha: (payload: IVinculaTrilha) => Promise<void>
+  getRanking: (idTrilha: number) => Promise<void>
+  ranking: IRanking[]
+}
 
 export interface ITrilha {
   nome: string,
@@ -17,12 +23,4 @@ export interface IRanking{
 export interface IVinculaTrilha {
   idTrilha: number[],
   login: string
-}
-
-export interface IVinculaTrilhaContext {
-  getTrilhas: () => Promise<void>,
-  trilhas: ITrilha[]
-  vinculaTrilha: (payload: IVinculaTrilha) => Promise<void>
-  getRanking: (idTrilha: number) => Promise<void>
-  ranking: IRanking[]
 }

@@ -1,30 +1,31 @@
-import { Link, useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { ButtonSecondary } from '../../components/Buttons/Button';
 import { Titulo } from '../../components/Styles/Component.styled';
 import TextField from '@mui/material/TextField';
-import { SimpleCardAtividades, SimpleCardContainer, SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCardContainer, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
+import { SimpleCardAtividades, SimpleCardContentAtividade } from '../Atividades/Atividades.styled';
 
 export const AtividadesDetalhesNotas = () => {
-  const [nota, setNota] = useState<string>('')
-  const [comentario, setComentario] = useState<string>('')
-  const { avaliar } = useContext(AtividadeContext)
-  const { idAtividade, idUsuario } = useParams()
+  const [ nota, setNota ] = useState<string>('');
+  const [ comentario, setComentario ] = useState<string>('');
+  const { avaliar } = useContext(AtividadeContext);
+  const { idAtividade, idUsuario } = useParams();
 
   const canCorrigirAtividade = idAtividade&&nota&&comentario&&idUsuario
   const corrigiAtividade = () => {
     if (!canCorrigirAtividade) return
     avaliar(parseInt(idAtividade), parseInt(nota), parseInt(idUsuario), comentario)
   }
+
   return (
     <SimpleCardContainer>
       <section>
         <Titulo>
           Detalhes Notas
         </Titulo>
-
         <div className='flex'>
         </div>
         <SimpleCardWrapper>
@@ -59,7 +60,6 @@ export const AtividadesDetalhesNotas = () => {
                 sx={{ width: '100%', marginBottom: "2%", marginTop: "-2%", backgroundColor: "white" }}
               />
             </SimpleCardContentAtividade>
-
           </SimpleCardAtividades>
           <ButtonCorrigir type={'button'} label={'Corrigir'} onClick={corrigiAtividade} id={'botao-corrigi-atividade'} />
           <Link to='/atividades/notas'>

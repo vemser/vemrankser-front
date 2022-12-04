@@ -1,17 +1,17 @@
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { api } from "../../../utils/api";
 import { ButtonPrimary } from "../../../components/Buttons/Button";
 import { Pagination, Paper, TableContainer, TextField } from "@mui/material";
 import { HiSearch, HiPencilAlt, HiOutlinePhotograph } from "react-icons/hi";
 import { BarraDePesquisa, Titulo } from "../../../components/Styles/Component.styled";
 import { ButtonCardContainer } from "../../../components/Styles/ButtonCard";
-import { useEffect, useMemo, useState } from "react";
 import { IUser } from "../../../types/user";
-import { api } from "../../../utils/api";
+import { DataGrid, GridActionsCellItem, GridRowParams, GridValueGetterParams } from "@mui/x-data-grid";
+import { ButtonCardWrapperUser } from "./Usuario.styled";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../../types/toast";
 import nProgress from 'nprogress';
-import { DataGrid, GridActionsCellItem, GridRowParams, GridValueGetterParams } from "@mui/x-data-grid";
-import { ButtonCardWrapperUser } from "./Usuario.styled";
 
 export const Usuario = () => {
   const [searchParam, setSearchParams] = useSearchParams();

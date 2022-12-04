@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { AuthContext } from '../../context/AuthContext';
 import { CardPerfil, CardPerfilContent, PerfilContainer } from './Perfil.styled';
-import { ITrilha } from '../../types/vinculaTrilha';
+import { ITrilha } from '../../types/trilha';
 import userDummy from '../../assets/user.webp';
 import { Typography } from '@mui/material';
 import { PerfilContext } from '../../context/PerfilContext';

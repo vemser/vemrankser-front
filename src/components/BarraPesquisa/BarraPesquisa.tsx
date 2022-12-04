@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField";
-import { IBarraPesquisa } from "../../types/barraDePesquisa";
+import { IBarraPesquisa } from "../../types/components";
 
 export default function BarraPesquisa({ label, id, value, setValue }: IBarraPesquisa) {
   return (

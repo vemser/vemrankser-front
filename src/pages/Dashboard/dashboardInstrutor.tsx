@@ -9,7 +9,7 @@ import userDummy from "../../assets/user.webp";
 import { GiChampions } from "react-icons/gi"
 import { Link } from "react-router-dom"
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext"
-import { IRanking, ITrilha } from "../../types/vinculaTrilha"
+import { IRanking, ITrilha } from "../../types/trilha"
 
 export const DashBoard = () => {
   const [trilha, setTrilha] = React.useState('');

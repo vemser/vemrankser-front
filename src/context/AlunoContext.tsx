@@ -1,9 +1,9 @@
-import { api } from "../utils/api";
-import { createContext, useState } from "react";
-import nProgress from "nprogress";
-import { IAluno, IAlunoContext, IAlunoFilterParams, IAlunoTrilha, IChildren, IContaAlunos } from "../types/aluno";
-import { toastConfig } from "../types/toast";
-import { toast } from "react-toastify";
+import { createContext, useState } from 'react';
+import { api } from '../utils/api';
+import { IAluno, IAlunoContext, IAlunoFilterParams, IAlunoTrilha, IChildren, IContaAlunos } from '../types/aluno';
+import { toastConfig } from '../types/toast';
+import { toast } from 'react-toastify';
+import nProgress from 'nprogress';
 
 export const AlunoContext = createContext({} as IAlunoContext);
 
@@ -16,8 +16,8 @@ export const AlunoProvider = ({ children }: IChildren) => {
   const getAlunos = async (page: number) => {
     try {
       nProgress.start();
-      api.defaults.headers.common['Authorization'] = token;
 
+      api.defaults.headers.common['Authorization'] = token;
       const { data } = await api.get(`/usuario/lista-alunos-trilha-geral?pagina=${page - 1}&tamanho=4`);
 
       setTotalPages(data.quantidadePaginas);
@@ -32,13 +32,13 @@ export const AlunoProvider = ({ children }: IChildren) => {
 
   const getAlunosWithNome = async (page: number, nome: string) => {
     try {
-      api.defaults.headers.common['Authorization'] = token;
       nProgress.start();
 
+      api.defaults.headers.common['Authorization'] = token;
       const { data } = await api.get(`/usuario/lista-alunos-trilha-geral?pagina=${page - 1}&tamanho=4&nome=${nome}`);
+
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);
-
     } catch (error) {
       console.error(error);
     } finally {
@@ -65,10 +65,11 @@ export const AlunoProvider = ({ children }: IChildren) => {
       console.error(error);
     }
   }
-  
+
   const getAlunosWithFilter = async (page: number, filterParams?: IAlunoFilterParams) => {
     try {
       api.defaults.headers.common['Authorization'] = token;
+
       let filterString = ''
       if (filterParams?.idTrilha) {
         filterString = filterString.concat(`&idTrilha=${filterParams.idTrilha}`)
@@ -81,6 +82,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
       setAlunos(data.elementos);
     } catch (error) {
       console.error(error);
+      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
     }
   }
 

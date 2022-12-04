@@ -5,39 +5,37 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ButtonPrimary } from '../../components/Buttons/Button';
-import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
-import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import userDummy from '../../assets/user.webp';
 import { INotas, INotasFilterParams } from '../../types/notas';
 import { NotasContext } from '../../context/Notascontext';
 import Pagination from '@mui/material/Pagination';
-import { AtividadeContext } from '../../context/AtividadesContext';
 import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
-import { ITrilha } from '../../types/vinculaTrilha';
+import { ITrilha } from '../../types/trilha';
 import { ModuloContext } from '../../context/ModuloContext';
 import { IModulo } from '../../types/modulo';
 
 export const AtividadesNotas = () => {
-  const [trilha, setTrilha] = React.useState('');
-  const [modulo, setModulo] = React.useState("");
-  const [atividade, setAtividade] = React.useState("");
-  const [searchParam, setSearchParam] = useSearchParams();
+  const [ trilha, setTrilha ] = React.useState('');
+  const [ modulo, setModulo ] = React.useState("");
+  const [ searchParam, setSearchParam ] = useSearchParams();
   const { getNotas, notas, totalPages} = useContext(NotasContext);
-  const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
-  const { getModulos, modulos } = useContext(ModuloContext)
-  const [ filterParams, setFilterParams ] = useState<INotasFilterParams>({atividadeStatus:'PENDENTE'})
+  const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext);
+  const { getModulos, modulos } = useContext(ModuloContext);
+  const [ filterParams, setFilterParams ] = useState<INotasFilterParams>({atividadeStatus:'PENDENTE'});
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+
   const handleChangeSelect2= (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
+
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
-  }, [searchParam])
+  }, [searchParam]);
 
    useEffect(()=>{
     const newFilterParams={...filterParams}
@@ -48,16 +46,16 @@ export const AtividadesNotas = () => {
         newFilterParams.idModulo=parseInt(modulo)
       }
       setFilterParams(newFilterParams)
-  }, [trilha,modulo])
+  }, [trilha,modulo]);
 
   useEffect(() => {
     getTrilhas()
     getModulos()
-  }, [])
+  }, []);
 
   useEffect(() => {
     getNotas(pagina, filterParams)
-  }, [pagina, filterParams])
+  }, [pagina, filterParams]);
 
   return (
     <SimpleCardContainer>

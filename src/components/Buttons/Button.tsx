@@ -1,7 +1,7 @@
+import { IButton } from '../../types/components';
 import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { IButton } from '../../types/buttons';
+import Button from '@mui/material/Button';
 
 const ButtonPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',

@@ -29,7 +29,7 @@ export interface IUser {
 export interface IUserContext {
     createUser: (user: IUser) => Promise<void>,
     getUsersList: (page: number) => Promise<void>,
-    editUser: (data: IUser ) => Promise<void>,
+    editUser: (data: IUser) => Promise<void>,
     addImage: (data: IUserPhoto) => Promise<void>,
     user: IUser[],
     totalPages: number
