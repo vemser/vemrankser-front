@@ -1,6 +1,5 @@
 
 import * as yup from 'yup';
-import { checkIfFileIsCorrectType, checkIfFileIsTooBig } from './functions';
 
 export const loginSchema = yup.object().shape({
     email: yup.string().required('Por favor, digite seu email').min(2, 'Email inválido').email('Por favor, digite um email válido').trim(),
@@ -32,10 +31,9 @@ export const editaAlunoSchema = yup.object().shape({
 export const cadastraAtividadeSchema = yup.object().shape({
     titulo: yup.string().required('Por favor, digite o titulo da atividade').trim(),
     instrucoes: yup.string().required('Por favor, digite a descrição da atividade').trim(),
-    // trilha: yup.number().required('Por favor, selecione pelo meno uma trilha'),
-    idModulo: yup.number().required('Por favor, selecione um módulo'),
-    pesoAtividade: yup.number().required('Por favor, selecione o peso'),
-    dataEntrega: yup.date().required().min("2022-11-30", "Date inválida, por favor digite outra data")
+    idModulo: yup.number().required('Por favor, selecione um módulo').typeError('Por favor, selecione uma opção'),
+    pesoAtividade: yup.number().required('Por favor, selecione o peso').typeError('Por favor, selecione uma opção'),
+    dataEntrega: yup.date().required().typeError('Por favor, selecione uma opção').min("2022-11-30", "Date inválida, por favor digite outra data")
 });
 
 export const detalhesNotasSchema = yup.object().shape({
@@ -51,11 +49,4 @@ export const editaUsuarioSchema = yup.object().shape({
     especialidade: yup.string().trim(),
     statusUsuario: yup.number().required('Por favor, informe o status'),
     idUsuario: yup.number().required()
-})
-
-export const adicionaFotoSchema = yup.object().shape({
-    idUsuario: yup.number().required(),
-    file: yup.mixed().required('Nenhum arquivo de imagem carregado')
-    .test('is-big-file', 'Arquivo grande demais', checkIfFileIsTooBig)
-    .test('is-correct-file', 'Arquivo não suportado, envie apenas jpg, jpeg, png ou webp', checkIfFileIsCorrectType)
 })

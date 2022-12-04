@@ -116,8 +116,8 @@ export const CardPerfil = styled.article`
         gap: 10px;
     }
     img {
-        width: 60px;
-        height: 60px;
+        width: 68px;
+        width: 68px;
         object-fit: cover;
         @media screen and (max-width: 460px) {
             width: 40px;

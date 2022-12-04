@@ -1,3 +1,17 @@
+export interface IUserContext {
+    createUser: (user: IUser) => Promise<void>,
+    getUsersList: (page: number) => Promise<void>,
+    editUser: (data: IUser) => Promise<void>,
+    getPhoto: (id: number) => Promise<void>,
+    user: IUser[],
+    photo: any,
+    totalPages: number
+}
+
+export interface IChildren {
+    children?: React.ReactNode
+}
+
 export interface IUserLogin {
     email: string,
     senha: string,
@@ -6,12 +20,9 @@ export interface IUserLogin {
 
 export interface IUserPhoto {
     idUsuario: number,
-    foto: string
+    foto: FormData
 }
 
-export interface IChildren {
-    children?: React.ReactNode
-}
 
 export interface IUser {
     nome: string,
@@ -26,11 +37,3 @@ export interface IUser {
     idUsuario?: number
 }
 
-export interface IUserContext {
-    createUser: (user: IUser) => Promise<void>,
-    getUsersList: (page: number) => Promise<void>,
-    editUser: (data: IUser) => Promise<void>,
-    addImage: (data: IUserPhoto) => Promise<void>,
-    user: IUser[],
-    totalPages: number
-}

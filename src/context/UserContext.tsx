@@ -10,6 +10,7 @@ export const UsersContext = createContext({} as IUserContext);
 
 export const UsersProvider = ({ children }: IChildren) => {
   const [user, setUser] = useState<IUser[]>([]);
+  const [photo, setPhoto] = useState<any>();
   const [totalPages, setTotalPages] = useState(0);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
@@ -55,23 +56,6 @@ export const UsersProvider = ({ children }: IChildren) => {
     }
   }
 
-  const addImage = async (data: IUserPhoto,) => {
-    try {
-      nProgress.start();
-      api.defaults.headers.common['Authorization'] = token;
-
-      await api.post(`/usuario/upload-imagem/${data.idUsuario}`);
-
-      toast.success('Foto adicionada com sucesso!', toastConfig);
-      navigate('/usuarios');
-    } catch (error) {
-      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
-      console.error(error);
-    } finally {
-      nProgress.done();
-    }
-  }
-
   const editUser = async (data: IUser) => {
     try {
       nProgress.start();
@@ -106,8 +90,20 @@ export const UsersProvider = ({ children }: IChildren) => {
     }
   }
 
+  const getPhoto = async (id: number) => {
+    try {
+      api.defaults.headers.common['Authorization'] = token;
+
+      const { data } = await api.get(`/usuario/find-foto/${id}`);
+
+      setPhoto(data.foto);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <UsersContext.Provider value={{ createUser, addImage, getUsersList, user, editUser, totalPages }}>
+    <UsersContext.Provider value={{ createUser, getPhoto, photo,  getUsersList, user, editUser, totalPages }}>
       {children}
     </UsersContext.Provider>
   )

@@ -1,9 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { IChildren, INotas, INotasContext, INotasFilterParams } from "../types/notas";
 import { toast } from "react-toastify";
 import { toastConfig } from "../types/toast";
 import { api } from "../utils/api";
 import nProgress from "nprogress";
+import { UsersContext } from "./UserContext";
 
 export const NotasContext = createContext({} as INotasContext);
 
@@ -29,13 +30,14 @@ export const NotasProvider = ({ children }: IChildren) => {
         filterString = filterString.concat(`&atividadeStatus=${filterParams.atividadeStatus}`)
       }
 
-      const { data } = await api.get(`/atividade/listar-trilha-modulo?pagina=${page - 1}&tamanho=5${filterString}`);
-
+      const { data } = await api.get(`/atividade/listar-trilha-modulo?pagina=${page - 1}&tamanho=4${filterString}`);
+      
       setTotalPages(data.quantidadePaginas);
       setNotas(data.elementos);
+
+      getNotas(data.elementos.idUsuario);
     } catch (error) {
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
     } finally {
       nProgress.done();
     }

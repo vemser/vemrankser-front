@@ -19,8 +19,8 @@ export const ButtonCardRanking = styled.div`
       width: 300px;
   }
   img {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    width: 68px;
     border-radius: 50%;
     object-fit: cover;
     @media screen and (max-width: 460px) {
@@ -168,8 +168,8 @@ export const ButtonCardDashboard = styled.div`
       height: auto;
   }
   img {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    width: 68px;
     object-fit: cover;
     @media screen and (max-width: 460px) {
         width: 40px;
@@ -205,8 +205,8 @@ export const ButtonCardDashboardFeedback = styled.div`
       height: auto;
   }
   img {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    width: 68px;
     object-fit: cover;
     @media screen and (max-width: 460px) {
         width: 40px;
@@ -238,8 +238,8 @@ export const ButtonCardDashboardInformacoes = styled.div`
       height: auto;
   }
   img {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    width: 68px;
     object-fit: cover;
     @media screen and (max-width: 460px) {
         width: 40px;

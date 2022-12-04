@@ -13,7 +13,8 @@ export interface INotas {
   nome: string,
   nota: number,
   idAtividade: number,
-  idUsuario: number
+  idUsuario: number,
+  foto?: string
 }
 
 export interface INotasFilterParams {

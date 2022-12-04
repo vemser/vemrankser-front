@@ -8,10 +8,6 @@ import { VinculaAluno } from './pages/AlunoVincula/AlunoVincula';
 import { Login } from './pages/Login/Login';
 import { Admin } from './components/Layouts/Admin';
 import { Perfil } from './pages/Perfil/Perfil';
-import { Usuario } from './pages/Admin-Role/Usuario/Usuario';
-import { UsuarioCadastra } from './pages/Admin-Role/UsuarioCadastrar/UsuarioCadastra';
-import { UsuarioEdita } from './pages/Admin-Role/UsuarioEditar/UsuarioEdita';
-import { UsuarioCadastraFoto } from './pages/Admin-Role/UsuarioCadastrarFoto/UsuarioCadastraFoto';
 import { UsersProvider } from './context/UserContext';
 import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
@@ -33,14 +29,18 @@ import { EntregaAtividade } from './pages/Atividades/EntregaAtividadeAluno';
 import { DashBoard } from './pages/Dashboard/dashboardInstrutor';
 import { DashBoardInformacoes } from './pages/Dashboard/dashboardInformacoes';
 import { DashBoardFeedback } from './pages/Dashboard/dashboardFeedback';
-import { DashBoardVisualiza } from './pages/Dashboard/dashboardVisualiza';
 import { DashBoardAdiciona } from './pages/Dashboard/dashboardAdiciona';
 import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
 import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
+import { DashBoardVisualiza } from './pages/Dashboard/DashboardVisualiza';
 import { PerfilProvider } from './context/PerfilContext';
 import { PerfilGeral } from './pages/Perfil/PerfilGeral';
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
+import { UsuarioListar } from './pages/Admin-Role/Usuario/UsuarioListar/UsuarioListar';
+import { UsuarioCadastrar } from './pages/Admin-Role/Usuario/UsuarioCadastrar/UsuarioCadastrar';
+import { UsuarioEditar } from './pages/Admin-Role/Usuario/UsuarioEditar/UsuarioEditar';
+import { UsuarioCadastrarFoto } from './pages/Admin-Role/Usuario/UsuarioCadastrarFoto/UsuarioCadastrarFoto';
 
 
 export const Router = () => {
@@ -60,6 +60,10 @@ export const Router = () => {
                           <Route path={'/'} element={<Login />} />
                           <Route element={<PrivateRoute />}>
                             <Route element={<Admin />}>
+                              <Route path={'/usuarios'} element={<UsuarioListar />} />
+                              <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastrar />} />
+                              <Route path={'/usuarios/editar'} element={<UsuarioEditar />} />
+                              <Route path={'/usuarios/cadastrar-foto'} element={<UsuarioCadastrarFoto />} />
                               <Route path={'/atividades'} element={<AtividadesInstrutor />} />
                               <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
                               <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
@@ -68,10 +72,6 @@ export const Router = () => {
                               <Route path={'/atividades/corrige/notas/:idUsuario/:idAtividade'} element={<AtividadesDetalhesNotas />} />
                               <Route path={'/alunos'} element={<Aluno />} />
                               <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
-                              <Route path={'/usuarios'} element={<Usuario />} />
-                              <Route path={'/usuarios/cadastrar'} element={<UsuarioCadastra />} />
-                              <Route path={'/usuarios/editar'} element={<UsuarioEdita />} />
-                              <Route path={'/usuarios/cadastrar-foto'} element={<UsuarioCadastraFoto />} />
                               <Route path={'/perfil'} element={<Perfil />} />
                               <Route path={'/perfil-instrutor'} element={<PerfilGeral />} />
                               <Route path={'/configuracoes'} element={<ConfiguracoesCoordenador />} />

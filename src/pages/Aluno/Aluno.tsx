@@ -166,7 +166,7 @@ export const Aluno = () => {
           </Link>
         </div>
         <ButtonCardWrapper>
-          {alunoData.length > 0 ? alunoData?.map((aluno: IAluno) => {
+          {alunoData.map((aluno: IAluno) => {
             const ultimaTrilha = aluno.trilhas.length - 1
 
             return (
@@ -190,7 +190,7 @@ export const Aluno = () => {
                 </ButtonCardContent>
               </ButtonCard>
             )
-          }) : <p>Nenhum aluno encontrado!</p>}
+          })}
         </ButtonCardWrapper>
         <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
       </section>

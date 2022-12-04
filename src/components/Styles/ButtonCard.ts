@@ -88,8 +88,8 @@ export const ButtonCard = styled.div`
     transform: scale(1.01);
   }
   img {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
     object-fit: cover;
     @media screen and (max-width: 460px) {

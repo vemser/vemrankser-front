@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { ButtonPrimary } from '../../components/Buttons/Button'
 import { Titulo } from '../../components/Styles/Component.styled'
 import { ContentWrapper } from '../../components/Styles/Container.styled'
-import { SimpleCardConfiguracoes, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard'
+import { SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard'
+import { SimpleCardConfiguracoes } from './Configuracoes.styled'
 
 export const ConfiguracoesCoordenador = () => {
   return (
