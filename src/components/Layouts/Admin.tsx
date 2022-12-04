@@ -38,9 +38,9 @@ export const Admin = () => {
     return (
         <main style={{ display: 'flex', width: '100%' }}>
             <MenuLateral
-                nomeDoUsuario={usuario.nome}
-                cargoDoUsuario={verificaTipoUsuario(usuario.tipoPerfil)}
-                fotoDePerfil={usuario.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy }
+                nomeDoUsuario={usuario?.nome}
+                cargoDoUsuario={verificaTipoUsuario(usuario?.tipoPerfil)}
+                fotoDePerfil={usuario?.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario?.foto}` : userDummy }
             >
                 <ButtonMenuLateral
                     text={"Dashboard"}

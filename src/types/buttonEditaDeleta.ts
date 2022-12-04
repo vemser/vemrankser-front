@@ -1,5 +1,5 @@
 export interface IButtonEditaDeleta {
-   icone: React.ReactNode,
+   icone?: React.ReactNode,
    label: string
    id: string
   }
