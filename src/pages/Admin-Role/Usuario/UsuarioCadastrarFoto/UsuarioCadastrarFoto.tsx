@@ -90,17 +90,6 @@ export const UsuarioCadastrarFoto = () => {
           </ImageWrapper>
         </Box>
 
-        {/* {selectedImage ?
-          (<>
-            <Typography fontSize={'0.9rem'} textTransform='uppercase' fontFamily='Inter' fontWeight={600} sx={{ marginTop: '8%', marginBottom: '5px', userSelect: 'none' }}> Foto Atual </Typography>
-            <Avatar
-              alt={`Foto de ${state.nome}`}
-              src={selectedImage !== null || '' ? `${selectedImage}` : userDummy}
-              sx={{ width: 120, height: 120 }}
-          
-            />
-          </>) : ''} */}
-
         <ButtonWraper>
           <ButtonPrimary
             label="Salvar"
