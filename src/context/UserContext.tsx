@@ -55,16 +55,12 @@ export const UsersProvider = ({ children }: IChildren) => {
     }
   }
   
-  const addImage = async (data: IUserPhoto) => {
-    const config = {
-      headers: { "Content-Type": "multipart/form-data" }
-    }
-
+  const addImage = async (data: IUserPhoto, ) => {
     try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
 
-      await api.post(`/usuario/upload-imagem/${data.idUsuario}`, config);
+      await api.post(`/usuario/upload-imagem/${data.idUsuario}`);
 
       toast.success('Foto adicionada com sucesso!', toastConfig);
       navigate('/usuarios');

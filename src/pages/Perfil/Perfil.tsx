@@ -44,7 +44,7 @@ export const Perfil = () => {
         <ContentWrapper>
             <PerfilContainer>
                 <header>
-                    <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
+                    <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
                     <div>
                         <h4 id='perfil-nome' ><Typography textTransform='capitalize' fontSize='1.4rem' fontWeight='600' color='var(--branco)' fontFamily='Inter'>
                             {usuario.nome}
