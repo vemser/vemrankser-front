@@ -56,6 +56,9 @@ export const PerfilContainer = styled.div`
                 margin-right: 5px;
             }
             p {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 @media screen and (max-width: 600px) {
                     font-size: 0.9rem;
                 }

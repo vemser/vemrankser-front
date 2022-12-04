@@ -3,7 +3,7 @@ import { ButtonPrimary } from "../../../components/Buttons/Button";
 import { Pagination, Paper, TableContainer, TextField } from "@mui/material";
 import { HiSearch, HiPencilAlt, HiOutlinePhotograph } from "react-icons/hi";
 import { BarraDePesquisa, Titulo } from "../../../components/Styles/Component.styled";
-import { ButtonCardContainer, ButtonCardWrapper } from "../../../components/Styles/ButtonCard";
+import { ButtonCardContainer } from "../../../components/Styles/ButtonCard";
 import { useEffect, useMemo, useState } from "react";
 import { IUser } from "../../../types/user";
 import { api } from "../../../utils/api";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { toastConfig } from "../../../types/toast";
 import nProgress from 'nprogress';
 import { DataGrid, GridActionsCellItem, GridRowParams, GridValueGetterParams } from "@mui/x-data-grid";
+import { ButtonCardWrapperUser } from "./Usuario.styled";
 
 export const Usuario = () => {
   const [searchParam, setSearchParams] = useSearchParams();
@@ -137,7 +138,7 @@ export const Usuario = () => {
         </Titulo>
         <div className="flex">
           <BarraDePesquisa>
-            <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
+            <TextField variant="outlined" sx={{ width: 280, backgroundColor: "white" }}
               fullWidth
               size="small"
               label={"Buscar por nome ou email"}
@@ -159,15 +160,15 @@ export const Usuario = () => {
             />
           </Link>
         </div>
-        <ButtonCardWrapper>
-          <TableContainer component={Paper} variant="outlined" sx={{ m: 1, height: '430px', minWidth: 'auto' }}>
+        <ButtonCardWrapperUser>
+          <TableContainer component={Paper} variant="outlined" sx={{ height: '430px', width: '100%' }}>
             <DataGrid
               rows={dataTable}
               columns={columns}
               pageSize={6}
               rowsPerPageOptions={[6]}
               hideFooter={true}
-              sx={{ height: '370px', width: 'auto' }}
+              sx={{ height: '370px', minWidth: 'auto' }}
               getRowId={(row: any) =>  generateRandomId()}
             />
             <Pagination sx={{ width: '100%', height: 50, alignItems: 'center', display: 'flex', justifyContent: 'center' }}
@@ -176,7 +177,7 @@ export const Usuario = () => {
               onChange={(e, newPage) => setSearchParams({ pagina: newPage.toString() }, { replace: true })}
             />
           </TableContainer>
-        </ButtonCardWrapper>
+        </ButtonCardWrapperUser>
       </section>
     </ButtonCardContainer>
   );
