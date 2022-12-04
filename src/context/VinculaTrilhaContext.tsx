@@ -1,11 +1,11 @@
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
-import { createContext, useContext, useState } from "react";
-import nProgress from "nprogress";
+import { IRanking, ITrilha, IVinculaTrilha, IVinculaTrilhaContext } from "../types/trilha";
+import { IChildren } from "../types/aluno";
 import { toast } from "react-toastify";
 import { toastConfig } from "../types/toast";
-import { IChildren } from "../types/aluno";
-import { ITrilha, IVinculaTrilha, IVinculaTrilhaContext } from "../types/vinculaTrilha";
-import { useNavigate } from "react-router-dom";
+import nProgress from "nprogress";
 
 export const VinculaTrilhaContext = createContext({} as IVinculaTrilhaContext);
 
@@ -13,14 +13,15 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
   const [trilhas, setTrilhas] = useState<ITrilha[]>([]);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const [ranking, setRanking] = useState<IRanking[]>([]);
 
   const getTrilhas = async () => {
     try {
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/trilha/lista-trilha-nome`);
-      setTrilhas(data);
-      
+
+      setTrilhas(data);      
     } catch (error) {
       console.error(error);
     }
@@ -48,9 +49,21 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+  
+  const getRanking = async (idTrilha: number) => {
+    try {
+      api.defaults.headers.common['Authorization'] = token;
+
+      const { data } = await api.get(`/trilha/lista-ranking?idTrilha=${idTrilha}`);
+
+      setRanking(data);      
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
-    <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha }}>
+    <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha, getRanking, ranking }}>
       {children}
     </VinculaTrilhaContext.Provider>
   );

@@ -1,7 +1,7 @@
+import { IButton } from '../../types/components';
 import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { IButton } from '../../types/buttons';
+import Button from '@mui/material/Button';
 
 const ButtonPrimaryStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
@@ -35,9 +35,9 @@ const ButtonSecondaryStyle = styled(Button)({
   }
 })
 
-export const ButtonPrimary = ({ label, id, type }:IButton):JSX.Element => {
+export const ButtonPrimary = ({ label, id, type, onClick }:IButton):JSX.Element => {
   return (
-    <ButtonPrimaryStyle type={type} id={id} variant="contained" disableElevation>
+    <ButtonPrimaryStyle type={type} onClick={onClick} id={id} variant="contained" disableElevation>
       <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
         {label}
       </Typography>

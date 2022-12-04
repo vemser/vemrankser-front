@@ -1,28 +1,23 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
-import { ButtonPrimary } from '../../components/Buttons/Button';
-import userDummy from '../../assets/user.png';
-import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
-import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser, HiUsers } from 'react-icons/hi';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Titulo } from '../../components/Styles/Component.styled';
-import { SimpleCard, SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
+import { SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
-import {format} from 'date-fns'
-import { ButtonEditaDeleta } from '../../components/Buttons/ButtonEditaDeleta';
+import { ButtonSmall } from '../../components/Buttons/ButtonSmall';
+import { AuthContext } from '../../context/AuthContext';
+import { SimpleCardAtividadeAluno } from './Atividades.styled';
 
 export const AtividadesAluno = () => {
   
-  const [trilha, setTrilha] = React.useState('');
-  const [status, setStatus] = React.useState('');
-  const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
+  const [status, setStatus] = React.useState<string>("PENDENTE");
   const [searchParam, setSearchParam] = useSearchParams();
-  const { getAtividade, atividades, totalPages } = useContext(AtividadeContext);
-
+  const { atividades, totalPages, getAtividadeAluno } = useContext(AtividadeContext);
+  const { usuario } = useContext(AuthContext);
+  
   const handleChange2 = (event: SelectChangeEvent) => {
-    setStatus(event.target.value as string);
+      setStatus(event.target.value);
   };
 
   const pagina = useMemo(() => {
@@ -30,9 +25,12 @@ export const AtividadesAluno = () => {
   }, [searchParam])
   
   useEffect(() => {
-    getAtividade(pagina)
-    setAtividadeData(atividades)
-  },[pagina])
+    if(!usuario.idUsuario) return
+    if(status==="PENDENTE" || status==="CONCLUIDA"){
+         getAtividadeAluno(pagina, usuario.idUsuario, status )
+    }
+  },[pagina, usuario, status])
+
 
   return (
     <SimpleCardContainer>
@@ -50,8 +48,8 @@ export const AtividadesAluno = () => {
               label="Trilha"
               onChange={handleChange2}
             >
-              <MenuItem value={'pendente'}>Pendente</MenuItem>
-              <MenuItem value={'concluida'}>Concluída</MenuItem>
+              <MenuItem value={'PENDENTE'}>Pendente</MenuItem>
+              <MenuItem value={'CONCLUIDA'}>Concluída</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -60,10 +58,10 @@ export const AtividadesAluno = () => {
           return(
            <SimpleCardAtividadeAluno>
             <SimpleCardContent>
-              <p><span>Atividade:</span> 1</p>
+              <p><span>Atividade:</span>{atividade.titulo}</p>
             </SimpleCardContent>
-            <Link to={"/atividades/aluno/entrega"}>  
-            <ButtonEditaDeleta icone={""} id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
+            <Link to={`/atividades/aluno/entrega/${atividade.idAtividade}`}>  
+            <ButtonSmall id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
             </Link>
           </SimpleCardAtividadeAluno>
           )})}

@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { AuthContext } from '../../context/AuthContext';
 import { CardPerfil, CardPerfilContent, PerfilContainer } from './Perfil.styled';
-import { ITrilha } from '../../types/vinculaTrilha';
+import { ITrilha } from '../../types/trilha';
 import userDummy from '../../assets/user.webp';
 import { Typography } from '@mui/material';
 import { PerfilContext } from '../../context/PerfilContext';
@@ -44,7 +44,7 @@ export const Perfil = () => {
         <ContentWrapper>
             <PerfilContainer>
                 <header>
-                    <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
+                    <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
                     <div>
                         <h4 id='perfil-nome' ><Typography textTransform='capitalize' fontSize='1.4rem' fontWeight='600' color='var(--branco)' fontFamily='Inter'>
                             {usuario.nome}

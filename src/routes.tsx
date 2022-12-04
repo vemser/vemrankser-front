@@ -17,7 +17,6 @@ import { AlunoProvider } from './context/AlunoContext';
 import { VinculaTrilhaProvider } from './context/VinculaTrilhaContext';
 import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from './routes/PrivateRoute';
-import { Dashboard } from './pages/Dashboard/Dashboard';
 import { ConfiguracoesCoordenador } from './pages/Configuracoes/ConfiguracoesCoordenador';
 import { CadastrarTrilha } from './pages/Configuracoes/CadastrarTrilha';
 import { VincularInstrutor } from './pages/Configuracoes/VincularInstrutor';
@@ -38,10 +37,10 @@ import { DashBoardVisualiza } from './pages/Dashboard/DashboardVisualiza';
 import { DashBoardAdiciona } from './pages/Dashboard/dashboardAdiciona';
 import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
 import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
-import 'react-toastify/dist/ReactToastify.css';
-import 'nprogress/nprogress.css';
 import { PerfilProvider } from './context/PerfilContext';
 import { PerfilGeral } from './pages/Perfil/PerfilGeral';
+import 'react-toastify/dist/ReactToastify.css';
+import 'nprogress/nprogress.css';
 
 
 export const Router = () => {
@@ -54,8 +53,8 @@ export const Router = () => {
             <VinculaTrilhaProvider>
               <AtividadeProvider>
                 <ModuloProvider>
-                  < NotasProvider>
-                    < PerfilProvider>
+                  <NotasProvider>
+                    <PerfilProvider>
                       <ComentarioProvider>
                         <Routes>
                           <Route path={'/'} element={<Login />} />
@@ -65,8 +64,8 @@ export const Router = () => {
                               <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
                               <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
                               <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-                              <Route path={'/atividades/aluno/entrega'} element={<EntregaAtividade />} />
-                              <Route path={'/atividades/corrige/notas'} element={<AtividadesDetalhesNotas />} />
+                              <Route path={'/atividades/aluno/entrega/:idAtividade'} element={<EntregaAtividade />} />
+                              <Route path={'/atividades/corrige/notas/:idUsuario/:idAtividade'} element={<AtividadesDetalhesNotas />} />
                               <Route path={'/alunos'} element={<Aluno />} />
                               <Route path={'/alunos/vincular'} element={<VinculaAluno />} />
                               <Route path={'/usuarios'} element={<Usuario />} />
@@ -85,9 +84,9 @@ export const Router = () => {
                               <Route path={'/dashboard/aluno'} element={<DashBoardAluno />} />
                               <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
                               <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
-                              <Route path={'/dashboard/feedback/aluno'} element={<DashBoardFeedbackAluno />} />
-                              <Route path={'/dashboard/feedback/visualiza/pontos'} element={< DashBoardVisualiza />} />
-                              <Route path={'/dashboard/feedback/adiciona/pontos'} element={<DashBoardAdiciona />} />
+                              <Route path={'/dashboard/feedback/aluno/:idUsuario'} element={<DashBoardFeedbackAluno />} />
+                              <Route path={'/dashboard/feedback/visualiza-pontos/:idUsuario'} element={< DashBoardVisualiza />} />
+                              <Route path={'/dashboard/feedback/adiciona-pontos/:idUsuario'} element={<DashBoardAdiciona />} />
                             </Route>
                           </Route>
                         </Routes>

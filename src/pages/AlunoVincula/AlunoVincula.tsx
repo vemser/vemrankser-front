@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { vinculaAlunoSchema } from "../../utils/schemas";
-import { Checkbox, OutlinedInput, TextField } from "@mui/material";
+import { OutlinedInput, TextField } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,7 +12,7 @@ import Select from "@mui/material/Select";
 import { ButtonWraper, ContentWrapper } from "../../components/Styles/Container.styled";
 import { ErrorMessage, Titulo } from "../../components/Styles/Component.styled";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
-import { ITrilha, IVinculaTrilha } from "../../types/vinculaTrilha";
+import { IVinculaTrilha } from "../../types/trilha";
 
 export const VinculaAluno = () => {
   const { trilhas, getTrilhas, vinculaTrilha } = useContext(VinculaTrilhaContext)
@@ -67,7 +67,6 @@ export const VinculaAluno = () => {
           </Select>
         </FormControl>
         {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
-
         <ButtonWraper>
           <ButtonPrimary
             label="Adicionar"

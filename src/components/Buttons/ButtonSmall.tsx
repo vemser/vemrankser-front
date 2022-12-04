@@ -1,9 +1,9 @@
+import { IButtonSmall } from '../../types/components';
 import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { IButtonEditaDeleta } from '../../types/buttonEditaDeleta';
+import Button from '@mui/material/Button';
 
-const ButtonEditaDeletaStyle = styled(Button)({
+const ButtonSmallStyle = styled(Button)({
   backgroundColor: 'var(--cor-primaria)',
   color: "var(--branco)",
   width: 120,
@@ -19,12 +19,12 @@ const ButtonEditaDeletaStyle = styled(Button)({
   }
 })
 
-export const ButtonEditaDeleta = ({ icone, label , id}: IButtonEditaDeleta): JSX.Element => {
+export const ButtonSmall = ({ label , id}: IButtonSmall): JSX.Element => {
   return (
-    <ButtonEditaDeletaStyle variant="outlined" id={id} startIcon={icone}>
+    <ButtonSmallStyle variant="outlined" id={id}>
       <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
         {label}
       </Typography>
-    </ButtonEditaDeletaStyle>
+    </ButtonSmallStyle>
   )
 }
