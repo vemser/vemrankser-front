@@ -54,12 +54,17 @@ export const UsersProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-
+  
   const addImage = async (data: IUserPhoto) => {
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" }
+    }
+
     try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      await api.post(`/usuario/upload-imagem/${data.idUsuario}`, data);
+
+      await api.post(`/usuario/upload-imagem/${data.idUsuario}`, config);
 
       toast.success('Foto adicionada com sucesso!', toastConfig);
       navigate('/usuarios');
@@ -92,6 +97,7 @@ export const UsersProvider = ({ children }: IChildren) => {
       nProgress.start();
 
       api.defaults.headers.common['Authorization'] = token;
+
       const { data } = await api.get(`/usuario/lista-usuarios?pagina=${page - 1}&tamanho=6`);
       setTotalPages(data.quantidadePaginas);
 
