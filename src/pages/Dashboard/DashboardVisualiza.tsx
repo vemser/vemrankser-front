@@ -51,7 +51,7 @@ export const DashBoardVisualiza = () => {
               comentario.statusComentario === 1
             )
               .map((comentario: IComentario) =>
-                <ButtonCardDashboardFeedback>
+                <ButtonCardDashboardFeedback key={comentario.idComentario} >
                   <ButtonCardContentVisualiza>
                     {comentario.comentario}
                   </ButtonCardContentVisualiza>
@@ -62,8 +62,8 @@ export const DashBoardVisualiza = () => {
               comentario.statusComentario === 2
             )
               .map((comentario: IComentario) =>
-                <ButtonCardDashboardFeedback>
-                  <ButtonCardContentVisualiza>
+                <ButtonCardDashboardFeedback key={comentario.idComentario} >
+                  <ButtonCardContentVisualiza >
                     {comentario.comentario}
                   </ButtonCardContentVisualiza>
                 </ButtonCardDashboardFeedback>

@@ -9,4 +9,5 @@ export interface IComentarioContext {
 export interface IComentario {
     comentario: string,
     statusComentario: number
+    idComentario: number
 }

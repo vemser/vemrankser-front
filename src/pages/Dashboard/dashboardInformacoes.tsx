@@ -32,9 +32,8 @@ export const DashBoardInformacoes = () => {
             <ButtonCardDashboardInformacoes>
               <ButtonCardContent>
                 <div>
-                  <p>Gráfico</p>
                   {alunosTrilha && alunosTrilha.map((trilha: IContaAlunos) =>
-                    <p><span>{trilha.nome}: </span>{trilha.quantidadeAlunos}</p>
+                    <p key={trilha.idTrilha}><span>{trilha.nome}: </span>{trilha.quantidadeAlunos}</p>
                   )}
                 </div>
               </ButtonCardContent>

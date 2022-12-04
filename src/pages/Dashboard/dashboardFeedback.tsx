@@ -75,7 +75,7 @@ export const DashBoardFeedback = () => {
                   label="Trilha"
                   onChange={handleTrilhaChange}
                 >
-                  {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
+                  {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
                 </Select>
               </FormControl>
             </div>
@@ -101,10 +101,10 @@ export const DashBoardFeedback = () => {
               />
             </Link>
           </div>
-          <ButtonCardWrapper>
-            {alunos && alunos.map((aluno: IAluno) =>
+          <ButtonCardWrapper >
+            {alunos&&alunos.map((aluno: IAluno) =>
               <ButtonCardDashboardFeedback>
-                <ButtonCardContentDashboard>
+                <ButtonCardContentDashboard key={aluno.idUsuario}>
                   <img src={userDummy} alt="Foto" />
                   <div>
                     <p><span>Nome: </span>{aluno.nome}</p>
@@ -116,7 +116,7 @@ export const DashBoardFeedback = () => {
                   </div>
                 </ButtonCardContentDashboard>
               </ButtonCardDashboardFeedback>
-            )}
+            )} 
           </ButtonCardWrapper>
           <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
         </section>
