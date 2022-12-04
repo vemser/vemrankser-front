@@ -36,11 +36,6 @@ export const AtividadesNotas = () => {
   const handleChangeSelect2= (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
-
-  const handleChangeSelect3 = (event: SelectChangeEvent) => {
-    setAtividade(event.target.value as string);
-  };
-
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam])

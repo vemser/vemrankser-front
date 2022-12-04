@@ -2,6 +2,7 @@ export interface INotas {
     nome: string;
     nota: number;
     idAtividade: number;
+    idUsuario: number
   }
 
 export interface IChildren{

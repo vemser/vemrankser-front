@@ -17,7 +17,7 @@ export interface IAtividadeContext {
     setAtividades: React.Dispatch<React.SetStateAction<IAtividade[]>>
     criaAtividade: (payload: ICadastraAtividade) => Promise<void>
     totalPages: number
-    avaliar: (idAtividade: number, pontuacao: number) => Promise<void>
+    avaliar: (idAtividade: number, notaAvaliacao: number, idAluno: number, comentario: string) => Promise<void>
     entregar: (idAtividade: number, link: string) => Promise<void>
     getAtividadeWithIdTrilha: (page: number, idTrilha: number) => Promise<void>
 }

@@ -47,11 +47,11 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-  const avaliar = async (idAtividade: number, pontuacao: number) => {
+  const avaliar = async (idAtividade: number, notaAvaliacao: number, idAluno: number, comentario:string) => {
  try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      await api.put(`/atividade/avaliar?idAtividade=${idAtividade}`, {pontuacao});
+      await api.put(`/atividade/avaliar-comentar-atividade?idAtividade=${idAtividade}&idAluno=${idAluno}`, {notaAvaliacao, comentario});
       toast.success('Atividade corrigida com sucesso!', toastConfig);
       // navigate('/atividades')
     } catch (error) {
@@ -61,6 +61,7 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+
   const entregar = async (idAtividade: number, link: string) => {
     try {
          nProgress.start();
