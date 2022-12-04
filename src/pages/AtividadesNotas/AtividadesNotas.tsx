@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,11 +9,15 @@ import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCardContainer, SimpleCardContent, SimpleCardNotes, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import userDummy from '../../assets/user.webp';
-import { INotas } from '../../types/notas';
+import { INotas, INotasFilterParams } from '../../types/notas';
 import { NotasContext } from '../../context/Notascontext';
 import Pagination from '@mui/material/Pagination';
+import { AtividadeContext } from '../../context/AtividadesContext';
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
+import { ITrilha } from '../../types/vinculaTrilha';
+import { ModuloContext } from '../../context/ModuloContext';
+import { IModulo } from '../../types/modulo';
 
 export const AtividadesNotas = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -21,6 +25,9 @@ export const AtividadesNotas = () => {
   const [atividade, setAtividade] = React.useState("");
   const [searchParam, setSearchParam] = useSearchParams();
   const { getNotas, notas, totalPages} = useContext(NotasContext);
+  const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
+  const { getModulos, modulos } = useContext(ModuloContext)
+  const [ filterParams, setFilterParams ] = useState<INotasFilterParams>({atividadeStatus:'PENDENTE'})
 
   const handleChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
@@ -28,18 +35,29 @@ export const AtividadesNotas = () => {
   const handleChangeSelect2= (event: SelectChangeEvent) => {
     setModulo(event.target.value as string);
   };
-
-  const handleChangeSelect3 = (event: SelectChangeEvent) => {
-    setAtividade(event.target.value as string);
-  };
-
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
   }, [searchParam])
 
+   useEffect(()=>{
+    const newFilterParams={...filterParams}
+       if(trilha){
+         newFilterParams.idTrilha=parseInt(trilha)
+       }
+       if(modulo){
+        newFilterParams.idModulo=parseInt(modulo)
+      }
+      setFilterParams(newFilterParams)
+  }, [trilha,modulo])
+
   useEffect(() => {
-    getNotas(pagina)
-  }, [pagina])
+    getTrilhas()
+    getModulos()
+  }, [])
+
+  useEffect(() => {
+    getNotas(pagina, filterParams)
+  }, [pagina, filterParams])
 
   return (
     <SimpleCardContainer>
@@ -58,25 +76,7 @@ export const AtividadesNotas = () => {
               label="Trilha"
               onChange={handleChange}
             >
-              <MenuItem value={'geral'}>Geral</MenuItem>
-              <MenuItem value={'backend'}>Backend</MenuItem>
-              <MenuItem value={'frontend'}>Frontend</MenuItem>
-              <MenuItem value={'qa'}>QA</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
-            <InputLabel id="label-select-atividade-mural-notas">Atividade</InputLabel>
-            <Select
-              labelId="label-select-atividade-mural-notas"
-              id="select-atividade-mural-noras"
-              value={atividade}
-              label="Atividade"
-              onChange={ handleChangeSelect3}
-            >
-              <MenuItem value={'atividade1'}>Atividade 1</MenuItem>
-              <MenuItem value={'atividade2'}>Atividade 2</MenuItem>
-              <MenuItem value={'atividade3'}>Atividade 3</MenuItem>
-              <MenuItem value={'atividade4'}>Atividade 4</MenuItem>
+               {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
@@ -88,10 +88,7 @@ export const AtividadesNotas = () => {
               label="Módulo"
               onChange={handleChangeSelect2}
             >
-              <MenuItem value={'modulo3'}>Módulo 1</MenuItem>
-              <MenuItem value={'modulo2'}>Módulo 2</MenuItem>
-              <MenuItem value={'modulo3'}>Módulo 3</MenuItem>
-              <MenuItem value={'modulo4'}>Módulo 4</MenuItem>
+               {modulos && modulos.map((modulo: IModulo) => <MenuItem value={modulo.idModulo}>{modulo.nome} </MenuItem>)}
             </Select>
           </FormControl>
         </div>
@@ -102,9 +99,8 @@ export const AtividadesNotas = () => {
                   <img src={userDummy} alt="Foto" />
                   <SimpleCardContent>
                     <p><span>{nota.nome}</span></p> 
-                    <p className='date-info'><span>{nota.nota}/100</span></p>
                   </SimpleCardContent>
-                  <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
+                  <Link to={`/atividades/corrige/notas/${nota.idUsuario}/${nota.idAtividade}`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
                 </SimpleCardNotes>
                  )})}  
           </SimpleCardWrapper>

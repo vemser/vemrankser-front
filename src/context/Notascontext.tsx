@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 import nProgress from "nprogress";
 import { toast } from "react-toastify";
 import { toastConfig } from "../types/toast";
-import { IChildren, INotas, INotasContext } from "../types/notas";
+import { IChildren, INotas, INotasContext, INotasFilterParams } from "../types/notas";
 
 export const NotasContext = createContext({} as INotasContext );
 
@@ -12,11 +12,22 @@ export const NotasProvider = ({ children }: IChildren) => {
   const [ totalPages, setTotalPages] = useState(0);
   const token = localStorage.getItem('token');
 
-  const getNotas = async (page: number) => {
+  const getNotas = async (page: number, filterParams?: INotasFilterParams) => {
     try {
         api.defaults.headers.common['Authorization'] = token;
         nProgress.start();
-        const { data } = await api.get(`/atividade/listar-nota?pagina=${page - 1}&tamanho=5`);
+        console.log(filterParams)
+        let filterString = ''
+        if(filterParams?.idTrilha){
+          filterString = filterString.concat(`&idTrilha=${filterParams.idTrilha}`)
+        }
+        if(filterParams?.idModulo){
+          filterString = filterString.concat(`&idModulo=${filterParams.idModulo}`)
+        }
+        if(filterParams?.atividadeStatus){
+          filterString = filterString.concat(`&atividadeStatus=${filterParams.atividadeStatus}`)
+        }
+        const { data } = await api.get(`/atividade/listar-trilha-modulo?pagina=${page - 1}&tamanho=5${filterString}`);
         setTotalPages(data.quantidadePaginas);
         setNotas(data.elementos);
         console.log(data.elementos)

@@ -1,31 +1,22 @@
 import { Link, useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ButtonSecondary } from '../../components/Buttons/Button';
-import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
-import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import TextField from '@mui/material/TextField';
 import { SimpleCardAtividades, SimpleCardContainer, SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
-import userDummy from '../../assets/user.png';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { AtividadeContext } from '../../context/AtividadesContext';
-import { ComentarioContext } from '../../context/ComentarioContext';
 import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
 
 export const AtividadesDetalhesNotas = () => {
-  const [nota, setNota] = useState<number>()
-  const [link, setLink] = useState<string>('')
+  const [nota, setNota] = useState<string>('')
   const [comentario, setComentario] = useState<string>('')
-  const { avaliar, entregar } = useContext(AtividadeContext)
-  const { criaComentario } = useContext(ComentarioContext)
-  const { idAtividade } = useParams()
+  const { avaliar } = useContext(AtividadeContext)
+  const { idAtividade, idUsuario } = useParams()
 
-  const canCorrigirAtividade = idAtividade && nota && link && comentario
+  const canCorrigirAtividade = idAtividade&&nota&&comentario&&idUsuario
   const corrigiAtividade = () => {
     if (!canCorrigirAtividade) return
-    avaliar(parseInt(idAtividade), nota)
-    entregar(parseInt(idAtividade), link)
-    criaComentario(parseInt(idAtividade), comentario)
+    avaliar(parseInt(idAtividade), parseInt(nota), parseInt(idUsuario), comentario)
   }
   return (
     <SimpleCardContainer>
@@ -44,7 +35,7 @@ export const AtividadesDetalhesNotas = () => {
                 <TextField
                   id="da-nota-atividade"
                   value={nota}
-                  onChange={(e) => setNota(parseInt(e.target.value))}
+                  onChange={(e) => setNota(e.target.value)}
                   label="Nota"
                   variant="outlined"
                   sx={{
@@ -56,21 +47,6 @@ export const AtividadesDetalhesNotas = () => {
                   size="small"
                 />
               </span></p>
-              <p><span>Link da Atividade:</span></p>
-              <TextField
-                id="link-atividade"
-                value={link}
-                onChange={(e) => setLink(e.target.value)}
-                label="Link"
-                variant="outlined"
-                sx={{
-                  width: '100%',
-                  marginTop: "-2%",
-                  marginBottom: "2%",
-                  backgroundColor: "white",
-                }}
-                size="small"
-              />
               <p><span>Comentário:</span></p>
               <TextField
                 id="comentario-atvidade"

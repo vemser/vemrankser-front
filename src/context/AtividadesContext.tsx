@@ -46,14 +46,12 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-
-  const avaliar = async (idAtividade: number, pontuacao: number) => {
-    try {
+  const avaliar = async (idAtividade: number, notaAvaliacao: number, idAluno: number, comentario: string) => {
+ try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      await api.put(`/atividade/avaliar?idAtividade=${idAtividade}`, { pontuacao });
+      await api.put(`/comentario/avaliar-comentar-atividade?idAluno=${idAluno}&idAtividade=${idAtividade}`, {notaAvaliacao, comentario});
       toast.success('Atividade corrigida com sucesso!', toastConfig);
-      // navigate('/atividades')
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
@@ -62,21 +60,52 @@ export const AtividadeProvider = ({ children }: IChildren) => {
     }
   }
 
-  const entregar = async (idAtividade: number, link: string) => {
+  const entregar = async (idAtividade: number, link: string, idAluno: number) => {
     try {
-      nProgress.start();
-      api.defaults.headers.common['Authorization'] = token;
-      await api.put(`/atividade/entregar/${idAtividade}?link=${link}`);
-    } catch (error) {
-      console.error(error);
-      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
-    } finally {
-      nProgress.done();
+         nProgress.start();
+         api.defaults.headers.common['Authorization'] = token;
+         await api.post(`/link/enviar?idAtividade=${idAtividade}&idAluno=${idAluno}`,{link});
+         toast.success('Atividade enviada com sucesso!', toastConfig);
+       } catch (error) {
+         console.error(error);
+         toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+       } finally {
+         nProgress.done();
+       }
+     }
+     const getAtividadeWithIdTrilha = async (page: number, idTrilha: number) => {
+      try {
+        api.defaults.headers.common['Authorization'] = token;
+        nProgress.start();
+        const { data } = await api.get(`/atividade/listar-mural-instrutor?pagina=${page - 1}&tamanho=4&idTrilha=${idTrilha}`);
+        setTotalPages(data.quantidadePaginas);
+        setAtividades(data.elementos);
+        console.log(data.elementos)
+      } catch (error) {
+        console.error(error);
+        toast.error('Nenhuma atividade encontrada nessa trilha! Por favor, selecione outra trilha', toastConfig);
+      } finally {
+        nProgress.done();
+      }
     }
-  }
+    const getAtividadeAluno = async (page: number, idUsuario: number, status: "PENDENTE" | "CONCLUIDA") => {
+      try {
+        api.defaults.headers.common['Authorization'] = token;
+        nProgress.start();
+        const { data } = await api.get(`/atividade/listar-mural-aluno?pagina=${page - 1}&tamanho=4&atividadeStatus=${status}&idUsuario=${idUsuario}`);
+        setTotalPages(data.quantidadePaginas);
+        setAtividades(data.elementos);
+        console.log(data.elementos)
+      } catch (error) {
+        console.error(error);
+        toast.error('Nenhuma atividade encontrada!', toastConfig);
+      } finally {
+        nProgress.done();
+      }
+    }
 
   return (
-    <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar }}>
+    <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar, getAtividadeWithIdTrilha, getAtividadeAluno}}>
       {children}
     </AtividadeContext.Provider>
   );

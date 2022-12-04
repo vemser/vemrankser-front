@@ -5,17 +5,18 @@ import { Titulo } from '../../components/Styles/Component.styled';
 import { SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
-import { ButtonSmall } from '../../components/Buttons/ButtonSmall';
+import { ButtonEditaDeleta } from '../../components/Buttons/ButtonEditaDeleta';
+import { AuthContext } from '../../context/AuthContext';
 
 export const AtividadesAluno = () => {
   
-  const [ status, setStatus ] = React.useState('');
-  const [ atividadeData, setAtividadeData ] = React.useState([] as IAtividade[] );
-  const [ searchParam, setSearchParam ] = useSearchParams();
-  const { getAtividade, atividades, totalPages } = useContext(AtividadeContext);
-
+  const [status, setStatus] = React.useState<string>("PENDENTE");
+  const [searchParam, setSearchParam] = useSearchParams();
+  const { atividades, totalPages, getAtividadeAluno } = useContext(AtividadeContext);
+  const { usuario } = useContext(AuthContext)
+  
   const handleChange2 = (event: SelectChangeEvent) => {
-    setStatus(event.target.value as string);
+      setStatus(event.target.value);
   };
 
   const pagina = useMemo(() => {
@@ -23,9 +24,12 @@ export const AtividadesAluno = () => {
   }, [searchParam])
   
   useEffect(() => {
-    getAtividade(pagina)
-    setAtividadeData(atividades)
-  },[pagina])
+    if(!usuario.idUsuario) return
+    if(status==="PENDENTE" || status==="CONCLUIDA"){
+         getAtividadeAluno(pagina, usuario.idUsuario, status )
+    }
+  },[pagina, usuario, status])
+
 
   return (
     <SimpleCardContainer>
@@ -43,8 +47,8 @@ export const AtividadesAluno = () => {
               label="Trilha"
               onChange={handleChange2}
             >
-              <MenuItem value={'pendente'}>Pendente</MenuItem>
-              <MenuItem value={'concluida'}>Concluída</MenuItem>
+              <MenuItem value={'PENDENTE'}>Pendente</MenuItem>
+              <MenuItem value={'CONCLUIDA'}>Concluída</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -53,10 +57,10 @@ export const AtividadesAluno = () => {
           return(
            <SimpleCardAtividadeAluno>
             <SimpleCardContent>
-              <p><span>Atividade:</span> 1</p>
+              <p><span>Atividade:</span>{atividade.titulo}</p>
             </SimpleCardContent>
-            <Link to={"/atividades/aluno/entrega"}>  
-            <ButtonSmall id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
+            <Link to={`/atividades/aluno/entrega/${atividade.idAtividade}`}>  
+            <ButtonEditaDeleta icone={""} id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
             </Link>
           </SimpleCardAtividadeAluno>
           )})}

@@ -22,7 +22,7 @@ const ButtonCorrigirStyle = styled(Button)({
 
 export const ButtonCorrigir = ({ onClick, id, label, type}:IButton):JSX.Element => {
   return (
-    <ButtonCorrigirStyle type={type} id={id} variant="contained" disableElevation>
+    <ButtonCorrigirStyle type={type} onClick={onClick} id={id} variant="contained" disableElevation>
       <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
         {label}
       </Typography>
