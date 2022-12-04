@@ -49,6 +49,7 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
+  
   const getRanking = async (idTrilha: number) => {
     try {
       api.defaults.headers.common['Authorization'] = token;

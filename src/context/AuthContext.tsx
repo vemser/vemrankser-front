@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: IChildren) => {
 
         api.defaults.headers.common['Authorization'] = undefined;
 
-        setUsuario({});
+        setUsuario(undefined);
 
         navigate('/');
     }

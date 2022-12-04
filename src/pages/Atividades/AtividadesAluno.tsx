@@ -11,7 +11,7 @@ import { SimpleCard, SimpleCardAtividadeAluno, SimpleCardContainer, SimpleCardCo
 import { AtividadeContext } from '../../context/AtividadesContext';
 import { IAtividade } from '../../types/atividade';
 import {format} from 'date-fns'
-import { ButtonEditaDeleta } from '../../components/Buttons/ButtonEditaDeleta';
+import { ButtonSmall } from '../../components/Buttons/ButtonSmall';
 
 export const AtividadesAluno = () => {
   
@@ -63,7 +63,7 @@ export const AtividadesAluno = () => {
               <p><span>Atividade:</span> 1</p>
             </SimpleCardContent>
             <Link to={"/atividades/aluno/entrega"}>  
-            <ButtonEditaDeleta icone={""} id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
+            <ButtonSmall id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
             </Link>
           </SimpleCardAtividadeAluno>
           )})}

@@ -1,19 +1,18 @@
-import {  MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material"
-import FormControl from "@mui/material/FormControl"
-import InputLabel from "@mui/material/InputLabel"
-import React, { ChangeEvent, useContext, useEffect, useMemo } from "react"
-import { ButtonSecondary } from "../../components/Buttons/Button"
-import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
-import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled"
+import {  MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import React, { ChangeEvent, useContext, useEffect, useMemo } from "react";
+import { ButtonSecondary } from "../../components/Buttons/Button";
+import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
+import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
 import userDummy from "../../assets/user.webp";
-import { Link, useSearchParams } from "react-router-dom"
-import { HiSearch } from "react-icons/hi"
-import { ButtonEditaDeleta } from "../../components/Buttons/ButtonEditaDeleta"
-import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext"
-import { ITrilha } from "../../types/vinculaTrilha"
-import { AlunoContext } from "../../context/AlunoContext"
-import { IAluno, IAlunoFilterParams } from "../../types/aluno"
-import { AuthContext } from "../../context/AuthContext"
+import { Link, useSearchParams } from "react-router-dom";
+import { HiSearch } from "react-icons/hi";
+import { ButtonSmall } from "../../components/Buttons/ButtonSmall";
+import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
+import { ITrilha } from "../../types/vinculaTrilha";
+import { AlunoContext } from "../../context/AlunoContext";
+import { IAluno, IAlunoFilterParams } from "../../types/aluno";
 
 export const DashBoardFeedback = () => {
     const [trilha, setTrilha] = React.useState('');  
@@ -26,7 +25,6 @@ export const DashBoardFeedback = () => {
     const pagina = useMemo(() => {
       return Number(searchParam.get("pagina") || "1")
     }, [searchParam])
-
 
     useEffect(()=>{
       const newFilterParams={...filterParams}
@@ -80,7 +78,7 @@ export const DashBoardFeedback = () => {
             </FormControl>
           </div>
           <BarraDePesquisa>
-              <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
+              <TextField variant="outlined" sx={{ width: 280, backgroundColor: "white" }}
                 fullWidth
                 size="small"
                 label={"Filtrar por nome"}
@@ -111,7 +109,7 @@ export const DashBoardFeedback = () => {
               </div>
               <div className="button-adiciona-visualiza-feedback">
                 <Link to={`/dashboard/feedback/visualiza-pontos/${aluno.idUsuario}`}> 
-                 <ButtonEditaDeleta label={"Visualizar"} id={"botao-visualiza-feedback"} />
+                 <ButtonSmall label={"Visualizar"} id={"botao-visualiza-feedback"} />
                 </Link>
               </div>
             </ButtonCardContent>

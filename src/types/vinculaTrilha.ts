@@ -8,8 +8,10 @@ export interface ITrilha {
 }
 
 export interface IRanking{
-  nome: string;
-  pontuacaoAluno: number;
+  nome: string,
+  pontuacaoAluno: number,
+  foto: string,
+  idUsuario: number
 }
 
 export interface IVinculaTrilha {
