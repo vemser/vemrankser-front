@@ -5,6 +5,7 @@ export interface IVinculaTrilhaContext {
   getRanking: (idTrilha: number) => Promise<void>
   ranking: IRanking[]
   vinculaTrilhaInstrutor: (data: IVinculaTrilha) => Promise<void>
+  cadastraNovaTrilha: (data: ICadastraTrilha) => Promise<void>
 }
 
 export interface ITrilha {
@@ -29,6 +30,6 @@ export interface IRanking{
 }
 
 export interface IVinculaTrilha {
-  idTrilha: number[],
+  idTrilha?: number[],
   login: string
 }
