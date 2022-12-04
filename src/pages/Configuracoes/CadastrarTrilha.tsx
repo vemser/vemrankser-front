@@ -60,7 +60,7 @@ export const CadastrarTrilha = () => {
           </Select>
         </FormControl>
         {errors.edicao && <ErrorMessage>{errors.edicao.message}</ErrorMessage>}
-        <label style={{ marginBottom: 4, textAlign: 'left', width: '300px', fontSize: '0.95rem', fontWeight: 500 }}>Ano de edição da Trilha</label>
+        <label style={{ marginBottom: 4, textAlign: 'left', width: '300px', fontSize: '0.95rem', fontWeight: 500 }}>Data de edição da Trilha</label>
         <TextField
           sx={{
             width: '300px',

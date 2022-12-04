@@ -24,7 +24,7 @@ export const VincularModulo = () => {
 
   useEffect(()=>{
     getModulos()
-  })
+  },[])
 
   useEffect(() => {
     getTrilhas();
