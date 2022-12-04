@@ -13,6 +13,7 @@ import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext"
 import { ITrilha } from "../../types/vinculaTrilha"
 import { AlunoContext } from "../../context/AlunoContext"
 import { IAluno, IAlunoFilterParams } from "../../types/aluno"
+import { AuthContext } from "../../context/AuthContext"
 
 export const DashBoardFeedback = () => {
     const [trilha, setTrilha] = React.useState('');  
@@ -25,6 +26,7 @@ export const DashBoardFeedback = () => {
     const pagina = useMemo(() => {
       return Number(searchParam.get("pagina") || "1")
     }, [searchParam])
+
 
     useEffect(()=>{
       const newFilterParams={...filterParams}

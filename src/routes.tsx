@@ -78,9 +78,9 @@ export const Router = () => {
                             <Route path={'/dashboard/aluno'} element={<DashBoardAluno />} />
                             <Route path={'/dashboard/informacoes'} element={<DashBoardInformacoes />} />
                             <Route path={'/dashboard/feedback'} element={<DashBoardFeedback />} />
-                            <Route path={'/dashboard/feedback/aluno'} element={<DashBoardFeedbackAluno />} />
+                            <Route path={'/dashboard/feedback/aluno/:idUsuario'} element={<DashBoardFeedbackAluno />} />
                             <Route path={'/dashboard/feedback/visualiza-pontos/:idUsuario'} element={< DashBoardVisualiza />} />
-                            <Route path={'/dashboard/feedback/adiciona-pontos'} element={<DashBoardAdiciona />} />
+                            <Route path={'/dashboard/feedback/adiciona-pontos/:idUsuario'} element={<DashBoardAdiciona />} />
                           </Route>
                         </Route>
                       </Routes>

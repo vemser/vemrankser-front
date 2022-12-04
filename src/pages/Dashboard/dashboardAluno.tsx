@@ -10,10 +10,12 @@ import { GiChampions } from "react-icons/gi"
 import { Link } from "react-router-dom"
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext"
 import { IRanking, ITrilha } from "../../types/vinculaTrilha"
+import { AuthContext } from "../../context/AuthContext"
 
 export const DashBoardAluno = () => {
     const [trilha, setTrilha] = React.useState('');
     const {getTrilhas, trilhas, getRanking, ranking} = useContext(VinculaTrilhaContext)
+    const { usuario } = useContext(AuthContext)
 
     useEffect(()=>{
       getTrilhas()
@@ -62,10 +64,10 @@ export const DashBoardAluno = () => {
               </Select>
             </FormControl>
           </div>
-          <Link to={"/dashboard/feedback/aluno"}>
+          <Link to={`/dashboard/feedback/aluno/${usuario?.idUsuario}`}>
           <ButtonPrimary
               type={"button"}
-              id={"botao-dashboard-feedbacks"}
+              id={"botao-dashboard-aluno"}
               label={"Feedbacks"}
             />
           </Link>

@@ -35,9 +35,9 @@ const ButtonSecondaryStyle = styled(Button)({
   }
 })
 
-export const ButtonPrimary = ({ label, id, type }:IButton):JSX.Element => {
+export const ButtonPrimary = ({ label, id, type, onClick }:IButton):JSX.Element => {
   return (
-    <ButtonPrimaryStyle type={type} id={id} variant="contained" disableElevation>
+    <ButtonPrimaryStyle type={type} onClick={onClick} id={id} variant="contained" disableElevation>
       <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden' textTransform='capitalize' fontSize={'1rem'} fontFamily='Inter'>
         {label}
       </Typography>
