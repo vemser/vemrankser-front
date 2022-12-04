@@ -5,26 +5,21 @@ import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import TextField from '@mui/material/TextField';
-import { SimpleCardAtividades, SimpleCardAtividadesEntrega, SimpleCardContainer,SimpleCardContentAtividade, SimpleCardContentAtividadeEntrega, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
+import { SimpleCardAtividadesEntrega, SimpleCardContainer,SimpleCardContentAtividadeEntrega, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
 import { AtividadeContext } from '../../context/AtividadesContext';
-import { ComentarioContext } from '../../context/ComentarioContext';
 import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
+import { AuthContext } from '../../context/AuthContext';
 
 export const EntregaAtividade = () => {
- const [nota, setNota] = useState<number>()
   const [link, setLink] = useState<string>('')
-  const [comentario] = useState<string>('')
-  const {avaliar, entregar} = useContext(AtividadeContext)
-  const { criaComentario } = useContext(ComentarioContext)
+  const { entregar} = useContext(AtividadeContext)
   const {idAtividade} = useParams()
-  
-  const canCorrigirAtividade = idAtividade&&nota&&link&&comentario
+  const {usuario} = useContext(AuthContext)
+
+  const canCorrigirAtividade = idAtividade&&link&&usuario.idUsuario
   const corrigiAtividade = () =>{
     if(!canCorrigirAtividade) return
-     avaliar(parseInt(idAtividade), nota)
-     entregar(parseInt(idAtividade), link)
-     criaComentario(parseInt(idAtividade),comentario)
+     entregar(parseInt(idAtividade),link, usuario.idUsuario)
   }
   return (
     <SimpleCardContainer>
@@ -57,7 +52,7 @@ export const EntregaAtividade = () => {
           />
             </SimpleCardContentAtividadeEntrega> 
           </SimpleCardAtividadesEntrega> 
-          <ButtonCorrigir type={'button'} label={'Entregar'}  id={'botao-envia-atividade-aluno'}/>
+          <ButtonCorrigir type={'button'} onClick={corrigiAtividade} label={'Entregar'}  id={'botao-envia-atividade-aluno'}/>
            <Link to='/atividades/aluno'>
             <ButtonSecondary
               label="Voltar"

@@ -6,6 +6,8 @@ export interface IAtividade {
     dataEntrega: string;
     dataCriacao: string;
     trilhas: ITrilha[];
+    titulo: string;
+    idAtividade: number;
   }
 export interface IChildren{
     children?:React.ReactNode;
@@ -18,8 +20,9 @@ export interface IAtividadeContext {
     criaAtividade: (payload: ICadastraAtividade) => Promise<void>
     totalPages: number
     avaliar: (idAtividade: number, notaAvaliacao: number, idAluno: number, comentario: string) => Promise<void>
-    entregar: (idAtividade: number, link: string) => Promise<void>
+    entregar: (idAtividade: number, link: string, idAluno: number) => Promise<void>
     getAtividadeWithIdTrilha: (page: number, idTrilha: number) => Promise<void>
+    getAtividadeAluno: (page: number, idUsuario: number, status: "PENDENTE" | "CONCLUIDA") => Promise<void>
 }
 
 export interface IAtividadeById {

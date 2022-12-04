@@ -4,9 +4,7 @@ import { ButtonSecondary } from '../../components/Buttons/Button';
 import { Titulo } from '../../components/Styles/Component.styled';
 import TextField from '@mui/material/TextField';
 import { SimpleCardAtividades, SimpleCardContainer, SimpleCardContentAtividade, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
-import { HiAcademicCap, HiBookOpen, HiChartPie, HiCog, HiUser } from 'react-icons/hi';
 import { AtividadeContext } from '../../context/AtividadesContext';
-import { ComentarioContext } from '../../context/ComentarioContext';
 import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
 
 export const AtividadesDetalhesNotas = () => {

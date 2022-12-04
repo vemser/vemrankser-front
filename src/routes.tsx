@@ -61,7 +61,7 @@ export const Router = () => {
                             <Route path={'/atividades/criar'} element={<AtividadesCriar />} />
                             <Route path={'/atividades/aluno'} element={<AtividadesAluno />} />
                             <Route path={'/atividades/notas'} element={<AtividadesNotas />} />
-                            <Route path={'/atividades/aluno/entrega'} element={<EntregaAtividade />} />
+                            <Route path={'/atividades/aluno/entrega/:idAtividade'} element={<EntregaAtividade />} />
                             <Route path={'/atividades/corrige/notas/:idUsuario/:idAtividade'} element={<AtividadesDetalhesNotas />} />
                             <Route path={'/alunos'} element={<Aluno />} />
                             <Route path={'/alunos/vincular'} element={<VinculaAluno />} />

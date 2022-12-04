@@ -62,11 +62,12 @@ export const AtividadeProvider = ({ children }: IChildren) => {
     }
   }
 
-  const entregar = async (idAtividade: number, link: string) => {
+  const entregar = async (idAtividade: number, link: string, idAluno: number) => {
     try {
          nProgress.start();
          api.defaults.headers.common['Authorization'] = token;
-         await api.put(`/atividade/entregar/${idAtividade}?link=${link}`);
+         await api.post(`/link/enviar?idAtividade=${idAtividade}&idAluno=${idAluno}`,{link});
+         toast.success('Atividade enviada com sucesso!', toastConfig);
        } catch (error) {
          console.error(error);
          toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
@@ -89,9 +90,24 @@ export const AtividadeProvider = ({ children }: IChildren) => {
         nProgress.done();
       }
     }
+    const getAtividadeAluno = async (page: number, idUsuario: number, status: "PENDENTE" | "CONCLUIDA") => {
+      try {
+        api.defaults.headers.common['Authorization'] = token;
+        nProgress.start();
+        const { data } = await api.get(`/atividade/listar-mural-aluno?pagina=${page - 1}&tamanho=4&atividadeStatus=${status}&idUsuario=${idUsuario}`);
+        setTotalPages(data.quantidadePaginas);
+        setAtividades(data.elementos);
+        console.log(data.elementos)
+      } catch (error) {
+        console.error(error);
+        toast.error('Nenhuma atividade encontrada!', toastConfig);
+      } finally {
+        nProgress.done();
+      }
+    }
 
   return (
-    <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar, getAtividadeWithIdTrilha }}>
+    <AtividadeContext.Provider value={{ getAtividade, atividades, setAtividades, criaAtividade, totalPages, entregar, avaliar, getAtividadeWithIdTrilha, getAtividadeAluno}}>
       {children}
     </AtividadeContext.Provider>
   );
