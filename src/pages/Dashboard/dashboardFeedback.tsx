@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useMemo } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { MenuItem, Pagination, Select, SelectChangeEvent, TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -22,6 +22,7 @@ export const DashBoardFeedback = () => {
   const [searchParam, setSearchParam] = useSearchParams();
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
   const { getAlunosWithFilter, alunos, totalPages } = useContext(AlunoContext)
+  const [alunoData, setAlunoData] = useState<IAluno[]>([]);
 
   const pagina = useMemo(() => {
     return Number(searchParam.get("pagina") || "1")
@@ -41,6 +42,10 @@ export const DashBoardFeedback = () => {
   useEffect(() => {
     getTrilhas()
   }, [])
+  
+  useEffect(() => {
+    setAlunoData(alunos)
+  }, [alunos]);
 
   useEffect(() => {
     getAlunosWithFilter(pagina, filterParams)
@@ -49,8 +54,18 @@ export const DashBoardFeedback = () => {
   const handleTrilhaChange = (event: SelectChangeEvent) => {
     setTrilha(event.target.value as string);
   };
+  
   const handleNomeChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setNome(event.target.value as string);
+    const keyWord = event.target.value
+    if (keyWord !== '') {
+      const resultado = alunos.filter((aluno) => {
+        return aluno.nome.toLowerCase().startsWith(keyWord.toLowerCase());
+      });
+        setAlunoData(resultado);
+  } else {
+    setAlunoData(alunos);
+  }
+    setNome(keyWord);
   };
 
   return (

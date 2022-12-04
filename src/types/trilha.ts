@@ -1,5 +1,5 @@
 export interface IVinculaTrilhaContext {
-  getTrilhas: () => Promise<void>,
+  getTrilhas: () => Promise<void>
   trilhas: ITrilha[]
   vinculaTrilha: (payload: IVinculaTrilha) => Promise<void>
   getRanking: (idTrilha: number) => Promise<void>
@@ -11,6 +11,12 @@ export interface ITrilha {
   idTrilha: number,
   edicao: number,
   indexOf?: any
+}
+
+export interface ICadastraTrilha{
+  nome: string,
+  edicao: number,
+  anoEdicao:string
 }
 
 export interface IRanking{

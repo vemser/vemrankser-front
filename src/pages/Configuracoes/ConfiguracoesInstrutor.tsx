@@ -19,7 +19,7 @@ export const ConfiguracoesInstrutor = () => {
           <ButtonPrimary label={'Vincular Módulo'} id={'botao-vincular-modulo'} type={'button'} />
         </Link>
       </div>
-
+      
       <SimpleCardConfiguracoes>
         <SimpleCardContent>
           <p>O Modulo <span>Banco de Dados</span> foi adicionado.</p>

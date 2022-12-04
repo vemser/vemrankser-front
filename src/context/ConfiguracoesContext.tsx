@@ -7,7 +7,7 @@ import nProgress from 'nprogress';
 
 export const ConfiguracoesContext = createContext({} as IConfiguracoesContext);
 
-export const AlunoProvider = ({ children }: IChildren) => {
+export const ConfiguracoesProvider = ({ children }: IChildren) => {
 
 
     return (

@@ -20,15 +20,14 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/trilha/lista-trilha-nome`);
-
       setTrilhas(data);      
     } catch (error) {
       console.error(error);
     }
   }
-
   const vinculaTrilha = async (data: IVinculaTrilha) => {
     try {
+      
       nProgress.start();
 
       api.defaults.headers.common['Authorization'] = token;
@@ -63,7 +62,7 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
   }
 
   return (
-    <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha, getRanking, ranking }}>
+    <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha, getRanking, ranking,  }}>
       {children}
     </VinculaTrilhaContext.Provider>
   );

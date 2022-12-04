@@ -59,3 +59,10 @@ export const adicionaFotoSchema = yup.object().shape({
     .test('is-big-file', 'Arquivo grande demais', checkIfFileIsTooBig)
     .test('is-correct-file', 'Arquivo não suportado, envie apenas jpg, jpeg, png ou webp', checkIfFileIsCorrectType)
 })
+
+export const cadastraTrilhaSchema = yup.object().shape({
+    nome: yup.string().required('Por favor, digite o nome da trilha').min(2, 'Nome  inválido').trim(),
+    edicao: yup.string().required('Por favor, selecione uma opção')
+    .label("Edicao"),
+    anoEdicao: yup.date().required('Por favor, selecione uma opção')
+})
