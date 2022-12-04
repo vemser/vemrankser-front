@@ -53,8 +53,8 @@ export const Router = () => {
             <VinculaTrilhaProvider>
               <AtividadeProvider>
                 <ModuloProvider>
-                  < NotasProvider>
-                    < PerfilProvider>
+                  <NotasProvider>
+                    <PerfilProvider>
                       <ComentarioProvider>
                         <Routes>
                           <Route path={'/'} element={<Login />} />
