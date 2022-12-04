@@ -1,5 +1,6 @@
-import { useContext, useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
+import Pagination from "@mui/material/Pagination"
+import { useContext, useEffect, useMemo } from "react"
+import { Link, useParams, useSearchParams } from "react-router-dom"
 import { ButtonPrimary, ButtonSecondary } from "../../components/Buttons/Button"
 import { ButtonCardContainer, ButtonCardContentVizualiza, ButtonCardDashboardFeedback, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
 import { Titulo } from "../../components/Styles/Component.styled"
@@ -8,13 +9,18 @@ import { IComentario } from "../../types/comentario"
 
 export const DashBoardFeedbackAluno = () => {
   const {idUsuario} = useParams()
-  const {getComentariosAlunos, comentariosPositivos, comentariosNegativos} = useContext(ComentarioContext)
+  const {getComentariosAlunos, comentarios, totalPages} = useContext(ComentarioContext)
+  const [searchParam, setSearchParam] = useSearchParams();
+
+  const pagina = useMemo(() => {
+    return Number(searchParam.get("pagina") || "1")
+  }, [searchParam])
 
   useEffect(()=>{
     if(idUsuario){
-      getComentariosAlunos(parseInt(idUsuario))
+      getComentariosAlunos(parseInt(idUsuario), pagina)
     }
-  }, [idUsuario])
+  }, [idUsuario, pagina])
 
   return (
     <>
@@ -34,7 +40,10 @@ export const DashBoardFeedbackAluno = () => {
         </div>
         <ButtonCardWrapper>
         <p><strong>Pontos Positivos</strong></p>
-        {comentariosPositivos&&comentariosPositivos.map((comentario: IComentario)=>
+        {comentarios&&comentarios.filter((comentario: IComentario)=>
+        comentario.statusComentario===1
+        )
+.map((comentario: IComentario)=>
          <ButtonCardDashboardFeedback>
             <ButtonCardContentVizualiza>
               {comentario.comentario}
@@ -42,7 +51,10 @@ export const DashBoardFeedbackAluno = () => {
           </ButtonCardDashboardFeedback>
         )}
           <p><strong>Pontos Negativos</strong></p>
-          {comentariosNegativos&&comentariosNegativos.map((comentario: IComentario)=>
+          {comentarios&&comentarios.filter((comentario: IComentario)=>
+        comentario.statusComentario===2
+        )
+.map((comentario: IComentario)=>
          <ButtonCardDashboardFeedback>
             <ButtonCardContentVizualiza>
               {comentario.comentario}
@@ -50,6 +62,7 @@ export const DashBoardFeedbackAluno = () => {
           </ButtonCardDashboardFeedback>
         )}
         </ButtonCardWrapper>
+        <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
       </section>
     </ButtonCardContainer>
         </>
