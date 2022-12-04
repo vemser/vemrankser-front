@@ -1,15 +1,15 @@
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material"
-import FormControl from "@mui/material/FormControl"
-import InputLabel from "@mui/material/InputLabel"
-import React, { useContext, useEffect } from "react"
-import { ButtonPrimary } from "../../components/Buttons/Button"
-import { ButtonCardContainer, ButtonCardContent, ButtonCardDashboard, ButtonCardWrapper } from "../../components/Styles/ButtonCard"
-import { Titulo } from "../../components/Styles/Component.styled"
-import userDummy from "../../assets/user.webp";
-import { GiChampions } from "react-icons/gi"
-import { Link } from "react-router-dom"
-import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext"
-import { IRanking, ITrilha } from "../../types/trilha"
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import React, { useContext, useEffect } from 'react';
+import { ButtonPrimary } from '../../components/Buttons/Button';
+import { ButtonCardContainer, ButtonCardWrapper } from '../../components/Styles/ButtonCard';
+import { Titulo } from '../../components/Styles/Component.styled';
+import { GiChampions } from 'react-icons/gi';
+import { Link } from 'react-router-dom';
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
+import { IRanking, ITrilha } from '../../types/trilha';
+import { ButtonCardContentDashboard, ButtonCardRanking } from './Dashboard.styled';
 
 export const DashBoard = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -79,27 +79,26 @@ export const DashBoard = () => {
           <ButtonCardWrapper>
             {ranking && ranking.map((r: IRanking, index) =>
               index < 3 &&
-              <ButtonCardDashboard key={r.idUsuario}>
-                <ButtonCardContent>
+              <ButtonCardRanking key={r.idUsuario}>
+                <ButtonCardContentDashboard>
                   <div>
-                    <p><span>Nome: </span>{r.nome}</p>
+                    <p>Nome: <span>{r.nome}</span></p>
                   </div>
                   <div>
-                    <p><span>Pontos: </span>{r.pontuacaoAluno}</p>
+                    <p>Pontos: <span>{r.pontuacaoAluno}</span></p>
                   </div>
                   <div>
-                    <p><span>Posição: </span>{index + 1}</p>
+                    <p>Posição: <span>{index + 1}</span></p>
                   </div>
                   <div>
-                    <GiChampions size={'40px'} color={'var(--cor-primaria)'} />
+                    <GiChampions size={'50px'} color={'var(--branco)'} />
                   </div>
-                </ButtonCardContent>
-              </ButtonCardDashboard>
+                </ButtonCardContentDashboard>
+              </ButtonCardRanking>
             )}
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>
     </>
-
   )
 }

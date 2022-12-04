@@ -1,19 +1,19 @@
-import React, { ChangeEvent, useContext, useEffect, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import { ButtonSecondary } from "../../components/Buttons/Button";
-import { ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
-import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { HiSearch } from "react-icons/hi";
-import { ButtonSmall } from "../../components/Buttons/ButtonSmall";
-import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
-import { ITrilha } from "../../types/trilha";
-import { AlunoContext } from "../../context/AlunoContext";
-import { IAluno, IAlunoFilterParams } from "../../types/aluno";
-import { ButtonCardDashboardFeedback } from "./Dashboard.styled";
-import userDummy from "../../assets/user.webp";
+import React, { ChangeEvent, useContext, useEffect, useMemo } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { MenuItem, Pagination, Select, SelectChangeEvent, TextField } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import { ButtonSecondary } from '../../components/Buttons/Button';
+import { ButtonCardContainer, ButtonCardWrapper } from '../../components/Styles/ButtonCard';
+import { BarraDePesquisa, Titulo } from '../../components/Styles/Component.styled';
+import { HiSearch } from 'react-icons/hi';
+import { ButtonSmall } from '../../components/Buttons/ButtonSmall';
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
+import { ITrilha } from '../../types/trilha';
+import { AlunoContext } from '../../context/AlunoContext';
+import { IAluno, IAlunoFilterParams } from '../../types/aluno';
+import { ButtonCardContentDashboard, ButtonCardDashboardFeedback } from './Dashboard.styled';
+import userDummy from '../../assets/user.webp';
 
 export const DashBoardFeedback = () => {
   const [trilha, setTrilha] = React.useState('');
@@ -104,7 +104,7 @@ export const DashBoardFeedback = () => {
           <ButtonCardWrapper>
             {alunos && alunos.map((aluno: IAluno) =>
               <ButtonCardDashboardFeedback>
-                <ButtonCardContent>
+                <ButtonCardContentDashboard>
                   <img src={userDummy} alt="Foto" />
                   <div>
                     <p><span>Nome: </span>{aluno.nome}</p>
@@ -114,7 +114,7 @@ export const DashBoardFeedback = () => {
                       <ButtonSmall label={"Visualizar"} id={"botao-visualiza-feedback"} />
                     </Link>
                   </div>
-                </ButtonCardContent>
+                </ButtonCardContentDashboard>
               </ButtonCardDashboardFeedback>
             )}
           </ButtonCardWrapper>

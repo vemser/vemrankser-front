@@ -37,10 +37,10 @@ import { DashBoardVisualiza } from './pages/Dashboard/DashboardVisualiza';
 import { DashBoardAdiciona } from './pages/Dashboard/dashboardAdiciona';
 import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
 import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
-import 'react-toastify/dist/ReactToastify.css';
-import 'nprogress/nprogress.css';
 import { PerfilProvider } from './context/PerfilContext';
 import { PerfilGeral } from './pages/Perfil/PerfilGeral';
+import 'react-toastify/dist/ReactToastify.css';
+import 'nprogress/nprogress.css';
 
 
 export const Router = () => {
