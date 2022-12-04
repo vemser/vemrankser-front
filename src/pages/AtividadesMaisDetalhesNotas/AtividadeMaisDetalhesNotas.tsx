@@ -8,16 +8,15 @@ import { AtividadeContext } from '../../context/AtividadesContext';
 import { ButtonCorrigir } from '../../components/Buttons/ButtonCorrigir';
 
 export const AtividadesDetalhesNotas = () => {
-  const [nota, setNota] = useState<number>()
+  const [nota, setNota] = useState<string>('')
   const [comentario, setComentario] = useState<string>('')
   const { avaliar } = useContext(AtividadeContext)
   const { idAtividade, idUsuario } = useParams()
 
-  const canCorrigirAtividade = idAtividade && nota && comentario && idUsuario
+  const canCorrigirAtividade = idAtividade&&nota&&comentario&&idUsuario
   const corrigiAtividade = () => {
     if (!canCorrigirAtividade) return
-    avaliar(parseInt(idAtividade), nota, parseInt(idUsuario), comentario)
-    
+    avaliar(parseInt(idAtividade), parseInt(nota), parseInt(idUsuario), comentario)
   }
   return (
     <SimpleCardContainer>
@@ -36,7 +35,7 @@ export const AtividadesDetalhesNotas = () => {
                 <TextField
                   id="da-nota-atividade"
                   value={nota}
-                  onChange={(e) => setNota(parseInt(e.target.value))}
+                  onChange={(e) => setNota(e.target.value)}
                   label="Nota"
                   variant="outlined"
                   sx={{

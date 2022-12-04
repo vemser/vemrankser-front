@@ -25,7 +25,6 @@ export const AtividadesNotas = () => {
   const [atividade, setAtividade] = React.useState("");
   const [searchParam, setSearchParam] = useSearchParams();
   const { getNotas, notas, totalPages} = useContext(NotasContext);
-  const {getAtividadeWithIdTrilha,  getAtividade} = useContext(AtividadeContext);
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
   const { getModulos, modulos } = useContext(ModuloContext)
   const [ filterParams, setFilterParams ] = useState<INotasFilterParams>({atividadeStatus:'PENDENTE'})
@@ -101,7 +100,7 @@ export const AtividadesNotas = () => {
                   <SimpleCardContent>
                     <p><span>{nota.nome}</span></p> 
                   </SimpleCardContent>
-                  <Link to={`/atividades/corrige/notas`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
+                  <Link to={`/atividades/corrige/notas/${nota.idUsuario}/${nota.idAtividade}`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
                 </SimpleCardNotes>
                  )})}  
           </SimpleCardWrapper>

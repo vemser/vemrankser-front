@@ -47,13 +47,12 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-  const avaliar = async (idAtividade: number, notaAvaliacao: number, idAluno: number, comentario:string) => {
+  const avaliar = async (idAtividade: number, notaAvaliacao: number, idAluno: number, comentario: string) => {
  try {
       nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
-      await api.put(`/atividade/avaliar-comentar-atividade?idAtividade=${idAtividade}&idAluno=${idAluno}`, {notaAvaliacao, comentario});
+      await api.put(`/comentario/avaliar-comentar-atividade?idAluno=${idAluno}&idAtividade=${idAtividade}`, {notaAvaliacao, comentario});
       toast.success('Atividade corrigida com sucesso!', toastConfig);
-      // navigate('/atividades')
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);

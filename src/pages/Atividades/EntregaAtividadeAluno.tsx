@@ -1,8 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ButtonSecondary } from '../../components/Buttons/Button';
-import { ButtonMenuLateral } from '../../components/Buttons/ButtonMenuLateral';
-import { MenuLateral } from '../../components/MenuLateral/MenuLateral';
 import { Titulo } from '../../components/Styles/Component.styled';
 import TextField from '@mui/material/TextField';
 import { SimpleCardAtividadesEntrega, SimpleCardContainer,SimpleCardContentAtividadeEntrega, SimpleCardWrapper } from '../../components/Styles/SimpleCard';
