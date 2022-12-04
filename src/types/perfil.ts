@@ -1,7 +1,6 @@
 import { IAtividadeById } from "./atividade";
-import { IUser } from "./user";
 
 export interface IPerfilContext {
-    getAtividadesbyId: (userId: IUser) => Promise<void>,
+    getAtividadesbyId: (idUsuario: number) => Promise<void>,
     atividadesById: IAtividadeById[]
 }

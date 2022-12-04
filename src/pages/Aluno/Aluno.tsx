@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
-import { AlunoContext } from "../../context/AlunoContext";
-import { IAluno } from "../../types/aluno";
-import { ITrilha } from "../../types/vinculaTrilha";
 import { Link, useSearchParams } from "react-router-dom";
 import { ButtonPrimary } from "../../components/Buttons/Button";
-import { HiSearch } from "react-icons/hi";
 import userDummy from "../../assets/user.webp";
 import { BarraDePesquisa, Titulo } from "../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../components/Styles/ButtonCard";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper} from "../../components/Styles/ButtonCard";
+import { HiSearch } from "react-icons/hi";
+import { IAluno } from "../../types/aluno";
+import { ITrilha } from "../../types/vinculaTrilha";
+import { AlunoContext } from "../../context/AlunoContext";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { VinculaTrilhaContext } from "../../context/VinculaTrilhaContext";
 import { api } from "../../utils/api";
@@ -143,7 +143,7 @@ export const Aluno = () => {
           </div>
 
           <BarraDePesquisa>
-            <TextField variant="outlined" sx={{ width: 300, backgroundColor: "white" }}
+            <TextField variant="outlined" sx={{ width: 280, backgroundColor: "white" }}
               fullWidth
               size="small"
               label={"Pesquisar por nome"}
@@ -172,7 +172,7 @@ export const Aluno = () => {
             return (
               <ButtonCard key={aluno.email}>
                 <ButtonCardContent>
-                  <img src={aluno.foto !== null && 'foto' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt="Foto" />
+                  <img src={aluno.foto !== null || '' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy } alt={`Foto de ${aluno.nome}`} />
                   <div className="firstSection">
                     <p><span>Nome:</span> {aluno.nome} </p>
                     <p><span>E-mail:</span> {aluno.email} </p>

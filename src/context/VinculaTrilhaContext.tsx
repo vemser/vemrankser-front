@@ -42,7 +42,7 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       navigate('/alunos');
     } catch (error) {
       console.error(error);
-      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
 
     } finally {
       nProgress.done();

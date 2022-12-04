@@ -2,6 +2,8 @@ import { api } from "../utils/api";
 import { createContext, useState } from "react";
 import nProgress from "nprogress";
 import { IAluno, IAlunoContext,IChildren } from "../types/aluno";
+import { toastConfig } from "../types/toast";
+import { toast } from "react-toastify";
 
 export const AlunoContext = createContext({} as IAlunoContext);
 
@@ -12,6 +14,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
 
   const getAlunos = async (page: number) => {
     try {
+      nProgress.start();
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/usuario/lista-alunos-trilha-geral?pagina=${page -1}&tamanho=4`);
@@ -20,6 +23,9 @@ export const AlunoProvider = ({ children }: IChildren) => {
       setAlunos(data.elementos);
     } catch (error) {
       console.error(error);
+      toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
+    } finally {
+      nProgress.done();
     }
   }
 

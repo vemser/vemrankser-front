@@ -1,22 +1,17 @@
 import { useContext, useEffect } from 'react';
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { AuthContext } from '../../context/AuthContext';
-import { CardPerfil, CardPerfilContent, PerfilContainer } from './Perfil.styled';
+import { CardPerfil, CardPerfilContent, PerfilContainer, PerfilGeralContainer } from './Perfil.styled';
 import { ITrilha } from '../../types/vinculaTrilha';
 import userDummy from '../../assets/user.webp';
 import { Typography } from '@mui/material';
 import { PerfilContext } from '../../context/PerfilContext';
 import { IAtividadeById } from '../../types/atividade';
 
-export const Perfil = () => {
+export const PerfilGeral = () => {
     const { usuario } = useContext(AuthContext);
-    const { getAtividadesbyId, atividadesById } = useContext(PerfilContext);
     const trilhasUser = usuario.trilha || [];
     const userId = usuario.idUsuario;
-
-    useEffect(() => {
-        getAtividadesbyId(userId);
-    }, []);
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -42,7 +37,7 @@ export const Perfil = () => {
 
     return (
         <ContentWrapper>
-            <PerfilContainer>
+            <PerfilGeralContainer>
                 <header>
                     <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
                     <div>
@@ -66,25 +61,7 @@ export const Perfil = () => {
                         }
                     </div>
                 </header>
-                <section>
-                    <h5 id='perfil-atividades-vinculadas'>Atividades Pendentes</h5>
-                    {atividadesById.length > 0 ? atividadesById.map((atividade: IAtividadeById) => {
-                        return (
-                            <CardPerfil>
-                                <CardPerfilContent>
-                                    <p className='text'><span>{atividade.titulo}</span></p>
-                                    <p className='text'>{atividade.instrucoes}</p>
-                                    <p className='pendente text'>{atividade.statusAtividade}</p>
-                                </CardPerfilContent>
-                            </CardPerfil>
-                        )
-                    }) :
-                        <div>
-                            <p>Nenhuma atividade encontrada!</p>
-                        </div>
-                    }
-                </section>
-            </PerfilContainer>
+            </PerfilGeralContainer>
         </ContentWrapper >
     )
 }
