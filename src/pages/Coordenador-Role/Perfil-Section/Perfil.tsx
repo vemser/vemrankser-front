@@ -6,7 +6,7 @@ import { ITrilha } from '../../../types/trilha';
 import userDummy from '../../../assets/user.webp';
 import { Typography } from '@mui/material';
 
-export const PerfilGestor = () => {
+export const PerfilCoordenador = () => {
     const { usuario } = useContext(AuthContext);
     const trilhasUser = usuario.trilha || [];
     const userId = usuario.idUsuario;

@@ -8,7 +8,7 @@ import { Titulo } from '../../../../components/Styles/Component.styled';
 import { ButtonCardContentInformacao, ButtonCardDashboardInformacoes, } from '../../Styles/Dashboard.styled';
 
 
-export const DashBoardInformacoes = () => {
+export const DashBoardInformacoesCoordenador = () => {
     const { getAlunosPorTrilha, alunosTrilha } = useContext(AlunoContext)
 
     useEffect(() => {

@@ -11,7 +11,7 @@ import { VinculaTrilhaContext } from '../../../../context/VinculaTrilhaContext';
 import { IRanking, ITrilha } from '../../../../types/trilha';
 import { ButtonCardContentDashboard, ButtonCardRanking } from '../../Styles/Dashboard.styled';
 
-export const DashBoardGestor = () => {
+export const DashBoardInstrutor = () => {
   const [trilha, setTrilha] = React.useState('');
   const { getTrilhas, trilhas, getRanking, ranking } = useContext(VinculaTrilhaContext)
 
@@ -95,7 +95,7 @@ export const DashBoardGestor = () => {
                   </div>
                 </ButtonCardContentDashboard>
               </ButtonCardRanking>
-            ): <p>Nenhum aluno encontrado!</p>}
+            ) : <p>Nenhum aluno encontrado!</p>}
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>

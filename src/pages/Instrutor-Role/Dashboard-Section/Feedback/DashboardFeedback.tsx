@@ -15,7 +15,7 @@ import { IAluno, IAlunoFilterParams } from '../../../../types/aluno';
 import { ButtonCardContentDashboard, ButtonCardDashboardFeedback } from '../../Styles/Dashboard.styled';
 import userDummy from '../../../../assets/user.webp';
 
-export const DashBoardFeedbackGestor = () => {
+export const DashBoardFeedbackInstrutor = () => {
     const [trilha, setTrilha] = React.useState('');
     const [nome, setNome] = React.useState('');
     const [filterParams, setFilterParams] = React.useState<IAlunoFilterParams>({});

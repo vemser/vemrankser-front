@@ -11,7 +11,7 @@ import { VinculaTrilhaContext } from '../../../../context/VinculaTrilhaContext';
 import { IRanking, ITrilha } from '../../../../types/trilha';
 import { ButtonCardContentDashboard, ButtonCardRanking } from '../../Styles/Dashboard.styled';
 
-export const DashBoardGestor = () => {
+export const DashBoardCoordenador = () => {
   const [trilha, setTrilha] = React.useState('');
   const { getTrilhas, trilhas, getRanking, ranking } = useContext(VinculaTrilhaContext)
 

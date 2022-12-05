@@ -12,7 +12,7 @@ import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEven
 import { VinculaTrilhaContext } from "../../../context/VinculaTrilhaContext";
 import { api } from "../../../utils/api";
 
-export const Aluno = () => {
+export const AlunoListarCoordenador = () => {
   const [trilha, setTrilha] = React.useState("");
   const { getAlunos, alunos, totalPages, setTotalPages } = useContext(AlunoContext);
   const { trilhas, getTrilhas } = useContext(VinculaTrilhaContext);

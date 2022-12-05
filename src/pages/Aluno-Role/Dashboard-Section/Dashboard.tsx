@@ -2,18 +2,21 @@ import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import React, { useContext, useEffect } from 'react';
-import { ButtonPrimary } from '../../../../components/Buttons/Button';
-import { ButtonCardContainer, ButtonCardWrapper } from '../../../../components/Styles/ButtonCard';
-import { Titulo } from '../../../../components/Styles/Component.styled';
+import { ButtonPrimary } from '../../../components/Buttons/Button';
+import { ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from '../../../components/Styles/ButtonCard';
+import { Titulo } from '../../../components/Styles/Component.styled';
+import userDummy from '../../../assets/user.webp';
 import { GiChampions } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
-import { VinculaTrilhaContext } from '../../../../context/VinculaTrilhaContext';
-import { IRanking, ITrilha } from '../../../../types/trilha';
-import { ButtonCardContentDashboard, ButtonCardRanking } from '../../Styles/Dashboard.styled';
+import { VinculaTrilhaContext } from '../../../context/VinculaTrilhaContext';
+import { IRanking, ITrilha } from '../../../types/trilha';
+import { AuthContext } from '../../../context/AuthContext';
+import { ButtonCardDashboard } from '../Styles/Dashboard.styled';
 
-export const DashBoardGestor = () => {
+export const DashBoardAluno = () => {
   const [trilha, setTrilha] = React.useState('');
   const { getTrilhas, trilhas, getRanking, ranking } = useContext(VinculaTrilhaContext)
+  const { usuario } = useContext(AuthContext)
 
   useEffect(() => {
     getTrilhas()
@@ -40,7 +43,7 @@ export const DashBoardGestor = () => {
       <ButtonCardContainer>
         <section>
           <Titulo>
-            Dashboard
+            Dashboard - Aluno
           </Titulo>
           <div className="flex">
             <div>
@@ -49,53 +52,54 @@ export const DashBoardGestor = () => {
                 fullWidth
                 size="small"
               >
-                <InputLabel id="label-select-trilha-dashboard-instrutor">Trilha</InputLabel>
+                <InputLabel id="label-select-trilha-dashboard-aluno">Trilha</InputLabel>
                 <Select
-                  labelId="label-select-trilha-dashboard-instrutor"
-                  id="select-trilha-dashboard-instrutor"
+                  labelId="label-select-trilha-dashboard-aluno"
+                  id="select-trilha-dashboard-aluno"
                   value={trilha}
                   label="Trilha"
                   onChange={handleChange}
                 >
-                  {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
+                  {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
                 </Select>
               </FormControl>
             </div>
-            <Link to={"/dashboard/feedback"}>
+            <Link to={`/dashboard/feedback/aluno/${usuario?.idUsuario}`}>
               <ButtonPrimary
                 type={"button"}
-                id={"botao-feedbacks-dashboard-feedback"}
+                id={"botao-dashboard-aluno"}
                 label={"Feedbacks"}
               />
             </Link>
             <Link to={"/dashboard/informacoes"}>
               <ButtonPrimary
                 type={"button"}
-                id={"botao-informacoes-dashboard-feedback"}
+                id={"botao-dashboard-informacoes"}
                 label={"Informações"}
               />
             </Link>
           </div>
           <ButtonCardWrapper>
-            {ranking?.length > 0 ? ranking.map((r: IRanking, index) =>
-              index < 3 &&
-              <ButtonCardRanking key={`card-ranking-${index}`}>
-                <ButtonCardContentDashboard>
+            {ranking && ranking.map((r: IRanking, index) =>
+              index < 5 &&
+              <ButtonCardDashboard>
+                <ButtonCardContent>
+                  <img src={userDummy} alt="Foto" />
                   <div>
-                    <p>Nome: <span>{r.nome}</span></p>
+                    <p><span>Nome: </span>{r.nome}</p>
                   </div>
                   <div>
-                    <p>Pontos: <span>{r.pontuacaoAluno}</span></p>
+                    <p><span>Pontos: </span>{r.pontuacaoAluno}</p>
                   </div>
                   <div>
-                    <p>Posição: <span>{index + 1}</span></p>
+                    <p><span>Posição: </span>{index + 1}</p>
                   </div>
                   <div>
-                    <GiChampions size={'50px'} color={'var(--branco)'} />
+                    <GiChampions size={'40px'} color={'var(--cor-primaria)'} />
                   </div>
-                </ButtonCardContentDashboard>
-              </ButtonCardRanking>
-            ): <p>Nenhum aluno encontrado!</p>}
+                </ButtonCardContent>
+              </ButtonCardDashboard>
+            )}
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>

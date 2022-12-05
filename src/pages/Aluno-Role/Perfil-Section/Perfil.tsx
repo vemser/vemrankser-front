@@ -1,15 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ContentWrapper } from '../../../components/Styles/Container.styled'
 import { AuthContext } from '../../../context/AuthContext';
-import { PerfilGeralContainer } from '../Styles/Perfil.styled';
+import { CardPerfil, CardPerfilContent, PerfilContainer } from '../Styles/Perfil.styled';
 import { ITrilha } from '../../../types/trilha';
 import userDummy from '../../../assets/user.webp';
 import { Typography } from '@mui/material';
+import { PerfilContext } from '../../../context/PerfilContext';
+import { IAtividadeById } from '../../../types/atividade';
 
-export const PerfilGestor = () => {
+export const PerfilAluno = () => {
     const { usuario } = useContext(AuthContext);
+    const { getAtividadesbyId, atividadesById } = useContext(PerfilContext);
     const trilhasUser = usuario.trilha || [];
     const userId = usuario.idUsuario;
+
+    useEffect(() => {
+        getAtividadesbyId(userId);
+    }, []);
 
     function verificaTipoUsuario(tipoPerfil: number) {
         switch (tipoPerfil) {
@@ -35,9 +42,9 @@ export const PerfilGestor = () => {
 
     return (
         <ContentWrapper>
-            <PerfilGeralContainer>
+            <PerfilContainer>
                 <header>
-                    <img id='perfil-foto' src={usuario.foto !== null && 'foto' ? `data:image/jpg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
+                    <img id='perfil-foto' src={usuario.foto !== null || '' ? `data:image/jpeg;base64,${usuario.foto}` : userDummy} alt={`Foto de ${usuario.nome}`} />
                     <div>
                         <h4 id='perfil-nome' ><Typography textTransform='capitalize' fontSize='1.4rem' fontWeight='600' color='var(--branco)' fontFamily='Inter'>
                             {usuario.nome}
@@ -59,7 +66,25 @@ export const PerfilGestor = () => {
                         }
                     </div>
                 </header>
-            </PerfilGeralContainer>
+                <section>
+                    <h5 id='perfil-atividades-vinculadas'>Atividades Pendentes</h5>
+                    {atividadesById.length > 0 ? atividadesById.map((atividade: IAtividadeById) => {
+                        return (
+                            <CardPerfil>
+                                <CardPerfilContent>
+                                    <p className='text'><span>{atividade.titulo}</span></p>
+                                    <p className='text'>{atividade.instrucoes}</p>
+                                    <p className='pendente text'>{atividade.statusAtividade}</p>
+                                </CardPerfilContent>
+                            </CardPerfil>
+                        )
+                    }) :
+                        <div>
+                            <p>Nenhuma atividade encontrada!</p>
+                        </div>
+                    }
+                </section>
+            </PerfilContainer>
         </ContentWrapper >
     )
 }
