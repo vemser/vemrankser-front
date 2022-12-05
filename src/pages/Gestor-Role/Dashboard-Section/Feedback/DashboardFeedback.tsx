@@ -3,16 +3,16 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { MenuItem, Pagination, Select, SelectChangeEvent, TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import { ButtonSecondary } from '../../components/Buttons/Button';
-import { ButtonCardContainer, ButtonCardWrapper } from '../../components/Styles/ButtonCard';
-import { BarraDePesquisa, Titulo } from '../../components/Styles/Component.styled';
+import { ButtonSecondary } from '../../../../components/Buttons/Button';
+import { ButtonCardContainer, ButtonCardWrapper } from '../../../../components/Styles/ButtonCard';
+import { BarraDePesquisa, Titulo } from '../../../../components/Styles/Component.styled';
 import { HiSearch } from 'react-icons/hi';
-import { ButtonSmall } from '../../components/Buttons/ButtonSmall';
-import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
-import { ITrilha } from '../../types/trilha';
-import { AlunoContext } from '../../context/AlunoContext';
-import { IAluno, IAlunoFilterParams } from '../../types/aluno';
-import { ButtonCardContentDashboard, ButtonCardDashboardFeedback } from './Dashboard.styled';
+import { ButtonSmall } from '../../../../components/Buttons/ButtonSmall';
+import { VinculaTrilhaContext } from '../../../../context/VinculaTrilhaContext';
+import { ITrilha } from '../../../../types/trilha';
+import { AlunoContext } from '../../../../context/AlunoContext';
+import { IAluno, IAlunoFilterParams } from '../../../../types/aluno';
+import { ButtonCardContentDashboard, ButtonCardDashboardFeedback } from '../../../Dashboard/Dashboard.styled';
 import userDummy from '../../assets/user.webp';
 
 export const DashBoardFeedback = () => {
@@ -102,7 +102,7 @@ export const DashBoardFeedback = () => {
             </Link>
           </div>
           <ButtonCardWrapper >
-            {alunos&&alunos.map((aluno: IAluno) =>
+            {alunos && alunos.map((aluno: IAluno) =>
               <ButtonCardDashboardFeedback>
                 <ButtonCardContentDashboard key={aluno.idUsuario}>
                   <img src={userDummy} alt="Foto" />
@@ -116,7 +116,7 @@ export const DashBoardFeedback = () => {
                   </div>
                 </ButtonCardContentDashboard>
               </ButtonCardDashboardFeedback>
-            )} 
+            )}
           </ButtonCardWrapper>
           <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
         </section>

@@ -26,9 +26,9 @@ import { ModuloProvider } from './context/ModuloContext';
 import { ComentarioProvider } from './context/ComentarioContext';
 import { AtividadesAluno } from './pages/Atividades/AtividadesAluno';
 import { EntregaAtividade } from './pages/Atividades/EntregaAtividadeAluno';
-import { DashBoard } from './pages/Dashboard/dashboardInstrutor';
-import { DashBoardInformacoes } from './pages/Dashboard/dashboardInformacoes';
-import { DashBoardFeedback } from './pages/Dashboard/dashboardFeedback';
+import { DashBoard } from './pages/Gestor-Role/Dashboard-Section/Dashboard/Dashboard';
+import { DashBoardInformacoes } from './pages/Gestor-Role/Dashboard-Section/Informações/DashboardInformacoes';
+import { DashBoardFeedback } from './pages/Gestor-Role/Dashboard-Section/Feedback/DashboardFeedback';
 import { DashBoardAdiciona } from './pages/Dashboard/dashboardAdiciona';
 import { DashBoardAluno } from './pages/Dashboard/dashboardAluno';
 import { DashBoardFeedbackAluno } from './pages/Dashboard/dashboardFeedbackAluno';
@@ -101,8 +101,6 @@ export const Router = () => {
 
                               </Route>
                             </Route>
-
-
 
                             <Route path={'/atividades'} element={<AtividadesInstrutor />} />
                             <Route path={'/atividades/criar'} element={<AtividadesCriar />} />

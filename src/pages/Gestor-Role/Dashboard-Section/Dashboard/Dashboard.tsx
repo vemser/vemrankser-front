@@ -2,14 +2,14 @@ import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import React, { useContext, useEffect } from 'react';
-import { ButtonPrimary } from '../../components/Buttons/Button';
-import { ButtonCardContainer, ButtonCardWrapper } from '../../components/Styles/ButtonCard';
-import { Titulo } from '../../components/Styles/Component.styled';
+import { ButtonPrimary } from '../../../../components/Buttons/Button';
+import { ButtonCardContainer, ButtonCardWrapper } from '../../../../components/Styles/ButtonCard';
+import { Titulo } from '../../../../components/Styles/Component.styled';
 import { GiChampions } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
-import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext';
-import { IRanking, ITrilha } from '../../types/trilha';
-import { ButtonCardContentDashboard, ButtonCardRanking } from './Dashboard.styled';
+import { VinculaTrilhaContext } from '../../../../context/VinculaTrilhaContext';
+import { IRanking, ITrilha } from '../../../../types/trilha';
+import { ButtonCardContentDashboard, ButtonCardRanking } from '../../../Dashboard/Dashboard.styled';
 
 export const DashBoard = () => {
   const [trilha, setTrilha] = React.useState('');
