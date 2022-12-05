@@ -20,14 +20,14 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/trilha/lista-trilha-nome`);
-      setTrilhas(data);      
+      setTrilhas(data);
     } catch (error) {
       console.error(error);
     }
   }
   const vinculaTrilha = async (data: IVinculaTrilha) => {
     try {
-      
+
       nProgress.start();
 
       api.defaults.headers.common['Authorization'] = token;
@@ -37,7 +37,7 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       }).join().replace(/,/g, '')
       await api.post(`/trilha/adicionar-aluno-trilha?login=${data.login}${queryIdTrilha}`, data);
       toast.success('Aluno vinculado com sucesso!', toastConfig);
-      navigate('/alunos');
+      navigate('/instrutor/alunos');
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
@@ -55,7 +55,7 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       }).join().replace(/,/g, '')
       await api.post(`/trilha/adicionar-instrutor-trilha?login=${data.login}${queryIdTrilha}`, data);
       toast.success('Instrutor vinculado com sucesso!', toastConfig);
-      navigate('/configuracoes');
+      navigate('/coordenador/configuracoes');
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
@@ -64,25 +64,25 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       nProgress.done();
     }
   }
-  
+
   const getRanking = async (idTrilha: number) => {
     try {
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/trilha/lista-ranking?idTrilha=${idTrilha}`);
 
-      setRanking(data);      
+      setRanking(data);
     } catch (error) {
       console.error(error);
     }
   }
 
   const cadastraNovaTrilha = async (data: ICadastraTrilha) => {
-    try{
+    try {
       api.defaults.headers.common['Authorization'] = token;
-        await api.post(`/trilha`, data);
+      await api.post(`/trilha`, data);
       toast.success('Trilha vinculada com sucesso!', toastConfig);
-      navigate('/configuracoes')
+      navigate('/coordenador/configuracoes')
     }
     catch (error) {
       console.error(error);

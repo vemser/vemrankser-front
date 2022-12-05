@@ -99,7 +99,7 @@ export const AtividadesNotas = () => {
                 <SimpleCardContent >
                   <p><span>{nota.nome}</span></p>
                 </SimpleCardContent>
-                <Link to={`/atividades/corrige/notas/${nota.idUsuario}/${nota.idAtividade}`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
+                <Link to={`/instrutor/atividades/corrigir/${nota.idUsuario}/${nota.idAtividade}`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
               </SimpleCardNotes>
             )
           })}

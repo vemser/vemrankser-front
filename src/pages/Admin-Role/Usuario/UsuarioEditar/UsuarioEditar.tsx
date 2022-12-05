@@ -60,7 +60,7 @@ export const UsuarioEditar = () => {
             id="button-edita-usuario"
             type="submit"
           />
-          <Link to="/usuarios">
+          <Link to="/adm/usuarios">
             <ButtonSecondary
               label="Cancelar"
               id="button-cancela-edicao-usuario"

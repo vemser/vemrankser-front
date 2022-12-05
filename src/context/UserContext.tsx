@@ -47,7 +47,7 @@ export const UsersProvider = ({ children }: IChildren) => {
       await api.post(`/usuario/cadastro?tipoPerfil=${userType}`, user);
 
       toast.success('Pessoa cadastrada com sucesso!', toastConfig);
-      navigate('/usuarios');
+      navigate('/adm/usuarios');
     } catch (error) {
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
       console.error(error);
@@ -63,7 +63,7 @@ export const UsersProvider = ({ children }: IChildren) => {
       await api.put(`/usuario/atualizar/${data.idUsuario}`, data);
 
       toast.success("Usuário atualizado com sucesso!", toastConfig);
-      navigate('/usuarios');
+      navigate('/adm/usuarios');
     } catch (error) {
       console.error(error);
       toast.error("Houve algum erro, por favor verifique os dados e tente novamente", toastConfig);
@@ -103,7 +103,7 @@ export const UsersProvider = ({ children }: IChildren) => {
   }
 
   return (
-    <UsersContext.Provider value={{ createUser, getPhoto, photo,  getUsersList, user, editUser, totalPages }}>
+    <UsersContext.Provider value={{ createUser, getPhoto, photo, getUsersList, user, editUser, totalPages }}>
       {children}
     </UsersContext.Provider>
   )

@@ -40,19 +40,19 @@ export const AuthProvider = ({ children }: IChildren) => {
             setUserRoles(roles);
 
             if (roles.includes('ROLE_ADMINISTRADOR')) {
-                navigate('/usuarios');
+                navigate('/adm/usuarios');
 
             } else if (roles.includes('ROLE_GESTAO')) {
-                navigate('/dashboard');
+                navigate('/gestor/dashboard');
 
             } else if (roles.includes('ROLE_COORDENADOR')) {
-                navigate('/perfil');
+                navigate('/coordenador/dashboard');
 
             } else if (roles.includes('ROLE_INSTRUTOR')) {
-                navigate('/atividades');
+                navigate('/instrutor/dashboard');
 
             } else if (roles.includes('ROLE_ALUNO')) {
-                navigate('/alunos');
+                navigate('/aluno/dashboard');
 
             } else {
                 toast.error('Autenticação falhou, por favor verifique os seus dados', toastConfig);

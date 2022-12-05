@@ -114,7 +114,7 @@ export const SimpleCardNotes = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 68%;
+    width: 60%;
     height: 100px;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
@@ -125,11 +125,16 @@ export const SimpleCardNotes = styled.div`
     span {
         font-weight: 600;
     }
+    @media (max-width: 1400px) {
+        width: 80%;
+    }
     @media (max-width: 850px) {
         width: 100%;
     }
-    @media screen and (max-width: 460px) {
+    @media screen and (max-width: 600px) {
         gap: 10px;
+        flex-direction: column;
+        height: auto;
     }
     img {
         width: 68px;

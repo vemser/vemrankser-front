@@ -45,17 +45,17 @@ export const AlunoLayout = () => {
                 <ButtonMenuLateral
                     text={"Dashboard"}
                     icone={<HiChartPie />}
-                    link={"/dashboard"}
+                    link={"/aluno/dashboard"}
                 />
                 <ButtonMenuLateral
                     text={"Atividades"}
                     icone={<HiBookOpen />}
-                    link={"/atividades"}
+                    link={"/aluno/atividades"}
                 />
                 <ButtonMenuLateral
                     text={"Perfil"}
                     icone={<HiUser />}
-                    link={"/perfil"}
+                    link={"/aluno/perfil"}
                 />
             </MenuLateral>
             <Outlet />

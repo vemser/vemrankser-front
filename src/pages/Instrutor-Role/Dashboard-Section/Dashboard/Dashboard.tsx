@@ -61,14 +61,14 @@ export const DashBoardInstrutor = () => {
                 </Select>
               </FormControl>
             </div>
-            <Link to={"/dashboard/feedback"}>
+            <Link to={"/instrutor/dashboard/feedback"}>
               <ButtonPrimary
                 type={"button"}
                 id={"botao-feedbacks-dashboard-feedback"}
                 label={"Feedbacks"}
               />
             </Link>
-            <Link to={"/dashboard/informacoes"}>
+            <Link to={"/instrutor/dashboard/informacoes"}>
               <ButtonPrimary
                 type={"button"}
                 id={"botao-informacoes-dashboard-feedback"}

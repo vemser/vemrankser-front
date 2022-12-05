@@ -41,7 +41,7 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       await api.post(`/atividade?idModulo=${payload.idModulo}${idTrilha}`, payload);
 
       toast.success('Atividade cadastrada com sucesso!', toastConfig);
-      navigate('/atividades');
+      navigate('/instrutor/atividades');
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
@@ -74,6 +74,7 @@ export const AtividadeProvider = ({ children }: IChildren) => {
       await api.post(`/link/enviar?idAtividade=${idAtividade}&idAluno=${idAluno}`, { link });
 
       toast.success('Atividade enviada com sucesso!', toastConfig);
+      navigate('/aluno/atividades')
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor recarregue a página', toastConfig);
@@ -105,7 +106,7 @@ export const AtividadeProvider = ({ children }: IChildren) => {
 
       api.defaults.headers.common['Authorization'] = token;
       const { data } = await api.get(`/atividade/listar-mural-aluno?pagina=${page - 1}&tamanho=4&atividadeStatus=${status}&idUsuario=${idUsuario}`);
-      
+
       setTotalPages(data.quantidadePaginas);
       setAtividades(data.elementos);
     } catch (error) {

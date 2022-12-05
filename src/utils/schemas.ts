@@ -1,4 +1,3 @@
-
 import * as yup from 'yup';
 
 export const loginSchema = yup.object().shape({
@@ -49,13 +48,6 @@ export const editaUsuarioSchema = yup.object().shape({
     especialidade: yup.string().trim(),
     statusUsuario: yup.number().required('Por favor, informe o status'),
     idUsuario: yup.number().required()
-})
-
-export const adicionaFotoSchema = yup.object().shape({
-    idUsuario: yup.number().required(),
-    file: yup.mixed().required('Nenhum arquivo de imagem carregado')
-    .test('is-big-file', 'Arquivo grande demais', checkIfFileIsTooBig)
-    .test('is-correct-file', 'Arquivo não suportado, envie apenas jpg, jpeg, png ou webp', checkIfFileIsCorrectType)
 })
 
 export const cadastraTrilhaSchema = yup.object().shape({

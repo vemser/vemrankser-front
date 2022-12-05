@@ -45,7 +45,7 @@ export const AdminLayout = () => {
                 <ButtonMenuLateral
                     text={"Usuários"}
                     icone={<HiUsers />}
-                    link={"/usuarios"}
+                    link={"/adm/usuarios"}
                 />
             </MenuLateral>
             <Outlet />

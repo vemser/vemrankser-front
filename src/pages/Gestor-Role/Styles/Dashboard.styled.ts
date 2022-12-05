@@ -182,6 +182,7 @@ export const ButtonCardDashboard = styled.div`
   @media screen and (max-width: 460px) {
       gap: 10px;
   }
+
 `;
 export const ButtonCardDashboardFeedback = styled.div`
   display: flex;
@@ -218,6 +219,7 @@ export const ButtonCardDashboardFeedback = styled.div`
   @media screen and (max-width: 460px) {
       gap: 10px;
   }
+
 `;
 export const ButtonCardDashboardInformacoes = styled.div`
   display: flex;
@@ -277,6 +279,7 @@ export const ButtonCardContentInformacao = styled.div`
     justify-content: flex-start;
     flex-direction: column;
     gap: 10px;
+
     p {
       white-space: pre-line;
     }

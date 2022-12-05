@@ -108,7 +108,7 @@ export const DashBoardFeedbackGestor = () => {
                                 />
                             </i>
                         </BarraDePesquisa>
-                        <Link to={"/dashboard"}>
+                        <Link to={"/gestor/dashboard"}>
                             <ButtonSecondary
                                 label={'voltar'}
                                 type={'button'}
@@ -125,7 +125,7 @@ export const DashBoardFeedbackGestor = () => {
                                         <p><span>Nome: </span>{aluno.nome}</p>
                                     </div>
                                     <div className="button-adiciona-visualiza-feedback">
-                                        <Link to={`/dashboard/feedback/visualiza-pontos/${aluno.idUsuario}`}>
+                                        <Link to={`/gestor/dashboard/feedback/pontos/${aluno.idUsuario}`}>
                                             <ButtonSmall label={"Visualizar"} id={"botao-visualiza-feedback"} />
                                         </Link>
                                     </div>

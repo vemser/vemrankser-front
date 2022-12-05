@@ -11,7 +11,7 @@ import { ITrilha } from '../../../../types/trilha'
 export const ConfiguracoesInstrutor = () => {
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     getTrilhas()
   }, [])
   return (
@@ -21,22 +21,22 @@ export const ConfiguracoesInstrutor = () => {
       </Titulo>
 
       <div className='flex'>
-        <Link to={'/configuracoes/adicionar-trilha'}>
-          <ButtonPrimary label={'Cadastrar Trilha'} id={'botao-adicionar-trilha'} type={'button'} />
+        <Link to={'/instrutor/configuracoes/cadastrar-modulo'}>
+          <ButtonPrimary label={'Cadastrar Módulo'} id={'botao-adicionar-trilha'} type={'button'} />
         </Link>
-        
-        <Link to={"/configuracoes/vincular-instrutor"}>
-          <ButtonPrimary label={'Vincular instrutor'} id={'botao-vincular-'} type={'button'} />
+
+        <Link to={"/instrutor/configuracoes/vincular-modulo"}>
+          <ButtonPrimary label={'Vincular Módulo'} id={'botao-vincular-'} type={'button'} />
         </Link>
       </div>
 
-   {trilhas.map((trilha:ITrilha) =>
-   <SimpleCardConfiguracoes key={trilha.idTrilha}>
-        <SimpleCardContent>
-          <p>A Trilha <span>{trilha.nome}</span> foi adicionada na edição <span>{trilha.edicao}</span> </p>
-        </SimpleCardContent>
-      </SimpleCardConfiguracoes>
-   )}   
+      {trilhas.map((trilha: ITrilha) =>
+        <SimpleCardConfiguracoes key={trilha.idTrilha}>
+          <SimpleCardContent>
+            <p>A Trilha <span>{trilha.nome}</span> foi adicionada na edição <span>{trilha.edicao}</span> </p>
+          </SimpleCardContent>
+        </SimpleCardConfiguracoes>
+      )}
     </ContentWrapper>
   )
 }

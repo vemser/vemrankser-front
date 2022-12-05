@@ -22,7 +22,7 @@ export const VincularInstrutor = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<IVinculaTrilha>({
     resolver: yupResolver(vinculaInstrutorSchema),
   });
-  
+
   useEffect(() => {
     getTrilhas();
   }, []);
@@ -44,11 +44,11 @@ export const VincularInstrutor = () => {
 
 
   return (
-      <ContentWrapper>
-        <Titulo>
-        Vincular Instrutor à Trilha 
-        </Titulo>
-        <form onSubmit={handleSubmit(vinculaInstrutorTrilha)}>
+    <ContentWrapper>
+      <Titulo>
+        Vincular Instrutor à Trilha
+      </Titulo>
+      <form onSubmit={handleSubmit(vinculaInstrutorTrilha)}>
         <TextField
           id="nome-vincula-instrutor"
           label="Login"
@@ -57,48 +57,45 @@ export const VincularInstrutor = () => {
           sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
           size="small"
         />
-         {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
+        {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
 
-         <FormControl >
-            <InputLabel id="demo-multiple-checkbox-label">Trilha</InputLabel>
-            <Select
-              label="Trilha"
-              sx={{ width: '300px', height: '40px', backgroundColor: 'white', marginBottom: '5%' }}
-              labelId="label-checkbox-multiplaescolha-trilha"
-              id="checkbox-trilha"
-              multiple
-              value={trilhasSelecionadas}
-              onChange={handleTrilhasSelecionadasChange}
-              input={<OutlinedInput label="Escolha a trilha" />}
-              renderValue={(selected) => trilhas.filter((trilha) => selected.includes(trilha.idTrilha)).map((trilha) => trilha.nome).join(', ')}
-            >
-              {trilhas.map((trilha) => (
-                <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
-                  <Checkbox checked={trilhasSelecionadas.indexOf(trilha.idTrilha) > -1} />
-                  <ListItemText primary={trilha.nome} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <FormControl >
+          <InputLabel id="demo-multiple-checkbox-label">Trilha</InputLabel>
+          <Select
+            label="Trilha"
+            sx={{ width: '300px', height: '40px', backgroundColor: 'white', marginBottom: '5%' }}
+            labelId="label-checkbox-multiplaescolha-trilha"
+            id="checkbox-trilha"
+            multiple
+            value={trilhasSelecionadas}
+            onChange={handleTrilhasSelecionadasChange}
+            input={<OutlinedInput label="Escolha a trilha" />}
+            renderValue={(selected) => trilhas.filter((trilha) => selected.includes(trilha.idTrilha)).map((trilha) => trilha.nome).join(', ')}
+          >
+            {trilhas.map((trilha) => (
+              <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
+                <Checkbox checked={trilhasSelecionadas.indexOf(trilha.idTrilha) > -1} />
+                <ListItemText primary={trilha.nome} />
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
-          <ButtonWraper>
-            <ButtonPrimary
-              label="Adicionar"
-              id="botao-vincula-instrutor-trilha"
-              type="submit"
+        <ButtonWraper>
+          <ButtonPrimary
+            label="Adicionar"
+            id="botao-vincula-instrutor-trilha"
+            type="submit"
+          />
+          <Link to={"/coordenador/configuracoes"}>
+            <ButtonSecondary
+              type="button"
+              label="Cancelar"
+              id="botao-cancela-vincula-instrutor-trilha"
             />
-            
-            <Link to={"/configuracoes"}>
-              <ButtonSecondary
-                type="button"
-                label="Cancelar"
-                id="botao-cancela-vincula-instrutor-trilha"
-              />
-            </Link>
-          </ButtonWraper>
-        </form>
-
-      </ContentWrapper>
-
+          </Link>
+        </ButtonWraper>
+      </form>
+    </ContentWrapper>
   )
 }

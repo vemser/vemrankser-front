@@ -157,20 +157,11 @@ export const AlunoListarCoordenador = () => {
             </i>
 
           </BarraDePesquisa>
-          <Link to={"/alunos/vincular"}>
-            <ButtonPrimary
-              type={"button"}
-              id={"botao-vincula-aluno"}
-              label={"Vincular Aluno"}
-            />
-          </Link>
         </div>
         <ButtonCardWrapper>
           {alunoData.map((aluno: IAluno) => {
-            const ultimaTrilha = aluno.trilhas.length - 1
-
             return (
-              <ButtonCard key={aluno.email}>
+              <ButtonCard key={aluno.idUsuario}>
                 <ButtonCardContent>
                   <img src={aluno.foto !== null || '' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy} alt={`Foto de ${aluno.nome}`} />
                   <div className="firstSection">
@@ -180,8 +171,8 @@ export const AlunoListarCoordenador = () => {
                   <div className="secondSection">
                     <p><span>Login: </span> {aluno.login} </p>
                     <p><span>Trilha: </span>
-                      {aluno.trilhas.length !== 0 ? aluno?.trilhas.map((trilhas: ITrilha, index) => {
-                        return index === ultimaTrilha ? trilhas.nome : trilhas.nome + `, `
+                      {aluno?.trilhas ? aluno.trilhas.map((trilhas: ITrilha) => {
+                        return trilhas.nome + ` `
                       }) : 'Sem trilha vinculada'}</p>
                   </div>
                   <div className="thirdSection">

@@ -27,7 +27,7 @@ export const UsuarioCadastrarFoto = () => {
       await api.put(`/usuario/upload-imagem/${state.idUsuario}`, file);
 
       toast.success('Foto adicionada com sucesso!', toastConfig);
-      navigate('/usuarios');
+      navigate('/adm/usuarios');
     } catch (error) {
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
       console.log(error);
@@ -97,7 +97,7 @@ export const UsuarioCadastrarFoto = () => {
             type="button"
             onClick={() => { addImage(imagemAPI) }}
           />
-          <Link to="/usuarios">
+          <Link to="/adm/usuarios">
             <ButtonSecondary
               label="Cancelar"
               id="button-cancela-edicao-usuario"

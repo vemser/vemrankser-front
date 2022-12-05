@@ -7,7 +7,6 @@ import { ButtonCardContainer, ButtonCardWrapper } from '../../../../components/S
 import { Titulo } from '../../../../components/Styles/Component.styled';
 import { ButtonCardContentInformacao, ButtonCardDashboardInformacoes, } from '../../Styles/Dashboard.styled';
 
-
 export const DashBoardInformacoes = () => {
     const { getAlunosPorTrilha, alunosTrilha } = useContext(AlunoContext)
 
@@ -22,7 +21,7 @@ export const DashBoardInformacoes = () => {
                     <Titulo>
                         Informações das Trilhas
                     </Titulo>
-                    <Link to={"/dashboard"}>
+                    <Link to={"/gestor/dashboard"}>
                         <ButtonSecondary
                             label={'voltar'}
                             type={'button'}

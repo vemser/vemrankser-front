@@ -61,14 +61,14 @@ export const DashBoardGestor = () => {
                 </Select>
               </FormControl>
             </div>
-            <Link to={"/dashboard/feedback"}>
+            <Link to={"/gestor/dashboard/feedback"}>
               <ButtonPrimary
                 type={"button"}
                 id={"botao-feedbacks-dashboard-feedback"}
                 label={"Feedbacks"}
               />
             </Link>
-            <Link to={"/dashboard/informacoes"}>
+            <Link to={"/gestor/dashboard/informacoes"}>
               <ButtonPrimary
                 type={"button"}
                 id={"botao-informacoes-dashboard-feedback"}
@@ -95,7 +95,7 @@ export const DashBoardGestor = () => {
                   </div>
                 </ButtonCardContentDashboard>
               </ButtonCardRanking>
-            ): <p>Nenhum aluno encontrado!</p>}
+            ) : <p>Nenhum aluno encontrado!</p>}
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>

@@ -94,12 +94,12 @@ export const UsuarioListar = () => {
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem icon={<HiPencilAlt size={20} />} label="Editar"
-            onClick={() => navigate('/usuarios/editar', { state: params.row })}
+            onClick={() => navigate('/adm/usuarios/editar', { state: params.row })}
             color="inherit"
             key={params.row.idUsuario}
           />,
           <GridActionsCellItem icon={<HiOutlinePhotograph size={20} />} label="Adicionar foto"
-            onClick={() => navigate('/usuarios/cadastrar-foto', { state: params.row })}
+            onClick={() => navigate('/adm/usuarios/cadastrar-foto', { state: params.row })}
             color="inherit"
             key={params.row.email}
           />,
@@ -152,7 +152,7 @@ export const UsuarioListar = () => {
             </i>
           </BarraDePesquisa>
 
-          <Link to={"/usuarios/cadastrar"}>
+          <Link to={"/adm/usuarios/cadastrar"}>
             <ButtonPrimary
               type={"button"}
               id={"botao-adiciona-usuario"}

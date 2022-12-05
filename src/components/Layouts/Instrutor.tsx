@@ -45,27 +45,27 @@ export const InstrutorLayout = () => {
                 <ButtonMenuLateral
                     text={"Dashboard"}
                     icone={<HiChartPie />}
-                    link={"/dashboard"}
+                    link={"/instrutor/dashboard"}
                 />
                 <ButtonMenuLateral
                     text={"Alunos"}
                     icone={<HiAcademicCap />}
-                    link={"/alunos"}
+                    link={"/instrutor/alunos"}
                 />
                 <ButtonMenuLateral
                     text={"Atividades"}
                     icone={<HiBookOpen />}
-                    link={"/atividades"}
+                    link={"/instrutor/atividades"}
                 />
                 <ButtonMenuLateral
                     text={"Perfil"}
                     icone={<HiUser />}
-                    link={"/perfil"}
+                    link={"/instrutor/perfil"}
                 />
                 <ButtonMenuLateral
                     text={"Configurações"}
                     icone={<HiCog />}
-                    link={"/configuracoes"}
+                    link={"/instrutor/configuracoes"}
                 />
             </MenuLateral>
             <Outlet />

@@ -83,7 +83,7 @@ export const UsuarioCadastrar = () => {
             id="button-adiciona-usuario"
             type="submit"
           />
-          <Link to="/usuarios">
+          <Link to="/adm/usuarios">
             <ButtonSecondary
               label="Cancelar"
               id="button-cancela-usuario"

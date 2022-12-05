@@ -90,7 +90,7 @@ export const VincularModulo = () => {
               type="submit"
             />
             
-            <Link to={"/configuracoes"}>
+            <Link to={"/instrutor/configuracoes"}>
               <ButtonSecondary
                 type="button"
                 label="Cancelar"

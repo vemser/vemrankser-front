@@ -41,16 +41,16 @@ export const CadastrarTrilha = () => {
       </Titulo>
       <form onSubmit={handleSubmit(criaTrilha)}>
         <TextField id="nome-cadastra-trilha" label="Nome" variant="outlined"
-          sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'var(--branco)' }} size="small" {...register("nome")}/>
-            {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
+          sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'var(--branco)' }} size="small" {...register("nome")} />
+        {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
 
         <FormControl sx={{ width: '300px', marginBottom: "5%", backgroundColor: 'var(--branco)' }} fullWidth size="small">
           <InputLabel id="label-select-cadastra-trilha">
             Edição
           </InputLabel>
           <Select
-           value={edicao}
-           {...register("edicao")}
+            value={edicao}
+            {...register("edicao")}
             labelId="label-select-cadastra-trilha"
             id="cadastra-trilha"
             onChange={handleChangeSelect2}
@@ -70,7 +70,7 @@ export const CadastrarTrilha = () => {
         </FormControl>
         <label style={{ marginBottom: 4, textAlign: 'left', width: '300px', fontSize: '0.95rem', fontWeight: 500 }}>Data de edição da Trilha</label>
         <TextField
-         {...register("anoEdicao")}
+          {...register("anoEdicao")}
           sx={{
             width: '300px',
             backgroundColor: 'var(--branco)',
@@ -86,7 +86,7 @@ export const CadastrarTrilha = () => {
             id="botao-adiciona-cadastro-trilha"
             type="submit"
           />
-          <Link to={"/configuracoes"}>
+          <Link to={"/coordenador/configuracoes"}>
             <ButtonSecondary
               type="button"
               label="Cancelar"

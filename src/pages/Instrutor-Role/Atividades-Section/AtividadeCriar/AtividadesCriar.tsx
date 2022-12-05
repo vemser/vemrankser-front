@@ -70,7 +70,7 @@ export const AtividadesCriar = () => {
   };
 
   const enviaAtividade = (data: ICadastraAtividade) => {
-    criaAtividade({ ...data, pesoAtividade:parseInt(peso), idTrilha: trilhasSelecionadas })
+    criaAtividade({ ...data, pesoAtividade: parseInt(peso), idTrilha: trilhasSelecionadas })
   };
 
   return (
@@ -138,7 +138,7 @@ export const AtividadesCriar = () => {
         >
           <InputLabel id="label-select-cadastra-atividade-modulo">Módulo</InputLabel>
           <Select
-           defaultValue={''}
+            defaultValue={''}
             labelId="label-select-cadastra-atividade-modulo"
             id="cadastra-atividade-modulo"
             value={modulo}
@@ -201,7 +201,7 @@ export const AtividadesCriar = () => {
             id="botao-adiciona-atividade"
             type="submit"
           />
-          <Link to="/atividades">
+          <Link to="/instrutor/atividades">
             <ButtonSecondary
               type="button"
               label="Cancelar"

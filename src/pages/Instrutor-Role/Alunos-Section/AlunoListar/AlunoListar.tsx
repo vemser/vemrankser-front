@@ -1,16 +1,16 @@
 import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { ButtonPrimary } from "../../../components/Buttons/Button";
-import userDummy from "../../../assets/user.webp";
-import { BarraDePesquisa, Titulo } from "../../../components/Styles/Component.styled";
-import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../../components/Styles/ButtonCard";
+import { ButtonPrimary } from "../../../../components/Buttons/Button";
+import { BarraDePesquisa, Titulo } from "../../../../components/Styles/Component.styled";
+import { ButtonCard, ButtonCardContainer, ButtonCardContent, ButtonCardWrapper } from "../../../../components/Styles/ButtonCard";
 import { HiSearch } from "react-icons/hi";
-import { IAluno } from "../../../types/aluno";
-import { ITrilha } from "../../../types/trilha";
-import { AlunoContext } from "../../../context/AlunoContext";
+import { IAluno } from "../../../../types/aluno";
+import { ITrilha } from "../../../../types/trilha";
+import { AlunoContext } from "../../../../context/AlunoContext";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { VinculaTrilhaContext } from "../../../context/VinculaTrilhaContext";
-import { api } from "../../../utils/api";
+import { VinculaTrilhaContext } from "../../../../context/VinculaTrilhaContext";
+import { api } from "../../../../utils/api";
+import userDummy from '../../../../assets/user.webp';
 
 export const AlunoListar = () => {
   const [trilha, setTrilha] = React.useState("");
@@ -157,7 +157,7 @@ export const AlunoListar = () => {
             </i>
 
           </BarraDePesquisa>
-          <Link to={"/alunos/vincular"}>
+          <Link to={"/instrutor/alunos/vincular"}>
             <ButtonPrimary
               type={"button"}
               id={"botao-vincula-aluno"}
@@ -167,10 +167,8 @@ export const AlunoListar = () => {
         </div>
         <ButtonCardWrapper>
           {alunoData.map((aluno: IAluno) => {
-            const ultimaTrilha = aluno.trilhas.length - 1
-
             return (
-              <ButtonCard key={aluno.email}>
+              <ButtonCard key={aluno.idUsuario}>
                 <ButtonCardContent>
                   <img src={aluno.foto !== null || '' ? `data:image/jpeg;base64,${aluno.foto}` : userDummy} alt={`Foto de ${aluno.nome}`} />
                   <div className="firstSection">
@@ -180,8 +178,8 @@ export const AlunoListar = () => {
                   <div className="secondSection">
                     <p><span>Login: </span> {aluno.login} </p>
                     <p><span>Trilha: </span>
-                      {aluno.trilhas.length !== 0 ? aluno?.trilhas.map((trilhas: ITrilha, index) => {
-                        return index === ultimaTrilha ? trilhas.nome : trilhas.nome + `, `
+                      {aluno?.trilhas ? aluno.trilhas.map((trilhas: ITrilha) => {
+                        return trilhas.nome + ` `
                       }) : 'Sem trilha vinculada'}</p>
                   </div>
                   <div className="thirdSection">

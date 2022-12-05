@@ -44,7 +44,7 @@ export const CadastrarModulo = () => {
             id="botao-adiciona-cadastro-modulo"
             type="submit"
           />
-          <Link to={"/configuracoes/instrutor"}>
+          <Link to={"/instrutor/configuracoes"}>
             <ButtonSecondary
               type="button"
               label="Cancelar"

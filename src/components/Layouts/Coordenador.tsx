@@ -45,22 +45,22 @@ export const CoordenadorLayout = () => {
                 <ButtonMenuLateral
                     text={"Dashboard"}
                     icone={<HiChartPie />}
-                    link={"/dashboard"}
+                    link={"/coordenador/dashboard"}
                 />
                 <ButtonMenuLateral
                     text={"Alunos"}
                     icone={<HiAcademicCap />}
-                    link={"/alunos"}
+                    link={"/coordenador/alunos"}
                 />
                 <ButtonMenuLateral
                     text={"Perfil"}
                     icone={<HiUser />}
-                    link={"/perfil"}
+                    link={"/coordenador/perfil"}
                 />
                 <ButtonMenuLateral
                     text={"Configurações"}
                     icone={<HiCog />}
-                    link={"/configuracoes"}
+                    link={"/coordenador/configuracoes"}
                 />
             </MenuLateral>
             <Outlet />

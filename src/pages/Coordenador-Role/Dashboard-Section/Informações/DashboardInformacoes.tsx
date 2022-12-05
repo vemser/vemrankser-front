@@ -22,7 +22,7 @@ export const DashBoardInformacoesCoordenador = () => {
                     <Titulo>
                         Informações das Trilhas
                     </Titulo>
-                    <Link to={"/dashboard"}>
+                    <Link to={"/coordenador/dashboard"}>
                         <ButtonSecondary
                             label={'voltar'}
                             type={'button'}

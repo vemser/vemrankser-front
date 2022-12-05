@@ -64,20 +64,6 @@ export const DashBoardAluno = () => {
                 </Select>
               </FormControl>
             </div>
-            <Link to={`/dashboard/feedback/aluno/${usuario?.idUsuario}`}>
-              <ButtonPrimary
-                type={"button"}
-                id={"botao-dashboard-aluno"}
-                label={"Feedbacks"}
-              />
-            </Link>
-            <Link to={"/dashboard/informacoes"}>
-              <ButtonPrimary
-                type={"button"}
-                id={"botao-dashboard-informacoes"}
-                label={"Informações"}
-              />
-            </Link>
           </div>
           <ButtonCardWrapper>
             {ranking && ranking.map((r: IRanking, index) =>

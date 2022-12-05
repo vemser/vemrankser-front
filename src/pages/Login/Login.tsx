@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../../utils/schemas';
@@ -13,15 +13,32 @@ import { ErrorMessage } from '../../components/Styles/Component.styled';
 import { ButtonLogin } from '../../components/Buttons/ButtonLogin';
 
 export const Login = () => {
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogin, userRoles, handleLogout } = useContext(AuthContext);
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<IUserLogin>({
     resolver: yupResolver(loginSchema),
   });
 
-  if (token) {
-    return <Navigate to='/dashboard' />
-  }
+  // if (token !== null) {
+  //   if (userRoles.includes('ROLE_ADMINISTRADOR')) {
+  //     return navigate('/adm/usuarios');
+
+  //   } else if (userRoles.includes('ROLE_GESTAO')) {
+  //     return navigate('/gestor/dashboard');
+
+  //   } else if (userRoles.includes('ROLE_COORDENADOR')) {
+  //     return navigate('/coordenador/dashboard');
+
+  //   } else if (userRoles.includes('ROLE_INSTRUTOR')) {
+  //     return navigate('/instrutor/dashboard');
+
+  //   } else if (userRoles.includes('ROLE_ALUNO')) {
+  //     return navigate('/aluno/dashboard');
+  //   } else {
+  //     handleLogout();
+  //   }
+  // }
 
   return (
     <LoginContainer>

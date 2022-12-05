@@ -34,7 +34,7 @@ export const ModuloProvider = ({ children }: IChildren) => {
       api.defaults.headers.common['Authorization'] = token;
         await api.post(`/modulo/adicionar-modulo`, data);
       toast.success('Módulo criado com sucesso!', toastConfig);
-      navigate('/configuracoes/instrutor')
+      navigate('/instrutor/configuracoes')
     }
     catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ export const ModuloProvider = ({ children }: IChildren) => {
       api.defaults.headers.common['Authorization'] = token;
         await api.post(`/modulo/vincular-modulo-trilha/${data.idModulo}/${data.idTrilha}`, data);
       toast.success('Módulo vinculado com sucesso!', toastConfig);
-      navigate('/configuracoes/instrutor')
+      navigate('/instrutor/configuracoes')
     }
     catch (error) {
       console.error(error);

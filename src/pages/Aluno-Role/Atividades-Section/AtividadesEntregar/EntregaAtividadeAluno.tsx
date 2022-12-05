@@ -52,7 +52,7 @@ export const EntregaAtividade = () => {
             </SimpleCardContentAtividadeEntrega>
           </SimpleCardAtividadesEntrega>
           <ButtonCorrigir type={'button'} onClick={corrigiAtividade} label={'Entregar'} id={'botao-envia-atividade-aluno'} />
-          <Link to='/atividades/aluno'>
+          <Link to='/aluno/atividades'>
             <ButtonSecondary
               label="Voltar"
               id="button-volta-mural-atividade-aluno"

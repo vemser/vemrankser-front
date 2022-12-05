@@ -45,17 +45,17 @@ export const GestaoLayout = () => {
                 <ButtonMenuLateral
                     text={"Dashboard"}
                     icone={<HiChartPie />}
-                    link={"/dashboard"}
+                    link={"/gestor/dashboard"}
                 />
                 <ButtonMenuLateral
                     text={"Alunos"}
                     icone={<HiAcademicCap />}
-                    link={"/alunos"}
+                    link={"/gestor/alunos"}
                 />
                 <ButtonMenuLateral
                     text={"Perfil"}
                     icone={<HiUser />}
-                    link={"/perfil"}
+                    link={"/gestor/perfil"}
                 />
             </MenuLateral>
             <Outlet />

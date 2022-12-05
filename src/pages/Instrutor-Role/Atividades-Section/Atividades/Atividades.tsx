@@ -12,8 +12,8 @@ import { VinculaTrilhaContext } from '../../../../context/VinculaTrilhaContext';
 import { ITrilha } from '../../../../types/trilha';
 
 export const AtividadesInstrutor = () => {
-  const [ trilha, setTrilha ] = React.useState('');
-  const [ searchParam, setSearchParam ] = useSearchParams();
+  const [trilha, setTrilha] = React.useState('');
+  const [searchParam, setSearchParam] = useSearchParams();
   const { getAtividade, atividades, totalPages, getAtividadeWithIdTrilha } = useContext(AtividadeContext);
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext);
 
@@ -57,8 +57,8 @@ export const AtividadesInstrutor = () => {
               {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
             </Select>
           </FormControl>
-          <Link to={'criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Adicionar'} /></Link>
-          <Link to={'/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-notas-atividade'} label={'Gerenciar'} /></Link>
+          <Link to={'/instrutor/atividades/criar'}><ButtonPrimary type={'button'} id={'botao-nova-atividade'} label={'Adicionar'} /></Link>
+          <Link to={'/instrutor/atividades/notas'}> <ButtonPrimary type={'button'} id={'botao-gerenciar-atividade'} label={'Corrigir'} /></Link>
         </div>
         <SimpleCardWrapper>
           {atividades?.map((atividade: IAtividade) => {

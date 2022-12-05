@@ -60,7 +60,7 @@ export const AtividadesAluno = () => {
             <SimpleCardContent>
               <p><span>Atividade:</span>{atividade.titulo}</p>
             </SimpleCardContent>
-            <Link to={`/atividades/aluno/entrega/${atividade.idAtividade}`}>  
+            <Link to={`/aluno/atividades/entrega/${atividade.idAtividade}`}>  
             <ButtonSmall id={'bota-entrega-atividade-aluno'} label={"Entregar"} />
             </Link>
           </SimpleCardAtividadeAluno>

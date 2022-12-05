@@ -21,11 +21,11 @@ export const ConfiguracoesCoordenador = () => {
       </Titulo>
 
       <div className='flex'>
-        <Link to={'/configuracoes/adicionar-trilha'}>
+        <Link to={'/coordenador/configuracoes/cadastrar-trilha'}>
           <ButtonPrimary label={'Cadastrar Trilha'} id={'botao-adicionar-trilha'} type={'button'} />
         </Link>
         
-        <Link to={"/configuracoes/vincular-instrutor"}>
+        <Link to={"/coordenador/configuracoes/vincular-instrutor"}>
           <ButtonPrimary label={'Vincular instrutor'} id={'botao-vincular-'} type={'button'} />
         </Link>
       </div>

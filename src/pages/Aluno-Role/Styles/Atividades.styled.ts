@@ -63,7 +63,8 @@ export const SimpleCardContentAtividade = styled.div`
 export const SimpleCardAtividadeAluno = styled.div`
     display: flex;
     align-items: center;
-    width: 32%;
+    justify-content: space-between;
+    width: 50%;
     height: 100px;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
@@ -75,8 +76,15 @@ export const SimpleCardAtividadeAluno = styled.div`
         transition: 1s;
         transform: scale(1.01);
     }
+    @media (max-width: 1450px) {
+        width: 70%;
+    }
     @media (max-width: 850px) {
-        width: 50%;
+        width: 80%;
+    }
+    @media (max-width: 600px) {
+        flex-direction: column;
+        height: auto;
     }
     @media screen and (max-width: 460px) {
         gap: 10px;
