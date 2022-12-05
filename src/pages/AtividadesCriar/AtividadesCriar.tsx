@@ -152,7 +152,6 @@ export const AtividadesCriar = () => {
             )}
           </Select>
         </FormControl>
-        {errors.idModulo && <ErrorMessage>{errors.idModulo.message}</ErrorMessage>}
         <FormControl
           sx={{
             width: '300px',
@@ -196,7 +195,6 @@ export const AtividadesCriar = () => {
           size="small"
           className="input-data" id={'textfield-data'} {...register('dataEntrega')} placeholder={'teste'} type={'date'} value={dataEntrega} onChange={
             handleDataEntregaChange} />
-        {errors.dataEntrega && <ErrorMessage>{errors.dataEntrega.message}</ErrorMessage>}
         <ButtonWraper>
           <ButtonPrimary
             label="Adicionar"
