@@ -1,6 +1,8 @@
 export interface IModuloContext {
     getModulos: () => Promise<void>,
     modulos: IModulo[]
+    cadastraNovoModulo: (data: ICadastraModulo) => Promise<void>
+    vinculaModulo: (data: IVinculaModulo) => Promise<void>
 }
 
 export interface IModulo {
@@ -14,10 +16,9 @@ export interface ICadastraModulo {
     nome: string,
     dataInicio: string,
     dataFim: string,
-    idModulo: number
 }
 
 export interface IVinculaModulo {
-   idModulo: number,
+    idModulo: number,
     idTrilha: number
 }

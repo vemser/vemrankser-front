@@ -16,7 +16,7 @@ import { ITrilha } from '../../types/trilha'
 import { cadastraNovoModuloSchema, vinculaModuloTrilhaSchema } from '../../utils/schemas'
 
 export const VincularModulo = () => {
-  const {getModulos, modulos } = useContext(ModuloContext)
+  const {getModulos, modulos, vinculaModulo} = useContext(ModuloContext)
   const { trilhas, getTrilhas } = useContext(VinculaTrilhaContext)
   const { register, handleSubmit, formState: { errors } } = useForm<IVinculaModulo>({
     resolver: yupResolver(vinculaModuloTrilhaSchema),
@@ -36,7 +36,7 @@ export const VincularModulo = () => {
         <Titulo>
         Vincular Módulo à Trilha
         </Titulo>
-        <form>
+        <form onSubmit={handleSubmit((data)=> vinculaModulo(data))}>
           <FormControl
             sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'var(--branco)' }}
             fullWidth
@@ -85,13 +85,11 @@ export const VincularModulo = () => {
             </Select>
           </FormControl>
           <ButtonWraper>
-            <Link to={'/configuracoes'}>
             <ButtonPrimary
               label="Adicionar"
               id="botao-vincula-modulo-trilha"
               type="submit"
             />
-            </Link>
             
             <Link to={"/configuracoes"}>
               <ButtonSecondary
