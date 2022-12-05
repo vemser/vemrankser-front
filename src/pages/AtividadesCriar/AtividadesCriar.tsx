@@ -32,9 +32,9 @@ export const AtividadesCriar = () => {
   const { criaAtividade } = useContext(AtividadeContext)
   const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext)
   const [trilhasSelecionadas, setTrilhasSelecionadas] = useState<number[]>([])
-  const [peso, setPeso] = useState<number>()
+  const [peso, setPeso] = useState<string>('')
   const { getModulos, modulos } = useContext(ModuloContext)
-  const [dataEntrega, setDataEntrega] = useState<string>();
+  const [dataEntrega, setDataEntrega] = useState<string>('');
 
   useEffect(() => {
     getTrilhas()
@@ -45,12 +45,12 @@ export const AtividadesCriar = () => {
     setModulo(event.target.value as string);
   };
 
-  const handleChangePeso = (event: SelectChangeEvent<number>) => {
+  const handleChangePeso = (event: SelectChangeEvent<string>) => {
     const {
       target: { value },
     } = event;
-    if (!(typeof value === 'string')) {
-      setPeso(value)
+    if (typeof value === 'string') {
+      setPeso(value as unknown as string)
     }
   };
 
@@ -70,7 +70,7 @@ export const AtividadesCriar = () => {
   };
 
   const enviaAtividade = (data: ICadastraAtividade) => {
-    criaAtividade({ ...data, idTrilha: trilhasSelecionadas })
+    criaAtividade({ ...data, pesoAtividade:parseInt(peso), idTrilha: trilhasSelecionadas })
   };
 
   return (
@@ -80,6 +80,7 @@ export const AtividadesCriar = () => {
         <TextField
           {...register("titulo")}
           id="titulo-cadastra-atividade"
+          defaultValue={''}
           label="Título"
           variant="outlined"
           sx={{
@@ -94,6 +95,7 @@ export const AtividadesCriar = () => {
         <TextField
           id="descricao-cadastra-atividade"
           label="Descrição"
+          defaultValue={''}
           multiline
           rows={6}
           variant="outlined"
@@ -115,8 +117,8 @@ export const AtividadesCriar = () => {
               input={<OutlinedInput label="Escolha a trilha" />}
               renderValue={(selected) => trilhas.filter((trilha) => selected.includes(trilha.idTrilha)).map((trilha) => trilha.nome).join(', ')}
             >
-              {trilhas.map((trilha) => (
-                <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
+              {trilhas.map((trilha, index) => (
+                <MenuItem key={index} value={trilha.idTrilha}>
                   <Checkbox checked={trilhasSelecionadas.indexOf(trilha.idTrilha) > -1} />
                   <ListItemText primary={trilha.nome} />
                 </MenuItem>
@@ -136,6 +138,7 @@ export const AtividadesCriar = () => {
         >
           <InputLabel id="label-select-cadastra-atividade-modulo">Módulo</InputLabel>
           <Select
+           defaultValue={''}
             labelId="label-select-cadastra-atividade-modulo"
             id="cadastra-atividade-modulo"
             value={modulo}
@@ -143,7 +146,7 @@ export const AtividadesCriar = () => {
             {...register("idModulo")}
             onChange={handleChangeSelect2}
           >
-            {modulos && modulos.map((modulo) => <MenuItem value={modulo.idModulo}>
+            {modulos && modulos.map((modulo, index) => <MenuItem key={index} value={modulo.idModulo}>
               {modulo.nome}
             </MenuItem>
             )}
@@ -170,16 +173,16 @@ export const AtividadesCriar = () => {
             {...register("pesoAtividade")}
             onChange={handleChangePeso}
           >
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
-            <MenuItem value={4}>4</MenuItem>
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={6}>6</MenuItem>
-            <MenuItem value={7}>7</MenuItem>
-            <MenuItem value={8}>8</MenuItem>
-            <MenuItem value={9}>9</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={'1'}>1</MenuItem>
+            <MenuItem value={'2'}>2</MenuItem>
+            <MenuItem value={'3'}>3</MenuItem>
+            <MenuItem value={'4'}>4</MenuItem>
+            <MenuItem value={'5'}>5</MenuItem>
+            <MenuItem value={'6'}>6</MenuItem>
+            <MenuItem value={'7'}>7</MenuItem>
+            <MenuItem value={'8'}>8</MenuItem>
+            <MenuItem value={'9'}>9</MenuItem>
+            <MenuItem value={'10'}>10</MenuItem>
           </Select>
         </FormControl>
         {errors.pesoAtividade && <ErrorMessage>{errors.pesoAtividade.message}</ErrorMessage>}
