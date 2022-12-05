@@ -225,8 +225,8 @@ export const ButtonCardDashboardInformacoes = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
-  height: 200px;
+  width: 45%;
+  height: 100px;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
@@ -253,3 +253,83 @@ export const ButtonCardDashboardInformacoes = styled.div`
       gap: 10px;
   }
 `;
+
+export const ButtonCardContentInformacao = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  font-size: 1rem;
+  .button-editar-visualiza{
+    gap: 5%;
+  }
+  @media screen and (max-width: 460px) {
+      font-size: 0.9rem;
+  }
+  @media (max-width: 1100px) {
+      gap: 20px;
+  }
+  @media (max-width: 850px) {
+      flex-direction: column;
+      text-align: center;
+      height: auto;
+      gap: 40px;
+  }
+  div {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      white-space: pre-line;
+    }
+  }
+  .firstSection {
+    width: 280px;
+    @media (max-width: 1600px) {
+        width: 200px;
+    }
+    @media (max-width: 1400px) {
+        width: 280px;
+    }
+    @media (max-width: 1200px) {
+        width: 200px;
+    }
+    @media (max-width: 1000px) {
+        width: 230px;
+    }
+    @media (max-width: 850px) {
+        width: 100%;
+    }
+  }
+  .secondSection {
+    width: 250px;
+    @media (max-width: 1600px) {
+        width: 170px;
+    }
+    @media (max-width: 1400px) {
+        width: 180px;
+    }
+    @media (max-width: 1000px) {
+        width: 200px;
+    }
+    @media (max-width: 850px) {
+        width: 100%;
+    }
+  }
+  p {
+    font-size: 1rem;
+    span {
+        font-weight: 600;
+    }
+    .ativo {
+      font-weight: 500;
+      color: #05a075;
+    }
+    .inativo {
+      font-weight: 500;
+      color: #e40b36;
+    }
+  }
+`;
+

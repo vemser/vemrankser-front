@@ -74,9 +74,6 @@ export const AlunoProvider = ({ children }: IChildren) => {
       if (filterParams?.idTrilha) {
         filterString = filterString.concat(`&idTrilha=${filterParams.idTrilha}`)
       }
-      if (filterParams?.nome) {
-        filterString = filterString.concat(`&nome=${filterParams.nome}`)
-      }
       const { data } = await api.get(`/usuario/lista-alunos-trilha?pagina=${page - 1}&tamanho=4${filterString}`);
       setTotalPages(data.quantidadePaginas);
       setAlunos(data.elementos);

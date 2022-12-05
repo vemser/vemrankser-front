@@ -1,11 +1,19 @@
+import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ButtonPrimary } from '../../components/Buttons/Button'
 import { Titulo } from '../../components/Styles/Component.styled'
 import { ContentWrapper } from '../../components/Styles/Container.styled'
 import { SimpleCardContent, SimpleCardWrapper } from '../../components/Styles/SimpleCard'
 import { SimpleCardConfiguracoes } from './Configuracoes.styled'
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext'
+import { ITrilha } from '../../types/trilha'
 
 export const ConfiguracoesCoordenador = () => {
+  const { getTrilhas, trilhas } = useContext(VinculaTrilhaContext);
+
+  useEffect(()=>{
+    getTrilhas()
+  }, [])
   return (
     <ContentWrapper>
       <Titulo>
@@ -22,24 +30,13 @@ export const ConfiguracoesCoordenador = () => {
         </Link>
       </div>
 
-      <SimpleCardConfiguracoes>
+   {trilhas.map((trilha:ITrilha) =>
+   <SimpleCardConfiguracoes key={trilha.idTrilha}>
         <SimpleCardContent>
-          <p>A Trilha <span>Backend</span> foi adicionada.</p>
+          <p>A Trilha <span>{trilha.nome}</span> foi adicionada na edição <span>{trilha.edicao}</span> </p>
         </SimpleCardContent>
       </SimpleCardConfiguracoes>
-
-      <SimpleCardConfiguracoes>
-        <SimpleCardContent>
-          <p>A Trilha <span>Frontend</span> foi adicionada.</p>
-        </SimpleCardContent>
-      </SimpleCardConfiguracoes>
-
-      <SimpleCardConfiguracoes>
-        <SimpleCardContent>
-          <p>A Trilha <span>Backend</span> foi adicionada.</p>
-        </SimpleCardContent>
-      </SimpleCardConfiguracoes>
-
+   )}   
     </ContentWrapper>
   )
 }

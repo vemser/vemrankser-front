@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
-import { IRanking, ITrilha, IVinculaTrilha, IVinculaTrilhaContext } from "../types/trilha";
+import { ICadastraTrilha, IRanking, ITrilha, IVinculaTrilha, IVinculaTrilhaContext } from "../types/trilha";
 import { IChildren } from "../types/aluno";
 import { toast } from "react-toastify";
 import { toastConfig } from "../types/toast";
@@ -20,27 +20,42 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
       api.defaults.headers.common['Authorization'] = token;
 
       const { data } = await api.get(`/trilha/lista-trilha-nome`);
-
       setTrilhas(data);      
     } catch (error) {
       console.error(error);
     }
   }
-
   const vinculaTrilha = async (data: IVinculaTrilha) => {
     try {
+      
       nProgress.start();
 
       api.defaults.headers.common['Authorization'] = token;
 
-      const queryIdTrilha = data.idTrilha.map((id) => {
+      const queryIdTrilha = data?.idTrilha?.map((id) => {
         return `&idTrilha=${id}`
       }).join().replace(/,/g, '')
-
       await api.post(`/trilha/adicionar-aluno-trilha?login=${data.login}${queryIdTrilha}`, data);
-
       toast.success('Aluno vinculado com sucesso!', toastConfig);
       navigate('/alunos');
+    } catch (error) {
+      console.error(error);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
+
+    } finally {
+      nProgress.done();
+    }
+  }
+  const vinculaTrilhaInstrutor = async (data: IVinculaTrilha) => {
+    try {
+      nProgress.start();
+      api.defaults.headers.common['Authorization'] = token;
+      const queryIdTrilha = data?.idTrilha?.map((id) => {
+        return `&idTrilha=${id}`
+      }).join().replace(/,/g, '')
+      await api.post(`/trilha/adicionar-instrutor-trilha?login=${data.login}${queryIdTrilha}`, data);
+      toast.success('Instrutor vinculado com sucesso!', toastConfig);
+      navigate('/configuracoes');
     } catch (error) {
       console.error(error);
       toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
@@ -62,8 +77,21 @@ export const VinculaTrilhaProvider = ({ children }: IChildren) => {
     }
   }
 
+  const cadastraNovaTrilha = async (data: ICadastraTrilha) => {
+    try{
+      api.defaults.headers.common['Authorization'] = token;
+        await api.post(`/trilha`, data);
+      toast.success('Trilha vinculada com sucesso!', toastConfig);
+      navigate('/configuracoes')
+    }
+    catch (error) {
+      console.error(error);
+      toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
+    }
+  }
+
   return (
-    <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha, getRanking, ranking }}>
+    <VinculaTrilhaContext.Provider value={{ getTrilhas, trilhas, vinculaTrilha, getRanking, ranking, vinculaTrilhaInstrutor, cadastraNovaTrilha }}>
       {children}
     </VinculaTrilhaContext.Provider>
   );

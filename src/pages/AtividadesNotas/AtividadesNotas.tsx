@@ -76,7 +76,7 @@ export const AtividadesNotas = () => {
               label="Trilha"
               onChange={handleChange}
             >
-              {trilhas && trilhas.map((trilha: ITrilha) => <MenuItem value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
+              {trilhas && trilhas.map((trilha: ITrilha, index) => <MenuItem key={index} value={trilha.idTrilha}>{trilha.nome}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl sx={{ width: 250, backgroundColor: 'white' }} fullWidth size="small">
@@ -88,15 +88,18 @@ export const AtividadesNotas = () => {
               label="Módulo"
               onChange={handleChangeSelect2}
             >
-              {modulos && modulos.map((modulo: IModulo) => <MenuItem value={modulo.idModulo}>{modulo.nome} </MenuItem>)}
+              {modulos && modulos.map((modulo: IModulo, index) => <MenuItem key={index} value={modulo.idModulo}>{modulo.nome} </MenuItem>)}
             </Select>
           </FormControl>
         </div>
         <SimpleCardWrapper>
-          {notas.map((nota: INotas) => {
+          {notas.map((nota: INotas, index) => {
             return (
-              <SimpleCardNotes>
-                <p><span>{nota.nome}</span></p>
+              <SimpleCardNotes key={index}>
+                <img src={userDummy} alt="Foto" />
+                <SimpleCardContent >
+                  <p><span>{nota.nome}</span></p>
+                </SimpleCardContent>
                 <Link to={`/atividades/corrige/notas/${nota.idUsuario}/${nota.idAtividade}`}><ButtonPrimary type={'button'} id={'botao-gerencia-notas'} label={'Corrigir'} /></Link>
               </SimpleCardNotes>
             )

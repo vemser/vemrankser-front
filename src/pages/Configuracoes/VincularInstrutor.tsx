@@ -1,88 +1,92 @@
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Checkbox, ListItemText, OutlinedInput } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
-import Select from '@mui/material/Select'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
+import { useContext, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { ButtonPrimary, ButtonSecondary } from '../../components/Buttons/Button'
-import { Titulo } from '../../components/Styles/Component.styled'
+import { ErrorMessage, Titulo } from '../../components/Styles/Component.styled'
 import { ButtonWraper, ContentWrapper } from '../../components/Styles/Container.styled'
+import { VinculaTrilhaContext } from '../../context/VinculaTrilhaContext'
+import { IVinculaTrilha } from '../../types/trilha'
+import { vinculaInstrutorSchema } from '../../utils/schemas'
 
 export const VincularInstrutor = () => {
+  const { trilhas, getTrilhas, vinculaTrilhaInstrutor } = useContext(VinculaTrilhaContext)
+  const [trilhasSelecionadas, setTrilhasSelecionadas] = useState<number[]>([]);
+
+  const { register, handleSubmit, formState: { errors } } = useForm<IVinculaTrilha>({
+    resolver: yupResolver(vinculaInstrutorSchema),
+  });
+  
+  useEffect(() => {
+    getTrilhas();
+  }, []);
+
+  const handleTrilhasSelecionadasChange = (event: SelectChangeEvent<typeof trilhasSelecionadas>) => {
+    const {
+      target: { value },
+    } = event;
+    if (!(typeof value === 'string')) {
+      setTrilhasSelecionadas(
+        value
+      );
+    }
+  };
+
+  const vinculaInstrutorTrilha = (data: IVinculaTrilha) => {
+    vinculaTrilhaInstrutor({ ...data, idTrilha: trilhasSelecionadas })
+  };
+
+
   return (
       <ContentWrapper>
         <Titulo>
         Vincular Instrutor à Trilha 
         </Titulo>
-        <form>
-          <FormControl
-            sx={{
-              width: '300px',
-              backgroundColor: "var(--branco)",
-              marginBottom: "5%", 
-              marginTop: "8%",
-            }}
-            fullWidth
-            size="small"
-          >
-             <InputLabel id="label-select-escolhe-instrutor">
-              Instrutores
-            </InputLabel>
+        <form onSubmit={handleSubmit(vinculaInstrutorTrilha)}>
+        <TextField
+          id="nome-vincula-instrutor"
+          label="Login"
+          variant="outlined"
+          {...register("login")}
+          sx={{ width: "300px", marginBottom: "5%", marginTop: "8%", backgroundColor: 'white' }}
+          size="small"
+        />
+         {errors.login && <ErrorMessage>{errors.login.message}</ErrorMessage>}
+
+         <FormControl >
+            <InputLabel id="demo-multiple-checkbox-label">Trilha</InputLabel>
             <Select
-              labelId="label-select-escolhe-instrutor"
-              id="escolhe-instrutor-trilha"
-              label="Instrutores"
-            //   onChange={}
+              label="Trilha"
+              sx={{ width: '300px', height: '40px', backgroundColor: 'white', marginBottom: '5%' }}
+              labelId="label-checkbox-multiplaescolha-trilha"
+              id="checkbox-trilha"
+              multiple
+              value={trilhasSelecionadas}
+              onChange={handleTrilhasSelecionadasChange}
+              input={<OutlinedInput label="Escolha a trilha" />}
+              renderValue={(selected) => trilhas.filter((trilha) => selected.includes(trilha.idTrilha)).map((trilha) => trilha.nome).join(', ')}
             >
-              <MenuItem value={1}>Cris</MenuItem>
-              <MenuItem value={2}>May</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              {trilhas.map((trilha) => (
+                <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>
+                  <Checkbox checked={trilhasSelecionadas.indexOf(trilha.idTrilha) > -1} />
+                  <ListItemText primary={trilha.nome} />
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-          <FormControl
-            sx={{
-              width: '300px',
-              marginBottom: "5%", 
-              backgroundColor: "var(--branco)",
-            }}
-            fullWidth
-            size="small"
-          >
-             <InputLabel id="label-select-escolhe-edicao">
-              Edição
-            </InputLabel>
-            <Select
-              labelId="label-select-escolhe-edicao"
-              id="escolhe-edicao-trilha"
-              label="Edicao"
-            //   onChange={}
-            >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
-            </Select>
-          </FormControl>
+        {errors.idTrilha && <ErrorMessage>{errors.idTrilha.message}</ErrorMessage>}
           <ButtonWraper>
-            <Link to={'/configuracoes'}>
             <ButtonPrimary
               label="Adicionar"
               id="botao-vincula-instrutor-trilha"
               type="submit"
             />
-            </Link>
             
             <Link to={"/configuracoes"}>
               <ButtonSecondary

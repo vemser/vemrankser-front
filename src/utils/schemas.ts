@@ -32,7 +32,7 @@ export const cadastraAtividadeSchema = yup.object().shape({
     titulo: yup.string().required('Por favor, digite o titulo da atividade').trim(),
     instrucoes: yup.string().required('Por favor, digite a descrição da atividade').trim(),
     idModulo: yup.number().required('Por favor, selecione um módulo').typeError('Por favor, selecione uma opção'),
-    pesoAtividade: yup.number().required('Por favor, selecione o peso').typeError('Por favor, selecione uma opção'),
+    pesoAtividade: yup.string().required('Por favor, selecione o peso').typeError('Por favor, selecione uma opção'),
     dataEntrega: yup.date().required().typeError('Por favor, selecione uma opção').min("2022-11-30", "Date inválida, por favor digite outra data")
 });
 
@@ -49,4 +49,34 @@ export const editaUsuarioSchema = yup.object().shape({
     especialidade: yup.string().trim(),
     statusUsuario: yup.number().required('Por favor, informe o status'),
     idUsuario: yup.number().required()
+})
+
+export const adicionaFotoSchema = yup.object().shape({
+    idUsuario: yup.number().required(),
+    file: yup.mixed().required('Nenhum arquivo de imagem carregado')
+    .test('is-big-file', 'Arquivo grande demais', checkIfFileIsTooBig)
+    .test('is-correct-file', 'Arquivo não suportado, envie apenas jpg, jpeg, png ou webp', checkIfFileIsCorrectType)
+})
+
+export const cadastraTrilhaSchema = yup.object().shape({
+    nome: yup.string().required('Por favor, digite o nome da trilha').min(2, 'Nome  inválido').trim(),
+    edicao: yup.number().required('Por favor, selecione uma opção')
+    .label("Edicao"),
+    anoEdicao: yup.string().required('Por favor, selecione uma opção')
+})
+
+export const vinculaInstrutorSchema = yup.object().shape({
+    login: yup.string().required('Por favor, digite o login').min(2, 'Login  inválido').trim(),
+})
+export const cadastraNovoModuloSchema = yup.object().shape({
+    nome: yup.string().required('Por favor, digite o nome do módulo').min(2, 'Nome  inválido').trim(),
+    dataInicio: yup.string().required('Por favor, selecione uma opção')
+    .label("Edicao"),
+    dataFim: yup.string().required('Por favor, selecione uma opção'),
+})
+
+export const vinculaModuloTrilhaSchema = yup.object().shape({
+    idTrilha: yup.number().required('Por favor, selecione uma opção'),
+    idModulo: yup.number().required('Por favor, selecione uma opção')
+   
 })
