@@ -47,11 +47,10 @@ export const VincularModulo = () => {
             </InputLabel>
             <Select
                {...register("idModulo")}
+               defaultValue={''}
               labelId="label-select-escolhe-modulo"
               id="escolhe-modulo"
               label="Instrutores"
-              
-            //   onChange={}
             >
              {modulos.map((modulo: IModulo) =>
               <MenuItem key={modulo.idModulo} value={modulo.idModulo}>
@@ -72,10 +71,10 @@ export const VincularModulo = () => {
             </InputLabel>
             <Select
             {...register("idTrilha")}
+            defaultValue={''}
               labelId="label-select-escolhe-trilha"
               id="escolhe-trilha"
               label="Edicao"
-            //   onChange={}
             >
             {trilhas.map((trilha: ITrilha) =>
               <MenuItem key={trilha.idTrilha} value={trilha.idTrilha}>

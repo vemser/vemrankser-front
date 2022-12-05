@@ -117,9 +117,9 @@ export const DashBoardFeedback = () => {
             </Link>
           </div>
           <ButtonCardWrapper >
-            {alunos&&alunos.map((aluno: IAluno) =>
-              <ButtonCardDashboardFeedback>
-                <ButtonCardContentDashboard key={aluno.idUsuario}>
+            {alunos?.length>0 ? alunos.map((aluno: IAluno, index) =>
+              <ButtonCardDashboardFeedback key={index}>
+                <ButtonCardContentDashboard>
                   <img src={userDummy} alt="Foto" />
                   <div>
                     <p><span>Nome: </span>{aluno.nome}</p>
@@ -131,7 +131,7 @@ export const DashBoardFeedback = () => {
                   </div>
                 </ButtonCardContentDashboard>
               </ButtonCardDashboardFeedback>
-            )} 
+            ): <p>Nenhum aluno encontrado!</p>} 
           </ButtonCardWrapper>
           <Pagination count={totalPages} page={pagina} onChange={(e, newPage) => setSearchParam({ pagina: newPage.toString() }, { replace: true })} color="primary" />
         </section>

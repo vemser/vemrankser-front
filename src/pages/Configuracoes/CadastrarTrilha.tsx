@@ -15,7 +15,7 @@ import { ICadastraTrilha } from '../../types/trilha';
 import { cadastraTrilhaSchema } from '../../utils/schemas';
 
 export const CadastrarTrilha = () => {
-  const [edicao, setEdicao] = useState<string>()
+  const [edicao, setEdicao] = useState<string>('')
   const { cadastraNovaTrilha } = useContext(VinculaTrilhaContext)
 
   const {

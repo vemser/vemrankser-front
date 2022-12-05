@@ -77,9 +77,9 @@ export const DashBoard = () => {
             </Link>
           </div>
           <ButtonCardWrapper>
-            {ranking && ranking.map((r: IRanking, index) =>
+            {ranking?.length > 0 ? ranking.map((r: IRanking, index) =>
               index < 3 &&
-              <ButtonCardRanking key={r.idUsuario}>
+              <ButtonCardRanking key={`card-ranking-${index}`}>
                 <ButtonCardContentDashboard>
                   <div>
                     <p>Nome: <span>{r.nome}</span></p>
@@ -95,7 +95,7 @@ export const DashBoard = () => {
                   </div>
                 </ButtonCardContentDashboard>
               </ButtonCardRanking>
-            )}
+            ): <p>Nenhum aluno encontrado!</p>}
           </ButtonCardWrapper>
         </section>
       </ButtonCardContainer>
