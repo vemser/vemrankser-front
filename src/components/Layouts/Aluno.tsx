@@ -6,7 +6,7 @@ import { ButtonMenuLateral } from '../Buttons/ButtonMenuLateral';
 import { MenuLateral } from '../MenuLateral/MenuLateral';
 import userDummy from '../../assets/user.webp';
 
-export const AdminLayout = () => {
+export const AlunoLayout = () => {
     const { getLoggedUser, usuario } = useContext(AuthContext);
 
     useEffect(() => {
@@ -43,9 +43,19 @@ export const AdminLayout = () => {
                 fotoDePerfil={usuario?.foto !== null && 'foto' ? `data:image/jpeg;base64,${usuario?.foto}` : userDummy}
             >
                 <ButtonMenuLateral
-                    text={"Usuários"}
-                    icone={<HiUsers />}
-                    link={"/usuarios"}
+                    text={"Dashboard"}
+                    icone={<HiChartPie />}
+                    link={"/dashboard"}
+                />
+                <ButtonMenuLateral
+                    text={"Atividades"}
+                    icone={<HiBookOpen />}
+                    link={"/atividades"}
+                />
+                <ButtonMenuLateral
+                    text={"Perfil"}
+                    icone={<HiUser />}
+                    link={"/perfil"}
                 />
             </MenuLateral>
             <Outlet />

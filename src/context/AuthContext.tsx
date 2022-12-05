@@ -11,8 +11,21 @@ export const AuthContext = createContext({} as IAuthContext);
 
 export const AuthProvider = ({ children }: IChildren) => {
     const navigate = useNavigate();
-    const [ usuario, setUsuario ] = useState<IUser>();
+    const [usuario, setUsuario] = useState<IUser>();
     const token = localStorage.getItem('token');
+    const [userRoles, setUserRoles] = useState<string[]>([]);
+
+    const decodeToken = async (token: any) => {
+        try {
+            let decodedJWT = JSON.parse(atob(token.split('.')[1]));
+            let roles = decodedJWT.CARGOS;
+
+            return roles;
+
+        } catch (error) {
+            return null;
+        }
+    }
 
     const handleLogin = async (user: IUserLogin) => {
         try {
@@ -22,7 +35,30 @@ export const AuthProvider = ({ children }: IChildren) => {
             api.defaults.headers.common['Authorization'] = data;
             localStorage.setItem('token', data);
 
-            navigate('/dashboard');
+            let roles = await decodeToken(localStorage.getItem('token'));
+
+            setUserRoles(roles);
+
+            if (roles.includes('ROLE_ADMINISTRADOR')) {
+                navigate('/usuarios');
+
+            } else if (roles.includes('ROLE_GESTAO')) {
+                navigate('/dashboard');
+
+            } else if (roles.includes('ROLE_COORDENADOR')) {
+                navigate('/perfil');
+
+            } else if (roles.includes('ROLE_INSTRUTOR')) {
+                navigate('/atividades');
+
+            } else if (roles.includes('ROLE_ALUNO')) {
+                navigate('/alunos');
+
+            } else {
+                toast.error('Autenticação falhou, por favor verifique os seus dados', toastConfig);
+                navigate('/');
+            }
+
         } catch (error) {
             toast.error('Houve algum erro, por favor verifique os dados e tente novamente', toastConfig);
             console.log(error);
@@ -30,7 +66,7 @@ export const AuthProvider = ({ children }: IChildren) => {
             nProgress.done();
         }
     }
-    
+
     const getLoggedUser = async () => {
         try {
             api.defaults.headers.common['Authorization'] = token;
@@ -53,7 +89,7 @@ export const AuthProvider = ({ children }: IChildren) => {
     }
 
     return (
-        <AuthContext.Provider value={{ getLoggedUser, usuario, handleLogin, handleLogout }}>
+        <AuthContext.Provider value={{ getLoggedUser, usuario, handleLogin, userRoles, handleLogout }}>
             {children}
         </AuthContext.Provider>
     )
